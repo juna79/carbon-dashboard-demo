@@ -9,98 +9,111 @@
   <style>
     body { background: #0a0a0a; color: #e0f2e9; font-family: 'Inter', sans-serif; }
     .neon-green { text-shadow: 0 0 15px #22ff88; }
-    .glass { background: rgba(15, 23, 20, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(34, 255, 136, 0.2); }
+    .glass { background: rgba(15, 23, 20, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(34, 255, 136, 0.2); }
     .card-hover:hover { transform: translateY(-8px); box-shadow: 0 0 30px rgba(34, 255, 136, 0.3); }
+    .active { background: rgba(34, 255, 136, 0.15); color: #22ff88; border-left: 4px solid #22ff88; }
   </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen flex">
 
-  <div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-72 glass border-r border-emerald-900/50 p-6 fixed h-full">
+    <div class="flex items-center gap-3 mb-12">
+      <i class="fa-solid fa-leaf text-4xl text-emerald-400"></i>
+      <h1 class="text-2xl font-bold tracking-tight">KENYA CARBON</h1>
+    </div>
+    
+    <nav class="space-y-1" id="sidebar">
+      <a onclick="showSection('dashboard')" class="active flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a onclick="showSection('projects')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-tree"></i> Projects</a>
+      <a onclick="showSection('marketplace')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-store"></i> Marketplace</a>
+      <a onclick="showSection('portfolio')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-wallet"></i> Portfolio</a>
+      <a onclick="showSection('certificates')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-certificate"></i> Certificates</a>
+    </nav>
+  </div>
 
-    <!-- Sidebar -->
-    <div class="w-72 glass border-r border-green-900 p-6">
-      <div class="flex items-center gap-3 mb-12">
-        <i class="fa-solid fa-leaf text-4xl text-emerald-400"></i>
-        <h1 class="text-2xl font-bold tracking-tight">KENYA CARBON</h1>
+  <!-- Main Content -->
+  <div class="flex-1 ml-72 p-8">
+
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="section">
+      <h1 class="text-4xl font-bold neon-green mb-2">Market Overview</h1>
+      <p class="text-emerald-400/70 mb-8">Real-time African Carbon Market</p>
+      
+      <div class="grid grid-cols-4 gap-6">
+        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">TOTAL AVAILABLE</p><p class="text-5xl font-bold mt-2">12.4M tCO₂</p></div>
+        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">AVG PRICE</p><p class="text-5xl font-bold mt-2">$6.45</p></div>
+        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">RETIRED</p><p class="text-5xl font-bold mt-2">5.2M</p></div>
+        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">PROJECTS</p><p class="text-5xl font-bold mt-2">48</p></div>
       </div>
-      <nav class="space-y-2">
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-emerald-900/30 text-emerald-400"><i class="fa-solid fa-house"></i> Dashboard</a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-tree"></i> Projects</a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-store"></i> Marketplace</a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-wallet"></i> Portfolio</a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-certificate"></i> Certificates</a>
-      </nav>
     </div>
 
-    <!-- Main Content -->
-    <div class="flex-1 p-8 overflow-auto">
-
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h1 class="text-4xl font-bold neon-green">Market Overview</h1>
-          <p class="text-emerald-400/70">Real-time African Carbon Market • Updated just now</p>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="bg-emerald-900/30 px-4 py-2 rounded-2xl text-sm">Live Data</div>
-          <div class="w-10 h-10 bg-emerald-400/20 rounded-2xl flex items-center justify-center">JW</div>
-        </div>
-      </div>
-
-      <!-- Metrics -->
-      <div class="grid grid-cols-4 gap-6 mb-10">
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-emerald-400 text-sm">TOTAL CREDITS AVAILABLE</p>
-          <p class="text-5xl font-bold mt-3">12.4M <span class="text-2xl">tCO₂</span></p>
-        </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-emerald-400 text-sm">AVG PRICE</p>
-          <p class="text-5xl font-bold mt-3">$6.45</p>
-        </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-emerald-400 text-sm">CREDITS RETIRED</p>
-          <p class="text-5xl font-bold mt-3">5.2M</p>
-        </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-emerald-400 text-sm">ACTIVE PROJECTS</p>
-          <p class="text-5xl font-bold mt-3">48</p>
-        </div>
-      </div>
-
-      <!-- Featured Projects -->
-      <h2 class="text-2xl font-semibold mb-6">Featured Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="projects"></div>
-
+    <!-- Projects Section -->
+    <div id="projects" class="section hidden">
+      <h1 class="text-4xl font-bold mb-8">All Projects</h1>
+      <div class="grid grid-cols-2 gap-6" id="projects-grid"></div>
     </div>
+
+    <!-- Marketplace -->
+    <div id="marketplace" class="section hidden">
+      <h1 class="text-4xl font-bold mb-8">Marketplace</h1>
+      <p class="text-xl text-emerald-400">Buy verified carbon credits</p>
+      <!-- Add more cards here later -->
+    </div>
+
+    <!-- Portfolio -->
+    <div id="portfolio" class="section hidden">
+      <h1 class="text-4xl font-bold mb-8">Your Portfolio</h1>
+      <p class="text-2xl">You own <span class="text-emerald-400 font-bold">2,850 tCO₂</span></p>
+    </div>
+
+    <!-- Certificates -->
+    <div id="certificates" class="section hidden">
+      <h1 class="text-4xl font-bold mb-8">Certificates</h1>
+      <div class="glass rounded-3xl p-12 text-center">
+        <i class="fa-solid fa-certificate text-8xl text-emerald-400 mb-6"></i>
+        <h2 class="text-3xl font-bold">Your latest certificate is ready</h2>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    const projects = [
-      {name: "Mau Forest Protection", location: "Narok County", credits: "1.2M", price: "6.20", type: "Forest", img: "🌳"},
-      {name: "Clean Cooking Initiative", location: "Kisumu", credits: "850K", price: "5.40", type: "Cookstove", img: "🔥"},
-      {name: "Lake Turkana Wind", location: "Turkana", credits: "850K", price: "7.10", type: "Renewable", img: "🌬️"},
-      {name: "Blue Carbon Mangroves", location: "Kilifi", credits: "420K", price: "8.30", type: "Blue Carbon", img: "🌊"}
+    function showSection(section) {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+      // Show selected
+      document.getElementById(section).classList.remove('hidden');
+      
+      // Update active sidebar
+      document.querySelectorAll('#sidebar a').forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('onclick').includes(section)) link.classList.add('active');
+      });
+    }
+
+    // Sample Projects
+    const projectsData = [
+      {name: "Mau Forest Protection", credits: "1.2M", price: "6.20"},
+      {name: "Clean Cooking Initiative", credits: "850K", price: "5.40"},
+      {name: "Lake Turkana Wind", credits: "850K", price: "7.10"},
+      {name: "Blue Carbon Mangroves", credits: "420K", price: "8.30"}
     ];
 
-    const container = document.getElementById('projects');
-    projects.forEach(p => {
-      const div = document.createElement('div');
-      div.className = "glass rounded-3xl p-6 card-hover cursor-pointer";
-      div.innerHTML = `
-        <div class="text-5xl mb-4">${p.img}</div>
+    const grid = document.getElementById('projects-grid');
+    projectsData.forEach(p => {
+      const card = document.createElement('div');
+      card.className = "glass rounded-3xl p-6 card-hover";
+      card.innerHTML = `
         <h3 class="font-bold text-xl">${p.name}</h3>
-        <p class="text-emerald-400/70 text-sm">${p.location}</p>
-        <div class="mt-6 flex justify-between">
-          <div>
-            <p class="text-3xl font-bold">$${p.price}</p>
-            <p class="text-xs text-gray-400">per tCO₂</p>
-          </div>
-          <div class="text-right">
-            <p class="text-emerald-400">${p.credits} tCO₂</p>
-          </div>
-        </div>
+        <p class="text-emerald-400 mt-6">${p.credits} tCO₂ available</p>
+        <p class="text-3xl font-bold mt-2">$${p.price} <span class="text-base font-normal">/tCO₂</span></p>
       `;
-      container.appendChild(div);
+      grid.appendChild(card);
     });
+
+    // Start on Dashboard
+    showSection('dashboard');
   </script>
 </body>
 </html>
