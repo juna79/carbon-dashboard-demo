@@ -1,157 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kenya Carbon Exchange</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { background: #050505; color: #e0f2e9; font-family: 'Inter', sans-serif; }
-    .title { font-family: 'Space Grotesk', sans-serif; }
-    .glass { background: rgba(15, 23, 20, 0.92); backdrop-filter: blur(32px); border: 1px solid rgba(34, 255, 136, 0.25); }
-    .neon { text-shadow: 0 0 25px #22ff88; }
-    .card-hover:hover { transform: translateY(-10px); box-shadow: 0 0 60px rgba(34, 255, 136, 0.3); }
+    :root {
+      --bg: #050806;
+      --panel: rgba(8, 22, 15, 0.84);
+      --panel2: rgba(4, 15, 10, 0.92);
+      --gold: #d7b35a;
+      --gold2: #f5d77b;
+      --green: #75f070;
+      --muted: #9baa9e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 75% 5%, rgba(53, 177, 92, 0.28), transparent 28%),
+        radial-gradient(circle at 55% 100%, rgba(215, 179, 90, 0.12), transparent 35%),
+        linear-gradient(135deg, #020403, #07140d 55%, #020403);
+      color: #f5f2df;
+      font-family: Inter, system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(245, 215, 123, 0.22) 1px, transparent 1.5px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 90px 90px, 54px 54px, 54px 54px;
+      opacity: 0.55;
+    }
+
+    .title { font-family: "Space Grotesk", sans-serif; }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid rgba(215, 179, 90, 0.34);
+      box-shadow: 0 22px 80px rgba(0,0,0,0.36);
+      backdrop-filter: blur(20px);
+    }
+
+    .gold { color: var(--gold2); }
+    .muted { color: var(--muted); }
+
+    .nav-item {
+      color: #d6d6c9;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .nav-item.active,
+    .nav-item:hover {
+      color: #fff3c4;
+      background: rgba(215, 179, 90, 0.13);
+      border-color: rgba(215, 179, 90, 0.55);
+      box-shadow: inset 0 0 22px rgba(215, 179, 90, 0.08);
+    }
+
+    .metric {
+      border-right: 1px solid rgba(215, 179, 90, 0.22);
+    }
+
+    .metric:last-child { border-right: 0; }
+
+    .project-card {
+      transition: .22s ease;
+      background: rgba(4, 18, 11, 0.88);
+      border: 1px solid rgba(215, 179, 90, 0.33);
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(245, 215, 123, 0.75);
+      box-shadow: 0 0 45px rgba(215, 179, 90, 0.18);
+    }
+
+    .sparkline {
+      width: 110px;
+      height: 28px;
+    }
+
+    .btn-gold {
+      background: rgba(215, 179, 90, 0.12);
+      border: 1px solid rgba(215, 179, 90, 0.42);
+      color: #f9eab1;
+    }
+
+    .btn-gold:hover { background: rgba(215, 179, 90, 0.22); }
+
+    .map-dot {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #76f071;
+      border-radius: 999px;
+      box-shadow: 0 0 0 6px rgba(118,240,113,.16), 0 0 24px rgba(118,240,113,.95);
+      transform: translate(-50%, -50%);
+    }
+
+    .map-line {
+      position: absolute;
+      height: 1px;
+      background: rgba(245,215,123,.35);
+      transform-origin: left;
+    }
+
+    .chart-line {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .donut {
+      width: 190px;
+      height: 190px;
+      border-radius: 999px;
+      background: conic-gradient(#6fbf3a 0 45%, #f0c044 45% 70%, #d89028 70% 85%, #3f93a4 85% 95%, #cfa66d 95% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 42px;
+      background: #07110b;
+      border-radius: 999px;
+    }
+
+    .modal {
+      background: rgba(0,0,0,.76);
+      backdrop-filter: blur(18px);
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+      .main {
+        margin-left: 0;
+      }
+      .metric { border-right: 0; border-bottom: 1px solid rgba(215,179,90,.2); }
+      .metric:last-child { border-bottom: 0; }
+    }
   </style>
 </head>
-<body class="flex min-h-screen">
 
-  <!-- Sidebar -->
-  <div class="w-72 glass border-r border-emerald-900 p-6 fixed h-full">
-    <div class="flex items-center gap-3 mb-12">
-      <i class="fa-solid fa-leaf text-4xl text-emerald-400"></i>
-      <h1 class="title text-2xl font-bold tracking-tighter neon">KENYA CARBON</h1>
-    </div>
-    <nav class="space-y-2">
-      <a onclick="navigate('dashboard')" class="nav-link active flex items-center gap-3 px-5 py-4 rounded-3xl"><i class="fa-solid fa-house"></i> Dashboard</a>
-      <a onclick="navigate('marketplace')" class="nav-link flex items-center gap-3 px-5 py-4 rounded-3xl hover:bg-white/5"><i class="fa-solid fa-store"></i> Marketplace</a>
-      <a onclick="navigate('portfolio')" class="nav-link flex items-center gap-3 px-5 py-4 rounded-3xl hover:bg-white/5"><i class="fa-solid fa-wallet"></i> Portfolio</a>
-      <a onclick="navigate('certificates')" class="nav-link flex items-center gap-3 px-5 py-4 rounded-3xl hover:bg-white/5"><i class="fa-solid fa-certificate"></i> Certificates</a>
-    </nav>
+<body>
+  <div class="relative z-10 min-h-screen lg:flex">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:w-72 p-4">
+      <div class="glass h-full rounded-3xl p-5 flex flex-col">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#f5d77b] to-[#78ef73] flex items-center justify-center text-black">
+            <i class="fa-solid fa-leaf text-2xl"></i>
+          </div>
+          <div>
+            <h1 class="title leading-tight text-xl font-bold gold">KENYA<br>CARBON EXCHANGE</h1>
+          </div>
+        </div>
+
+        <nav class="space-y-2">
+          <button onclick="showPage('dashboard')" class="nav-item active w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-table-cells-large w-5 gold"></i> Dashboard
+          </button>
+          <button onclick="showPage('projects')" class="nav-item w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-gear w-5 gold"></i> Projects
+          </button>
+          <button onclick="showPage('marketplace')" class="nav-item w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-store w-5 gold"></i> Marketplace
+          </button>
+          <button onclick="showPage('portfolio')" class="nav-item w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-shield-halved w-5 gold"></i> Portfolio
+          </button>
+          <button onclick="showPage('certificates')" class="nav-item w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-clipboard-list w-5 gold"></i> Certificates
+          </button>
+          <button onclick="showPage('analytics')" class="nav-item w-full rounded-2xl px-4 py-3 text-left flex items-center gap-3">
+            <i class="fa-solid fa-chart-simple w-5 gold"></i> Analytics
+          </button>
+        </nav>
+
+        <div class="mt-8 pt-5 border-t border-[#d7b35a33] flex items-center gap-3">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" class="w-11 h-11 rounded-full object-cover">
+          <div>
+            <p class="font-semibold">Jane Wanjiku</p>
+            <p class="text-xs muted">Buyer</p>
+          </div>
+          <i class="fa-solid fa-chevron-down ml-auto gold text-sm"></i>
+        </div>
+
+        <div class="glass mt-6 rounded-2xl p-4">
+          <p class="text-xs font-bold gold mb-4">MARKET SNAPSHOT</p>
+          <div class="space-y-4 text-sm">
+            <div>
+              <p class="muted">Total Credits Available</p>
+              <p class="text-2xl font-bold gold">12.4M <span class="text-sm">tCO₂</span></p>
+              <p class="text-xs text-green-400">▲ 18.6% this month</p>
+            </div>
+            <div class="border-t border-[#d7b35a22] pt-3">
+              <p class="muted">Average Price</p>
+              <p class="text-2xl font-bold gold">$6.45 <span class="text-sm">/ tCO₂</span></p>
+              <p class="text-xs text-red-400">▼ 2.3% this month</p>
+            </div>
+            <div class="border-t border-[#d7b35a22] pt-3">
+              <p class="muted">Projects Active</p>
+              <p class="text-2xl font-bold gold">48</p>
+              <p class="text-xs text-green-400">▲ 12.5% this month</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main lg:ml-72 flex-1 p-5 lg:p-8">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page">
+        <div class="flex flex-col xl:flex-row xl:items-start gap-8">
+          <div class="flex-1">
+            <div class="flex justify-between gap-4">
+              <div>
+                <h2 class="title text-4xl lg:text-5xl font-bold tracking-tight">Discover verified carbon projects in Kenya</h2>
+                <p class="gold font-semibold mt-2 text-lg">Transparency. Trust. Impact.</p>
+              </div>
+              <div class="hidden md:block text-right">
+                <p class="text-sm"><span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Live data</p>
+                <p class="text-xs muted">Updated 2 min ago</p>
+              </div>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="mt-7 flex flex-col md:flex-row gap-3">
+              <div class="glass flex-1 rounded-xl px-5 py-3 flex items-center gap-3">
+                <input id="searchInput" oninput="renderProjects()" placeholder="Search projects by name, type or location..." class="bg-transparent outline-none flex-1 text-sm">
+                <i class="fa-solid fa-magnifying-glass gold"></i>
+              </div>
+              <button class="btn-gold rounded-xl px-6 py-3 font-semibold"><i class="fa-solid fa-filter mr-2"></i>Filters</button>
+            </div>
+
+            <div class="flex flex-wrap gap-3 mt-4">
+              <button class="btn-gold rounded-xl px-4 py-2 text-sm">Project Type <i class="fa-solid fa-chevron-down ml-2"></i></button>
+              <button class="btn-gold rounded-xl px-4 py-2 text-sm">Registry <i class="fa-solid fa-chevron-down ml-2"></i></button>
+              <button class="btn-gold rounded-xl px-4 py-2 text-sm">Location <i class="fa-solid fa-chevron-down ml-2"></i></button>
+              <button class="btn-gold rounded-xl px-4 py-2 text-sm">Status <i class="fa-solid fa-chevron-down ml-2"></i></button>
+              <button class="btn-gold rounded-xl px-4 py-2 text-sm">More Filters <i class="fa-solid fa-xmark ml-2"></i></button>
+            </div>
+
+            <!-- METRICS -->
+            <div class="glass rounded-2xl mt-7 grid md:grid-cols-4 overflow-hidden">
+              <div class="metric p-5">
+                <p class="text-xs font-bold gold">TOTAL CREDITS AVAILABLE</p>
+                <p class="text-4xl font-bold mt-3 gold">12.4M</p>
+                <p class="text-sm">tCO₂</p>
+                <p class="text-xs text-green-400 mt-3">▲ 18.6% vs last month</p>
+                <svg class="sparkline mt-2" viewBox="0 0 120 30"><path d="M2 25 C20 25,25 20,35 21 S50 10,62 15 S80 5,95 7 S110 15,118 10" stroke="#75f070" fill="none" stroke-width="3"/></svg>
+              </div>
+              <div class="metric p-5">
+                <p class="text-xs font-bold gold">VERIFIED PROJECTS</p>
+                <p class="text-4xl font-bold mt-3 gold">48</p>
+                <p class="text-sm">Projects</p>
+                <p class="text-xs text-green-400 mt-3">▲ 12.5% vs last month</p>
+                <svg class="sparkline mt-2" viewBox="0 0 120 30"><path d="M2 25 C20 25,25 23,35 18 S50 22,62 9 S80 4,95 15 S110 20,118 17" stroke="#75f070" fill="none" stroke-width="3"/></svg>
+              </div>
+              <div class="metric p-5">
+                <p class="text-xs font-bold gold">TOTAL CREDITS RETIRED</p>
+                <p class="text-4xl font-bold mt-3 gold">5.2M</p>
+                <p class="text-sm">tCO₂</p>
+                <p class="text-xs text-green-400 mt-3">▲ 22.7% vs last month</p>
+                <svg class="sparkline mt-2" viewBox="0 0 120 30"><path d="M2 25 C15 25,22 17,35 19 S50 12,62 21 S82 1,95 12 S110 18,118 9" stroke="#75f070" fill="none" stroke-width="3"/></svg>
+              </div>
+              <div class="metric p-5">
+                <p class="text-xs font-bold gold">AVG. PRICE</p>
+                <p class="text-4xl font-bold mt-3 gold">$6.45</p>
+                <p class="text-sm">per tCO₂</p>
+                <p class="text-xs text-red-400 mt-3">▼ 2.3% vs last month</p>
+                <svg class="sparkline mt-2" viewBox="0 0 120 30"><path d="M2 23 C15 20,22 18,32 22 S45 12,58 17 S70 11,82 15 S95 8,118 11" stroke="#f2bf42" fill="none" stroke-width="3"/></svg>
+              </div>
+            </div>
+
+            <!-- FEATURED -->
+            <div class="mt-8 flex justify-between items-center">
+              <h3 class="title text-2xl font-bold gold">FEATURED PROJECTS</h3>
+              <button onclick="showPage('marketplace')" class="gold">View all projects <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+
+            <div id="projectsGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4"></div>
+
+            <!-- CHARTS -->
+            <div class="grid xl:grid-cols-2 gap-6 mt-7">
+              <div class="glass rounded-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                  <h3 class="title text-xl font-bold gold">MARKET TRENDS</h3>
+                  <button class="btn-gold rounded-xl px-4 py-2 text-sm">Last 12 months <i class="fa-solid fa-chevron-down ml-2"></i></button>
+                </div>
+                <svg viewBox="0 0 620 260" class="w-full">
+                  <g stroke="rgba(215,179,90,.15)" stroke-width="1">
+                    <line x1="40" y1="40" x2="600" y2="40"/><line x1="40" y1="90" x2="600" y2="90"/>
+                    <line x1="40" y1="140" x2="600" y2="140"/><line x1="40" y1="190" x2="600" y2="190"/>
+                    <line x1="40" y1="230" x2="600" y2="230"/>
+                  </g>
+                  <polyline class="chart-line" stroke="#75f070" points="40,200 95,180 150,160 205,150 260,145 315,130 370,125 425,100 480,85 535,60 600,35"/>
+                  <polyline class="chart-line" stroke="#f2bf42" points="40,220 95,215 150,210 205,205 260,200 315,190 370,178 425,160 480,145 535,120 600,95"/>
+                  <g fill="#75f070"><circle cx="40" cy="200" r="4"/><circle cx="315" cy="130" r="4"/><circle cx="600" cy="35" r="4"/></g>
+                  <g fill="#f2bf42"><circle cx="40" cy="220" r="4"/><circle cx="315" cy="190" r="4"/><circle cx="600" cy="95" r="4"/></g>
+                  <text x="40" y="255" fill="#9baa9e" font-size="13">May 2024</text>
+                  <text x="260" y="255" fill="#9baa9e" font-size="13">Nov 2024</text>
+                  <text x="520" y="255" fill="#9baa9e" font-size="13">May 2025</text>
+                </svg>
+              </div>
+
+              <div class="glass rounded-2xl p-6">
+                <h3 class="title text-xl font-bold gold mb-6">PROJECT TYPES</h3>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                  <div class="donut flex items-center justify-center">
+                    <div class="relative z-10 text-center">
+                      <p class="text-3xl font-bold gold">12.4M</p>
+                      <p class="text-sm">tCO₂</p>
+                    </div>
+                  </div>
+                  <div class="flex-1 space-y-4 w-full">
+                    <Legend color="#6fbf3a" name="Forest" pct="45%" value="5.6M tCO₂" />
+                    <div class="flex justify-between"><span><i class="fa-solid fa-circle text-[#6fbf3a] mr-2"></i>Forest</span><b>45% <span class="muted ml-4">5.6M tCO₂</span></b></div>
+                    <div class="flex justify-between"><span><i class="fa-solid fa-circle text-[#f0c044] mr-2"></i>Renewable Energy</span><b>25% <span class="muted ml-4">3.1M tCO₂</span></b></div>
+                    <div class="flex justify-between"><span><i class="fa-solid fa-circle text-[#d89028] mr-2"></i>Cookstove</span><b>15% <span class="muted ml-4">1.9M tCO₂</span></b></div>
+                    <div class="flex justify-between"><span><i class="fa-solid fa-circle text-[#3f93a4] mr-2"></i>Blue Carbon</span><b>10% <span class="muted ml-4">1.2M tCO₂</span></b></div>
+                    <div class="flex justify-between"><span><i class="fa-solid fa-circle text-[#cfa66d] mr-2"></i>Agriculture</span><b>5% <span class="muted ml-4">600K tCO₂</span></b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAP -->
+          <div class="xl:w-[430px] glass rounded-2xl p-5 xl:mt-20">
+            <h3 class="text-sm font-bold gold mb-3">PROJECTS MAP</h3>
+            <div class="relative h-[390px] rounded-2xl overflow-hidden bg-[#07100b] border border-[#d7b35a44]">
+              <div class="absolute inset-0 opacity-70" style="background-image: radial-gradient(circle, rgba(245,215,123,.35) 1px, transparent 2px); background-size: 22px 22px;"></div>
+              <svg viewBox="0 0 420 360" class="absolute inset-0 w-full h-full">
+                <path d="M85 70 L150 25 L265 45 L335 95 L370 180 L325 295 L210 335 L100 280 L60 170 Z" fill="rgba(215,179,90,.05)" stroke="rgba(245,215,123,.55)" stroke-width="2"/>
+                <text x="175" y="185" fill="#f5d77b" font-size="34" font-family="Georgia">KENYA</text>
+                <text x="35" y="55" fill="#7a806f" font-size="12">SOUTH SUDAN</text>
+                <text x="320" y="58" fill="#7a806f" font-size="12">ETHIOPIA</text>
+                <text x="20" y="180" fill="#7a806f" font-size="12">UGANDA</text>
+                <text x="255" y="328" fill="#7a806f" font-size="12">TANZANIA</text>
+              </svg>
+              <span class="map-dot" style="left:36%;top:33%"></span>
+              <span class="map-dot" style="left:51%;top:29%"></span>
+              <span class="map-dot" style="left:66%;top:40%"></span>
+              <span class="map-dot" style="left:40%;top:54%"></span>
+              <span class="map-dot" style="left:58%;top:61%"></span>
+              <span class="map-dot" style="left:72%;top:74%"></span>
+              <span class="map-dot" style="left:34%;top:71%"></span>
+
+              <div class="absolute bottom-5 left-5 text-xs space-y-2">
+                <p><i class="fa-solid fa-circle text-green-400 mr-2"></i>Forest</p>
+                <p><i class="fa-solid fa-circle text-yellow-400 mr-2"></i>Renewable Energy</p>
+                <p><i class="fa-solid fa-circle text-orange-400 mr-2"></i>Cookstove</p>
+                <p><i class="fa-solid fa-circle text-cyan-400 mr-2"></i>Blue Carbon</p>
+              </div>
+
+              <div class="absolute right-4 bottom-4 space-y-2">
+                <button class="btn-gold w-11 h-11 rounded-xl"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn-gold w-11 h-11 rounded-xl"><i class="fa-solid fa-expand"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUST STRIP -->
+        <div class="glass rounded-2xl mt-8 p-6 grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-circle-check text-4xl text-lime-400"></i>
+            <div><h4 class="font-bold gold">VERIFIED IMPACT</h4><p class="text-sm muted">Projects verified by trusted standards and auditors.</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-rotate text-4xl text-lime-400"></i>
+            <div><h4 class="font-bold gold">TRANSPARENT DATA</h4><p class="text-sm muted">Live availability, pricing and project impact.</p></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <i class="fa-solid fa-shield text-4xl text-lime-400"></i>
+            <div><h4 class="font-bold gold">SECURE TRANSACTIONS</h4><p class="text-sm muted">Retirement records with immutable proofs.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OTHER PAGES -->
+      <section id="marketplace" class="page hidden">
+        <h2 class="title text-5xl font-bold gold mb-6">Marketplace</h2>
+        <div id="marketplaceGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+      </section>
+
+      <section id="projects" class="page hidden">
+        <h2 class="title text-5xl font-bold gold mb-6">Projects</h2>
+        <div class="glass rounded-2xl p-8">
+          <p class="muted mb-6">Project verification status, availability and audit trails.</p>
+          <div id="projectsTable" class="space-y-3"></div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="page hidden">
+        <h2 class="title text-5xl font-bold gold mb-6">Portfolio</h2>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="glass rounded-2xl p-7"><p class="muted">Owned Credits</p><p class="text-5xl font-bold gold mt-3">8,420</p><p>tCO₂</p></div>
+          <div class="glass rounded-2xl p-7"><p class="muted">Retired Credits</p><p class="text-5xl font-bold gold mt-3">2,850</p><p>tCO₂</p></div>
+          <div class="glass rounded-2xl p-7"><p class="muted">Certificates</p><p class="text-5xl font-bold gold mt-3">12</p><p>issued</p></div>
+        </div>
+      </section>
+
+      <section id="certificates" class="page hidden">
+        <h2 class="title text-5xl font-bold gold mb-6">Certificates</h2>
+        <div id="certGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+      </section>
+
+      <section id="analytics" class="page hidden">
+        <h2 class="title text-5xl font-bold gold mb-6">Analytics</h2>
+        <div class="glass rounded-2xl p-10">
+          <p class="text-3xl gold font-bold">Buyer demand is up 18.6%</p>
+          <p class="muted mt-3">Forest and renewable energy projects are currently driving the majority of liquidity.</p>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <div class="flex-1 ml-72 p-8">
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="section active">
-      <h1 class="title text-5xl font-bold mb-2 neon">Discover verified carbon projects in Kenya</h1>
-      <p class="text-emerald-400 mb-8">Transparency. Trust. Impact.</p>
-
-      <div class="grid grid-cols-4 gap-6 mb-12">
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-sm text-emerald-400">TOTAL CREDITS AVAILABLE</p>
-          <p class="text-5xl font-bold mt-3">12.4M tCO₂</p>
+  <!-- MODAL -->
+  <div id="modal" class="modal fixed inset-0 hidden z-50 items-center justify-center p-5">
+    <div class="glass max-w-2xl w-full rounded-3xl p-8 relative">
+      <button onclick="closeModal()" class="absolute right-6 top-5 text-2xl muted hover:text-white">×</button>
+      <div class="flex items-center gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#f5d77b] to-[#78ef73] text-black flex items-center justify-center">
+          <i class="fa-solid fa-certificate text-3xl"></i>
         </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-sm text-emerald-400">YOUR IMPACT</p>
-          <p class="text-5xl font-bold mt-3 text-emerald-400">2,850 tCO₂</p>
-        </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-sm text-emerald-400">CREDITS RETIRED</p>
-          <p class="text-5xl font-bold mt-3">5.2M tCO₂</p>
-        </div>
-        <div class="glass rounded-3xl p-6 card-hover">
-          <p class="text-sm text-emerald-400">AVG PRICE</p>
-          <p class="text-5xl font-bold mt-3">$6.45</p>
+        <div>
+          <p class="text-xs tracking-[0.25em] gold font-bold">RETIREMENT CERTIFICATE</p>
+          <h3 id="modalTitle" class="title text-3xl font-bold">Certificate</h3>
         </div>
       </div>
-    </div>
 
-    <!-- Marketplace -->
-    <div id="marketplace" class="section hidden">
-      <h1 class="title text-4xl font-bold mb-8">Live Marketplace</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="market-grid"></div>
-    </div>
-
-    <!-- Portfolio -->
-    <div id="portfolio" class="section hidden">
-      <h1 class="title text-4xl font-bold mb-8">Your Impact</h1>
-      <div class="glass rounded-3xl p-16 text-center">
-        <p class="text-8xl font-bold text-emerald-400">2,850 tCO₂</p>
-        <p class="text-2xl mt-4">You've offset the equivalent of 612 flights from Nairobi to London</p>
+      <div class="grid md:grid-cols-2 gap-4 mt-8">
+        <div class="bg-black/30 rounded-2xl p-5 border border-[#d7b35a33]">
+          <p class="text-xs muted">Credits Retired</p>
+          <p id="modalCredits" class="text-4xl font-bold gold mt-2">100 tCO₂</p>
+        </div>
+        <div class="bg-black/30 rounded-2xl p-5 border border-[#d7b35a33]">
+          <p class="text-xs muted">Certificate ID</p>
+          <p id="modalId" class="font-mono gold mt-2">KCE-000000</p>
+        </div>
+        <div class="bg-black/30 rounded-2xl p-5 border border-[#d7b35a33] md:col-span-2">
+          <p class="text-xs muted">Proof Hash</p>
+          <p id="modalHash" class="font-mono text-sm break-all gold mt-2">sha256...</p>
+        </div>
       </div>
-    </div>
 
-    <!-- Certificates -->
-    <div id="certificates" class="section hidden">
-      <h1 class="title text-4xl font-bold mb-8">Your Certificates</h1>
-      <div id="cert-list" class="grid grid-cols-2 gap-6"></div>
-    </div>
-  </div>
-
-  <!-- Certificate Popup -->
-  <div id="cert-popup" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-    <div class="glass max-w-md w-full rounded-3xl p-10 text-center">
-      <button onclick="closePopup()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">✕</button>
-      
-      <i class="fa-solid fa-certificate text-8xl text-emerald-400 mb-6"></i>
-      <h2 class="text-3xl font-bold">Certificate of Retirement</h2>
-      <p id="popup-project" class="text-xl text-emerald-300 mt-2"></p>
-      <p id="popup-amount" class="text-6xl font-bold text-emerald-400 my-8"></p>
-      
-      <div class="text-left bg-black/40 p-6 rounded-2xl text-sm space-y-3">
-        <p><span class="text-emerald-400">Certificate ID:</span> <span id="popup-id"></span></p>
-        <p><span class="text-emerald-400">Retired:</span> April 27, 2025 • 20:14 EAT</p>
-        <p><span class="text-emerald-400">Verified by:</span> Verra VCS • Gold Standard</p>
-        <p><span class="text-emerald-400">Blockchain Hash:</span> sha256:8f3a...91c2</p>
-      </div>
-      
-      <button onclick="closePopup()" class="mt-8 w-full bg-emerald-400 text-black py-5 rounded-3xl font-bold">Download PDF Certificate</button>
+      <button class="mt-7 w-full bg-[#f5d77b] text-black rounded-2xl py-4 font-bold">
+        Download PDF Certificate
+      </button>
     </div>
   </div>
 
   <script>
-    function navigate(page) {
-      document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
-      document.getElementById(page).classList.remove('hidden');
-    }
-
-    function showCertificate(name, amount) {
-      document.getElementById('popup-project').textContent = name;
-      document.getElementById('popup-amount').textContent = amount;
-      document.getElementById('popup-id').textContent = "TVCS-" + Math.floor(100000 + Math.random()*900000);
-      document.getElementById('cert-popup').classList.remove('hidden');
-    }
-
-    function closePopup() {
-      document.getElementById('cert-popup').classList.add('hidden');
-    }
-
-    // Projects Data
     const projects = [
-      {name: "Mau Forest Protection", loc: "Narok County", credits: "1,200,000", price: "6.20", img: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e"},
-      {name: "Clean Cooking Initiative", loc: "Kisumu", credits: "850,000", price: "5.40", img: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5"},
-      {name: "Lake Turkana Wind", loc: "Turkana", credits: "850,000", price: "7.10", img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"}
+      {
+        name: "Mau Forest Protection",
+        type: "Forest",
+        location: "Narok County, Kenya",
+        credits: "1.2M",
+        price: "$6.20",
+        registry: "Gold Standard",
+        image: "https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop",
+        hash: "sha256:8f7a2c9d9b13e40a7a78f7e61c90bd4b1d8e16f1f3c24aa93f1b6e77a49cd902"
+      },
+      {
+        name: "Clean Cooking Initiative",
+        type: "Cookstove",
+        location: "Kisumu County, Kenya",
+        credits: "850K",
+        price: "$5.40",
+        registry: "Verra VCS",
+        image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1200&auto=format&fit=crop",
+        hash: "sha256:3d1e0b9129fca84729451afcd89f710da3b7a93e712a4538b9cc791d9a21fca7"
+      },
+      {
+        name: "Lake Turkana Wind",
+        type: "Renewable Energy",
+        location: "Turkana County, Kenya",
+        credits: "850K",
+        price: "$7.10",
+        registry: "Gold Standard",
+        image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop",
+        hash: "sha256:b7d99ff75e10a3a5d267bc33f92064b125f97841aa1cba6b864caa33af23d8e0"
+      },
+      {
+        name: "Blue Carbon Mangroves",
+        type: "Blue Carbon",
+        location: "Kilifi County, Kenya",
+        credits: "420K",
+        price: "$8.30",
+        registry: "Verra VCS",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+        hash: "sha256:f61db01a47c9ed5d1173d01fab98aa4090c3516e733bd37a43be99a0c58d421a"
+      }
     ];
 
-    const grid = document.getElementById('market-grid');
-    projects.forEach(p => {
-      const div = document.createElement('div');
-      div.className = "glass rounded-3xl overflow-hidden card-hover";
-      div.innerHTML = `
-        <img src="${p.img}" class="w-full h-52 object-cover">
-        <div class="p-6">
-          <div class="flex gap-2 mb-4">
-            <span class="px-4 py-1 bg-emerald-900 text-xs rounded-full">Verified</span>
-            <span class="px-4 py-1 bg-emerald-900/70 text-xs rounded-full">VCS</span>
+    function projectCard(p) {
+      return `
+        <div class="project-card rounded-2xl overflow-hidden">
+          <div class="relative h-44">
+            <img src="${p.image}" class="w-full h-full object-cover">
+            <span class="absolute top-3 right-3 bg-green-700 text-white text-xs rounded-full px-3 py-1">Verified</span>
+            <span class="absolute bottom-3 left-3 bg-black/55 border border-[#d7b35a44] text-xs rounded-full px-3 py-1">${p.type}</span>
           </div>
-          <h3 class="font-bold text-xl">${p.name}</h3>
-          <p class="text-emerald-400">${p.loc}, Kenya</p>
-          <div class="mt-8 flex justify-between items-end">
-            <div>
-              <p class="text-4xl font-bold">$${p.price}</p>
-              <p class="text-xs text-gray-400">per tCO₂</p>
+          <div class="p-5">
+            <div class="flex justify-between gap-3">
+              <h4 class="font-bold text-lg">${p.name}</h4>
+              <i class="fa-regular fa-bookmark gold"></i>
             </div>
-            <button onclick="showCertificate('${p.name}', '${p.credits} tCO₂')" class="bg-emerald-400 hover:bg-white text-black px-8 py-4 rounded-2xl font-semibold">
-              Buy & Retire
-            </button>
+            <p class="text-sm muted mt-2">🇰🇪 ${p.location}</p>
+            <p class="text-3xl font-bold gold mt-5">${p.credits} <span class="text-sm text-white">tCO₂</span></p>
+            <p class="text-sm muted">Available Credits</p>
+            <p class="text-2xl font-bold gold mt-4">${p.price} <span class="text-sm text-white">/ tCO₂</span></p>
+            <div class="border-t border-[#d7b35a33] mt-4 pt-3 flex justify-between items-center">
+              <span class="text-sm muted"><i class="fa-solid fa-shield-halved gold mr-2"></i>${p.registry}</span>
+              <button onclick='openModal(${JSON.stringify(p)})' class="btn-gold rounded-xl px-4 py-2 text-sm font-bold">Buy</button>
+            </div>
           </div>
         </div>
       `;
-      grid.appendChild(div);
-    });
+    }
 
-    navigate('dashboard');
+    function renderProjects() {
+      const q = (document.getElementById("searchInput")?.value || "").toLowerCase();
+      const filtered = projects.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.type.toLowerCase().includes(q) ||
+        p.location.toLowerCase().includes(q)
+      );
+
+      document.getElementById("projectsGrid").innerHTML = filtered.map(projectCard).join("");
+      document.getElementById("marketplaceGrid").innerHTML = projects.map(projectCard).join("");
+      document.getElementById("projectsTable").innerHTML = projects.map(p => `
+        <div class="bg-black/25 border border-[#d7b35a33] rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold">${p.name}</p>
+            <p class="text-sm muted">${p.location} • ${p.type}</p>
+          </div>
+          <div class="text-right">
+            <p class="gold font-bold">${p.credits} tCO₂</p>
+            <p class="text-sm muted">${p.registry}</p>
+          </div>
+        </div>
+      `).join("");
+
+      document.getElementById("certGrid").innerHTML = projects.slice(0,3).map(p => `
+        <div class="glass rounded-2xl p-6">
+          <i class="fa-solid fa-certificate text-4xl gold mb-4"></i>
+          <h4 class="font-bold">${p.name}</h4>
+          <p class="muted text-sm mt-2">Certificate available for retired credits.</p>
+          <button onclick='openModal(${JSON.stringify(p)})' class="btn-gold mt-5 rounded-xl px-4 py-2 font-bold">View Certificate</button>
+        </div>
+      `).join("");
+    }
+
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+      const index = { dashboard:0, projects:1, marketplace:2, portfolio:3, certificates:4, analytics:5 }[id];
+      document.querySelectorAll(".nav-item")[index]?.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openModal(p) {
+      document.getElementById("modalTitle").textContent = p.name;
+      document.getElementById("modalCredits").textContent = "100 tCO₂";
+      document.getElementById("modalId").textContent = "KCE-" + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById("modalHash").textContent = p.hash;
+      document.getElementById("modal").classList.remove("hidden");
+      document.getElementById("modal").classList.add("flex");
+    }
+
+    function closeModal() {
+      document.getElementById("modal").classList.add("hidden");
+      document.getElementById("modal").classList.remove("flex");
+    }
+
+    renderProjects();
   </script>
 </body>
 </html>
