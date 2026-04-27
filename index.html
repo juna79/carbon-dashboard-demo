@@ -1,501 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kenya Carbon Exchange • Demo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-    
-    :root {
-      --font-sans: 'Inter', system-ui, sans-serif;
-    }
-    body {
-      font-family: var(--font-sans);
-    }
-    .title-font {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    .glass {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(16px);
-    }
-    .project-card {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    }
-    .bar {
-      animation: grow 1.2s ease-out forwards;
-    }
-    @keyframes grow {
-      from { height: 0%; }
-      to { height: var(--height); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenya Carbon Exchange</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+body { background:#050806; color:white; font-family:Inter, sans-serif;}
+.glass { background:rgba(255,255,255,0.06); backdrop-filter:blur(16px);}
+</style>
 </head>
-<body class="bg-[#050806] text-white min-h-screen overflow-x-hidden">
-  <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(16,185,129,0.18),transparent_50%),radial-gradient(circle_at_80%_20%,rgba(245,158,11,0.16),transparent_50%)]"></div>
-  <div class="pointer-events-none fixed inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px); background-size: 44px 44px;"></div>
 
-  <div class="relative max-w-7xl mx-auto px-5 py-8">
-    <!-- Nav -->
-    <nav class="glass border border-white/10 rounded-3xl px-6 py-4 flex items-center justify-between mb-10">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 bg-gradient-to-br from-emerald-400 to-amber-300 rounded-2xl flex items-center justify-center text-black shadow-xl">
-          <i class="fa-solid fa-leaf text-2xl"></i>
-        </div>
-        <div>
-          <h1 class="title-font text-2xl font-semibold tracking-tighter">Kenya Carbon Exchange</h1>
-          <p class="text-xs text-slate-400 -mt-1">Discover • Trust • Transact • Retire</p>
-        </div>
-      </div>
-      <div class="flex gap-2">
-        <button onclick="switchTab(0)" class="tab-btn active px-5 py-2 rounded-2xl text-sm font-medium">Dashboard</button>
-        <button onclick="switchTab(1)" class="tab-btn px-5 py-2 rounded-2xl text-sm font-medium text-slate-400 hover:text-white">Projects</button>
-        <button onclick="switchTab(2)" class="tab-btn px-5 py-2 rounded-2xl text-sm font-medium text-slate-400 hover:text-white">Portfolio</button>
-      </div>
-    </nav>
+<body class="p-6">
 
-    <!-- Hero -->
-    <div class="grid lg:grid-cols-12 gap-6 mb-10">
-      <div class="lg:col-span-8 glass border border-white/10 rounded-3xl p-10">
-        <span class="inline-flex items-center gap-2 bg-amber-300/10 text-amber-300 text-xs font-medium px-4 py-2 rounded-3xl border border-amber-300/30">
-          <i class="fa-solid fa-globe"></i>
-          African carbon market infrastructure
-        </span>
-        <h2 class="title-font text-5xl lg:text-6xl font-semibold tracking-tighter leading-none mt-6">
-          Buy and retire verified<br>carbon credits in minutes.
-        </h2>
-        <p class="mt-6 text-slate-300 max-w-lg">
-          A buyer-first dashboard for discovering Kenyan carbon projects, verifying impact, purchasing credits, and generating retirement certificates.
-        </p>
-        <div class="mt-8 flex gap-4">
-          <button onclick="document.getElementById('marketplace').scrollIntoView({ behavior: 'smooth' })" 
-                  class="bg-emerald-400 hover:bg-emerald-300 transition text-black font-semibold px-8 py-4 rounded-3xl flex items-center gap-3">
-            Explore Projects
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
-          <button class="border border-white/20 hover:bg-white/5 transition px-8 py-4 rounded-3xl font-medium">
-            View Certificates
-          </button>
-        </div>
-      </div>
+<h1 class="text-4xl font-bold mb-6">Kenya Carbon Exchange</h1>
 
-      <div class="lg:col-span-4 glass border border-white/10 rounded-3xl overflow-hidden h-full min-h-[380px] relative">
-        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=1200&auto=format&fit=crop" 
-             class="absolute inset-0 w-full h-full object-cover" alt="">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
-        <div class="absolute bottom-6 left-6 right-6">
-          <div class="flex gap-2">
-            <span class="inline-flex items-center gap-1 text-xs bg-emerald-500/90 px-3 py-1 rounded-3xl">
-              <i class="fa-solid fa-shield-halved"></i> Verified
-            </span>
-            <span class="inline-flex items-center gap-1 text-xs bg-amber-400/90 text-black px-3 py-1 rounded-3xl">
-              Live Market
-            </span>
-          </div>
-          <h3 class="text-2xl font-semibold mt-4">Kenya Project Network</h3>
-          <p class="text-sm text-slate-300 mt-1">Forestry • Cookstoves • Soil • Renewables</p>
-        </div>
-      </div>
-    </div>
+<div class="glass p-6 rounded-xl mb-6">
+<h2 class="text-2xl mb-2">Buy carbon credits with proof, not PDFs</h2>
+<p class="text-gray-300">Live demo marketplace for verified African carbon projects.</p>
+</div>
 
-    <!-- Metrics -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-      <div class="glass border border-white/10 rounded-3xl p-6">
-        <div class="flex justify-between">
-          <div>
-            <p class="text-slate-400 text-sm">Credits Available</p>
-            <p class="text-3xl font-semibold mt-2">405,000 tCO₂</p>
-          </div>
-          <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400">
-            <i class="fa-solid fa-globe text-2xl"></i>
-          </div>
-        </div>
-      </div>
-      <div class="glass border border-white/10 rounded-3xl p-6">
-        <div class="flex justify-between">
-          <div>
-            <p class="text-slate-400 text-sm">Verified Credits</p>
-            <p class="text-3xl font-semibold mt-2">353,000 tCO₂</p>
-          </div>
-          <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400">
-            <i class="fa-solid fa-shield-halved text-2xl"></i>
-          </div>
-        </div>
-      </div>
-      <div class="glass border border-white/10 rounded-3xl p-6">
-        <div class="flex justify-between">
-          <div>
-            <p class="text-slate-400 text-sm">Avg Price</p>
-            <p class="text-3xl font-semibold mt-2">$13.00</p>
-          </div>
-          <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400">
-            <i class="fa-solid fa-chart-line text-2xl"></i>
-          </div>
-        </div>
-      </div>
-      <div class="glass border border-white/10 rounded-3xl p-6">
-        <div class="flex justify-between">
-          <div>
-            <p class="text-slate-400 text-sm">Retired</p>
-            <p class="text-3xl font-semibold mt-2">28,640 tCO₂</p>
-          </div>
-          <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-400">
-            <i class="fa-solid fa-fire text-2xl"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-    <!-- Marketplace -->
-    <div id="marketplace" class="mb-12">
-      <div class="flex items-center justify-between mb-6">
-        <div>
-          <h2 class="text-3xl font-semibold title-font">Projects Marketplace</h2>
-          <p class="text-slate-400">Discover high-quality Kenyan carbon projects</p>
-        </div>
-        <div class="relative">
-          <input id="search" 
-                 onkeyup="filterProjects()"
-                 type="text" 
-                 placeholder="Search projects..." 
-                 class="glass border border-white/10 rounded-3xl pl-12 py-3 w-80 focus:outline-none focus:border-emerald-400">
-          <i class="fa-solid fa-magnifying-glass absolute left-5 top-4 text-slate-400"></i>
-        </div>
-      </div>
+<div class="glass p-4 rounded-xl">
+<h3 class="font-bold">Mau Forest Restoration</h3>
+<p>$14 / tonne</p>
+<button onclick="buy('Mau Forest')" class="mt-3 bg-green-400 text-black px-4 py-2 rounded">Buy</button>
+</div>
 
-      <div class="flex gap-2 mb-6 flex-wrap" id="filters">
-        <button onclick="setFilter(this)" data-filter="All" class="active-filter px-5 py-2 rounded-3xl text-sm border border-emerald-400/50 bg-emerald-400/10">All</button>
-        <button onclick="setFilter(this)" data-filter="Forestry" class="px-5 py-2 rounded-3xl text-sm border border-white/10 hover:border-white/30">Forestry</button>
-        <button onclick="setFilter(this)" data-filter="Cookstoves" class="px-5 py-2 rounded-3xl text-sm border border-white/10 hover:border-white/30">Cookstoves</button>
-        <button onclick="setFilter(this)" data-filter="Soil Carbon" class="px-5 py-2 rounded-3xl text-sm border border-white/10 hover:border-white/30">Soil Carbon</button>
-        <button onclick="setFilter(this)" data-filter="Renewable Energy" class="px-5 py-2 rounded-3xl text-sm border border-white/10 hover:border-white/30">Renewable</button>
-      </div>
+<div class="glass p-4 rounded-xl">
+<h3 class="font-bold">Cookstoves Kenya</h3>
+<p>$9 / tonne</p>
+<button onclick="buy('Cookstoves')" class="mt-3 bg-green-400 text-black px-4 py-2 rounded">Buy</button>
+</div>
 
-      <div class="grid md:grid-cols-2 gap-4" id="projects-grid">
-        <!-- Populated by JS -->
-      </div>
-    </div>
+</div>
 
-    <!-- Detail + Buy -->
-    <div class="grid lg:grid-cols-12 gap-6 mb-12">
-      <!-- Selected Project Detail -->
-      <div class="lg:col-span-7 glass border border-white/10 rounded-3xl overflow-hidden" id="detail-panel">
-        <!-- Populated by JS -->
-      </div>
+<div id="toast" class="hidden fixed bottom-5 right-5 bg-green-500 px-4 py-3 rounded">
+Purchase complete ✔
+</div>
 
-      <!-- Buy Panel -->
-      <div class="lg:col-span-5">
-        <div class="glass border border-white/10 rounded-3xl p-8">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-amber-400/10 rounded-2xl flex items-center justify-center text-amber-400">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold">Buy &amp; Retire</h3>
-              <p class="text-sm text-slate-400">Simple • Transparent • Instant certificate</p>
-            </div>
-          </div>
+<script>
+function buy(name){
+  const t=document.getElementById('toast');
+  t.innerText = name + " purchased & retired!";
+  t.classList.remove('hidden');
+  setTimeout(()=>t.classList.add('hidden'),3000);
+}
+</script>
 
-          <div class="mt-8 bg-black/40 border border-white/10 rounded-3xl p-6">
-            <div id="selected-buy-name" class="font-medium text-lg"></div>
-            
-            <div class="mt-6">
-              <label class="block text-sm text-slate-400 mb-2">Tonnes to purchase</label>
-              <input id="tonnes" type="number" value="100" 
-                     oninput="updateTotal()"
-                     class="w-full bg-transparent border border-white/20 focus:border-emerald-400 rounded-3xl px-6 py-4 text-3xl font-semibold outline-none">
-            </div>
-
-            <div class="mt-8 space-y-4 text-sm">
-              <div class="flex justify-between">
-                <span class="text-slate-400">Price per tonne</span>
-                <span id="price-per-tonne" class="font-medium"></span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-slate-400">Platform fee (2%)</span>
-                <span id="fee" class="font-medium"></span>
-              </div>
-              <div class="pt-4 border-t border-white/10 flex justify-between text-lg font-semibold">
-                <span>Total</span>
-                <span id="total-cost"></span>
-              </div>
-            </div>
-
-            <button onclick="completePurchase()" 
-                    class="mt-8 w-full bg-gradient-to-r from-emerald-400 to-amber-300 text-black font-semibold py-6 rounded-3xl flex items-center justify-center gap-3 hover:brightness-110 transition">
-              <i class="fa-solid fa-fire"></i>
-              Confirm Purchase &amp; Retire
-            </button>
-          </div>
-
-          <div class="mt-6 grid gap-3">
-            <div class="flex gap-3 items-center bg-white/5 border border-white/10 rounded-3xl p-4">
-              <i class="fa-solid fa-circle-check text-emerald-400"></i>
-              <span class="text-sm">Certificate generated instantly</span>
-            </div>
-            <div class="flex gap-3 items-center bg-white/5 border border-white/10 rounded-3xl p-4">
-              <i class="fa-solid fa-fire text-emerald-400"></i>
-              <span class="text-sm">Credits permanently retired</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Portfolio -->
-    <div class="glass border border-white/10 rounded-3xl p-8">
-      <div class="flex items-center justify-between mb-6">
-        <div>
-          <h3 class="text-2xl font-semibold">Your Portfolio</h3>
-          <p class="text-slate-400">Owned &amp; Retired Credits</p>
-        </div>
-        <i class="fa-solid fa-wallet text-3xl text-emerald-400"></i>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4" id="portfolio-grid">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast -->
-  <div id="toast" class="hidden fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-3">
-    <i class="fa-solid fa-circle-check"></i>
-    <span id="toast-text"></span>
-  </div>
-
-  <script>
-    // Projects data
-    const projects = [
-      {
-        id: 1,
-        name: "Mau Forest Restoration",
-        type: "Forestry",
-        county: "Nakuru / Narok",
-        credits: 124000,
-        price: 14,
-        verified: true,
-        rating: "High",
-        impact: "48,200 households impacted",
-        image: "https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        id: 2,
-        name: "Clean Cookstoves Kenya",
-        type: "Cookstoves",
-        county: "Kisumu / Homa Bay",
-        credits: 86000,
-        price: 9,
-        verified: true,
-        rating: "Medium",
-        impact: "31,000 homes reached",
-        image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        id: 3,
-        name: "Laikipia Grasslands Carbon",
-        type: "Soil Carbon",
-        county: "Laikipia",
-        credits: 52000,
-        price: 18,
-        verified: false,
-        rating: "Emerging",
-        impact: "22,500 hectares monitored",
-        image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop"
-      },
-      {
-        id: 4,
-        name: "Turkana Solar Avoidance",
-        type: "Renewable Energy",
-        county: "Turkana",
-        credits: 143000,
-        price: 11,
-        verified: true,
-        rating: "High",
-        impact: "116MW clean generation",
-        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop"
-      }
-    ];
-
-    const portfolio = [
-      { project: "Mau Forest Restoration", owned: 1200, retired: 400, status: "Active" },
-      { project: "Clean Cookstoves Kenya", owned: 650, retired: 650, status: "Retired" },
-      { project: "Turkana Solar Avoidance", owned: 900, retired: 0, status: "Active" }
-    ];
-
-    let selectedProject = projects[0];
-    let currentFilter = "All";
-
-    function formatNumber(num) {
-      return num.toLocaleString('en-US');
-    }
-
-    function renderProjects(filtered) {
-      const grid = document.getElementById('projects-grid');
-      grid.innerHTML = '';
-      
-      filtered.forEach(p => {
-        const div = document.createElement('div');
-        div.className = `project-card glass border ${p.id === selectedProject.id ? 'border-emerald-400/60 bg-emerald-400/10' : 'border-white/10'} rounded-3xl p-4 cursor-pointer`;
-        div.innerHTML = `
-          <div class="flex gap-4">
-            <img src="${p.image}" class="w-20 h-20 object-cover rounded-2xl" alt="">
-            <div class="flex-1">
-              <div class="flex items-center gap-2">
-                <h4 class="font-semibold">${p.name}</h4>
-                ${p.verified ? `<i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>` : ''}
-              </div>
-              <p class="text-xs text-slate-400 mt-1">${p.county} • ${p.type}</p>
-              <p class="text-xs text-slate-500 mt-3">${formatNumber(p.credits)} tCO₂ • $${p.price}/t</p>
-            </div>
-          </div>
-        `;
-        div.onclick = () => {
-          selectedProject = p;
-          renderSelectedProject();
-          renderProjects(projects.filter(proj => {
-            if (currentFilter === "All") return true;
-            return proj.type === currentFilter;
-          }));
-        };
-        grid.appendChild(div);
-      });
-    }
-
-    function renderSelectedProject() {
-      const panel = document.getElementById('detail-panel');
-      panel.innerHTML = `
-        <div class="relative h-96 bg-cover bg-center" style="background-image: url('${selectedProject.image}')">
-          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-          <div class="absolute top-6 left-6 flex gap-2">
-            <span class="px-4 py-1.5 text-xs rounded-3xl ${selectedProject.verified ? 'bg-emerald-500/90' : 'bg-slate-500/70'}">
-              ${selectedProject.verified ? '✓ Verified Impact' : 'Verification Pending'}
-            </span>
-            <span class="px-4 py-1.5 text-xs bg-amber-400/90 text-black rounded-3xl">${selectedProject.rating} Confidence</span>
-          </div>
-        </div>
-        <div class="p-8">
-          <h3 class="text-3xl font-semibold">${selectedProject.name}</h3>
-          <p class="text-slate-400">${selectedProject.county} • ${selectedProject.type}</p>
-          
-          <div class="grid grid-cols-3 gap-4 mt-8">
-            <div class="bg-black/40 border border-white/10 rounded-3xl p-5">
-              <p class="text-xs text-slate-400">Available</p>
-              <p class="text-3xl font-semibold mt-1">${formatNumber(selectedProject.credits)}</p>
-              <p class="text-xs text-slate-500">tCO₂</p>
-            </div>
-            <div class="bg-black/40 border border-white/10 rounded-3xl p-5">
-              <p class="text-xs text-slate-400">Price</p>
-              <p class="text-3xl font-semibold mt-1">$${selectedProject.price}</p>
-              <p class="text-xs text-slate-500">per tonne</p>
-            </div>
-            <div class="bg-black/40 border border-white/10 rounded-3xl p-5">
-              <p class="text-xs text-slate-400">Impact</p>
-              <p class="text-sm font-medium mt-1 leading-tight">${selectedProject.impact}</p>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      // Update buy panel
-      document.getElementById('selected-buy-name').textContent = selectedProject.name;
-      document.getElementById('price-per-tonne').textContent = '$' + selectedProject.price;
-      updateTotal();
-    }
-
-    function updateTotal() {
-      const tonnes = parseFloat(document.getElementById('tonnes').value) || 0;
-      const price = selectedProject.price;
-      const subtotal = tonnes * price;
-      const fee = subtotal * 0.02;
-      const total = Math.round(subtotal + fee);
-      
-      document.getElementById('fee').textContent = '$' + fee.toFixed(0);
-      document.getElementById('total-cost').innerHTML = `<span class="text-emerald-400">$${total}</span>`;
-    }
-
-    function filterProjects() {
-      const query = document.getElementById('search').value.toLowerCase();
-      const filtered = projects.filter(p => {
-        const matchFilter = currentFilter === "All" || p.type === currentFilter;
-        const matchSearch = p.name.toLowerCase().includes(query) || 
-                           p.type.toLowerCase().includes(query) || 
-                           p.county.toLowerCase().includes(query);
-        return matchFilter && matchSearch;
-      });
-      renderProjects(filtered);
-    }
-
-    function setFilter(el) {
-      document.querySelectorAll('#filters button').forEach(b => {
-        b.classList.remove('active-filter', 'border-emerald-400/50', 'bg-emerald-400/10');
-      });
-      el.classList.add('active-filter', 'border-emerald-400/50', 'bg-emerald-400/10');
-      currentFilter = el.dataset.filter;
-      filterProjects();
-    }
-
-    function completePurchase() {
-      const tonnes = parseFloat(document.getElementById('tonnes').value) || 100;
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-text').textContent = 
-        `${tonnes} tCO₂ retired from ${selectedProject.name}! Certificate generated.`;
-      toast.classList.remove('hidden');
-      toast.style.transform = 'translateY(0)';
-      
-      setTimeout(() => {
-        toast.style.transform = 'translateY(100px)';
-        setTimeout(() => toast.classList.add('hidden'), 500);
-      }, 4000);
-    }
-
-    function renderPortfolio() {
-      const container = document.getElementById('portfolio-grid');
-      container.innerHTML = '';
-      
-      portfolio.forEach(item => {
-        const div = document.createElement('div');
-        div.className = "bg-black/40 border border-white/10 rounded-3xl p-6";
-        div.innerHTML = `
-          <div class="flex justify-between items-start">
-            <div>
-              <h4 class="font-medium">${item.project}</h4>
-              <p class="text-xs text-slate-400 mt-3">
-                Owned: <span class="text-white">${formatNumber(item.owned)}</span><br>
-                Retired: <span class="text-white">${formatNumber(item.retired)}</span>
-              </p>
-            </div>
-            <span class="px-4 py-1 text-xs rounded-3xl ${item.status === 'Retired' ? 'bg-amber-400/20 text-amber-300' : 'bg-emerald-400/20 text-emerald-300'}">
-              ${item.status}
-            </span>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function switchTab(n) {
-      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-        if (i === n) btn.classList.add('active', 'bg-white/10');
-        else btn.classList.remove('active', 'bg-white/10');
-      });
-    }
-
-    // Initialize
-    window.onload = () => {
-      renderProjects(projects);
-      renderSelectedProject();
-      renderPortfolio();
-      
-      // Tailwind script already loaded
-      console.log('%c✅ Kenya Carbon Exchange Demo Ready', 'color:#10b981; font-size:14px; font-weight:600');
-    };
-  </script>
 </body>
 </html>
