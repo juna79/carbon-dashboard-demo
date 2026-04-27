@@ -3,123 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kenya Carbon Exchange • Demo</title>
+  <title>Kenya Carbon Exchange</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .title-font { font-family: 'Space Grotesk', sans-serif; }
-    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); }
+    body { background: #0a0a0a; color: #e0f2e9; font-family: 'Inter', sans-serif; }
+    .neon-green { text-shadow: 0 0 15px #22ff88; }
+    .glass { background: rgba(15, 23, 20, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(34, 255, 136, 0.2); }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 0 30px rgba(34, 255, 136, 0.3); }
   </style>
 </head>
-<body class="bg-[#050806] text-white min-h-screen">
+<body class="min-h-screen">
 
-  <div class="max-w-7xl mx-auto px-5 py-8">
+  <div class="flex h-screen">
 
-    <!-- Nav -->
-    <nav class="glass border border-white/10 rounded-3xl px-6 py-4 flex items-center justify-between mb-10">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 bg-gradient-to-br from-emerald-400 to-amber-300 rounded-2xl flex items-center justify-center text-black">
-          <i class="fa-solid fa-leaf text-2xl"></i>
-        </div>
-        <div>
-          <h1 class="title-font text-2xl font-semibold">Kenya Carbon Exchange</h1>
-          <p class="text-xs text-slate-400">Discover • Trust • Transact • Retire</p>
-        </div>
+    <!-- Sidebar -->
+    <div class="w-72 glass border-r border-green-900 p-6">
+      <div class="flex items-center gap-3 mb-12">
+        <i class="fa-solid fa-leaf text-4xl text-emerald-400"></i>
+        <h1 class="text-2xl font-bold tracking-tight">KENYA CARBON</h1>
       </div>
-    </nav>
-
-    <!-- Hero -->
-    <div class="grid lg:grid-cols-12 gap-6 mb-12">
-      <div class="lg:col-span-8 glass border border-white/10 rounded-3xl p-10">
-        <h2 class="title-font text-5xl lg:text-6xl font-semibold tracking-tighter leading-none">
-          Buy and retire verified<br>carbon credits in minutes.
-        </h2>
-        <p class="mt-6 text-slate-300 max-w-lg">
-          A beautiful buyer-first dashboard for Kenyan carbon projects.
-        </p>
-      </div>
-      <div class="lg:col-span-4 glass border border-white/10 rounded-3xl overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=1200&auto=format&fit=crop" class="w-full h-full object-cover" alt="">
-      </div>
+      <nav class="space-y-2">
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-emerald-900/30 text-emerald-400"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-tree"></i> Projects</a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-store"></i> Marketplace</a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-wallet"></i> Portfolio</a>
+        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/5"><i class="fa-solid fa-certificate"></i> Certificates</a>
+      </nav>
     </div>
 
-    <!-- Projects Marketplace -->
-    <h2 class="text-3xl font-semibold mb-6 title-font">Projects Marketplace</h2>
-    
-    <div class="grid md:grid-cols-2 gap-6" id="projects-grid"></div>
+    <!-- Main Content -->
+    <div class="flex-1 p-8 overflow-auto">
 
-    <!-- Buy Panel (appears when you click a project) -->
-    <div id="buy-panel" class="hidden mt-12 glass border border-white/10 rounded-3xl p-8">
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div id="project-detail"></div>
-        
+      <div class="flex justify-between items-center mb-8">
         <div>
-          <h3 class="text-2xl font-semibold mb-6">Buy & Retire Credits</h3>
-          <input id="tonnes" type="number" value="100" class="w-full bg-white/5 border border-white/20 rounded-2xl px-6 py-5 text-3xl mb-6">
-          <button onclick="completePurchase()" 
-                  class="w-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold py-6 rounded-3xl text-lg">
-            Confirm Purchase & Retire
-          </button>
+          <h1 class="text-4xl font-bold neon-green">Market Overview</h1>
+          <p class="text-emerald-400/70">Real-time African Carbon Market • Updated just now</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="bg-emerald-900/30 px-4 py-2 rounded-2xl text-sm">Live Data</div>
+          <div class="w-10 h-10 bg-emerald-400/20 rounded-2xl flex items-center justify-center">JW</div>
         </div>
       </div>
-    </div>
 
+      <!-- Metrics -->
+      <div class="grid grid-cols-4 gap-6 mb-10">
+        <div class="glass rounded-3xl p-6 card-hover">
+          <p class="text-emerald-400 text-sm">TOTAL CREDITS AVAILABLE</p>
+          <p class="text-5xl font-bold mt-3">12.4M <span class="text-2xl">tCO₂</span></p>
+        </div>
+        <div class="glass rounded-3xl p-6 card-hover">
+          <p class="text-emerald-400 text-sm">AVG PRICE</p>
+          <p class="text-5xl font-bold mt-3">$6.45</p>
+        </div>
+        <div class="glass rounded-3xl p-6 card-hover">
+          <p class="text-emerald-400 text-sm">CREDITS RETIRED</p>
+          <p class="text-5xl font-bold mt-3">5.2M</p>
+        </div>
+        <div class="glass rounded-3xl p-6 card-hover">
+          <p class="text-emerald-400 text-sm">ACTIVE PROJECTS</p>
+          <p class="text-5xl font-bold mt-3">48</p>
+        </div>
+      </div>
+
+      <!-- Featured Projects -->
+      <h2 class="text-2xl font-semibold mb-6">Featured Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="projects"></div>
+
+    </div>
   </div>
 
   <script>
     const projects = [
-      { name: "Mau Forest Restoration", price: 14, credits: "124,000", type: "Forestry", county: "Nakuru / Narok", emoji: "🌳" },
-      { name: "Clean Cookstoves Kenya", price: 9, credits: "86,000", type: "Cookstoves", county: "Kisumu", emoji: "🔥" },
-      { name: "Laikipia Grasslands Carbon", price: 18, credits: "52,000", type: "Soil Carbon", county: "Laikipia", emoji: "🌾" },
-      { name: "Turkana Solar Avoidance", price: 11, credits: "143,000", type: "Renewable Energy", county: "Turkana", emoji: "☀️" }
+      {name: "Mau Forest Protection", location: "Narok County", credits: "1.2M", price: "6.20", type: "Forest", img: "🌳"},
+      {name: "Clean Cooking Initiative", location: "Kisumu", credits: "850K", price: "5.40", type: "Cookstove", img: "🔥"},
+      {name: "Lake Turkana Wind", location: "Turkana", credits: "850K", price: "7.10", type: "Renewable", img: "🌬️"},
+      {name: "Blue Carbon Mangroves", location: "Kilifi", credits: "420K", price: "8.30", type: "Blue Carbon", img: "🌊"}
     ];
 
-    function renderProjects() {
-      const grid = document.getElementById('projects-grid');
-      grid.innerHTML = '';
-      
-      projects.forEach(p => {
-        const card = document.createElement('div');
-        card.className = "glass border border-white/10 rounded-3xl p-6 cursor-pointer hover:border-emerald-400/50 transition";
-        card.innerHTML = `
-          <div class="text-5xl mb-4">${p.emoji}</div>
-          <h3 class="font-bold text-xl">${p.name}</h3>
-          <p class="text-slate-400">${p.county} • ${p.type}</p>
-          <div class="flex justify-between mt-6">
-            <div>
-              <p class="text-3xl font-semibold">$${p.price}</p>
-              <p class="text-xs text-slate-500">per tonne</p>
-            </div>
-            <div class="text-right">
-              <p class="text-emerald-400">${p.credits} tCO₂</p>
-            </div>
+    const container = document.getElementById('projects');
+    projects.forEach(p => {
+      const div = document.createElement('div');
+      div.className = "glass rounded-3xl p-6 card-hover cursor-pointer";
+      div.innerHTML = `
+        <div class="text-5xl mb-4">${p.img}</div>
+        <h3 class="font-bold text-xl">${p.name}</h3>
+        <p class="text-emerald-400/70 text-sm">${p.location}</p>
+        <div class="mt-6 flex justify-between">
+          <div>
+            <p class="text-3xl font-bold">$${p.price}</p>
+            <p class="text-xs text-gray-400">per tCO₂</p>
           </div>
-        `;
-        card.onclick = () => showBuyPanel(p);
-        grid.appendChild(card);
-      });
-    }
-
-    function showBuyPanel(project) {
-      document.getElementById('buy-panel').classList.remove('hidden');
-      document.getElementById('project-detail').innerHTML = `
-        <h3 class="text-3xl font-bold">${project.name}</h3>
-        <p class="text-slate-400 mt-2">${project.county} • ${project.type}</p>
-        <div class="mt-8 bg-black/30 rounded-2xl p-6">
-          <p class="text-sm text-slate-400">Available Credits</p>
-          <p class="text-4xl font-semibold mt-2">${project.credits} tCO₂</p>
+          <div class="text-right">
+            <p class="text-emerald-400">${p.credits} tCO₂</p>
+          </div>
         </div>
       `;
-    }
-
-    function completePurchase() {
-      alert("✅ Purchase Successful!\n\n100 tCO₂ retired. Certificate generated.");
-    }
-
-    // Start the demo
-    renderProjects();
+      container.appendChild(div);
+    });
   </script>
 </body>
 </html>
