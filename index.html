@@ -6,19 +6,19 @@
 <title>Kenya Carbon Exchange</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#030604;
-  --panel:rgba(6,20,12,.88);
-  --panel2:rgba(5,14,9,.72);
-  --gold:#e6c766;
-  --gold2:#f7df8b;
-  --green:#7cff78;
+  --panel:rgba(7,18,12,.86);
+  --panel2:rgba(7,18,12,.58);
+  --gold:#f7df8b;
+  --gold2:#d8b75e;
+  --green:#78ff73;
   --blue:#55d8ff;
   --muted:#9fb0a3;
-  --border:rgba(230,199,102,.32);
+  --border:rgba(247,223,139,.26);
 }
 
 *{box-sizing:border-box}
@@ -27,10 +27,10 @@ body{
   margin:0;
   min-height:100vh;
   background:
-    radial-gradient(circle at 75% 4%, rgba(65,220,94,.25), transparent 24%),
-    radial-gradient(circle at 55% 105%, rgba(230,199,102,.13), transparent 34%),
-    linear-gradient(135deg,#020403,#07150d 56%,#020403);
-  color:#fff7d8;
+    radial-gradient(circle at 75% 0%,rgba(75,220,100,.20),transparent 28%),
+    radial-gradient(circle at 50% 100%,rgba(247,223,139,.12),transparent 35%),
+    linear-gradient(135deg,#020403,#07140d 55%,#020403);
+  color:#fff8dc;
   font-family:Inter,system-ui,sans-serif;
   overflow-x:hidden;
 }
@@ -40,16 +40,16 @@ body:before{
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.42;
+  opacity:.35;
   background-image:
-    radial-gradient(circle,rgba(247,223,139,.22) 1px,transparent 1.8px),
+    radial-gradient(circle,rgba(247,223,139,.24) 1px,transparent 1.8px),
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:88px 88px,54px 54px,54px 54px;
+  background-size:86px 86px,54px 54px,54px 54px;
 }
 
 .title{font-family:"Space Grotesk",sans-serif}
-.gold{color:var(--gold2)}
+.gold{color:var(--gold)}
 .muted{color:var(--muted)}
 
 .glass{
@@ -59,60 +59,60 @@ body:before{
   backdrop-filter:blur(22px);
 }
 
-.glass-soft{
+.soft{
   background:var(--panel2);
-  border:1px solid rgba(230,199,102,.22);
-  backdrop-filter:blur(18px);
+  border:1px solid rgba(247,223,139,.18);
+  backdrop-filter:blur(16px);
 }
 
 .nav{
-  color:#dedcc9;
   border:1px solid transparent;
-  cursor:pointer;
-  transition:.2s ease;
+  color:#dcd8be;
+  transition:.18s ease;
 }
+
 .nav.active,.nav:hover{
-  color:#fff1b8;
-  background:rgba(230,199,102,.13);
-  border-color:rgba(230,199,102,.55);
+  background:rgba(247,223,139,.12);
+  border-color:rgba(247,223,139,.38);
+  color:#fff3ba;
 }
 
-.btn-green{
-  background:linear-gradient(135deg,#80ff75,#f7df8b);
-  color:#061008;
-  transition:.2s ease;
+.btn-primary{
+  background:linear-gradient(135deg,#7cff78,#f7df8b);
+  color:#071008;
+  transition:.18s ease;
 }
-.btn-green:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-.btn-gold{
-  background:rgba(230,199,102,.12);
-  border:1px solid rgba(230,199,102,.45);
-  color:#f9e9ae;
-  transition:.2s ease;
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+.btn-secondary{
+  background:rgba(247,223,139,.10);
+  border:1px solid rgba(247,223,139,.35);
+  color:#f7df8b;
 }
-.btn-gold:hover{background:rgba(230,199,102,.23)}
+
+.btn-secondary:hover{background:rgba(247,223,139,.18)}
 
 .card{
-  background:rgba(4,18,11,.9);
-  border:1px solid rgba(230,199,102,.33);
+  background:rgba(5,18,11,.90);
+  border:1px solid rgba(247,223,139,.26);
   transition:.22s ease;
 }
+
 .card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(247,223,139,.75);
-  box-shadow:0 0 48px rgba(230,199,102,.18);
+  transform:translateY(-6px);
+  border-color:rgba(247,223,139,.7);
+  box-shadow:0 0 48px rgba(247,223,139,.14);
 }
 
 .map{
   position:relative;
-  height:430px;
-  border-radius:1rem;
+  height:420px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 72% 74%,rgba(85,216,255,.18),transparent 18%),
-    radial-gradient(circle at 44% 28%,rgba(124,255,120,.12),transparent 22%),
+    radial-gradient(circle at 78% 72%,rgba(85,216,255,.18),transparent 20%),
+    radial-gradient(circle at 40% 32%,rgba(124,255,120,.12),transparent 24%),
     linear-gradient(135deg,#06100b,#07150e 58%,#07131a);
-  border:1px solid rgba(230,199,102,.28);
 }
 
 .map:before{
@@ -121,7 +121,7 @@ body:before{
   inset:0;
   opacity:.55;
   background-image:
-    radial-gradient(circle,rgba(247,223,139,.26) 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(247,223,139,.24) 1px,transparent 1.5px),
     linear-gradient(115deg,rgba(247,223,139,.08) 1px,transparent 1px);
   background-size:22px 22px,70px 70px;
 }
@@ -129,72 +129,74 @@ body:before{
 .coast{
   position:absolute;
   right:-38px;
-  bottom:-14px;
+  bottom:-10px;
   width:190px;
   height:285px;
   border-radius:999px 0 0 999px;
-  background:linear-gradient(180deg,rgba(85,216,255,.12),rgba(85,216,255,.36));
-  border-left:1px solid rgba(85,216,255,.6);
+  background:linear-gradient(180deg,rgba(85,216,255,.10),rgba(85,216,255,.34));
+  border-left:1px solid rgba(85,216,255,.58);
 }
 
 .node{
   position:absolute;
-  transform:translate(-50%,-50%);
+  z-index:3;
   display:flex;
   align-items:center;
   gap:.5rem;
-  z-index:3;
+  transform:translate(-50%,-50%);
 }
 
 .dot{
-  width:14px;height:14px;border-radius:999px;
-  background:#7cff78;
-  box-shadow:0 0 0 6px rgba(124,255,120,.16),0 0 28px rgba(124,255,120,.95);
-  flex:none;
+  width:13px;
+  height:13px;
+  border-radius:999px;
+  background:var(--green);
+  box-shadow:0 0 0 6px rgba(124,255,120,.15),0 0 26px rgba(124,255,120,.9);
 }
 
 .dot.blue{
-  background:#55d8ff;
-  box-shadow:0 0 0 6px rgba(85,216,255,.18),0 0 30px rgba(85,216,255,.95);
+  background:var(--blue);
+  box-shadow:0 0 0 6px rgba(85,216,255,.16),0 0 28px rgba(85,216,255,.95);
 }
 
 .dot.gold-dot{
-  background:#f7df8b;
-  box-shadow:0 0 0 6px rgba(247,223,139,.16),0 0 28px rgba(247,223,139,.8);
+  background:var(--gold);
+  box-shadow:0 0 0 6px rgba(247,223,139,.15),0 0 26px rgba(247,223,139,.85);
 }
 
 .label{
   background:rgba(0,0,0,.42);
-  border:1px solid rgba(247,223,139,.28);
+  border:1px solid rgba(247,223,139,.25);
+  color:#fff8dc;
   border-radius:999px;
   padding:.42rem .65rem;
   font-size:.68rem;
-  line-height:1;
   white-space:nowrap;
-  color:#fff7d8;
   backdrop-filter:blur(10px);
 }
 
 .pay{
-  border:1px solid rgba(230,199,102,.28);
+  border:1px solid rgba(247,223,139,.24);
   background:rgba(0,0,0,.22);
-  transition:.2s ease;
-  cursor:pointer;
-}
-.pay:hover,.pay.selected{
-  border-color:rgba(124,255,120,.85);
-  background:rgba(124,255,120,.08);
-  box-shadow:0 0 30px rgba(124,255,120,.10);
+  transition:.18s ease;
 }
 
-.modal-bg{background:rgba(0,0,0,.78);backdrop-filter:blur(18px)}
+.pay:hover,.pay.selected{
+  border-color:rgba(124,255,120,.78);
+  background:rgba(124,255,120,.08);
+}
+
+.modal-bg{
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(18px);
+}
 
 .progress-track{background:rgba(255,255,255,.08)}
-.progress-fill{background:linear-gradient(90deg,#7cff78,#f7df8b)}
+.progress-fill{background:linear-gradient(90deg,#78ff73,#f7df8b)}
 
 @media(max-width:1024px){
   .sidebar{position:relative;width:100%;height:auto}
-  .main{margin-left:0}
+  .main{margin-left:0;max-width:100vw}
 }
 </style>
 </head>
@@ -202,276 +204,212 @@ body:before{
 <body>
 <div class="relative z-10 min-h-screen lg:flex">
 
-  <aside class="sidebar lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:w-72 p-4">
-    <div class="glass h-full rounded-3xl p-5 flex flex-col">
-
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#f7df8b] to-[#7cff78] flex items-center justify-center text-black font-black">
-          K
-        </div>
-        <div>
-          <h1 class="title leading-tight text-xl font-bold gold">KENYA<br>CARBON EXCHANGE</h1>
-          <p class="text-xs muted">Verified credit marketplace</p>
-        </div>
+<aside class="sidebar lg:fixed lg:left-0 lg:top-0 lg:h-screen lg:w-72 p-4">
+  <div class="glass h-full rounded-[28px] p-5 flex flex-col">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#f7df8b] to-[#78ff73] text-black flex items-center justify-center font-black text-xl">K</div>
+      <div>
+        <h1 class="title text-xl font-bold leading-tight gold">KENYA<br>CARBON EXCHANGE</h1>
+        <p class="text-xs muted">Verified credit marketplace</p>
       </div>
-
-      <nav class="space-y-2">
-        <button onclick="showPage('dashboard')" class="nav active w-full rounded-2xl px-4 py-3 text-left">Dashboard</button>
-        <button onclick="showPage('marketplace')" class="nav w-full rounded-2xl px-4 py-3 text-left">Marketplace</button>
-        <button onclick="showPage('projects')" class="nav w-full rounded-2xl px-4 py-3 text-left">Projects</button>
-        <button onclick="showPage('portfolio')" class="nav w-full rounded-2xl px-4 py-3 text-left">Portfolio</button>
-        <button onclick="showPage('certificates')" class="nav w-full rounded-2xl px-4 py-3 text-left">Certificates</button>
-      </nav>
-
-      <div class="mt-8 pt-5 border-t border-[#e6c76633] flex items-center gap-3">
-        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#f7df8b] to-[#7cff78] text-black flex items-center justify-center font-black">
-          JW
-        </div>
-        <div>
-          <p class="font-semibold">Jane Wanjiku</p>
-          <p class="text-xs muted">Buyer Account • Verified</p>
-        </div>
-      </div>
-
-      <div class="glass mt-6 rounded-2xl p-4">
-        <p class="text-xs font-bold gold mb-4">ACCOUNT DETAILS</p>
-        <div class="space-y-3 text-sm">
-          <div class="flex justify-between"><span class="muted">Wallet</span><span class="gold">0x7A...92F</span></div>
-          <div class="flex justify-between"><span class="muted">KYC</span><span class="text-green-400 font-bold">Approved</span></div>
-          <div class="flex justify-between"><span class="muted">Region</span><span>Kenya</span></div>
-        </div>
-        <button class="btn-gold w-full rounded-xl py-3 mt-5 font-bold">Login / Switch Account</button>
-      </div>
-
-      <div class="glass mt-5 rounded-2xl p-4">
-        <p class="text-xs font-bold gold mb-4">MARKET SNAPSHOT</p>
-        <div class="space-y-4 text-sm">
-          <div>
-            <p class="muted">Credits Available</p>
-            <p class="text-2xl font-bold gold">12.4M tCO₂</p>
-            <p class="text-xs text-green-400">▲ 18.6% this month</p>
-          </div>
-          <div class="border-t border-[#e6c76622] pt-3">
-            <p class="muted">Average Price</p>
-            <p class="text-2xl font-bold gold">$6.45</p>
-            <p class="text-xs text-red-400">▼ 2.3% this month</p>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </aside>
 
-  <main class="main lg:ml-72 flex-1 p-5 lg:p-8">
+    <nav class="space-y-2">
+      <button onclick="showPage('dashboard')" class="nav active w-full rounded-2xl px-4 py-3 text-left font-semibold">Dashboard</button>
+      <button onclick="showPage('marketplace')" class="nav w-full rounded-2xl px-4 py-3 text-left font-semibold">Marketplace</button>
+      <button onclick="showPage('projects')" class="nav w-full rounded-2xl px-4 py-3 text-left font-semibold">Projects</button>
+      <button onclick="showPage('portfolio')" class="nav w-full rounded-2xl px-4 py-3 text-left font-semibold">Portfolio</button>
+      <button onclick="showPage('certificates')" class="nav w-full rounded-2xl px-4 py-3 text-left font-semibold">Certificates</button>
+    </nav>
 
-    <section id="dashboard" class="page">
-
-      <div class="flex flex-col xl:flex-row gap-8">
-        <div class="flex-1">
-
-          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-            <div>
-              <p class="text-xs uppercase tracking-[0.28em] gold font-bold mb-3">Verified carbon marketplace</p>
-              <h2 class="title text-4xl lg:text-6xl font-bold tracking-tight leading-[.95]">
-                Discover verified<br>carbon projects in Kenya
-              </h2>
-              <p class="gold font-semibold mt-4 text-lg">Transparency. Trust. Impact.</p>
-            </div>
-            <div class="glass rounded-2xl px-5 py-4 text-right">
-              <p class="text-sm"><span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Live market</p>
-              <p class="text-xs muted">Updated 2 min ago</p>
-            </div>
-          </div>
-
-          <div class="mt-7 grid md:grid-cols-4 gap-4">
-            <div class="glass rounded-2xl p-5">
-              <p class="text-xs font-bold gold">TOTAL CREDITS</p>
-              <p class="text-4xl font-bold mt-3 gold">12.4M</p>
-              <p class="text-sm muted">tCO₂ available</p>
-              <p class="text-xs text-green-400 mt-3">▲ 18.6% MoM</p>
-            </div>
-            <div class="glass rounded-2xl p-5">
-              <p class="text-xs font-bold gold">VERIFIED PROJECTS</p>
-              <p class="text-4xl font-bold mt-3 gold">48</p>
-              <p class="text-sm muted">active projects</p>
-              <p class="text-xs text-green-400 mt-3">▲ 12.5% MoM</p>
-            </div>
-            <div class="glass rounded-2xl p-5">
-              <p class="text-xs font-bold gold">RETIRED</p>
-              <p class="text-4xl font-bold mt-3 gold">5.2M</p>
-              <p class="text-sm muted">tCO₂ retired</p>
-              <p class="text-xs text-green-400 mt-3">▲ 22.7% MoM</p>
-            </div>
-            <div class="glass rounded-2xl p-5">
-              <p class="text-xs font-bold gold">AVG PRICE</p>
-              <p class="text-4xl font-bold mt-3 gold">$6.45</p>
-              <p class="text-sm muted">per tonne</p>
-              <p class="text-xs text-red-400 mt-3">▼ 2.3% MoM</p>
-            </div>
-          </div>
-
-          <div class="glass rounded-3xl p-6 mt-7">
-            <div class="flex flex-col md:flex-row justify-between gap-5">
-              <div>
-                <h3 class="title text-2xl font-bold gold">Investor-grade buyer infrastructure</h3>
-                <p class="muted mt-2 max-w-2xl">A marketplace layer for discovery, checkout, retirement, and certificate verification — built for companies buying African carbon credits with cleaner proof and less PDF friction.</p>
-              </div>
-              <div class="grid grid-cols-3 gap-3 text-center">
-                <div class="glass-soft rounded-2xl p-4"><p class="text-2xl font-black gold">4</p><p class="text-xs muted">payment rails</p></div>
-                <div class="glass-soft rounded-2xl p-4"><p class="text-2xl font-black gold">12</p><p class="text-xs muted">certificates</p></div>
-                <div class="glass-soft rounded-2xl p-4"><p class="text-2xl font-black gold">99.9%</p><p class="text-xs muted">proof uptime</p></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 flex justify-between items-center">
-            <h3 class="title text-2xl font-bold gold">Featured Projects</h3>
-            <button onclick="showPage('marketplace')" class="gold">View all →</button>
-          </div>
-
-          <div id="projectsGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4"></div>
-
-          <div class="grid xl:grid-cols-2 gap-6 mt-7">
-            <div class="glass rounded-2xl p-6">
-              <div class="flex justify-between items-center mb-6">
-                <h3 class="title text-xl font-bold gold">Market Trends</h3>
-                <span class="btn-gold rounded-xl px-4 py-2 text-sm">12 months</span>
-              </div>
-              <svg viewBox="0 0 620 260" class="w-full">
-                <g stroke="rgba(230,199,102,.15)" stroke-width="1">
-                  <line x1="40" y1="40" x2="600" y2="40"/>
-                  <line x1="40" y1="90" x2="600" y2="90"/>
-                  <line x1="40" y1="140" x2="600" y2="140"/>
-                  <line x1="40" y1="190" x2="600" y2="190"/>
-                  <line x1="40" y1="230" x2="600" y2="230"/>
-                </g>
-                <polyline fill="none" stroke="#7cff78" stroke-width="3" points="40,200 95,180 150,160 205,150 260,145 315,130 370,125 425,100 480,85 535,60 600,35"/>
-                <polyline fill="none" stroke="#f2bf42" stroke-width="3" points="40,220 95,215 150,210 205,205 260,200 315,190 370,178 425,160 480,145 535,120 600,95"/>
-              </svg>
-            </div>
-
-            <div class="glass rounded-2xl p-6">
-              <h3 class="title text-xl font-bold gold mb-6">Project Type Exposure</h3>
-              <div class="space-y-5">
-                <div><div class="flex justify-between text-sm"><span>Forest</span><span class="gold">45%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:45%"></div></div></div>
-                <div><div class="flex justify-between text-sm"><span>Renewable Energy</span><span class="gold">25%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:25%"></div></div></div>
-                <div><div class="flex justify-between text-sm"><span>Cookstove</span><span class="gold">15%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:15%"></div></div></div>
-                <div><div class="flex justify-between text-sm"><span>Blue Carbon</span><span class="gold">10%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:10%"></div></div></div>
-                <div><div class="flex justify-between text-sm"><span>Agriculture</span><span class="gold">5%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:5%"></div></div></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="xl:w-[440px] glass rounded-2xl p-5 xl:mt-20">
-          <div class="flex items-center justify-between mb-3">
-            <div>
-              <h3 class="text-sm font-bold gold">KENYA PROJECT NETWORK</h3>
-              <p class="text-xs muted">Abstract placement map • demo locations</p>
-            </div>
-            <span class="text-xs px-3 py-1 rounded-full border border-[#55d8ff66] text-[#9be8ff] bg-[#55d8ff12]">Coast active</span>
-          </div>
-
-          <div class="map">
-            <div class="coast"></div>
-
-            <svg viewBox="0 0 440 430" class="absolute inset-0 w-full h-full z-[1]">
-              <path d="M58 76 C120 42,218 25,302 68 C383 110,397 196,367 273 C329 368,230 407,136 363 C48 321,22 231,43 151 C49 127,54 101,58 76Z"
-                fill="rgba(247,223,139,.035)" stroke="rgba(247,223,139,.28)" stroke-width="1.2"/>
-              <path d="M354 92 C383 154,388 219,368 284 C350 339,323 378,287 403"
-                fill="none" stroke="rgba(85,216,255,.62)" stroke-width="2.2" stroke-linecap="round"/>
-              <text x="154" y="218" fill="rgba(247,223,139,.38)" font-size="42" font-family="Georgia">KENYA</text>
-              <text x="355" y="350" fill="#55d8ff" font-size="11">INDIAN OCEAN</text>
-            </svg>
-
-            <div class="node" style="left:47%;top:24%;"><span class="dot gold-dot"></span><span class="label">Turkana Wind</span></div>
-            <div class="node" style="left:31%;top:36%;"><span class="dot"></span><span class="label">Mau Forest</span></div>
-            <div class="node" style="left:36%;top:57%;"><span class="dot"></span><span class="label">Kisumu Cookstoves</span></div>
-            <div class="node" style="left:79%;top:70%;"><span class="dot blue"></span><span class="label">Kilifi Blue Carbon</span></div>
-            <div class="node" style="left:57%;top:61%;"><span class="dot"></span><span class="label">Agri Carbon</span></div>
-
-            <div class="absolute bottom-5 left-5 right-5 z-[4] grid grid-cols-2 gap-2 text-xs">
-              <p class="bg-black/35 border border-[#e6c76622] rounded-xl px-3 py-2">● Land projects</p>
-              <p class="bg-black/35 border border-[#55d8ff44] rounded-xl px-3 py-2 text-[#9be8ff]">● Coastal blue carbon</p>
-            </div>
-          </div>
-        </div>
-
+    <div class="mt-8 pt-5 border-t border-[#f7df8b33] flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#f7df8b] to-[#78ff73] text-black flex items-center justify-center font-black">JW</div>
+      <div>
+        <p class="font-bold">Jane Wanjiku</p>
+        <p class="text-xs muted">Buyer Account • Verified</p>
       </div>
-    </section>
+    </div>
 
-    <section id="marketplace" class="page hidden">
-      <h2 class="title text-5xl font-bold gold mb-6">Marketplace</h2>
-      <div class="glass rounded-3xl p-5 mb-6 flex gap-3">
-        <input id="marketSearch" oninput="renderAll()" placeholder="Search marketplace..." class="bg-transparent outline-none flex-1">
-        <span class="gold">Verified only</span>
+    <div class="soft rounded-2xl p-4 mt-5">
+      <p class="text-xs font-black gold mb-4">ACCOUNT DETAILS</p>
+      <div class="space-y-3 text-sm">
+        <div class="flex justify-between"><span class="muted">Wallet</span><span class="gold">0x7A...92F</span></div>
+        <div class="flex justify-between"><span class="muted">KYC</span><span class="text-green-400 font-bold">Approved</span></div>
+        <div class="flex justify-between"><span class="muted">Region</span><span>Kenya</span></div>
       </div>
-      <div id="marketplaceGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
-    </section>
+      <button class="btn-secondary w-full rounded-xl py-3 mt-5 font-bold">Login / Switch Account</button>
+    </div>
 
-    <section id="projects" class="page hidden">
-      <h2 class="title text-5xl font-bold gold mb-6">Projects</h2>
-      <div id="projectsTable" class="space-y-3"></div>
-    </section>
+    <div class="soft rounded-2xl p-4 mt-5">
+      <p class="text-xs font-black gold mb-4">MARKET SNAPSHOT</p>
+      <div class="space-y-4 text-sm">
+        <div><p class="muted">Credits Available</p><p class="text-2xl font-black gold">12.4M</p><p class="text-xs text-green-400">▲ 18.6% this month</p></div>
+        <div class="border-t border-[#f7df8b22] pt-3"><p class="muted">Average Price</p><p class="text-2xl font-black gold">$6.45</p><p class="text-xs text-red-400">▼ 2.3% this month</p></div>
+      </div>
+    </div>
+  </div>
+</aside>
 
-    <section id="portfolio" class="page hidden">
-      <div class="flex flex-col md:flex-row justify-between gap-4 mb-6">
+<main class="main lg:ml-72 w-full max-w-[calc(100vw-18rem)] overflow-x-hidden p-5 lg:p-6">
+
+<section id="dashboard" class="page">
+  <div class="grid grid-cols-1 2xl:grid-cols-[minmax(0,1fr)_420px] gap-6">
+
+    <div class="min-w-0">
+      <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
         <div>
-          <p class="text-xs uppercase tracking-[0.28em] gold font-bold mb-3">Buyer treasury</p>
-          <h2 class="title text-5xl font-bold gold">Portfolio</h2>
-          <p class="muted mt-2">Owned credits, retired credits, exposure, proof status, and buyer impact.</p>
+          <p class="text-xs uppercase tracking-[0.28em] gold font-black mb-3">Verified carbon marketplace</p>
+          <h2 class="title text-3xl lg:text-5xl font-bold tracking-tight leading-[.95]">Discover verified<br>carbon projects in Kenya</h2>
+          <p class="gold font-bold mt-4 text-lg">Transparency. Trust. Impact.</p>
         </div>
-        <button onclick="showPage('marketplace')" class="btn-green rounded-2xl px-6 py-3 font-extrabold self-start">Buy More Credits</button>
+        <div class="glass rounded-2xl px-5 py-4 text-right shrink-0">
+          <p class="text-sm"><span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Live market</p>
+          <p class="text-xs muted">Updated 2 min ago</p>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="glass rounded-2xl p-6"><p class="muted">Owned Credits</p><p class="text-5xl font-bold gold mt-3">8,420</p><p>tCO₂</p></div>
-        <div class="glass rounded-2xl p-6"><p class="muted">Retired Credits</p><p class="text-5xl font-bold gold mt-3">2,850</p><p>tCO₂</p></div>
-        <div class="glass rounded-2xl p-6"><p class="muted">Certificates</p><p class="text-5xl font-bold gold mt-3">12</p><p>issued</p></div>
-        <div class="glass rounded-2xl p-6"><p class="muted">Portfolio Value</p><p class="text-5xl font-bold gold mt-3">$54.3K</p><p>demo value</p></div>
+      <div class="mt-7 grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div class="glass rounded-2xl p-5"><p class="text-xs font-black gold">TOTAL CREDITS</p><p class="text-4xl font-black mt-3 gold">12.4M</p><p class="muted">tCO₂ available</p><p class="text-green-400 text-sm mt-3">▲ 18.6% MoM</p></div>
+        <div class="glass rounded-2xl p-5"><p class="text-xs font-black gold">VERIFIED PROJECTS</p><p class="text-4xl font-black mt-3 gold">48</p><p class="muted">active projects</p><p class="text-green-400 text-sm mt-3">▲ 12.5% MoM</p></div>
+        <div class="glass rounded-2xl p-5"><p class="text-xs font-black gold">RETIRED</p><p class="text-4xl font-black mt-3 gold">5.2M</p><p class="muted">tCO₂ retired</p><p class="text-green-400 text-sm mt-3">▲ 22.7% MoM</p></div>
+        <div class="glass rounded-2xl p-5"><p class="text-xs font-black gold">AVG PRICE</p><p class="text-4xl font-black mt-3 gold">$6.45</p><p class="muted">per tonne</p><p class="text-red-400 text-sm mt-3">▼ 2.3% MoM</p></div>
       </div>
 
-      <div class="grid xl:grid-cols-2 gap-6 mt-6">
-        <div class="glass rounded-3xl p-6">
-          <h3 class="title text-2xl font-bold gold mb-5">Holdings by Project</h3>
-          <div id="portfolioHoldings" class="space-y-4"></div>
-        </div>
-
-        <div class="glass rounded-3xl p-6">
-          <h3 class="title text-2xl font-bold gold mb-5">Impact & Risk</h3>
-          <div class="space-y-5">
-            <div><div class="flex justify-between text-sm"><span>Forest exposure</span><span class="gold">44%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:44%"></div></div></div>
-            <div><div class="flex justify-between text-sm"><span>Renewables exposure</span><span class="gold">30%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:30%"></div></div></div>
-            <div><div class="flex justify-between text-sm"><span>Community impact</span><span class="gold">18,400 households</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:72%"></div></div></div>
+      <div class="glass rounded-3xl p-6 mt-6">
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_340px] gap-5 items-center">
+          <div>
+            <h3 class="title text-2xl lg:text-3xl font-bold gold">Investor-grade buyer infrastructure</h3>
+            <p class="muted mt-3 max-w-2xl leading-relaxed">A marketplace layer for discovery, checkout, retirement, and certificate verification — built for companies buying African carbon credits with cleaner proof and less PDF friction.</p>
           </div>
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <div class="glass-soft rounded-2xl p-4"><p class="text-3xl font-black gold">94%</p><p class="text-xs muted">verified allocation</p></div>
-            <div class="glass-soft rounded-2xl p-4"><p class="text-3xl font-black gold">Low</p><p class="text-xs muted">concentration risk</p></div>
+          <div class="grid grid-cols-3 gap-3 text-center min-w-0">
+            <div class="soft rounded-2xl p-4"><p class="text-3xl font-black gold">4</p><p class="text-xs muted">payment rails</p></div>
+            <div class="soft rounded-2xl p-4"><p class="text-3xl font-black gold">12</p><p class="text-xs muted">certificates</p></div>
+            <div class="soft rounded-2xl p-4"><p class="text-3xl font-black gold">99%</p><p class="text-xs muted">proof uptime</p></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="certificates" class="page hidden">
-      <div class="flex flex-col md:flex-row justify-between gap-4 mb-6">
+      <div class="mt-8 flex justify-between items-center">
+        <h3 class="title text-2xl font-bold gold">Featured Projects</h3>
+        <button onclick="showPage('marketplace')" class="gold font-bold">View all →</button>
+      </div>
+
+      <div id="projectsGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4"></div>
+
+      <div class="grid xl:grid-cols-2 gap-6 mt-7">
+        <div class="glass rounded-2xl p-6">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="title text-xl font-bold gold">Market Trends</h3>
+            <span class="btn-secondary rounded-xl px-4 py-2 text-sm">12 months</span>
+          </div>
+          <svg viewBox="0 0 620 260" class="w-full">
+            <g stroke="rgba(247,223,139,.14)" stroke-width="1"><line x1="40" y1="40" x2="600" y2="40"/><line x1="40" y1="90" x2="600" y2="90"/><line x1="40" y1="140" x2="600" y2="140"/><line x1="40" y1="190" x2="600" y2="190"/><line x1="40" y1="230" x2="600" y2="230"/></g>
+            <polyline fill="none" stroke="#78ff73" stroke-width="3" points="40,200 95,180 150,160 205,150 260,145 315,130 370,125 425,100 480,85 535,60 600,35"/>
+            <polyline fill="none" stroke="#f7df8b" stroke-width="3" points="40,220 95,215 150,210 205,205 260,200 315,190 370,178 425,160 480,145 535,120 600,95"/>
+          </svg>
+        </div>
+
+        <div class="glass rounded-2xl p-6">
+          <h3 class="title text-xl font-bold gold mb-6">Project Exposure</h3>
+          <div id="exposureBars" class="space-y-5"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass rounded-2xl p-5 2xl:mt-20 w-full max-w-full">
+      <div class="flex items-center justify-between mb-3">
         <div>
-          <p class="text-xs uppercase tracking-[0.28em] gold font-bold mb-3">Proof vault</p>
-          <h2 class="title text-5xl font-bold gold">Certificates Held</h2>
-          <p class="muted mt-2">Retirement certificates already held by this buyer account.</p>
+          <h3 class="text-sm font-black gold">KENYA PROJECT NETWORK</h3>
+          <p class="text-xs muted">Abstract placement map • demo locations</p>
         </div>
-        <button class="btn-gold rounded-2xl px-6 py-3 font-bold self-start">Export Certificate Pack</button>
+        <span class="text-xs px-3 py-1 rounded-full border border-[#55d8ff66] text-[#9be8ff] bg-[#55d8ff12]">Coast active</span>
       </div>
-      <div id="certGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
-    </section>
 
-  </main>
+      <div class="map rounded-2xl">
+        <div class="coast"></div>
+        <svg viewBox="0 0 440 430" class="absolute inset-0 w-full h-full z-[1]">
+          <path d="M58 76 C120 42,218 25,302 68 C383 110,397 196,367 273 C329 368,230 407,136 363 C48 321,22 231,43 151 C49 127,54 101,58 76Z" fill="rgba(247,223,139,.035)" stroke="rgba(247,223,139,.28)" stroke-width="1.2"/>
+          <path d="M354 92 C383 154,388 219,368 284 C350 339,323 378,287 403" fill="none" stroke="rgba(85,216,255,.62)" stroke-width="2.2" stroke-linecap="round"/>
+          <text x="154" y="218" fill="rgba(247,223,139,.38)" font-size="42" font-family="Georgia">KENYA</text>
+          <text x="355" y="350" fill="#55d8ff" font-size="11">INDIAN OCEAN</text>
+        </svg>
+        <div class="node" style="left:47%;top:24%;"><span class="dot gold-dot"></span><span class="label">Turkana Wind</span></div>
+        <div class="node" style="left:31%;top:36%;"><span class="dot"></span><span class="label">Mau Forest</span></div>
+        <div class="node" style="left:36%;top:57%;"><span class="dot"></span><span class="label">Kisumu Cookstoves</span></div>
+        <div class="node" style="left:79%;top:70%;"><span class="dot blue"></span><span class="label">Kilifi Blue Carbon</span></div>
+        <div class="node" style="left:57%;top:61%;"><span class="dot"></span><span class="label">Agri Carbon</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="marketplace" class="page hidden">
+  <h2 class="title text-5xl font-bold gold mb-6">Marketplace</h2>
+  <div class="glass rounded-3xl p-5 mb-6 flex gap-3">
+    <input id="marketSearch" oninput="renderAll()" placeholder="Search marketplace..." class="bg-transparent outline-none flex-1">
+    <span class="gold font-bold">Verified only</span>
+  </div>
+  <div id="marketplaceGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+</section>
+
+<section id="projects" class="page hidden">
+  <h2 class="title text-5xl font-bold gold mb-6">Projects</h2>
+  <div id="projectsTable" class="space-y-3"></div>
+</section>
+
+<section id="portfolio" class="page hidden">
+  <div class="flex flex-col md:flex-row justify-between gap-4 mb-6">
+    <div>
+      <p class="text-xs uppercase tracking-[0.28em] gold font-black mb-3">Buyer treasury</p>
+      <h2 class="title text-5xl font-bold gold">Portfolio</h2>
+      <p class="muted mt-2">Owned credits, retired credits, exposure, proof status, and buyer impact.</p>
+    </div>
+    <button onclick="showPage('marketplace')" class="btn-primary rounded-2xl px-6 py-3 font-black self-start">Buy More Credits</button>
+  </div>
+
+  <div class="grid md:grid-cols-4 gap-4">
+    <div class="glass rounded-2xl p-6"><p class="muted">Owned Credits</p><p class="text-5xl font-black gold mt-3">8,420</p><p>tCO₂</p></div>
+    <div class="glass rounded-2xl p-6"><p class="muted">Retired Credits</p><p class="text-5xl font-black gold mt-3">2,850</p><p>tCO₂</p></div>
+    <div class="glass rounded-2xl p-6"><p class="muted">Certificates</p><p class="text-5xl font-black gold mt-3">12</p><p>issued</p></div>
+    <div class="glass rounded-2xl p-6"><p class="muted">Portfolio Value</p><p class="text-5xl font-black gold mt-3">$54K</p><p>demo value</p></div>
+  </div>
+
+  <div class="grid xl:grid-cols-2 gap-6 mt-6">
+    <div class="glass rounded-3xl p-6">
+      <h3 class="title text-2xl font-bold gold mb-5">Holdings by Project</h3>
+      <div id="portfolioHoldings" class="space-y-4"></div>
+    </div>
+    <div class="glass rounded-3xl p-6">
+      <h3 class="title text-2xl font-bold gold mb-5">Impact & Risk</h3>
+      <div id="riskBars" class="space-y-5"></div>
+      <div class="grid grid-cols-2 gap-3 mt-6">
+        <div class="soft rounded-2xl p-4"><p class="text-3xl font-black gold">94%</p><p class="text-xs muted">verified allocation</p></div>
+        <div class="soft rounded-2xl p-4"><p class="text-3xl font-black gold">Low</p><p class="text-xs muted">concentration risk</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates" class="page hidden">
+  <div class="flex flex-col md:flex-row justify-between gap-4 mb-6">
+    <div>
+      <p class="text-xs uppercase tracking-[0.28em] gold font-black mb-3">Proof vault</p>
+      <h2 class="title text-5xl font-bold gold">Certificates Held</h2>
+      <p class="muted mt-2">Retirement certificates already held by this buyer account.</p>
+    </div>
+    <button class="btn-secondary rounded-2xl px-6 py-3 font-bold self-start">Export Certificate Pack</button>
+  </div>
+  <div id="certGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+</section>
+
+</main>
 </div>
 
 <div id="checkoutModal" class="modal-bg fixed inset-0 hidden z-50 items-center justify-center p-5">
   <div class="glass max-w-4xl w-full rounded-3xl p-8 relative">
     <button onclick="closeCheckout()" class="absolute right-6 top-5 text-2xl muted hover:text-white">×</button>
-    <p class="text-xs tracking-[0.25em] gold font-bold">SECURE CHECKOUT</p>
+    <p class="text-xs tracking-[0.25em] gold font-black">SECURE CHECKOUT</p>
     <h3 id="checkoutTitle" class="title text-3xl font-bold mt-2">Buy Carbon Credits</h3>
 
     <div class="grid lg:grid-cols-5 gap-6 mt-8">
@@ -483,22 +421,22 @@ body:before{
           <button onclick="selectPayment('M-Pesa')" class="pay rounded-2xl p-5 text-left"><p class="font-bold">M-Pesa</p><p class="text-sm muted">Mobile money checkout</p></button>
           <button onclick="selectPayment('Bank Transfer')" class="pay rounded-2xl p-5 text-left"><p class="font-bold">Bank Transfer</p><p class="text-sm muted">Invoice settlement</p></button>
         </div>
-        <div class="mt-5 bg-black/30 border border-[#e6c76633] rounded-2xl p-5">
+        <div class="mt-5 bg-black/30 border border-[#f7df8b33] rounded-2xl p-5">
           <p class="text-sm muted">Selected payment</p>
           <p id="selectedPaymentText" class="text-2xl font-bold gold mt-1">USDC / USDT</p>
         </div>
       </div>
 
-      <div class="lg:col-span-2 bg-black/30 border border-[#e6c76633] rounded-2xl p-5">
+      <div class="lg:col-span-2 bg-black/30 border border-[#f7df8b33] rounded-2xl p-5">
         <p class="font-bold gold mb-4">Order Summary</p>
         <p class="muted">Project</p>
         <p id="summaryProject" class="font-bold mb-4"></p>
         <p class="muted">Tonnes</p>
-        <input id="tonnesInput" type="number" value="100" min="1" oninput="updateCheckoutTotal()" class="w-full mt-2 bg-black/30 border border-[#e6c76644] rounded-xl px-4 py-3 text-2xl font-bold outline-none">
+        <input id="tonnesInput" type="number" value="100" min="1" oninput="updateCheckoutTotal()" class="w-full mt-2 bg-black/30 border border-[#f7df8b44] rounded-xl px-4 py-3 text-2xl font-bold outline-none">
         <div class="flex justify-between mt-5"><span class="muted">Price / tCO₂</span><span id="summaryPrice"></span></div>
         <div class="flex justify-between mt-3"><span class="muted">Platform fee</span><span id="summaryFee"></span></div>
-        <div class="flex justify-between text-xl border-t border-[#e6c76622] pt-4 mt-4"><span class="font-bold">Total</span><span id="summaryTotal" class="font-bold gold"></span></div>
-        <button onclick="confirmPayment()" class="btn-green mt-7 w-full rounded-2xl py-4 font-extrabold">Confirm Payment</button>
+        <div class="flex justify-between text-xl border-t border-[#f7df8b22] pt-4 mt-4"><span class="font-bold">Total</span><span id="summaryTotal" class="font-bold gold"></span></div>
+        <button onclick="confirmPayment()" class="btn-primary mt-7 w-full rounded-2xl py-4 font-black">Confirm Payment</button>
       </div>
     </div>
   </div>
@@ -507,30 +445,15 @@ body:before{
 <div id="certificateModal" class="modal-bg fixed inset-0 hidden z-50 items-center justify-center p-5">
   <div class="glass max-w-2xl w-full rounded-3xl p-8 relative">
     <button onclick="closeCertificate()" class="absolute right-6 top-5 text-2xl muted hover:text-white">×</button>
-    <p class="text-xs tracking-[0.25em] gold font-bold">RETIREMENT CERTIFICATE</p>
+    <p class="text-xs tracking-[0.25em] gold font-black">RETIREMENT CERTIFICATE</p>
     <h3 id="certTitle" class="title text-3xl font-bold mt-2">Certificate</h3>
 
     <div class="grid md:grid-cols-2 gap-4 mt-8">
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#e6c76633]">
-        <p class="text-xs muted">Credits Retired</p>
-        <p id="certCredits" class="text-4xl font-bold gold mt-2">100 tCO₂</p>
-      </div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#e6c76633]">
-        <p class="text-xs muted">Payment Method</p>
-        <p id="certPayment" class="text-2xl font-bold gold mt-2">USDC</p>
-      </div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#e6c76633]">
-        <p class="text-xs muted">Certificate ID</p>
-        <p id="certId" class="font-mono gold mt-2">KCE-000000</p>
-      </div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#e6c76633]">
-        <p class="text-xs muted">Status</p>
-        <p class="text-2xl font-bold text-green-400 mt-2">Retired</p>
-      </div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#e6c76633] md:col-span-2">
-        <p class="text-xs muted">Proof Hash</p>
-        <p id="certHash" class="font-mono text-sm break-all gold mt-2">sha256...</p>
-      </div>
+      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Credits Retired</p><p id="certCredits" class="text-4xl font-black gold mt-2">100 tCO₂</p></div>
+      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Payment Method</p><p id="certPayment" class="text-2xl font-bold gold mt-2">USDC</p></div>
+      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Certificate ID</p><p id="certId" class="font-mono gold mt-2">KCE-000000</p></div>
+      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Status</p><p class="text-2xl font-bold text-green-400 mt-2">Retired</p></div>
+      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33] md:col-span-2"><p class="text-xs muted">Proof Hash</p><p id="certHash" class="font-mono text-sm break-all gold mt-2">sha256...</p></div>
     </div>
 
     <button class="mt-7 w-full bg-[#f7df8b] text-black rounded-2xl py-4 font-bold">Download PDF Certificate</button>
@@ -539,172 +462,163 @@ body:before{
 
 <script>
 const projects=[
-  {name:"Mau Forest Protection",type:"Forest",location:"Narok / Nakuru, Kenya",credits:"1.2M",price:6.20,registry:"Gold Standard",image:"https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop",hash:"sha256:8f7a2c9d9b13e40a7a78f7e61c90bd4b1d8e16f1f3c24aa93f1b6e77a49cd902"},
-  {name:"Clean Cooking Initiative",type:"Cookstove",location:"Kisumu County, Kenya",credits:"850K",price:5.40,registry:"Verra VCS",image:"https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1200&auto=format&fit=crop",hash:"sha256:3d1e0b9129fca84729451afcd89f710da3b7a93e712a4538b9cc791d9a21fca7"},
-  {name:"Lake Turkana Wind",type:"Renewable Energy",location:"Turkana County, Kenya",credits:"850K",price:7.10,registry:"Gold Standard",image:"https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop",hash:"sha256:b7d99ff75e10a3a5d267bc33f92064b125f97841aa1cba6b864caa33af23d8e0"},
-  {name:"Kilifi Blue Carbon Mangroves",type:"Blue Carbon",location:"Kilifi Coast, Kenya",credits:"420K",price:8.30,registry:"Verra VCS",image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",hash:"sha256:f61db01a47c9ed5d1173d01fab98aa4090c3516e733bd37a43be99a0c58d421a"}
+{name:"Mau Forest Protection",type:"Forest",location:"Narok / Nakuru, Kenya",credits:"1.2M",price:6.20,registry:"Gold Standard",image:"https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1200&auto=format&fit=crop",hash:"sha256:8f7a2c9d9b13e40a7a78f7e61c90bd4b1d8e16f1f3c24aa93f1b6e77a49cd902"},
+{name:"Clean Cooking Initiative",type:"Cookstove",location:"Kisumu County, Kenya",credits:"850K",price:5.40,registry:"Verra VCS",image:"https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=80&w=1200&auto=format&fit=crop",hash:"sha256:3d1e0b9129fca84729451afcd89f710da3b7a93e712a4538b9cc791d9a21fca7"},
+{name:"Lake Turkana Wind",type:"Renewable Energy",location:"Turkana County, Kenya",credits:"850K",price:7.10,registry:"Gold Standard",image:"https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1200&auto=format&fit=crop",hash:"sha256:b7d99ff75e10a3a5d267bc33f92064b125f97841aa1cba6b864caa33af23d8e0"},
+{name:"Kilifi Blue Carbon Mangroves",type:"Blue Carbon",location:"Kilifi Coast, Kenya",credits:"420K",price:8.30,registry:"Verra VCS",image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",hash:"sha256:f61db01a47c9ed5d1173d01fab98aa4090c3516e733bd37a43be99a0c58d421a"}
 ];
 
 const holdings=[
-  {project:"Mau Forest Protection",owned:3200,retired:1100,value:"$19,840",status:"Active"},
-  {project:"Lake Turkana Wind",owned:2450,retired:650,value:"$17,395",status:"Active"},
-  {project:"Clean Cooking Initiative",owned:1770,retired:900,value:"$9,558",status:"Partially retired"},
-  {project:"Kilifi Blue Carbon Mangroves",owned:1000,retired:200,value:"$8,300",status:"Active"}
+{project:"Mau Forest Protection",owned:3200,retired:1100,value:"$19,840",status:"Active"},
+{project:"Lake Turkana Wind",owned:2450,retired:650,value:"$17,395",status:"Active"},
+{project:"Clean Cooking Initiative",owned:1770,retired:900,value:"$9,558",status:"Partially retired"},
+{project:"Kilifi Blue Carbon Mangroves",owned:1000,retired:200,value:"$8,300",status:"Active"}
 ];
 
 const certificates=[
-  {id:"KCE-482913",project:"Mau Forest Protection",tonnes:"400 tCO₂",method:"USDC / USDT",date:"27 Apr 2026",hash:"sha256:8f7a...d902"},
-  {id:"KCE-728144",project:"Clean Cooking Initiative",tonnes:"250 tCO₂",method:"M-Pesa",date:"21 Apr 2026",hash:"sha256:3d1e...fca7"},
-  {id:"KCE-319887",project:"Kilifi Blue Carbon Mangroves",tonnes:"100 tCO₂",method:"Credit Card",date:"18 Apr 2026",hash:"sha256:f61d...421a"}
+{id:"KCE-482913",project:"Mau Forest Protection",tonnes:"400 tCO₂",method:"USDC / USDT",date:"27 Apr 2026",hash:"sha256:8f7a...d902"},
+{id:"KCE-728144",project:"Clean Cooking Initiative",tonnes:"250 tCO₂",method:"M-Pesa",date:"21 Apr 2026",hash:"sha256:3d1e...fca7"},
+{id:"KCE-319887",project:"Kilifi Blue Carbon Mangroves",tonnes:"100 tCO₂",method:"Credit Card",date:"18 Apr 2026",hash:"sha256:f61d...421a"}
 ];
 
 let currentProject=projects[0];
 let selectedPayment="USDC / USDT";
 
+function bar(name,pct){
+return `<div><div class="flex justify-between text-sm"><span>${name}</span><span class="gold">${pct}%</span></div><div class="progress-track rounded-full h-2 mt-2"><div class="progress-fill h-2 rounded-full" style="width:${pct}%"></div></div></div>`;
+}
+
 function projectCard(p){
-  const encoded=encodeURIComponent(JSON.stringify(p));
-  return `
-    <div class="card rounded-2xl overflow-hidden">
-      <div class="relative h-44">
-        <img src="${p.image}" class="w-full h-full object-cover">
-        <span class="absolute top-3 right-3 ${p.type==="Blue Carbon"?"bg-cyan-700":"bg-green-700"} text-white text-xs rounded-full px-3 py-1">Verified</span>
-        <span class="absolute bottom-3 left-3 bg-black/55 border border-[#e6c76644] text-xs rounded-full px-3 py-1">${p.type}</span>
-      </div>
-      <div class="p-5">
-        <h4 class="font-bold text-lg">${p.name}</h4>
-        <p class="text-sm muted mt-2">🇰🇪 ${p.location}</p>
-        <p class="text-3xl font-bold gold mt-5">${p.credits} <span class="text-sm text-white">tCO₂</span></p>
-        <p class="text-sm muted">Available Credits</p>
-        <p class="text-2xl font-bold gold mt-4">$${p.price.toFixed(2)} <span class="text-sm text-white">/ tCO₂</span></p>
-        <div class="border-t border-[#e6c76633] mt-4 pt-3 flex justify-between items-center">
-          <span class="text-sm muted">${p.registry}</span>
-          <button onclick="openCheckout('${encoded}')" class="btn-green rounded-xl px-4 py-2 text-sm font-extrabold">Buy</button>
-        </div>
-      </div>
+const encoded=encodeURIComponent(JSON.stringify(p));
+return `
+<div class="card rounded-2xl overflow-hidden">
+  <div class="relative h-44">
+    <img src="${p.image}" class="w-full h-full object-cover">
+    <span class="absolute top-3 right-3 ${p.type==="Blue Carbon"?"bg-cyan-700":"bg-green-700"} text-white text-xs rounded-full px-3 py-1">Verified</span>
+    <span class="absolute bottom-3 left-3 bg-black/55 border border-[#f7df8b44] text-xs rounded-full px-3 py-1">${p.type}</span>
+  </div>
+  <div class="p-5">
+    <h4 class="font-bold text-lg">${p.name}</h4>
+    <p class="text-sm muted mt-2">🇰🇪 ${p.location}</p>
+    <p class="text-3xl font-black gold mt-5">${p.credits} <span class="text-sm text-white">tCO₂</span></p>
+    <p class="text-sm muted">Available Credits</p>
+    <p class="text-2xl font-bold gold mt-4">$${p.price.toFixed(2)} <span class="text-sm text-white">/ tCO₂</span></p>
+    <div class="border-t border-[#f7df8b33] mt-4 pt-3 flex justify-between items-center">
+      <span class="text-sm muted">${p.registry}</span>
+      <button onclick="openCheckout('${encoded}')" class="btn-primary rounded-xl px-4 py-2 text-sm font-black">Buy</button>
     </div>
-  `;
+  </div>
+</div>`;
 }
 
 function renderAll(){
-  const q1=(document.getElementById("searchInput")?.value||"").toLowerCase();
-  const q2=(document.getElementById("marketSearch")?.value||"").toLowerCase();
-  const q=q1||q2;
+const q=(document.getElementById("marketSearch")?.value||"").toLowerCase();
+const filtered=projects.filter(p=>p.name.toLowerCase().includes(q)||p.type.toLowerCase().includes(q)||p.location.toLowerCase().includes(q));
 
-  const filtered=projects.filter(p=>p.name.toLowerCase().includes(q)||p.type.toLowerCase().includes(q)||p.location.toLowerCase().includes(q));
+document.getElementById("projectsGrid").innerHTML=projects.map(projectCard).join("");
+document.getElementById("marketplaceGrid").innerHTML=filtered.map(projectCard).join("");
 
-  document.getElementById("projectsGrid").innerHTML=filtered.map(projectCard).join("");
-  document.getElementById("marketplaceGrid").innerHTML=filtered.map(projectCard).join("");
+document.getElementById("projectsTable").innerHTML=projects.map(p=>`
+<div class="glass rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+  <div><p class="font-bold">${p.name}</p><p class="text-sm muted">${p.location} • ${p.type}</p></div>
+  <div class="text-right"><p class="gold font-bold">${p.credits} tCO₂</p><p class="text-sm muted">${p.registry}</p></div>
+</div>`).join("");
 
-  document.getElementById("projectsTable").innerHTML=projects.map(p=>`
-    <div class="glass rounded-2xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div><p class="font-bold">${p.name}</p><p class="text-sm muted">${p.location} • ${p.type}</p></div>
-      <div class="text-right"><p class="gold font-bold">${p.credits} tCO₂</p><p class="text-sm muted">${p.registry}</p></div>
-    </div>
-  `).join("");
+document.getElementById("portfolioHoldings").innerHTML=holdings.map(h=>`
+<div class="soft rounded-2xl p-5">
+  <div class="flex justify-between gap-3">
+    <div><p class="font-bold">${h.project}</p><p class="text-sm muted">Owned: ${h.owned.toLocaleString()} tCO₂ • Retired: ${h.retired.toLocaleString()} tCO₂</p></div>
+    <div class="text-right"><p class="gold font-bold">${h.value}</p><p class="text-xs text-green-400">${h.status}</p></div>
+  </div>
+</div>`).join("");
 
-  document.getElementById("portfolioHoldings").innerHTML=holdings.map(h=>`
-    <div class="glass-soft rounded-2xl p-5">
-      <div class="flex justify-between gap-3">
-        <div>
-          <p class="font-bold">${h.project}</p>
-          <p class="text-sm muted">Owned: ${h.owned.toLocaleString()} tCO₂ • Retired: ${h.retired.toLocaleString()} tCO₂</p>
-        </div>
-        <div class="text-right">
-          <p class="gold font-bold">${h.value}</p>
-          <p class="text-xs text-green-400">${h.status}</p>
-        </div>
-      </div>
-    </div>
-  `).join("");
+document.getElementById("certGrid").innerHTML=certificates.map(c=>`
+<div class="glass rounded-2xl p-6">
+  <p class="text-xs tracking-[0.22em] gold font-black mb-3">RETIREMENT CERTIFICATE</p>
+  <h4 class="font-bold text-xl">${c.project}</h4>
+  <p class="muted text-sm mt-2">${c.tonnes} retired • ${c.date}</p>
+  <div class="mt-5 bg-black/30 border border-[#f7df8b33] rounded-2xl p-4 text-sm">
+    <p><span class="muted">Certificate ID:</span> <span class="gold font-mono">${c.id}</span></p>
+    <p class="mt-2"><span class="muted">Payment:</span> ${c.method}</p>
+    <p class="mt-2"><span class="muted">Status:</span> <span class="text-green-400 font-bold">Retired</span></p>
+    <p class="mt-2"><span class="muted">Proof:</span> <span class="gold font-mono">${c.hash}</span></p>
+  </div>
+  <button onclick="viewExistingCert('${c.project}','${c.tonnes}','${c.method}','${c.id}','${c.hash}')" class="btn-secondary mt-5 rounded-xl px-4 py-2 font-bold w-full">View Certificate</button>
+</div>`).join("");
 
-  document.getElementById("certGrid").innerHTML=certificates.map(c=>`
-    <div class="glass rounded-2xl p-6">
-      <p class="text-xs tracking-[0.22em] gold font-bold mb-3">RETIREMENT CERTIFICATE</p>
-      <h4 class="font-bold text-xl">${c.project}</h4>
-      <p class="muted text-sm mt-2">${c.tonnes} retired • ${c.date}</p>
-      <div class="mt-5 bg-black/30 border border-[#e6c76633] rounded-2xl p-4 text-sm">
-        <p><span class="muted">Certificate ID:</span> <span class="gold font-mono">${c.id}</span></p>
-        <p class="mt-2"><span class="muted">Payment:</span> ${c.method}</p>
-        <p class="mt-2"><span class="muted">Status:</span> <span class="text-green-400 font-bold">Retired</span></p>
-        <p class="mt-2"><span class="muted">Proof:</span> <span class="gold font-mono">${c.hash}</span></p>
-      </div>
-      <button onclick="viewExistingCert('${c.project}','${c.tonnes}','${c.method}','${c.id}','${c.hash}')" class="btn-gold mt-5 rounded-xl px-4 py-2 font-bold w-full">
-        View Certificate
-      </button>
-    </div>
-  `).join("");
+document.getElementById("exposureBars").innerHTML=bar("Forest",45)+bar("Renewable Energy",25)+bar("Cookstove",15)+bar("Blue Carbon",10)+bar("Agriculture",5);
+document.getElementById("riskBars").innerHTML=bar("Forest exposure",44)+bar("Renewables exposure",30)+bar("Community impact",72);
 }
 
 function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-  document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
-  const index={dashboard:0,marketplace:1,projects:2,portfolio:3,certificates:4}[id];
-  document.querySelectorAll(".nav")[index]?.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+const index={dashboard:0,marketplace:1,projects:2,portfolio:3,certificates:4}[id];
+document.querySelectorAll(".nav")[index]?.classList.add("active");
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function openCheckout(encoded){
-  currentProject=JSON.parse(decodeURIComponent(encoded));
-  selectedPayment="USDC / USDT";
-  document.getElementById("checkoutTitle").textContent="Buy "+currentProject.name;
-  document.getElementById("summaryProject").textContent=currentProject.name;
-  document.getElementById("summaryPrice").textContent="$"+currentProject.price.toFixed(2);
-  document.getElementById("selectedPaymentText").textContent=selectedPayment;
-  document.querySelectorAll(".pay").forEach((b,i)=>b.classList.toggle("selected",i===0));
-  document.getElementById("checkoutModal").classList.remove("hidden");
-  document.getElementById("checkoutModal").classList.add("flex");
-  updateCheckoutTotal();
+currentProject=JSON.parse(decodeURIComponent(encoded));
+selectedPayment="USDC / USDT";
+document.getElementById("checkoutTitle").textContent="Buy "+currentProject.name;
+document.getElementById("summaryProject").textContent=currentProject.name;
+document.getElementById("summaryPrice").textContent="$"+currentProject.price.toFixed(2);
+document.getElementById("selectedPaymentText").textContent=selectedPayment;
+document.querySelectorAll(".pay").forEach((b,i)=>b.classList.toggle("selected",i===0));
+document.getElementById("checkoutModal").classList.remove("hidden");
+document.getElementById("checkoutModal").classList.add("flex");
+updateCheckoutTotal();
 }
 
 function closeCheckout(){
-  document.getElementById("checkoutModal").classList.add("hidden");
-  document.getElementById("checkoutModal").classList.remove("flex");
+document.getElementById("checkoutModal").classList.add("hidden");
+document.getElementById("checkoutModal").classList.remove("flex");
 }
 
 function selectPayment(method){
-  selectedPayment=method;
-  document.getElementById("selectedPaymentText").textContent=method;
-  document.querySelectorAll(".pay").forEach(btn=>btn.classList.toggle("selected",btn.innerText.includes(method.split(" ")[0])||btn.innerText.includes(method)));
+selectedPayment=method;
+document.getElementById("selectedPaymentText").textContent=method;
+document.querySelectorAll(".pay").forEach(btn=>btn.classList.toggle("selected",btn.innerText.includes(method.split(" ")[0])||btn.innerText.includes(method)));
 }
 
 function updateCheckoutTotal(){
-  const tonnes=Number(document.getElementById("tonnesInput").value||0);
-  const subtotal=tonnes*currentProject.price;
-  const fee=subtotal*.02;
-  document.getElementById("summaryFee").textContent="$"+fee.toFixed(2);
-  document.getElementById("summaryTotal").textContent="$"+(subtotal+fee).toFixed(2);
+const tonnes=Number(document.getElementById("tonnesInput").value||0);
+const subtotal=tonnes*currentProject.price;
+const fee=subtotal*.02;
+document.getElementById("summaryFee").textContent="$"+fee.toFixed(2);
+document.getElementById("summaryTotal").textContent="$"+(subtotal+fee).toFixed(2);
 }
 
 function confirmPayment(){
-  const tonnes=Number(document.getElementById("tonnesInput").value||100);
-  closeCheckout();
-  document.getElementById("certTitle").textContent=currentProject.name;
-  document.getElementById("certCredits").textContent=tonnes.toLocaleString()+" tCO₂";
-  document.getElementById("certPayment").textContent=selectedPayment;
-  document.getElementById("certId").textContent="KCE-"+Math.floor(100000+Math.random()*900000);
-  document.getElementById("certHash").textContent=currentProject.hash;
-  document.getElementById("certificateModal").classList.remove("hidden");
-  document.getElementById("certificateModal").classList.add("flex");
+const tonnes=Number(document.getElementById("tonnesInput").value||100);
+closeCheckout();
+document.getElementById("certTitle").textContent=currentProject.name;
+document.getElementById("certCredits").textContent=tonnes.toLocaleString()+" tCO₂";
+document.getElementById("certPayment").textContent=selectedPayment;
+document.getElementById("certId").textContent="KCE-"+Math.floor(100000+Math.random()*900000);
+document.getElementById("certHash").textContent=currentProject.hash;
+document.getElementById("certificateModal").classList.remove("hidden");
+document.getElementById("certificateModal").classList.add("flex");
 }
 
 function viewExistingCert(project,tonnes,method,id,hash){
-  document.getElementById("certTitle").textContent=project;
-  document.getElementById("certCredits").textContent=tonnes;
-  document.getElementById("certPayment").textContent=method;
-  document.getElementById("certId").textContent=id;
-  document.getElementById("certHash").textContent=hash;
-  document.getElementById("certificateModal").classList.remove("hidden");
-  document.getElementById("certificateModal").classList.add("flex");
+document.getElementById("certTitle").textContent=project;
+document.getElementById("certCredits").textContent=tonnes;
+document.getElementById("certPayment").textContent=method;
+document.getElementById("certId").textContent=id;
+document.getElementById("certHash").textContent=hash;
+document.getElementById("certificateModal").classList.remove("hidden");
+document.getElementById("certificateModal").classList.add("flex");
 }
 
 function closeCertificate(){
-  document.getElementById("certificateModal").classList.add("hidden");
-  document.getElementById("certificateModal").classList.remove("flex");
+document.getElementById("certificateModal").classList.add("hidden");
+document.getElementById("certificateModal").classList.remove("flex");
 }
 
 renderAll();
 </script>
-
 </body>
 </html>
