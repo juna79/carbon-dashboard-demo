@@ -1,56 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kenya Carbon Exchange</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-<style>
-body { background:#050806; color:white; font-family:Inter, sans-serif;}
-.glass { background:rgba(255,255,255,0.06); backdrop-filter:blur(16px);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenya Carbon Exchange</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <style>
+    body { 
+      background: #050806; 
+      color: white; 
+      font-family: 'Inter', sans-serif;
+    }
+    .glass { 
+      background: rgba(255,255,255,0.06); 
+      backdrop-filter: blur(16px); 
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      transition: all 0.3s;
+    }
+  </style>
 </head>
 
-<body class="p-6">
+<body class="min-h-screen p-6">
 
-<h1 class="text-4xl font-bold mb-6">Kenya Carbon Exchange</h1>
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-10">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-amber-300 rounded-2xl flex items-center justify-center text-black">
+          <i class="fa-solid fa-leaf text-3xl"></i>
+        </div>
+        <h1 class="text-3xl font-bold tracking-tight">Kenya Carbon Exchange</h1>
+      </div>
+      <div class="text-emerald-400 font-medium">Live Demo</div>
+    </div>
 
-<div class="glass p-6 rounded-xl mb-6">
-<h2 class="text-2xl mb-2">Buy carbon credits with proof, not PDFs</h2>
-<p class="text-gray-300">Live demo marketplace for verified African carbon projects.</p>
-</div>
+    <h2 class="text-4xl font-bold mb-2">Buy carbon credits with proof, not PDFs</h2>
+    <p class="text-gray-400 mb-10">Verified Kenyan carbon projects • Instant retirement certificates</p>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Search -->
+    <div class="mb-8">
+      <input id="search" 
+             type="text" 
+             placeholder="Search projects... (e.g. Mau, Cookstoves)" 
+             class="w-full glass rounded-2xl px-6 py-4 text-lg outline-none focus:border-emerald-400">
+    </div>
 
-<div class="glass p-4 rounded-xl">
-<h3 class="font-bold">Mau Forest Restoration</h3>
-<p>$14 / tonne</p>
-<button onclick="buy('Mau Forest')" class="mt-3 bg-green-400 text-black px-4 py-2 rounded">Buy</button>
-</div>
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects">
+      <!-- Will be filled by JavaScript -->
+    </div>
+  </div>
 
-<div class="glass p-4 rounded-xl">
-<h3 class="font-bold">Cookstoves Kenya</h3>
-<p>$9 / tonne</p>
-<button onclick="buy('Cookstoves')" class="mt-3 bg-green-400 text-black px-4 py-2 rounded">Buy</button>
-</div>
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 glass px-6 py-4 rounded-2xl flex items-center gap-3 shadow-2xl">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+    <span id="toast-text" class="font-medium"></span>
+  </div>
 
-</div>
+  <script>
+    const projects = [
+      {
+        name: "Mau Forest Restoration",
+        price: 14,
+        type: "Forestry",
+        credits: "124,000",
+        image: "🌳"
+      },
+      {
+        name: "Clean Cookstoves Kenya",
+        price: 9,
+        type: "Cookstoves",
+        credits: "86,000",
+        image: "🔥"
+      },
+      {
+        name: "Laikipia Grasslands Carbon",
+        price: 18,
+        type: "Soil Carbon",
+        credits: "52,000",
+        image: "🌾"
+      },
+      {
+        name: "Turkana Solar Avoidance",
+        price: 11,
+        type: "Renewable Energy",
+        credits: "143,000",
+        image: "☀️"
+      }
+    ];
 
-<div id="toast" class="hidden fixed bottom-5 right-5 bg-green-500 px-4 py-3 rounded">
-Purchase complete ✔
-</div>
+    function renderProjects(filtered) {
+      const container = document.getElementById('projects');
+      container.innerHTML = '';
 
-<script>
-function buy(name){
-  const t=document.getElementById('toast');
-  t.innerText = name + " purchased & retired!";
-  t.classList.remove('hidden');
-  setTimeout(()=>t.classList.add('hidden'),3000);
-}
-</script>
+      filtered.forEach(project => {
+        const card = document.createElement('div');
+        card.className = "glass rounded-3xl p-6 project-card cursor-pointer";
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-4xl mb-3">${project.image}</div>
+              <h3 class="font-bold text-xl">${project.name}</h3>
+              <p class="text-gray-400">${project.type} • ${project.credits} tCO₂</p>
+            </div>
+            <div class="text-right">
+              <p class="text-3xl font-semibold">$${project.price}</p>
+              <p class="text-xs text-gray-500">per tonne</p>
+            </div>
+          </div>
+          <button onclick="buy('${project.name}')" 
+                  class="mt-6 w-full bg-emerald-400 hover:bg-emerald-300 text-black font-semibold py-4 rounded-2xl transition">
+            Buy & Retire Credits
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function buy(name) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').innerHTML = 
+        `<span class="text-emerald-300">${name}</span> — 100 tCO₂ retired!`;
+      toast.classList.remove('hidden');
+      
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    // Search functionality
+    document.getElementById('search').addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = projects.filter(p => 
+        p.name.toLowerCase().includes(term) || 
+        p.type.toLowerCase().includes(term)
+      );
+      renderProjects(filtered.length ? filtered : projects);
+    });
+
+    // Initial render
+    renderProjects(projects);
+  </script>
 
 </body>
 </html>
