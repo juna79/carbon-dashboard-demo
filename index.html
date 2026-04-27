@@ -7,113 +7,190 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    body { background: #0a0a0a; color: #e0f2e9; font-family: 'Inter', sans-serif; }
-    .neon-green { text-shadow: 0 0 15px #22ff88; }
-    .glass { background: rgba(15, 23, 20, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(34, 255, 136, 0.2); }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 0 30px rgba(34, 255, 136, 0.3); }
-    .active { background: rgba(34, 255, 136, 0.15); color: #22ff88; border-left: 4px solid #22ff88; }
+    body { background: #050a0a; color: #e0f2e9; font-family: 'Inter', sans-serif; }
+    .neon { text-shadow: 0 0 20px #22ff88; }
+    .glass { background: rgba(15, 23, 20, 0.75); backdrop-filter: blur(24px); border: 1px solid rgba(34, 255, 136, 0.25); }
+    .hero-bg { background: linear-gradient(rgba(5,10,10,0.7), rgba(5,10,10,0.9)), url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .card-hover:hover { transform: translateY(-10px); box-shadow: 0 0 40px rgba(34, 255, 136, 0.4); }
   </style>
 </head>
 <body class="min-h-screen flex">
 
   <!-- Sidebar -->
-  <div class="w-72 glass border-r border-emerald-900/50 p-6 fixed h-full">
+  <div class="w-72 glass border-r border-emerald-900 p-6 fixed h-full overflow-y-auto">
     <div class="flex items-center gap-3 mb-12">
-      <i class="fa-solid fa-leaf text-4xl text-emerald-400"></i>
-      <h1 class="text-2xl font-bold tracking-tight">KENYA CARBON</h1>
+      <i class="fa-solid fa-leaf text-5xl text-emerald-400"></i>
+      <h1 class="text-3xl font-bold tracking-tighter neon">KENYA CARBON</h1>
     </div>
-    
-    <nav class="space-y-1" id="sidebar">
-      <a onclick="showSection('dashboard')" class="active flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer"><i class="fa-solid fa-house"></i> Dashboard</a>
-      <a onclick="showSection('projects')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-tree"></i> Projects</a>
-      <a onclick="showSection('marketplace')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-store"></i> Marketplace</a>
-      <a onclick="showSection('portfolio')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-wallet"></i> Portfolio</a>
-      <a onclick="showSection('certificates')" class="flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer hover:bg-white/5"><i class="fa-solid fa-certificate"></i> Certificates</a>
+
+    <nav class="space-y-2 text-lg">
+      <a onclick="navigate('dashboard')" class="nav-link active flex items-center gap-4 px-5 py-4 rounded-3xl"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a onclick="navigate('projects')" class="nav-link flex items-center gap-4 px-5 py-4 rounded-3xl hover:bg-emerald-900/30"><i class="fa-solid fa-tree"></i> Projects</a>
+      <a onclick="navigate('marketplace')" class="nav-link flex items-center gap-4 px-5 py-4 rounded-3xl hover:bg-emerald-900/30"><i class="fa-solid fa-store"></i> Marketplace</a>
+      <a onclick="navigate('portfolio')" class="nav-link flex items-center gap-4 px-5 py-4 rounded-3xl hover:bg-emerald-900/30"><i class="fa-solid fa-wallet"></i> Portfolio</a>
+      <a onclick="navigate('certificates')" class="nav-link flex items-center gap-4 px-5 py-4 rounded-3xl hover:bg-emerald-900/30"><i class="fa-solid fa-certificate"></i> Certificates</a>
     </nav>
+
+    <div class="mt-auto pt-12">
+      <button onclick="showLogin()" class="w-full glass py-4 rounded-3xl flex items-center justify-center gap-3 text-emerald-300 hover:text-white">
+        <i class="fa-solid fa-right-to-bracket"></i> Log in / Sign up
+      </button>
+    </div>
   </div>
 
   <!-- Main Content -->
-  <div class="flex-1 ml-72 p-8">
+  <div class="flex-1 ml-72">
 
-    <!-- Dashboard Section -->
-    <div id="dashboard" class="section">
-      <h1 class="text-4xl font-bold neon-green mb-2">Market Overview</h1>
-      <p class="text-emerald-400/70 mb-8">Real-time African Carbon Market</p>
-      
-      <div class="grid grid-cols-4 gap-6">
-        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">TOTAL AVAILABLE</p><p class="text-5xl font-bold mt-2">12.4M tCO₂</p></div>
-        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">AVG PRICE</p><p class="text-5xl font-bold mt-2">$6.45</p></div>
-        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">RETIRED</p><p class="text-5xl font-bold mt-2">5.2M</p></div>
-        <div class="glass rounded-3xl p-6 card-hover"><p class="text-sm text-emerald-400">PROJECTS</p><p class="text-5xl font-bold mt-2">48</p></div>
+    <!-- Top Bar -->
+    <div class="glass border-b border-emerald-900 px-8 py-5 flex items-center justify-between sticky top-0 z-50">
+      <div class="flex items-center gap-3">
+        <input type="text" id="search" placeholder="Search projects or certificates..." 
+               class="bg-white/10 border border-white/20 focus:border-emerald-400 rounded-3xl px-6 py-3 w-96 outline-none">
+      </div>
+      <div onclick="toggleAccount()" class="flex items-center gap-3 cursor-pointer">
+        <div class="text-right">
+          <p class="font-semibold">Jane Wanjiku</p>
+          <p class="text-xs text-emerald-400">Buyer • Verified</p>
+        </div>
+        <div class="w-10 h-10 bg-emerald-400 rounded-2xl flex items-center justify-center text-black font-bold">JW</div>
       </div>
     </div>
 
-    <!-- Projects Section -->
-    <div id="projects" class="section hidden">
-      <h1 class="text-4xl font-bold mb-8">All Projects</h1>
-      <div class="grid grid-cols-2 gap-6" id="projects-grid"></div>
-    </div>
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="section active hero-bg min-h-[calc(100vh-73px)] p-10 text-white">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-6xl font-bold neon mb-4">Accelerating a sustainable future for Africa</h1>
+        <p class="text-2xl text-emerald-200 mb-12">Discover • Trust • Transact • Retire</p>
 
-    <!-- Marketplace -->
-    <div id="marketplace" class="section hidden">
-      <h1 class="text-4xl font-bold mb-8">Marketplace</h1>
-      <p class="text-xl text-emerald-400">Buy verified carbon credits</p>
-      <!-- Add more cards here later -->
-    </div>
-
-    <!-- Portfolio -->
-    <div id="portfolio" class="section hidden">
-      <h1 class="text-4xl font-bold mb-8">Your Portfolio</h1>
-      <p class="text-2xl">You own <span class="text-emerald-400 font-bold">2,850 tCO₂</span></p>
-    </div>
-
-    <!-- Certificates -->
-    <div id="certificates" class="section hidden">
-      <h1 class="text-4xl font-bold mb-8">Certificates</h1>
-      <div class="glass rounded-3xl p-12 text-center">
-        <i class="fa-solid fa-certificate text-8xl text-emerald-400 mb-6"></i>
-        <h2 class="text-3xl font-bold">Your latest certificate is ready</h2>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="glass rounded-3xl p-8 card-hover">
+            <p class="text-emerald-400">TOTAL CREDITS AVAILABLE</p>
+            <p class="text-6xl font-bold mt-3">12.4M <span class="text-3xl">tCO₂</span></p>
+          </div>
+          <div class="glass rounded-3xl p-8 card-hover">
+            <p class="text-emerald-400">AVERAGE PRICE</p>
+            <p class="text-6xl font-bold mt-3">$6.45</p>
+          </div>
+          <div class="glass rounded-3xl p-8 card-hover">
+            <p class="text-emerald-400">CREDITS RETIRED</p>
+            <p class="text-6xl font-bold mt-3">5.2M</p>
+          </div>
+          <div class="glass rounded-3xl p-8 card-hover">
+            <p class="text-emerald-400">VERIFIED PROJECTS</p>
+            <p class="text-6xl font-bold mt-3">48</p>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- PROJECTS -->
+    <div id="projects" class="section p-10">
+      <h1 class="text-5xl font-bold mb-8">Projects</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid"></div>
+    </div>
+
+    <!-- MARKETPLACE -->
+    <div id="marketplace" class="section p-10">
+      <h1 class="text-5xl font-bold mb-8">Marketplace</h1>
+      <p class="text-xl mb-8">Buy and retire verified carbon credits instantly</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="marketplace-grid"></div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div id="portfolio" class="section p-10">
+      <h1 class="text-5xl font-bold mb-8">Your Portfolio</h1>
+      <div class="glass rounded-3xl p-10 text-center">
+        <p class="text-7xl font-bold text-emerald-400">2,850 tCO₂</p>
+        <p class="text-2xl mt-4">Owned • 1,200 tCO₂ Retired</p>
+      </div>
+    </div>
+
+    <!-- CERTIFICATES -->
+    <div id="certificates" class="section p-10">
+      <h1 class="text-5xl font-bold mb-8">Your Certificates</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="cert-grid"></div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100]">
+    <div class="glass rounded-3xl p-10 w-full max-w-md">
+      <h2 class="text-3xl font-bold mb-6 text-center">Welcome to Kenya Carbon Exchange</h2>
+      <button onclick="fakeLogin()" class="w-full bg-emerald-400 text-black py-6 rounded-3xl font-bold text-xl">Continue with Email / Google</button>
+      <p class="text-center mt-8 text-sm text-emerald-300">Demo Mode • No real login required</p>
+    </div>
   </div>
 
   <script>
-    function showSection(section) {
-      // Hide all sections
-      document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
-      // Show selected
-      document.getElementById(section).classList.remove('hidden');
+    function navigate(page) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(page).classList.add('active');
       
-      // Update active sidebar
-      document.querySelectorAll('#sidebar a').forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('onclick').includes(section)) link.classList.add('active');
-      });
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(link => link.getAttribute('onclick').includes(page));
+      if (activeLink) activeLink.classList.add('active');
     }
 
-    // Sample Projects
+    function showLogin() {
+      document.getElementById('login-modal').classList.remove('hidden');
+    }
+
+    function fakeLogin() {
+      document.getElementById('login-modal').classList.add('hidden');
+      alert("✅ Logged in successfully! (Demo mode)");
+    }
+
+    function toggleAccount() {
+      alert("Account settings would open here in a real app.\n\nYou're currently logged in as Jane Wanjiku.");
+    }
+
+    // Sample Data
     const projectsData = [
-      {name: "Mau Forest Protection", credits: "1.2M", price: "6.20"},
-      {name: "Clean Cooking Initiative", credits: "850K", price: "5.40"},
-      {name: "Lake Turkana Wind", credits: "850K", price: "7.10"},
-      {name: "Blue Carbon Mangroves", credits: "420K", price: "8.30"}
+      {name: "Mau Forest Protection", location: "Narok County", credits: "1.2M", price: "6.20", emoji: "🌳"},
+      {name: "Clean Cooking Initiative", location: "Kisumu", credits: "850K", price: "5.40", emoji: "🔥"},
+      {name: "Lake Turkana Wind", location: "Turkana", credits: "850K", price: "7.10", emoji: "🌬️"},
+      {name: "Blue Carbon Mangroves", location: "Kilifi", credits: "420K", price: "8.30", emoji: "🌊"}
     ];
 
-    const grid = document.getElementById('projects-grid');
+    // Render Projects
+    const projectsGrid = document.getElementById('projects-grid');
     projectsData.forEach(p => {
       const card = document.createElement('div');
-      card.className = "glass rounded-3xl p-6 card-hover";
-      card.innerHTML = `
-        <h3 class="font-bold text-xl">${p.name}</h3>
-        <p class="text-emerald-400 mt-6">${p.credits} tCO₂ available</p>
-        <p class="text-3xl font-bold mt-2">$${p.price} <span class="text-base font-normal">/tCO₂</span></p>
-      `;
-      grid.appendChild(card);
+      card.className = "glass rounded-3xl p-8 card-hover";
+      card.innerHTML = `<div class="text-7xl mb-6">${p.emoji}</div><h3 class="text-2xl font-bold">${p.name}</h3><p class="text-emerald-400">${p.location}</p><div class="mt-8 flex justify-between"><div><p class="text-4xl font-bold">$${p.price}</p><p class="text-sm">per tCO₂</p></div><p class="text-emerald-400">${p.credits} tCO₂</p></div>`;
+      projectsGrid.appendChild(card);
+    });
+
+    // Render Marketplace
+    const marketplaceGrid = document.getElementById('marketplace-grid');
+    projectsData.forEach(p => {
+      const card = document.createElement('div');
+      card.className = "glass rounded-3xl p-8 card-hover cursor-pointer";
+      card.innerHTML = `<div class="text-7xl mb-6">${p.emoji}</div><h3 class="text-2xl font-bold">${p.name}</h3><p class="text-emerald-400">${p.location}</p><div class="mt-8 flex justify-between"><div><p class="text-4xl font-bold">$${p.price}</p></div><button onclick="buyCredits('${p.name}')" class="bg-emerald-400 text-black px-8 py-3 rounded-2xl font-semibold">Buy Now</button></div>`;
+      marketplaceGrid.appendChild(card);
+    });
+
+    function buyCredits(name) {
+      alert(`✅ You just retired credits from ${name}!\n\nCertificate generated instantly.`);
+    }
+
+    // Render Certificates
+    const certGrid = document.getElementById('cert-grid');
+    const certs = [
+      {id: "TVCS-2025-00125", amount: "1,250", project: "Mau Forest Protection"},
+      {id: "TVCS-2025-00098", amount: "800", project: "Clean Cooking Initiative"}
+    ];
+    certs.forEach(c => {
+      const div = document.createElement('div');
+      div.className = "glass rounded-3xl p-8 text-center card-hover";
+      div.innerHTML = `<i class="fa-solid fa-certificate text-8xl text-emerald-400 mb-6"></i><h3 class="font-bold text-2xl">${c.project}</h3><p class="text-5xl font-bold text-emerald-400 mt-4">${c.amount} tCO₂</p><p class="text-sm text-emerald-300 mt-2">Certificate ID: ${c.id}</p>`;
+      certGrid.appendChild(div);
     });
 
     // Start on Dashboard
-    showSection('dashboard');
+    navigate('dashboard');
   </script>
 </body>
 </html>
