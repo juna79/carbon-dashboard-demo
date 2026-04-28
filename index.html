@@ -99,18 +99,18 @@ body:before{
       <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#f7df8b] to-[#78ff73] text-black flex items-center justify-center font-black">JW</div>
       <div>
         <p class="font-bold">Jane Wanjiku</p>
-        <p class="text-xs muted">Buyer Account • Verified</p>
+        <p class="text-xs muted">Google Login • Verified Buyer</p>
       </div>
     </div>
 
     <div class="soft rounded-2xl p-4 mt-5">
       <p class="text-xs font-black gold mb-4">ACCOUNT DETAILS</p>
       <div class="space-y-3 text-sm">
-        <div class="flex justify-between"><span class="muted">Wallet</span><span class="gold">0x7A...92F</span></div>
-        <div class="flex justify-between"><span class="muted">KYC</span><span class="text-green-400 font-bold">Approved</span></div>
-        <div class="flex justify-between"><span class="muted">Region</span><span>Africa</span></div>
+        <div class="flex justify-between"><span class="muted">Login</span><span class="gold">Google</span></div>
+        <div class="flex justify-between"><span class="muted">Account</span><span class="text-green-400 font-bold">Verified</span></div>
+        <div class="flex justify-between"><span class="muted">Buyer Type</span><span>Company</span></div>
       </div>
-      <button class="btn-secondary w-full rounded-xl py-3 mt-5 font-bold">Login / Switch Account</button>
+      <button class="btn-secondary w-full rounded-xl py-3 mt-5 font-bold">Sign in / Create Account</button>
     </div>
 
     <div class="soft rounded-2xl p-4 mt-5">
@@ -353,18 +353,50 @@ body:before{
 </div>
 
 <div id="certificateModal" class="modal-bg fixed inset-0 hidden z-50 items-center justify-center p-5">
-  <div class="glass max-w-2xl w-full rounded-3xl p-8 relative">
-    <button onclick="closeCertificate()" class="absolute right-6 top-5 text-2xl muted hover:text-white">×</button>
-    <p class="text-xs tracking-[0.25em] gold font-black">RETIREMENT CERTIFICATE</p>
-    <h3 id="certTitle" class="title text-3xl font-bold mt-2">Certificate</h3>
-    <div class="grid md:grid-cols-2 gap-4 mt-8">
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Credits Retired</p><p id="certCredits" class="text-4xl font-black gold mt-2">100 tCO₂</p></div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Payment Method</p><p id="certPayment" class="text-2xl font-bold gold mt-2">USDC</p></div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Certificate ID</p><p id="certId" class="font-mono gold mt-2">ACE-000000</p></div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33]"><p class="text-xs muted">Status</p><p class="text-2xl font-bold text-green-400 mt-2">Retired</p></div>
-      <div class="bg-black/30 rounded-2xl p-5 border border-[#f7df8b33] md:col-span-2"><p class="text-xs muted">Proof Hash</p><p id="certHash" class="font-mono text-sm break-all gold mt-2">sha256...</p></div>
+  <div class="glass max-w-3xl w-full rounded-3xl p-6 relative max-h-[92vh] overflow-y-auto">
+    <button onclick="closeCertificate()" class="absolute right-6 top-5 text-2xl muted hover:text-white z-20">×</button>
+
+    <div class="bg-[#0a120d] border border-[#f7df8b66] rounded-3xl p-8 text-center relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20 bg-gradient-to-br from-[#f7df8b] via-transparent to-[#78ff73]"></div>
+
+      <div class="relative z-10">
+        <p class="text-xs tracking-[0.35em] gold font-black mb-4">VERIFIED CERTIFICATE</p>
+
+        <h2 class="title text-4xl font-bold gold mb-2">Carbon Retirement Certificate</h2>
+
+        <p class="muted mb-6">This certifies that the following carbon credits have been permanently retired</p>
+
+        <div class="bg-black/40 border border-[#f7df8b33] rounded-2xl p-6 mb-6">
+          <h3 id="certTitle" class="text-2xl font-bold mb-2"></h3>
+          <p id="certCredits" class="text-3xl font-black gold"></p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 text-left mb-6">
+          <div class="soft rounded-xl p-4">
+            <p class="text-xs muted">Certificate ID</p>
+            <p id="certId" class="font-mono gold mt-1"></p>
+          </div>
+          <div class="soft rounded-xl p-4">
+            <p class="text-xs muted">Payment Method</p>
+            <p id="certPayment" class="mt-1"></p>
+          </div>
+          <div class="soft rounded-xl p-4 md:col-span-2">
+            <p class="text-xs muted">Verification Hash</p>
+            <p id="certHash" class="font-mono text-xs gold mt-1 break-all"></p>
+          </div>
+        </div>
+
+        <div class="flex justify-center mb-6">
+          <div class="w-24 h-24 rounded-full border-2 border-[#f7df8b] flex items-center justify-center bg-black/30">
+            <span class="gold font-black text-sm text-center">VERIFIED<br>RETIREMENT</span>
+          </div>
+        </div>
+
+        <p class="text-xs muted mb-6">This certificate represents a permanent retirement of carbon credits from circulation.</p>
+
+        <button class="btn-primary w-full rounded-2xl py-4 font-black">Download Certificate (PDF)</button>
+      </div>
     </div>
-    <button class="mt-7 w-full bg-[#f7df8b] text-black rounded-2xl py-4 font-bold">Download PDF Certificate</button>
   </div>
 </div>
 
