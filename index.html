@@ -560,233 +560,85 @@ SIMULATED CANDLESTICK MARKET INDEX
 </div>
 </section>
 <section id="portfolio" class="page">
-<div class="panel">
-<h2>Portfolio Overview</h2>
-<div class="metrics" id="portfolioMetrics"></div>
-</div>
-
-<br>
-
-<div class="panel">
-<h2>Holdings by Project</h2>
-<table class="table" id="holdingsTable"></table>
-</div>
-
-<br>
-
-<div class="panel">
-<h2>Retirement History</h2>
-<table class="table" id="retirementTable"></table>
-</div>
+<div class="panel"><h2>Portfolio Overview</h2><div class="metrics" id="portfolioMetrics"></div></div><br>
+<div class="panel"><h2>Holdings by Project</h2><table class="table" id="holdingsTable"></table></div><br>
+<div class="panel"><h2>Retirement History</h2><table class="table" id="retirementTable"></table></div>
 </section>
 
 <section id="marketplace" class="page">
-<div class="panel">
-<h2>Global Marketplace</h2>
-<p class="meta" style="margin-bottom:14px">
-Click any project to open a full project profile.
-</p>
-<div class="market-grid" id="marketplaceGrid"></div>
-</div>
+<div class="panel"><h2>Global Marketplace</h2><p class="meta" style="margin-bottom:14px">Click any project to open a full project profile.</p><div class="market-grid" id="marketplaceGrid"></div></div>
 </section>
 
 <section id="projects" class="page">
 <div class="big-layout">
-
-<div class="panel">
-<h2>Global Project Directory</h2>
-<div class="project-grid" id="projectsDirectory"></div>
-</div>
-
-<div class="panel" id="projectDetail">
-<h2>Project Profile</h2>
-<div class="meta">
-Click a project to open the full dossier.
-</div>
-</div>
-
+<div class="panel"><h2>Global Project Directory</h2><div class="project-grid" id="projectsDirectory"></div></div>
+<div class="panel" id="projectDetail"><h2>Project Profile</h2><div class="meta">Click a project to open the full dossier.</div></div>
 </div>
 </section>
 
 <section id="certificates" class="page">
 <div class="big-layout">
-
-<div class="panel">
-<h2>Certificate Vault</h2>
-<div class="cert-grid" id="certList"></div>
-</div>
-
+<div class="panel"><h2>Certificate Vault</h2><div class="cert-grid" id="certList"></div></div>
 <div id="certPreview"></div>
-
 </div>
 </section>
 
 <section id="intelligence" class="page">
-
-<div class="panel">
-<h2>Market Intelligence</h2>
-<div class="intel-grid" id="intelGrid"></div>
-</div>
-
-<br>
-
+<div class="panel"><h2>Market Intelligence</h2><div class="intel-grid" id="intelGrid"></div></div><br>
 <div class="big-layout">
-
-<div class="panel">
-<h2>Most Credits Sold</h2>
-<table class="table" id="mostSold"></table>
-</div>
-
-<div class="panel">
-<h2>Cheapest Credits</h2>
-<table class="table" id="cheapest"></table>
-</div>
-
-</div>
-
-<br>
-
+<div class="panel"><h2>Most Credits Sold</h2><table class="table" id="mostSold"></table></div>
+<div class="panel"><h2>Cheapest Credits</h2><table class="table" id="cheapest"></table></div>
+</div><br>
 <div class="big-layout">
-
-<div class="panel">
-<h2>Best Offers</h2>
-<div class="feed" id="bestOffers"></div>
+<div class="panel"><h2>Best Offers</h2><div class="feed" id="bestOffers"></div></div>
+<div class="panel"><h2>Buyer Demand Intelligence</h2><div class="feed" id="buyerDemand"></div></div>
 </div>
-
-<div class="panel">
-<h2>Buyer Demand Intelligence</h2>
-<div class="feed" id="buyerDemand"></div>
-</div>
-
-</div>
-
 </section>
 
 <div class="modal" id="buyModal">
 <div class="modal-box">
-
-<div class="topline">
-<h2>Buy Credits</h2>
-<button class="btn-dark" onclick="closeBuyModal()">Close</button>
-</div>
-
+<div class="topline"><h2>Buy Credits</h2><button class="btn-dark" onclick="closeBuyModal()">Close</button></div>
 <div id="buyProjectName" class="price"></div>
-
 <label>Credit Amount</label>
 <input id="buyAmount" type="number" value="1000" oninput="updateBuyQuote()" />
-
 <label>Payment Method</label>
-
 <div class="pay-grid">
-
-<div class="pay active" onclick="selectPay(this,'USDC')">
-USDC<br><span class="meta">Instant</span>
+<div class="pay active" onclick="selectPay(this,'USDC')">USDC<br><span class="meta">Instant</span></div>
+<div class="pay" onclick="selectPay(this,'USDT')">USDT<br><span class="meta">Instant</span></div>
+<div class="pay" onclick="selectPay(this,'Card')">Credit Card<br><span class="meta">2–5 mins</span></div>
+<div class="pay" onclick="selectPay(this,'Bank')">Bank Transfer<br><span class="meta">1–2 days</span></div>
+<div class="pay" onclick="selectPay(this,'M-Pesa')">M-Pesa<br><span class="meta">Kenya beta</span></div>
+<div class="pay" onclick="selectPay(this,'Wire')">Wire<br><span class="meta">Institutional</span></div>
 </div>
-
-<div class="pay" onclick="selectPay(this,'USDT')">
-USDT<br><span class="meta">Instant</span>
-</div>
-
-<div class="pay" onclick="selectPay(this,'Card')">
-Credit Card<br><span class="meta">2–5 mins</span>
-</div>
-
-<div class="pay" onclick="selectPay(this,'Bank')">
-Bank Transfer<br><span class="meta">1–2 days</span>
-</div>
-
-<div class="pay" onclick="selectPay(this,'M-Pesa')">
-M-Pesa<br><span class="meta">Kenya beta</span>
-</div>
-
-<div class="pay" onclick="selectPay(this,'Wire')">
-Wire<br><span class="meta">Institutional</span>
-</div>
-
-</div>
-
-<div class="panel" style="box-shadow:none">
-<h2>Order Quote</h2>
-<div id="buyQuote" class="meta"></div>
-</div>
-
-<div class="btn-row">
-<button class="btn-green" onclick="confirmBuy()">Confirm Purchase</button>
-<button class="btn-dark" onclick="closeBuyModal()">Cancel</button>
-</div>
-
+<div class="panel" style="box-shadow:none"><h2>Order Quote</h2><div id="buyQuote" class="meta"></div></div>
+<div class="btn-row"><button class="btn-green" onclick="confirmBuy()">Confirm Purchase</button><button class="btn-dark" onclick="closeBuyModal()">Cancel</button></div>
 </div>
 </div>
 
 <script>
+let currentMode="buyer";
+let currentPayMethod="USDC";
+let currentTimeframe="15m";
 
-let currentMode = "buyer";
-let currentPayMethod = "USDC";
-let currentTimeframe = "15m";
-
-const projects = [
-{
-id:1,
-name:"Uganda EV Mobility Credits",
-country:"Uganda",
-region:"Kampala & Wakiso",
-asset:"EV Credits",
-price:14.8,
-change:2.4,
-rating:"AA",
-impact:"School fees",
-listed:85000,
-sold:38200,
-redeemed:12400,
-burn:3100,
-quality:88,
-social:92,
-bio:"A clean mobility programme accelerating electric transport adoption while funding school fees, local technical training and cleaner urban air.",
-tags:["EV","schools","urban mobility"],
-image:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80",
-audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]
-},
-{
-id:2,
-name:"Kenya Biochar Soil Project",
-country:"Kenya",
-region:"Western Kenya",
-asset:"Biochar",
-price:22.4,
-change:4.8,
-rating:"AAA",
-impact:"Jobs created",
-listed:120000,
-sold:77600,
-redeemed:41100,
-burn:5400,
-quality:96,
-social:89,
-bio:"Durable carbon removal project converting agricultural waste into biochar for smallholder farms, improving soil health and farmer income.",
-tags:["biochar","soil","farm income"],
-image:"https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",
-audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
-}
+const projects=[
+{id:1,name:"Uganda EV Mobility Credits",country:"Uganda",region:"Kampala & Wakiso",asset:"EV Credits",price:14.8,change:2.4,rating:"AA",impact:"School fees",listed:85000,sold:38200,redeemed:12400,burn:3100,quality:88,social:92,bio:"A clean mobility programme accelerating electric transport adoption while funding school fees, local technical training and cleaner urban air.",tags:["EV","schools","urban mobility"],image:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80",audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]},
+{id:2,name:"Kenya Biochar Soil Project",country:"Kenya",region:"Western Kenya",asset:"Biochar",price:22.4,change:4.8,rating:"AAA",impact:"Jobs created",listed:120000,sold:77600,redeemed:41100,burn:5400,quality:96,social:89,bio:"Durable carbon removal project converting agricultural waste into biochar for smallholder farms, improving soil health and farmer income.",tags:["biochar","soil","farm income"],image:"https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]},
+{id:3,name:"Brazil Amazon REDD+",country:"Brazil",region:"Pará",asset:"REDD+",price:11.2,change:-1.2,rating:"A",impact:"Biodiversity",listed:500000,sold:213000,redeemed:89200,burn:12100,quality:81,social:77,bio:"Forest protection project focused on avoided deforestation, biodiversity monitoring and community forest stewardship.",tags:["forest","satellite MRV","biodiversity"],image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]},
+{id:4,name:"Indonesia Mangrove Blue Carbon",country:"Indonesia",region:"Kalimantan",asset:"Blue Carbon",price:18.9,change:3.1,rating:"AA",impact:"Boreholes",listed:210000,sold:96500,redeemed:31700,burn:6700,quality:90,social:84,bio:"Coastal restoration project protecting mangrove ecosystems and combining blue carbon storage with community resilience and water access.",tags:["blue carbon","mangroves","restoration"],image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]},
+{id:5,name:"Ghana Plastic Recovery Credits",country:"Ghana",region:"Accra",asset:"Plastic Recovery",price:9.3,change:5.6,rating:"AA",impact:"Jobs created",listed:160000,sold:104000,redeemed:58000,burn:7400,quality:84,social:93,bio:"Plastic recovery programme supporting waste collection, recycling and coastal cleanup while creating jobs for informal waste workers.",tags:["plastic","waste recovery","coastal cleanup"],image:"https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",audit:["2024 Collection audit","2025 Recycler verification","2026 Proof certificate"]}
 ];
 
-const holdings = [
-{ projectId:1, held:4250, avgBuy:12.8, retired:1250, certs:1 },
-{ projectId:2, held:1800, avgBuy:18.4, retired:800, certs:1 }
+const holdings=[
+{projectId:1,held:4250,avgBuy:12.8,retired:1250,certs:1},
+{projectId:2,held:1800,avgBuy:18.4,retired:800,certs:1},
+{projectId:3,held:9000,avgBuy:10.1,retired:2100,certs:1},
+{projectId:4,held:2600,avgBuy:15.2,retired:0,certs:0},
+{projectId:5,held:6200,avgBuy:7.9,retired:0,certs:0}
 ];
 
-const certificates = [
-{
-project:"Uganda EV Mobility Credits",
-qty:1250,
-buyer:"Juna Vidyarthi",
-id:"VEA-UG-EV-2026-00129",
-date:"May 2026",
-type:"EV Credits",
-issuer:"Gold Standard",
-verifier:"Third-party MRV + On-chain Proof",
-hash:"0x8f2a...91c4",
-impact:"School fees support, cleaner urban transport and verified EV transition impact."
-}
+const certificates=[
+{project:"Uganda EV Mobility Credits",qty:1250,buyer:"Juna Vidyarthi",id:"VEA-UG-EV-2026-00129",date:"May 2026",type:"EV Credits",issuer:"Gold Standard",verifier:"Third-party MRV + On-chain Proof",hash:"0x8f2a...91c4",impact:"School fees support, cleaner urban transport and verified EV transition impact."},
+{project:"Kenya Biochar Soil Project",qty:800,buyer:"Juna Vidyarthi",id:"VEA-KE-BIO-2026-00412",date:"April 2026",type:"Biochar",issuer:"Puro.earth",verifier:"Carbon permanence audit",hash:"0x44ab...2fe1",impact:"Durable carbon removal, farmer income and verified soil health improvement."}
 ];
 
 let activeProjects=[...projects];
@@ -799,46 +651,19 @@ if(el)el.classList.add("active");
 }
 
 function renderTicker(){
-const html=projects.map(p=>`
-<span class="tick">
-<b>${p.asset}</b>
-${p.country}
-<span>$${p.price.toFixed(2)}</span>
-<span class="${p.change>=0?'up':'down'}">
-${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%
-</span>
-</span>
-`).join("");
-tickerTrack.innerHTML=html+html;
+tickerTrack.innerHTML=projects.map(p=>`<span class="tick"><b>${p.asset}</b>${p.country}<span>$${p.price.toFixed(2)}</span><span class="${p.change>=0?'up':'down'}">${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%</span></span>`).join("") + projects.map(p=>`<span class="tick"><b>${p.asset}</b>${p.country}<span>$${p.price.toFixed(2)}</span><span class="${p.change>=0?'up':'down'}">${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%</span></span>`).join("");
 }
 
 function cardHTML(p){
-return `
-<div class="card" onclick="openProject(${p.id})">
+return `<div class="card" onclick="openProject(${p.id})">
 <div class="card-img" style="background-image:url('${p.image}')"></div>
-
-<div class="topline">
-<div>
-<span class="asset">${p.asset}</span>
-<h3>${p.name}</h3>
-</div>
-<div class="rating">${p.rating}</div>
-</div>
-
-<div class="meta">
-${p.region}, ${p.country}<br>
-${p.impact}
-</div>
-
-<div class="price">
-$${p.price.toFixed(2)}
-</div>
-
-<div class="tags">
-${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-</div>
-</div>
-`;
+<div class="topline"><div><span class="asset">${p.asset}</span><h3>${p.name}</h3></div><div class="rating">${p.rating}</div></div>
+<div class="meta">${p.region}, ${p.country}<br>${p.impact}</div>
+<div class="price">$${p.price.toFixed(2)} <span class="${p.change>=0?'up':'down'}" style="font-size:13px">${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%</span></div>
+<div class="meta">Available: ${(p.listed-p.sold).toLocaleString()} credits</div>
+<div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+<div class="btn-row"><button class="btn-green" onclick="event.stopPropagation();openBuyModal(${p.id})">Buy Credits</button><button class="btn-dark">View Profile</button></div>
+</div>`;
 }
 
 function renderProjects(){
@@ -848,116 +673,179 @@ projectsDirectory.innerHTML=projects.map(cardHTML).join("");
 }
 
 function openProject(id){
-
 const p=projects.find(x=>x.id===id);
-
-showPage('projects',document.querySelectorAll(".nav-link")[3]);
-
-projectDetail.innerHTML=`
-<h2>Project Profile</h2>
-
-<div class="project-detail-img"
-style="background-image:url('${p.image}')"></div>
-
-<span class="asset">${p.asset}</span>
-
-<div class="detail-title">${p.name}</div>
-
-<div class="meta">
-${p.region}, ${p.country} · Rating ${p.rating}
-</div>
-
-<p class="detail-bio">
-${p.bio}
-</p>
-
-<div class="metrics">
-<div class="metric"><small>Credits Listed</small><div class="num">${p.listed.toLocaleString()}</div></div>
-<div class="metric"><small>Credits Sold</small><div class="num">${p.sold.toLocaleString()}</div></div>
-<div class="metric"><small>Redeemed</small><div class="num">${p.redeemed.toLocaleString()}</div></div>
-<div class="metric"><small>Burn Rate</small><div class="num">${p.burn.toLocaleString()}</div></div>
-</div>
-
-<div class="meta">Asset Quality Rating</div>
-<div class="bar"><span style="width:${p.quality}%"></span></div>
-
-<br>
-
-<div class="meta">Social Impact Rating</div>
-<div class="bar"><span style="width:${p.social}%"></span></div>
-
-<div class="audit">
-${p.audit.map(a=>`<div>✓ ${a}</div>`).join("")}
-</div>
-`;
+showPage("projects",document.querySelectorAll(".nav-link")[3]);
+projectDetail.innerHTML=`<h2>Project Profile</h2>
+<div class="project-detail-img" style="background-image:url('${p.image}')"></div>
+<span class="asset">${p.asset}</span><div class="detail-title">${p.name}</div>
+<div class="meta">${p.region}, ${p.country} · Rating ${p.rating}</div>
+<p class="detail-bio"><b>Who they are / what they do:</b><br>${p.bio}</p>
+<p class="detail-bio"><b>Impact blurb:</b><br>This project creates verified environmental outcomes linked to ${p.impact.toLowerCase()}, auditability and transparent retirement records.</p>
+<div class="metrics"><div class="metric"><small>Credits Listed</small><div class="num">${p.listed.toLocaleString()}</div></div><div class="metric"><small>Credits Sold</small><div class="num">${p.sold.toLocaleString()}</div></div><div class="metric"><small>Redeemed</small><div class="num">${p.redeemed.toLocaleString()}</div></div><div class="metric"><small>Burn Rate</small><div class="num">${p.burn.toLocaleString()}</div></div></div>
+<div class="meta">Asset Quality Rating</div><div class="bar"><span style="width:${p.quality}%"></span></div><br>
+<div class="meta">Social Impact Rating</div><div class="bar"><span style="width:${p.social}%"></span></div>
+<div class="audit">${p.audit.map(a=>`<div>✓ ${a}</div>`).join("")}</div>
+<div class="btn-row"><button class="btn-green" onclick="openBuyModal(${p.id})">Buy Credits</button><button class="btn-dark">View Verification Proof</button></div>`;
 }
 
 function renderPortfolio(){
-
-let totalValue=0;
-let totalHeld=0;
-let totalRetired=0;
-
+let totalValue=0,totalHeld=0,totalRetired=0,totalGain=0;
 holdings.forEach(h=>{
 const p=projects.find(x=>x.id===h.projectId);
 totalValue+=h.held*p.price;
 totalHeld+=h.held;
 totalRetired+=h.retired;
+totalGain+=(p.price-h.avgBuy)*h.held;
 });
-
-portfolioMetrics.innerHTML=`
-<div class="metric"><small>Total Portfolio Value</small><div class="num">$${Math.round(totalValue).toLocaleString()}</div></div>
-<div class="metric"><small>Credits Held</small><div class="num">${totalHeld.toLocaleString()}</div></div>
-<div class="metric"><small>Credits Retired</small><div class="num">${totalRetired.toLocaleString()}</div></div>
-<div class="metric"><small>Projects Held</small><div class="num">${holdings.length}</div></div>
-`;
-
-holdingsTable.innerHTML=`
-<tr>
-<th>Project</th>
-<th>Held</th>
-<th>Avg Buy</th>
-<th>Current</th>
-<th>Value</th>
-<th>Retired</th>
-</tr>
-`+holdings.map(h=>{
-const p=projects.find(x=>x.id===h.projectId);
-
-return `
-<tr>
-<td onclick="openProject(${p.id})" class="click-name">${p.name}</td>
-<td>${h.held.toLocaleString()}</td>
-<td>$${h.avgBuy.toFixed(2)}</td>
-<td>$${p.price.toFixed(2)}</td>
-<td>$${Math.round(h.held*p.price).toLocaleString()}</td>
-<td>${h.retired.toLocaleString()}</td>
-</tr>
-`;
+portfolioMetrics.innerHTML=`<div class="metric"><small>Total Portfolio Value</small><div class="num">$${Math.round(totalValue).toLocaleString()}</div></div><div class="metric"><small>Credits Held</small><div class="num">${totalHeld.toLocaleString()}</div></div><div class="metric"><small>Credits Retired</small><div class="num">${totalRetired.toLocaleString()}</div></div><div class="metric"><small>Unrealized Gain/Loss</small><div class="num ${totalGain>=0?'up':'down'}">$${Math.round(totalGain).toLocaleString()}</div></div>`;
+holdingsTable.innerHTML=`<tr><th>Project</th><th>Held</th><th>Avg Buy</th><th>Current</th><th>Value</th><th>Gain/Loss</th><th>Retired</th><th>Certificates</th></tr>`+holdings.map(h=>{
+const p=projects.find(x=>x.id===h.projectId),value=h.held*p.price,gain=(p.price-h.avgBuy)*h.held;
+return `<tr><td onclick="openProject(${p.id})" class="click-name">${p.name}<br><span class="meta">${p.asset} · ${p.country}</span></td><td>${h.held.toLocaleString()}</td><td>$${h.avgBuy.toFixed(2)}</td><td>$${p.price.toFixed(2)}</td><td>$${Math.round(value).toLocaleString()}</td><td class="${gain>=0?'up':'down'}">$${Math.round(gain).toLocaleString()}</td><td>${h.retired.toLocaleString()}</td><td>${h.certs}</td></tr>`;
 }).join("");
-
-retirementTable.innerHTML=`
-<tr>
-<th>Date</th>
-<th>Project</th>
-<th>Quantity</th>
-<th>Issuer</th>
-</tr>
-`+certificates.map(c=>`
-<tr>
-<td>${c.date}</td>
-<td>${c.project}</td>
-<td>${c.qty.toLocaleString()}</td>
-<td>${c.issuer}</td>
-</tr>
-`).join("");
+retirementTable.innerHTML=`<tr><th>Date</th><th>Project</th><th>Quantity</th><th>Certificate</th><th>Issuer</th></tr>`+certificates.map(c=>{
+const p=projects.find(x=>x.name===c.project);
+return `<tr><td>${c.date}</td><td onclick="openProject(${p.id})" class="click-name">${c.project}</td><td>${c.qty.toLocaleString()}</td><td onclick="showPage('certificates',document.querySelectorAll('.nav-link')[4]);selectCert('${c.id}')" class="click-name">${c.id}</td><td>${c.issuer}</td></tr>`;
+}).join("");
 }
 
+function renderCertificates(){
+certList.innerHTML=certificates.map(c=>`<div class="card" onclick="selectCert('${c.id}')"><span class="asset">${c.type}</span><h3>${c.project}</h3><div class="meta">${c.qty.toLocaleString()} credits retired<br>${c.date}<br>${c.id}</div></div>`).join("");
+selectCert(certificates[0].id);
+}
+
+function selectCert(id){
+const c=certificates.find(x=>x.id===id);
+certPreview.innerHTML=`<div class="cert-preview"><div class="cert-kicker">Verified Environmental Asset Certificate</div><h1>Certificate of Credit Retirement</h1><p>This certifies that <b>${c.buyer}</b> retired <b>${c.qty.toLocaleString()} ${c.type}</b> from <b>${c.project}</b>.</p><div class="issuer-pill">★ Issued by ${c.issuer}</div><div class="cert-row"><div class="cert-box"><small>Certificate ID</small><b>${c.id}</b></div><div class="cert-box"><small>Retirement Date</small><b>${c.date}</b></div><div class="cert-box"><small>Issuer / Registry</small><b>${c.issuer}</b></div><div class="cert-box"><small>Verifier</small><b>${c.verifier}</b></div><div class="cert-box"><small>Credit Type</small><b>${c.type}</b></div><div class="cert-box"><small>Proof Hash</small><b>${c.hash}</b></div></div><div class="gold-seal"><b>Impact Statement:</b><br>${c.impact}</div></div>`;
+}
+
+function openBuyModal(id){
+buyModal.classList.add("active");
+const p=projects.find(x=>x.id===id);
+buyProjectName.innerHTML=p.name;
+updateBuyQuote();
+}
+function closeBuyModal(){buyModal.classList.remove("active")}
+function selectPay(el,method){document.querySelectorAll(".pay").forEach(x=>x.classList.remove("active"));el.classList.add("active");currentPayMethod=method;updateBuyQuote()}
+function updateBuyQuote(){const amount=Number(buyAmount.value||0);buyQuote.innerHTML=`${amount.toLocaleString()} credits<br>Estimated Total: <b style="color:white">$${(amount*14.2).toLocaleString()}</b><br>Settlement Method: <b style="color:white">${currentPayMethod}</b>`}
+function confirmBuy(){alert("Purchase successful.");closeBuyModal()}
+
+function setMode(mode){
+currentMode=mode;
+buyerFilters.style.display=mode==="buyer"?"block":"none";
+buyerBtn.className=mode==="buyer"?"btn-green":"btn-dark";
+sellerBtn.className=mode==="seller"?"btn-green":"btn-dark";
+}
+
+function applyFilters(){
+const asset=assetFilter.value,country=geoFilter.value,impact=impactFilter.value,search=searchInput.value.toLowerCase();
+activeProjects=projects.filter(p=>{
+const blob=`${p.name} ${p.country} ${p.asset} ${p.impact} ${p.bio}`.toLowerCase();
+return (asset==="all"||p.asset===asset)&&(country==="all"||p.country===country)&&(impact==="all"||p.impact===impact)&&(!search||blob.includes(search));
+});
+renderProjects();
+}
+
+function resetFilters(){activeProjects=[...projects];renderProjects()}
+
+function populateFilters(){
+[...new Set(projects.map(p=>p.asset))].forEach(v=>assetFilter.innerHTML+=`<option>${v}</option>`);
+[...new Set(projects.map(p=>p.country))].forEach(v=>geoFilter.innerHTML+=`<option>${v}</option>`);
+[...new Set(projects.map(p=>p.impact))].forEach(v=>impactFilter.innerHTML+=`<option>${v}</option>`);
+}
+
+function fakeFeed(){
+const p=projects[Math.floor(Math.random()*projects.length)],isBuy=Math.random()>.4,qty=Math.floor(Math.random()*900)+50;
+const div=document.createElement("div");
+div.className=`feed-item ${isBuy?'feed-buy':'feed-sell'}`;
+div.innerHTML=`<strong class="${isBuy?'up':'down'}">${isBuy?'BUY':'SELL'} ${qty.toLocaleString()} ${p.asset}</strong><br>${p.name}<br><span class="meta">${p.country} · just now</span>`;
+feed.prepend(div);
+while(feed.children.length>12)feed.removeChild(feed.lastChild);
+}
+
+function renderIntelligence(){
+const sold=[...projects].sort((a,b)=>b.sold-a.sold),cheap=[...projects].sort((a,b)=>a.price-b.price);
+mostSold.innerHTML=`<tr><th>Project</th><th>Sold</th><th>Price</th></tr>`+sold.map(p=>`<tr><td onclick="openProject(${p.id})" class="click-name">${p.name}</td><td>${p.sold.toLocaleString()}</td><td>$${p.price.toFixed(2)}</td></tr>`).join("");
+cheapest.innerHTML=`<tr><th>Project</th><th>Asset</th><th>Price</th></tr>`+cheap.map(p=>`<tr><td onclick="openProject(${p.id})" class="click-name">${p.name}</td><td>${p.asset}</td><td>$${p.price.toFixed(2)}</td></tr>`).join("");
+bestOffers.innerHTML=cheap.map(p=>`<div class="feed-item feed-buy" onclick="openProject(${p.id})" style="cursor:pointer"><b style="color:#00ff9c">${p.name}</b><br><span class="meta">${p.asset} · $${p.price.toFixed(2)}</span></div>`).join("");
+buyerDemand.innerHTML=sold.map(p=>`<div class="feed-item"><b>${p.country}</b><br><span class="meta">Strong demand for ${p.asset}</span></div>`).join("");
+intelGrid.innerHTML=`<div class="card"><h3>Most Active Region</h3><div class="price">Brazil</div></div><div class="card"><h3>Fastest Growing Asset</h3><div class="price">Biochar</div></div><div class="card"><h3>Highest Social Rating</h3><div class="price">Plastic Recovery</div></div><div class="card"><h3>Most Redeemed Credits</h3><div class="price">REDD+</div></div>`;
+}
+
+function updateMetrics(){
+creditsListed.innerHTML=projects.reduce((a,b)=>a+b.listed,0).toLocaleString();
+creditsSold.innerHTML=projects.reduce((a,b)=>a+b.sold,0).toLocaleString();
+redeemed.innerHTML=projects.reduce((a,b)=>a+b.redeemed,0).toLocaleString();
+burnRate.innerHTML=projects.reduce((a,b)=>a+b.burn,0).toLocaleString();
+}
+
+/* Candlestick chart */
+const canvas=document.getElementById("marketChart");
+const ctx=canvas.getContext("2d");
+let candles=[];
+
+function generateCandles(tf){
+let base={"5m":118,"15m":120,"30m":126,"1h":134,"4h":148,"1d":162,"1m":210}[tf];
+candles=[];
+for(let i=0;i<55;i++){
+const open=base+(Math.random()-.5)*12,close=open+(Math.random()-.45)*10,high=Math.max(open,close)+Math.random()*6,low=Math.min(open,close)-Math.random()*6;
+candles.push({open,close,high,low});
+base=close;
+}
+}
+
+function resizeCanvas(){
+canvas.width=canvas.offsetWidth*devicePixelRatio;
+canvas.height=canvas.offsetHeight*devicePixelRatio;
+ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+
+function drawCandles(){
+resizeCanvas();
+const w=canvas.offsetWidth,h=canvas.offsetHeight;
+ctx.clearRect(0,0,w,h);
+ctx.strokeStyle="rgba(255,255,255,.06)";
+for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(0,(h/8)*i);ctx.lineTo(w,(h/8)*i);ctx.stroke();}
+const max=Math.max(...candles.map(c=>c.high))+4,min=Math.min(...candles.map(c=>c.low))-4,cw=w/candles.length*.58;
+candles.forEach((c,i)=>{
+const x=w/candles.length*i+8,yH=h-((c.high-min)/(max-min))*h,yL=h-((c.low-min)/(max-min))*h,yO=h-((c.open-min)/(max-min))*h,yC=h-((c.close-min)/(max-min))*h,green=c.close>=c.open;
+ctx.strokeStyle=green?"#00ff9c":"#ff5c5c";
+ctx.fillStyle=green?"#00ff9c":"#ff5c5c";
+ctx.beginPath();ctx.moveTo(x+cw/2,yH);ctx.lineTo(x+cw/2,yL);ctx.stroke();
+ctx.fillRect(x,Math.min(yO,yC),cw,Math.max(3,Math.abs(yC-yO)));
+});
+const latest=candles[candles.length-1].close;
+ctx.fillStyle="#00ff9c";
+ctx.font="bold 28px Arial";
+ctx.fillText("$"+latest.toFixed(2),w-135,38);
+}
+
+function setTimeframe(tf){
+currentTimeframe=tf;
+document.querySelectorAll(".timeframes button").forEach(btn=>btn.classList.remove("active"));
+document.getElementById(`tf-${tf}`).classList.add("active");
+generateCandles(tf);
+drawCandles();
+}
+
+function moveChart(){
+const last=candles[candles.length-1],open=last.close,close=open+(Math.random()-.45)*8,high=Math.max(open,close)+Math.random()*5,low=Math.min(open,close)-Math.random()*5;
+candles.push({open,close,high,low});
+candles.shift();
+drawCandles();
+}
+
+/* Init */
 renderTicker();
 renderProjects();
+renderCertificates();
+populateFilters();
+renderIntelligence();
 renderPortfolio();
-
+updateMetrics();
+setTimeframe("15m");
+for(let i=0;i<6;i++)fakeFeed();
+setInterval(fakeFeed,10000);
+setInterval(moveChart,15000);
 </script>
-
 </body>
 </html>
