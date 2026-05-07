@@ -1,870 +1,806 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Environmental Assets Terminal</title>
-  <style>
-    :root{
-      --bg:#050706;
-      --panel:#0b1110;
-      --panel2:#101917;
-      --line:#1e332d;
-      --green:#00ff9c;
-      --green2:#00b879;
-      --gold:#f6c85f;
-      --red:#ff5c5c;
-      --blue:#5cc8ff;
-      --muted:#8fa39a;
-      --white:#eaf7f1;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Environmental Assets Terminal</title>
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:radial-gradient(circle at top left,#12362b 0,#050706 28%,#030504 100%);
-      color:var(--white);
-      font-family:Inter,Arial,sans-serif;
-    }
+<style>
+:root{
+--bg:#050706;
+--panel:#0b1110;
+--line:#1e332d;
+--green:#00ff9c;
+--gold:#f6c85f;
+--red:#ff5c5c;
+--blue:#5cc8ff;
+--muted:#8fa39a;
+--white:#eaf7f1;
+}
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 24px;
-      border-bottom:1px solid var(--line);
-      background:rgba(5,7,6,.92);
-      position:sticky;
-      top:0;
-      z-index:20;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
+body{
+font-family:Inter,Arial,sans-serif;
+background:radial-gradient(circle at top left,#12362b 0,#050706 35%,#020303 100%);
+color:var(--white);
+overflow-x:hidden;
+}
 
-    .logo{
-      width:36px;height:36px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--green),var(--gold));
-      box-shadow:0 0 24px rgba(0,255,156,.35);
-    }
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 24px;
+border-bottom:1px solid var(--line);
+background:rgba(0,0,0,.85);
+position:sticky;
+top:0;
+z-index:100;
+backdrop-filter:blur(10px);
+}
 
-    h1{font-size:18px;margin:0}
-    .sub{color:var(--muted);font-size:12px;margin-top:3px}
+.brand{
+display:flex;
+gap:14px;
+align-items:center;
+}
 
-    .status{
-      color:var(--green);
-      font-size:12px;
-      border:1px solid var(--green2);
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(0,255,156,.08);
-    }
+.logo{
+width:40px;
+height:40px;
+border-radius:12px;
+background:linear-gradient(135deg,var(--green),var(--gold));
+box-shadow:0 0 25px rgba(0,255,156,.4);
+}
 
-    .ticker{
-      overflow:hidden;
-      border-bottom:1px solid var(--line);
-      background:#050907;
-      white-space:nowrap;
-    }
+.brand h1{
+font-size:20px;
+}
 
-    .ticker-track{
-      display:inline-block;
-      padding:10px 0;
-      animation:scroll 35s linear infinite;
-    }
+.sub{
+font-size:12px;
+color:var(--muted);
+margin-top:4px;
+}
 
-    .tick{
-      display:inline-flex;
-      gap:8px;
-      margin:0 18px;
-      font-size:13px;
-      color:var(--muted);
-    }
+.status{
+padding:8px 14px;
+border-radius:999px;
+font-size:12px;
+border:1px solid rgba(0,255,156,.35);
+background:rgba(0,255,156,.08);
+color:var(--green);
+}
 
-    .up{color:var(--green)}
-    .down{color:var(--red)}
+.ticker{
+overflow:hidden;
+white-space:nowrap;
+border-bottom:1px solid var(--line);
+background:#050907;
+}
 
-    @keyframes scroll{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
+.ticker-track{
+display:inline-block;
+padding:10px 0;
+animation:scroll 40s linear infinite;
+}
 
-    .layout{
-      display:grid;
-      grid-template-columns:280px 1fr 360px;
-      gap:16px;
-      padding:16px;
-    }
+.tick{
+display:inline-flex;
+gap:8px;
+margin:0 20px;
+font-size:13px;
+color:var(--muted);
+}
 
-    .panel{
-      background:linear-gradient(180deg,rgba(16,25,23,.96),rgba(8,13,12,.96));
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 18px 60px rgba(0,0,0,.35);
-    }
+.up{color:var(--green);}
+.down{color:var(--red);}
 
-    .panel h2{
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin:0 0 14px;
-    }
+@keyframes scroll{
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
+}
 
-    label{
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      margin:14px 0 6px;
-    }
+.layout{
+display:grid;
+grid-template-columns:280px 1fr 360px;
+gap:16px;
+padding:16px;
+}
 
-    select,input{
-      width:100%;
-      padding:11px;
-      border-radius:10px;
-      border:1px solid var(--line);
-      background:#060b0a;
-      color:var(--white);
-    }
+.panel{
+background:linear-gradient(180deg,#101917,#07100e);
+border:1px solid var(--line);
+border-radius:18px;
+padding:16px;
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin-bottom:16px;
-    }
+.panel h2{
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:.08em;
+margin-bottom:14px;
+color:var(--muted);
+}
 
-    .metric{
-      background:#07100e;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:14px;
-    }
+label{
+display:block;
+margin:12px 0 6px;
+font-size:12px;
+color:var(--muted);
+}
 
-    .metric .num{
-      font-size:24px;
-      font-weight:800;
-      margin-top:6px;
-    }
+select,input{
+width:100%;
+padding:11px;
+border-radius:10px;
+border:1px solid var(--line);
+background:#050908;
+color:var(--white);
+}
 
-    .metric small{color:var(--muted)}
-    .metric .good{color:var(--green)}
-    .metric .gold{color:var(--gold)}
-    .metric .blue{color:var(--blue)}
+.hero-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:16px;
+}
 
-    .chart-wrap{
-      height:310px;
-      position:relative;
-      margin-bottom:16px;
-    }
+.metric{
+background:#07100e;
+border:1px solid var(--line);
+border-radius:14px;
+padding:16px;
+}
 
-    canvas{
-      width:100%;
-      height:100%;
-      background:linear-gradient(180deg,#081210,#050807);
-      border:1px solid var(--line);
-      border-radius:16px;
-    }
+.metric small{
+color:var(--muted);
+}
 
-    .chart-badge{
-      position:absolute;
-      top:14px;
-      left:14px;
-      padding:8px 10px;
-      border-radius:999px;
-      background:rgba(0,0,0,.55);
-      border:1px solid var(--line);
-      color:var(--green);
-      font-size:12px;
-    }
+.metric .num{
+font-size:26px;
+font-weight:800;
+margin-top:8px;
+}
 
-    .market-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:14px;
-    }
+.chart-wrap{
+position:relative;
+height:320px;
+margin-bottom:16px;
+}
 
-    .card{
-      background:#07100e;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      cursor:pointer;
-      transition:.2s;
-    }
+canvas{
+width:100%;
+height:100%;
+background:#050807;
+border-radius:18px;
+border:1px solid var(--line);
+}
 
-    .card:hover{
-      border-color:var(--green2);
-      transform:translateY(-2px);
-      box-shadow:0 0 28px rgba(0,255,156,.08);
-    }
+.chart-badge{
+position:absolute;
+top:14px;
+left:14px;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(0,0,0,.5);
+border:1px solid var(--line);
+font-size:12px;
+color:var(--green);
+}
 
-    .topline{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
+.market-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
 
-    .asset{
-      display:inline-block;
-      font-size:11px;
-      padding:5px 8px;
-      border-radius:999px;
-      background:rgba(0,255,156,.08);
-      border:1px solid rgba(0,255,156,.3);
-      color:var(--green);
-      margin-bottom:8px;
-    }
+.card{
+background:#07100e;
+border:1px solid var(--line);
+border-radius:16px;
+padding:14px;
+transition:.2s;
+cursor:pointer;
+}
 
-    .rating{
-      font-size:13px;
-      color:var(--gold);
-      font-weight:800;
-    }
+.card:hover{
+transform:translateY(-2px);
+border-color:rgba(0,255,156,.35);
+box-shadow:0 0 25px rgba(0,255,156,.08);
+}
 
-    .card h3{
-      margin:4px 0 6px;
-      font-size:17px;
-    }
+.asset{
+display:inline-block;
+font-size:11px;
+padding:5px 8px;
+border-radius:999px;
+background:rgba(0,255,156,.08);
+border:1px solid rgba(0,255,156,.25);
+color:var(--green);
+margin-bottom:10px;
+}
 
-    .meta{
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.5;
-    }
+.topline{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:10px;
+}
 
-    .price{
-      font-size:22px;
-      font-weight:900;
-      margin:12px 0 4px;
-    }
+.card h3{
+font-size:17px;
+margin-bottom:6px;
+}
 
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:12px;
-    }
+.rating{
+color:var(--gold);
+font-weight:800;
+}
 
-    .tag{
-      font-size:11px;
-      color:#b9cbc4;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:5px 7px;
-      background:#050908;
-    }
+.meta{
+font-size:12px;
+color:var(--muted);
+line-height:1.5;
+}
 
-    .btns{
-      display:flex;
-      gap:8px;
-      margin-top:14px;
-    }
+.price{
+font-size:24px;
+font-weight:900;
+margin:12px 0 6px;
+}
 
-    button{
-      flex:1;
-      padding:10px;
-      border-radius:10px;
-      border:0;
-      font-weight:800;
-      cursor:pointer;
-    }
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-top:12px;
+}
 
-    .buy{background:var(--green);color:#00110a}
-    .sell{background:#18231f;color:var(--white);border:1px solid var(--line)}
+.tag{
+font-size:11px;
+padding:5px 8px;
+border-radius:999px;
+background:#050908;
+border:1px solid var(--line);
+color:#b7c9c1;
+}
 
-    .feed{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      max-height:390px;
-      overflow:auto;
-    }
+.btns{
+display:flex;
+gap:8px;
+margin-top:14px;
+}
 
-    .feed-item{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:11px;
-      background:#07100e;
-      font-size:12px;
-    }
+button{
+flex:1;
+padding:10px;
+border-radius:10px;
+border:0;
+font-weight:800;
+cursor:pointer;
+}
 
-    .feed-item strong{color:var(--white)}
-    .feed-item span{color:var(--muted)}
-    .feed-buy{color:var(--green)}
-    .feed-sell{color:var(--red)}
+.buy{
+background:var(--green);
+color:#00110a;
+}
 
-    .profile{
-      margin-top:16px;
-    }
+.sell{
+background:#18231f;
+border:1px solid var(--line);
+color:var(--white);
+}
 
-    .audit{
-      margin-top:12px;
-      border-left:1px solid var(--line);
-      padding-left:12px;
-    }
+.feed{
+display:flex;
+flex-direction:column;
+gap:10px;
+max-height:400px;
+overflow:auto;
+}
 
-    .audit div{
-      margin:10px 0;
-      color:var(--muted);
-      font-size:12px;
-    }
+.feed-item{
+padding:12px;
+border-radius:12px;
+background:#07100e;
+border:1px solid var(--line);
+font-size:12px;
+}
 
-    .audit b{color:var(--white)}
+.profile{
+margin-top:16px;
+}
 
-    .bar{
-      height:8px;
-      background:#101d19;
-      border-radius:999px;
-      overflow:hidden;
-      margin-top:7px;
-    }
+.audit{
+margin-top:12px;
+border-left:1px solid var(--line);
+padding-left:12px;
+}
 
-    .bar span{
-      display:block;
-      height:100%;
-      background:linear-gradient(90deg,var(--green),var(--gold));
-      border-radius:999px;
-    }
+.audit div{
+margin:10px 0;
+font-size:12px;
+color:var(--muted);
+}
 
-    @media(max-width:1100px){
-      .layout{grid-template-columns:1fr}
-      .hero-grid,.market-grid{grid-template-columns:1fr 1fr}
-    }
+.bar{
+height:8px;
+background:#10201a;
+border-radius:999px;
+overflow:hidden;
+margin-top:8px;
+}
 
-    @media(max-width:650px){
-      header{align-items:flex-start;gap:12px;flex-direction:column}
-      .hero-grid,.market-grid{grid-template-columns:1fr}
-    }
-  </style>
+.bar span{
+display:block;
+height:100%;
+background:linear-gradient(90deg,var(--green),var(--gold));
+}
+
+@media(max-width:1100px){
+.layout{
+grid-template-columns:1fr;
+}
+.hero-grid,.market-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:700px){
+.hero-grid,.market-grid{
+grid-template-columns:1fr;
+}
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo"></div>
-      <div>
-        <h1>Global Environmental Assets Terminal</h1>
-        <div class="sub">Carbon • Biomass • Biodiversity • Water • Plastic • Soil • Renewable Energy</div>
-      </div>
-    </div>
-    <div class="status">LIVE MARKET PREVIEW · SIMULATED BETA DATA</div>
-  </header>
 
-  <section class="ticker">
-    <div class="ticker-track" id="tickerTrack"></div>
-  </section>
+<header>
+<div class="brand">
+<div class="logo"></div>
+<div>
+<h1>Global Environmental Assets Terminal</h1>
+<div class="sub">Carbon • Biodiversity • Biomass • Water • Plastic • Soil • Renewable Energy</div>
+</div>
+</div>
 
-  <main class="layout">
+<div class="status">
+LIVE MARKET PREVIEW · SIMULATED DATA
+</div>
+</header>
 
-    <aside class="panel">
-      <h2>Buyer Discovery Filters</h2>
+<section class="ticker">
+<div class="ticker-track" id="tickerTrack"></div>
+</section>
 
-      <label>Asset Type</label>
-      <select id="assetFilter">
-        <option value="all">All assets</option>
-        <option>Carbon</option>
-        <option>EV Credits</option>
-        <option>Biochar</option>
-        <option>REDD+</option>
-        <option>Biomass</option>
-        <option>Biodiversity</option>
-        <option>Water</option>
-        <option>Plastic Recovery</option>
-        <option>Soil Regeneration</option>
-        <option>Renewable Energy</option>
-      </select>
+<main class="layout">
 
-      <label>Geography</label>
-      <select id="geoFilter">
-        <option value="all">Global</option>
-        <option>Uganda</option>
-        <option>Kenya</option>
-        <option>Brazil</option>
-        <option>Indonesia</option>
-        <option>India</option>
-        <option>Ghana</option>
-        <option>Canada</option>
-        <option>Norway</option>
-      </select>
+<aside class="panel">
+<h2>Discovery Filters</h2>
 
-      <label>Community Impact</label>
-      <select id="impactFilter">
-        <option value="all">Any impact</option>
-        <option>School fees</option>
-        <option>Boreholes</option>
-        <option>Jobs created</option>
-        <option>Women-led</option>
-        <option>Biodiversity</option>
-        <option>Waste recovery</option>
-      </select>
+<label>Asset Type</label>
+<select id="assetFilter">
+<option value="all">All Assets</option>
+<option>Carbon</option>
+<option>Biochar</option>
+<option>EV Credits</option>
+<option>REDD+</option>
+<option>Biomass</option>
+<option>Biodiversity</option>
+<option>Water</option>
+<option>Plastic Recovery</option>
+<option>Soil Regeneration</option>
+</select>
 
-      <label>Buyer Need</label>
-      <select id="needFilter">
-        <option value="all">Any buyer need</option>
-        <option>Voluntary offset</option>
-        <option>Legal compliance</option>
-        <option>ESG reporting</option>
-        <option>Brand impact</option>
-        <option>Supply chain claim</option>
-      </select>
+<label>Country</label>
+<select id="geoFilter">
+<option value="all">Global</option>
+<option>Uganda</option>
+<option>Kenya</option>
+<option>Brazil</option>
+<option>Indonesia</option>
+<option>India</option>
+<option>Canada</option>
+<option>Ghana</option>
+</select>
 
-      <label>Minimum Rating</label>
-      <select id="ratingFilter">
-        <option value="all">Any rating</option>
-        <option>AAA</option>
-        <option>AA</option>
-        <option>A</option>
-      </select>
+<label>Community Impact</label>
+<select id="impactFilter">
+<option value="all">All Impact</option>
+<option>School fees</option>
+<option>Boreholes</option>
+<option>Women-led</option>
+<option>Jobs created</option>
+<option>Biodiversity</option>
+</select>
 
-      <label>Screened By</label>
-      <select id="screenFilter">
-        <option value="all">Any screener</option>
-        <option>Registry Verified</option>
-        <option>Third-party MRV</option>
-        <option>Satellite Monitored</option>
-        <option>Blockchain Proof</option>
-      </select>
+<label>Search</label>
+<input id="searchInput" placeholder="Search Uganda EV, Biochar..." />
+</aside>
 
-      <label>Search</label>
-      <input id="searchInput" placeholder="Search Uganda EV, boreholes, REDD..." />
-    </aside>
+<section>
 
-    <section>
-      <div class="hero-grid">
-        <div class="metric">
-          <small>Credits Listed</small>
-          <div class="num good" id="creditsListed">2,843,500</div>
-        </div>
-        <div class="metric">
-          <small>Credits Sold</small>
-          <div class="num gold" id="creditsSold">918,240</div>
-        </div>
-        <div class="metric">
-          <small>Certificates Redeemed</small>
-          <div class="num blue" id="redeemed">341,880</div>
-        </div>
-        <div class="metric">
-          <small>Avg Burn Rate / Month</small>
-          <div class="num" id="burnRate">42,600</div>
-        </div>
-      </div>
+<div class="hero-grid">
+<div class="metric">
+<small>Total Credits Listed</small>
+<div class="num" id="creditsListed">2,843,500</div>
+</div>
 
-      <div class="chart-wrap">
-        <canvas id="marketChart"></canvas>
-        <div class="chart-badge">LIVE PRICE + VOLUME MOVEMENT</div>
-      </div>
+<div class="metric">
+<small>Credits Sold</small>
+<div class="num" id="creditsSold">918,240</div>
+</div>
 
-      <div class="panel">
-        <h2>Global Project Marketplace</h2>
-        <div class="market-grid" id="projectGrid"></div>
-      </div>
-    </section>
+<div class="metric">
+<small>Certificates Redeemed</small>
+<div class="num" id="redeemed">341,880</div>
+</div>
 
-    <aside>
-      <div class="panel">
-        <h2>Live Buy / Sell Feed</h2>
-        <div class="feed" id="feed"></div>
-      </div>
+<div class="metric">
+<small>Avg Burn Rate / Month</small>
+<div class="num" id="burnRate">42,600</div>
+</div>
+</div>
 
-      <div class="panel profile" id="profilePanel">
-        <h2>Selected Project Intelligence</h2>
-        <div class="meta">Click a project to view rating, audit history, burn rate and verification proof.</div>
-      </div>
-    </aside>
+<div class="chart-wrap">
+<canvas id="marketChart"></canvas>
+<div class="chart-badge">
+LIVE ENVIRONMENTAL ASSET INDEX
+</div>
+</div>
 
-  </main>
+<div class="panel">
+<h2>Global Marketplace</h2>
+<div class="market-grid" id="projectGrid"></div>
+</div>
 
-  <script>
-    const projects = [
-      {
-        name:"Uganda EV Mobility Credits",
-        country:"Uganda",
-        region:"Kampala & Wakiso",
-        asset:"EV Credits",
-        price:14.80,
-        change:2.4,
-        rating:"AA",
-        impact:"School fees",
-        need:"ESG reporting",
-        screened:"Blockchain Proof",
-        listed:85000,
-        sold:38200,
-        redeemed:12400,
-        burn:3100,
-        quality:88,
-        social:92,
-        tags:["EV transition","school fees","urban air quality","East Africa"],
-        audit:["2024 Baseline mobility audit","2025 Third-party MRV review","2026 Blockchain proof issued"]
-      },
-      {
-        name:"Kenya Biochar Smallholder Soil Project",
-        country:"Kenya",
-        region:"Western Kenya",
-        asset:"Biochar",
-        price:22.40,
-        change:4.8,
-        rating:"AAA",
-        impact:"Jobs created",
-        need:"Voluntary offset",
-        screened:"Third-party MRV",
-        listed:120000,
-        sold:77600,
-        redeemed:41100,
-        burn:5400,
-        quality:96,
-        social:89,
-        tags:["carbon removal","soil health","farm income","durable storage"],
-        audit:["2024 Feedstock audit","2025 Carbon permanence review","2026 Farmer impact verification"]
-      },
-      {
-        name:"Brazil Amazon REDD+ Forest Protection",
-        country:"Brazil",
-        region:"Pará",
-        asset:"REDD+",
-        price:11.20,
-        change:-1.2,
-        rating:"A",
-        impact:"Biodiversity",
-        need:"Brand impact",
-        screened:"Satellite Monitored",
-        listed:500000,
-        sold:213000,
-        redeemed:89200,
-        burn:12100,
-        quality:81,
-        social:77,
-        tags:["forest protection","biodiversity","satellite MRV","large volume"],
-        audit:["2023 Baseline forest survey","2025 Satellite loss review","2026 Community benefit report"]
-      },
-      {
-        name:"Indonesia Mangrove Blue Carbon",
-        country:"Indonesia",
-        region:"Kalimantan",
-        asset:"Carbon",
-        price:18.90,
-        change:3.1,
-        rating:"AA",
-        impact:"Boreholes",
-        need:"Supply chain claim",
-        screened:"Registry Verified",
-        listed:210000,
-        sold:96500,
-        redeemed:31700,
-        burn:6700,
-        quality:90,
-        social:84,
-        tags:["blue carbon","coastal protection","community water","restoration"],
-        audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
-      },
-      {
-        name:"India Clean Cooking Biomass Programme",
-        country:"India",
-        region:"Uttar Pradesh",
-        asset:"Biomass",
-        price:7.60,
-        change:1.7,
-        rating:"A",
-        impact:"Women-led",
-        need:"Legal compliance",
-        screened:"Third-party MRV",
-        listed:430000,
-        sold:188000,
-        redeemed:64200,
-        burn:9800,
-        quality:76,
-        social:91,
-        tags:["clean cooking","biomass","women-led","household impact"],
-        audit:["2023 Household baseline","2025 Stove usage MRV","2026 Health impact sampling"]
-      },
-      {
-        name:"Ghana Plastic Recovery Credits",
-        country:"Ghana",
-        region:"Accra",
-        asset:"Plastic Recovery",
-        price:9.30,
-        change:5.6,
-        rating:"AA",
-        impact:"Waste recovery",
-        need:"Brand impact",
-        screened:"Blockchain Proof",
-        listed:160000,
-        sold:104000,
-        redeemed:58000,
-        burn:7400,
-        quality:84,
-        social:93,
-        tags:["plastic recovery","waste pickers","coastal cleanup","brand claim"],
-        audit:["2024 Collection audit","2025 Recycler verification","2026 Proof certificate issued"]
-      },
-      {
-        name:"Canada Regenerative Soil Carbon",
-        country:"Canada",
-        region:"Saskatchewan",
-        asset:"Soil Regeneration",
-        price:16.70,
-        change:-0.6,
-        rating:"AA",
-        impact:"Jobs created",
-        need:"Voluntary offset",
-        screened:"Registry Verified",
-        listed:95000,
-        sold:39800,
-        redeemed:10200,
-        burn:2600,
-        quality:86,
-        social:70,
-        tags:["soil carbon","regenerative agriculture","farm transition","MRV"],
-        audit:["2024 Soil sampling","2025 Registry assessment","2026 Yield resilience review"]
-      },
-      {
-        name:"Norway Renewable Energy Certificates",
-        country:"Norway",
-        region:"Vestland",
-        asset:"Renewable Energy",
-        price:5.40,
-        change:0.9,
-        rating:"AAA",
-        impact:"Biodiversity",
-        need:"Legal compliance",
-        screened:"Registry Verified",
-        listed:640000,
-        sold:161000,
-        redeemed:35300,
-        burn:8400,
-        quality:94,
-        social:68,
-        tags:["renewable energy","low-risk","compliance","high quality"],
-        audit:["2024 Generation audit","2025 Registry issuance","2026 Retirement tracking"]
-      }
-    ];
+</section>
 
-    const grid = document.getElementById("projectGrid");
-    const feed = document.getElementById("feed");
-    const profile = document.getElementById("profilePanel");
-    const ticker = document.getElementById("tickerTrack");
+<aside>
 
-    const assetFilter = document.getElementById("assetFilter");
-    const geoFilter = document.getElementById("geoFilter");
-    const impactFilter = document.getElementById("impactFilter");
-    const needFilter = document.getElementById("needFilter");
-    const ratingFilter = document.getElementById("ratingFilter");
-    const screenFilter = document.getElementById("screenFilter");
-    const searchInput = document.getElementById("searchInput");
+<div class="panel">
+<h2>Live Buy / Sell Feed</h2>
+<div class="feed" id="feed"></div>
+</div>
 
-    function ratingValue(r){
-      return {AAA:3,AA:2,A:1}[r] || 0;
-    }
+<div class="panel profile" id="profilePanel">
+<h2>Selected Project Intelligence</h2>
+<div class="meta">Click any project card.</div>
+</div>
 
-    function renderTicker(){
-      const html = projects.map(p => `
-        <span class="tick">
-          <b>${p.asset}</b> ${p.country}
-          <span>$${p.price.toFixed(2)}</span>
-          <span class="${p.change >= 0 ? "up":"down"}">${p.change >= 0 ? "▲":"▼"} ${Math.abs(p.change)}%</span>
-        </span>
-      `).join("");
-      ticker.innerHTML = html + html;
-    }
+</aside>
 
-    function filteredProjects(){
-      const q = searchInput.value.toLowerCase();
+</main>
 
-      return projects.filter(p => {
-        const searchBlob = `${p.name} ${p.country} ${p.region} ${p.asset} ${p.impact} ${p.need} ${p.screened} ${p.tags.join(" ")}`.toLowerCase();
+<script>
 
-        return (assetFilter.value === "all" || p.asset === assetFilter.value)
-          && (geoFilter.value === "all" || p.country === geoFilter.value)
-          && (impactFilter.value === "all" || p.impact === impactFilter.value)
-          && (needFilter.value === "all" || p.need === needFilter.value)
-          && (screenFilter.value === "all" || p.screened === screenFilter.value)
-          && (ratingFilter.value === "all" || ratingValue(p.rating) >= ratingValue(ratingFilter.value))
-          && (!q || searchBlob.includes(q));
-      });
-    }
+const projects = [
+{
+name:"Uganda EV Mobility Credits",
+country:"Uganda",
+asset:"EV Credits",
+price:14.8,
+change:2.4,
+rating:"AA",
+impact:"School fees",
+listed:85000,
+sold:38200,
+redeemed:12400,
+burn:3100,
+quality:88,
+social:92,
+tags:["EV","schools","East Africa"],
+audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]
+},
 
-    function renderProjects(){
-      const list = filteredProjects();
+{
+name:"Kenya Biochar Soil Project",
+country:"Kenya",
+asset:"Biochar",
+price:22.4,
+change:4.8,
+rating:"AAA",
+impact:"Jobs created",
+listed:120000,
+sold:77600,
+redeemed:41100,
+burn:5400,
+quality:96,
+social:89,
+tags:["Biochar","Soil","Farm income"],
+audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
+},
 
-      grid.innerHTML = list.map((p, i) => `
-        <article class="card" onclick="selectProject('${p.name}')">
-          <div class="topline">
-            <div>
-              <span class="asset">${p.asset}</span>
-              <h3>${p.name}</h3>
-            </div>
-            <div class="rating">${p.rating}</div>
-          </div>
+{
+name:"Brazil Amazon REDD+",
+country:"Brazil",
+asset:"REDD+",
+price:11.2,
+change:-1.2,
+rating:"A",
+impact:"Biodiversity",
+listed:500000,
+sold:213000,
+redeemed:89200,
+burn:12100,
+quality:81,
+social:77,
+tags:["Forest","Satellite MRV","Large scale"],
+audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]
+},
 
-          <div class="meta">${p.region}, ${p.country}<br>${p.screened} · ${p.need}</div>
-          <div class="price">$${p.price.toFixed(2)} <small class="${p.change >= 0 ? "up":"down"}">${p.change >= 0 ? "▲":"▼"} ${Math.abs(p.change)}%</small></div>
-          <div class="meta">Available: ${(p.listed - p.sold).toLocaleString()} credits · Burn: ${p.burn.toLocaleString()}/mo</div>
+{
+name:"Indonesia Mangrove Blue Carbon",
+country:"Indonesia",
+asset:"Carbon",
+price:18.9,
+change:3.1,
+rating:"AA",
+impact:"Boreholes",
+listed:210000,
+sold:96500,
+redeemed:31700,
+burn:6700,
+quality:90,
+social:84,
+tags:["Blue Carbon","Mangroves","Restoration"],
+audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
+}
+];
 
-          <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+const grid = document.getElementById("projectGrid");
+const feed = document.getElementById("feed");
+const profile = document.getElementById("profilePanel");
+const ticker = document.getElementById("tickerTrack");
 
-          <div class="btns">
-            <button class="buy">Buy</button>
-            <button class="sell">View Proof</button>
-          </div>
-        </article>
-      `).join("") || `<div class="meta">No matching projects. Try widening the filters.</div>`;
-    }
+function renderTicker(){
+const html = projects.map(p => `
+<span class="tick">
+<b>${p.asset}</b>
+${p.country}
+<span>$${p.price.toFixed(2)}</span>
+<span class="${p.change >=0 ? "up":"down"}">
+${p.change >=0 ? "▲":"▼"} ${Math.abs(p.change).toFixed(1)}%
+</span>
+</span>
+`).join("");
 
-    function selectProject(name){
-      const p = projects.find(x => x.name === name);
+ticker.innerHTML = html + html;
+}
 
-      profile.innerHTML = `
-        <h2>Selected Project Intelligence</h2>
-        <span class="asset">${p.asset}</span>
-        <h3>${p.name}</h3>
-        <div class="meta">${p.region}, ${p.country}</div>
+function renderProjects(){
 
-        <div class="price">$${p.price.toFixed(2)} <small class="${p.change >= 0 ? "up":"down"}">${p.change >= 0 ? "▲":"▼"} ${Math.abs(p.change)}%</small></div>
+grid.innerHTML = projects.map(p => `
+<div class="card" onclick="selectProject('${p.name}')">
 
-        <div class="meta">Carbon / Asset Quality Rating</div>
-        <div class="bar"><span style="width:${p.quality}%"></span></div>
+<div class="topline">
+<div>
+<span class="asset">${p.asset}</span>
+<h3>${p.name}</h3>
+</div>
 
-        <div class="meta" style="margin-top:12px">Social Impact Rating</div>
-        <div class="bar"><span style="width:${p.social}%"></span></div>
+<div class="rating">${p.rating}</div>
+</div>
 
-        <div class="meta" style="margin-top:14px">
-          Listed: ${p.listed.toLocaleString()}<br>
-          Sold: ${p.sold.toLocaleString()}<br>
-          Certificates Redeemed: ${p.redeemed.toLocaleString()}<br>
-          Monthly Burn Rate: ${p.burn.toLocaleString()}
-        </div>
+<div class="meta">
+${p.country}<br>
+${p.impact}
+</div>
 
-        <div class="audit">
-          ${p.audit.map(a => `<div><b>✓</b> ${a}</div>`).join("")}
-        </div>
-      `;
-    }
+<div class="price">
+$${p.price.toFixed(2)}
+</div>
 
-    function addFeedItem(){
-      const p = projects[Math.floor(Math.random() * projects.length)];
-      const isBuy = Math.random() > .35;
-      const qty = Math.floor(Math.random() * 900) + 50;
+<div class="meta">
+Available: ${(p.listed - p.sold).toLocaleString()} credits
+</div>
 
-      const item = document.createElement("div");
-      item.className = "feed-item";
-      item.innerHTML = `
-        <strong class="${isBuy ? "feed-buy":"feed-sell"}">${isBuy ? "BUY":"SELL"} ${qty.toLocaleString()} ${p.asset}</strong><br>
-        ${p.name}<br>
-        <span>${p.country} · $${p.price.toFixed(2)} · just now</span>
-      `;
+<div class="tags">
+${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+</div>
 
-      feed.prepend(item);
-      while(feed.children.length > 12) feed.removeChild(feed.lastChild);
+<div class="btns">
+<button class="buy">Buy</button>
+<button class="sell">View Proof</button>
+</div>
 
-      if(isBuy){
-        p.sold += qty;
-        p.price += Math.random() * .18;
-      }else{
-        p.price -= Math.random() * .12;
-      }
+</div>
+`).join("");
+}
 
-      p.change += (Math.random() - .45) * .25;
-      updateMetrics();
-      renderTicker();
-      renderProjects();
-    }
+function selectProject(name){
 
-    function updateMetrics(){
-      const listed = projects.reduce((a,b)=>a+b.listed,0);
-      const sold = projects.reduce((a,b)=>a+b.sold,0);
-      const redeemed = projects.reduce((a,b)=>a+b.redeemed,0);
-      const burn = projects.reduce((a,b)=>a+b.burn,0);
+const p = projects.find(x => x.name === name);
 
-      document.getElementById("creditsListed").textContent = listed.toLocaleString();
-      document.getElementById("creditsSold").textContent = sold.toLocaleString();
-      document.getElementById("redeemed").textContent = redeemed.toLocaleString();
-      document.getElementById("burnRate").textContent = burn.toLocaleString();
-    }
+profile.innerHTML = `
+<h2>${p.name}</h2>
 
-    const canvas = document.getElementById("marketChart");
-    const ctx = canvas.getContext("2d");
-    let points = Array.from({length:70}, (_,i)=> 120 + Math.sin(i/5)*8 + Math.random()*8);
+<div class="price">$${p.price.toFixed(2)}</div>
 
-    function resizeCanvas(){
-      canvas.width = canvas.offsetWidth * devicePixelRatio;
-      canvas.height = canvas.offsetHeight * devicePixelRatio;
-      ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    }
+<div class="meta">
+${p.country}<br>
+${p.asset}<br>
+${p.rating} Rating
+</div>
 
-    function drawChart(){
-      resizeCanvas();
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0,0,w,h);
+<div style="margin-top:14px;">
+<div class="meta">Carbon Quality Rating</div>
+<div class="bar">
+<span style="width:${p.quality}%"></span>
+</div>
+</div>
 
-      ctx.strokeStyle = "rgba(255,255,255,.05)";
-      ctx.lineWidth = 1;
+<div style="margin-top:14px;">
+<div class="meta">Social Impact Rating</div>
+<div class="bar">
+<span style="width:${p.social}%"></span>
+</div>
+</div>
 
-      for(let i=0;i<8;i++){
-        ctx.beginPath();
-        ctx.moveTo(0,(h/8)*i);
-        ctx.lineTo(w,(h/8)*i);
-        ctx.stroke();
-      }
+<div class="audit">
+${p.audit.map(a => `<div>✓ ${a}</div>`).join("")}
+</div>
+`;
+}
 
-      const min = Math.min(...points)-5;
-      const max = Math.max(...points)+5;
+function addFeedItem(){
 
-      ctx.beginPath();
-      points.forEach((p,i)=>{
-        const x = (w/(points.length-1))*i;
-        const y = h - ((p-min)/(max-min))*h;
-        if(i===0) ctx.moveTo(x,y);
-        else ctx.lineTo(x,y);
-      });
+const p = projects[Math.floor(Math.random()*projects.length)];
+const isBuy = Math.random() > .4;
+const qty = Math.floor(Math.random()*900)+50;
 
-      ctx.strokeStyle = "#00ff9c";
-      ctx.lineWidth = 2;
-      ctx.shadowBlur = 16;
-      ctx.shadowColor = "#00ff9c";
-      ctx.stroke();
-      ctx.shadowBlur = 0;
+const item = document.createElement("div");
 
-      ctx.fillStyle = "rgba(0,255,156,.08)";
-      ctx.lineTo(w,h);
-      ctx.lineTo(0,h);
-      ctx.fill();
+item.className = "feed-item";
 
-      ctx.fillStyle = "#8fa39a";
-      ctx.font = "12px Arial";
-      ctx.fillText("Global Environmental Asset Index", 18, h - 18);
-      ctx.fillStyle = "#00ff9c";
-      ctx.font = "bold 22px Arial";
-      ctx.fillText("$" + points[points.length-1].toFixed(2), w - 110, 34);
-    }
+item.innerHTML = `
+<strong class="${isBuy ? "up":"down"}">
+${isBuy ? "BUY":"SELL"} ${qty.toLocaleString()} ${p.asset}
+</strong><br>
+${p.name}<br>
+<span>${p.country} · just now</span>
+`;
 
-    function moveChart(){
-      points.push(points[points.length-1] + (Math.random() - .45) * 4);
-      points.shift();
-      drawChart();
-    }
+feed.prepend(item);
 
-    [
-      assetFilter,geoFilter,impactFilter,needFilter,
-      ratingFilter,screenFilter,searchInput
-    ].forEach(el => el.addEventListener("input", renderProjects));
+while(feed.children.length > 12){
+feed.removeChild(feed.lastChild);
+}
 
-    renderTicker();
-    renderProjects();
-    updateMetrics();
-    drawChart();
-    selectProject(projects[0].name);
+if(isBuy){
+p.sold += qty;
+p.price += Math.random() * .18;
+}else{
+p.price -= Math.random() * .12;
+}
 
-    for(let i=0;i<6;i++) addFeedItem();
+p.change += (Math.random() - .45) * .3;
 
-    setInterval(moveChart, 1800);
-    setInterval(addFeedItem, 4500);
-  </script>
+updateMetrics();
+renderTicker();
+renderProjects();
+}
+
+function updateMetrics(){
+
+const listed = projects.reduce((a,b)=>a+b.listed,0);
+const sold = projects.reduce((a,b)=>a+b.sold,0);
+const redeemed = projects.reduce((a,b)=>a+b.redeemed,0);
+const burn = projects.reduce((a,b)=>a+b.burn,0);
+
+document.getElementById("creditsListed").textContent = listed.toLocaleString();
+document.getElementById("creditsSold").textContent = sold.toLocaleString();
+document.getElementById("redeemed").textContent = redeemed.toLocaleString();
+document.getElementById("burnRate").textContent = burn.toLocaleString();
+}
+
+const canvas = document.getElementById("marketChart");
+const ctx = canvas.getContext("2d");
+
+let points = Array.from({length:70}, (_,i)=>120 + Math.sin(i/5)*8 + Math.random()*8);
+
+function resizeCanvas(){
+canvas.width = canvas.offsetWidth * devicePixelRatio;
+canvas.height = canvas.offsetHeight * devicePixelRatio;
+ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+
+function drawChart(){
+
+resizeCanvas();
+
+const w = canvas.offsetWidth;
+const h = canvas.offsetHeight;
+
+ctx.clearRect(0,0,w,h);
+
+ctx.strokeStyle = "rgba(255,255,255,.05)";
+
+for(let i=0;i<8;i++){
+ctx.beginPath();
+ctx.moveTo(0,(h/8)*i);
+ctx.lineTo(w,(h/8)*i);
+ctx.stroke();
+}
+
+const min = Math.min(...points)-5;
+const max = Math.max(...points)+5;
+
+ctx.beginPath();
+
+points.forEach((p,i)=>{
+
+const x = (w/(points.length-1))*i;
+const y = h - ((p-min)/(max-min))*h;
+
+if(i===0) ctx.moveTo(x,y);
+else ctx.lineTo(x,y);
+
+});
+
+ctx.strokeStyle = "#00ff9c";
+ctx.lineWidth = 2;
+ctx.shadowBlur = 16;
+ctx.shadowColor = "#00ff9c";
+ctx.stroke();
+
+ctx.lineTo(w,h);
+ctx.lineTo(0,h);
+
+ctx.fillStyle = "rgba(0,255,156,.08)";
+ctx.fill();
+
+ctx.shadowBlur = 0;
+
+ctx.fillStyle = "#00ff9c";
+ctx.font = "bold 24px Arial";
+ctx.fillText("$"+points[points.length-1].toFixed(2), w-120, 34);
+
+}
+
+function moveChart(){
+
+const movement = (Math.random() - .45) * 4;
+
+points.push(points[points.length-1] + movement);
+points.shift();
+
+const soldDelta = Math.max(40, Math.floor(Math.abs(movement) * 120));
+const redeemedDelta = Math.max(10, Math.floor(Math.abs(movement) * 45));
+const burnDelta = Math.floor((Math.random() - 0.45) * 120);
+
+const randomProject = projects[Math.floor(Math.random() * projects.length)];
+
+randomProject.sold += soldDelta;
+randomProject.redeemed += redeemedDelta;
+randomProject.burn = Math.max(500, randomProject.burn + burnDelta);
+
+updateMetrics();
+drawChart();
+renderProjects();
+renderTicker();
+}
+
+renderTicker();
+renderProjects();
+updateMetrics();
+drawChart();
+selectProject(projects[0].name);
+
+for(let i=0;i<6;i++) addFeedItem();
+
+setInterval(moveChart, 1800);
+setInterval(addFeedItem, 4500);
+
+</script>
+
 </body>
 </html>
