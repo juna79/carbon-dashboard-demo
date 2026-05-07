@@ -1,362 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Global Environmental Assets Terminal</title>
 
 <style>
 :root{
---bg:#050706;
---panel:#0b1110;
---line:#1e332d;
---green:#00ff9c;
---gold:#f6c85f;
---red:#ff5c5c;
---blue:#5cc8ff;
---muted:#8fa39a;
---white:#eaf7f1;
+  --bg:#050706;
+  --panel:#0b1110;
+  --line:#1e332d;
+  --green:#00ff9c;
+  --gold:#f6c85f;
+  --red:#ff5c5c;
+  --blue:#5cc8ff;
+  --muted:#8fa39a;
+  --white:#eaf7f1;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-font-family:Inter,Arial,sans-serif;
-background:radial-gradient(circle at top left,#12362b 0,#050706 35%,#020303 100%);
-color:var(--white);
-overflow-x:hidden;
+  font-family:Inter,Arial,sans-serif;
+  background:radial-gradient(circle at top left,#12362b 0,#050706 35%,#020303 100%);
+  color:var(--white);
 }
 
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 24px;
-border-bottom:1px solid var(--line);
-background:rgba(0,0,0,.85);
-position:sticky;
-top:0;
-z-index:100;
-backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 24px;
+  border-bottom:1px solid var(--line);
+  background:rgba(0,0,0,.86);
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(10px);
 }
 
-.brand{
-display:flex;
-gap:14px;
-align-items:center;
-}
+.brand{display:flex;gap:14px;align-items:center}
 
 .logo{
-width:40px;
-height:40px;
-border-radius:12px;
-background:linear-gradient(135deg,var(--green),var(--gold));
-box-shadow:0 0 25px rgba(0,255,156,.4);
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--green),var(--gold));
+  box-shadow:0 0 25px rgba(0,255,156,.4);
 }
 
-.brand h1{
-font-size:20px;
-}
-
-.sub{
-font-size:12px;
-color:var(--muted);
-margin-top:4px;
-}
+.brand h1{font-size:20px}
+.sub{font-size:12px;color:var(--muted);margin-top:4px}
 
 .status{
-padding:8px 14px;
-border-radius:999px;
-font-size:12px;
-border:1px solid rgba(0,255,156,.35);
-background:rgba(0,255,156,.08);
-color:var(--green);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:12px;
+  border:1px solid rgba(0,255,156,.35);
+  background:rgba(0,255,156,.08);
+  color:var(--green);
 }
 
 .ticker{
-overflow:hidden;
-white-space:nowrap;
-border-bottom:1px solid var(--line);
-background:#050907;
+  overflow:hidden;
+  white-space:nowrap;
+  border-bottom:1px solid var(--line);
+  background:#050907;
 }
 
 .ticker-track{
-display:inline-block;
-padding:10px 0;
-animation:scroll 40s linear infinite;
+  display:inline-block;
+  padding:10px 0;
+  animation:scroll 40s linear infinite;
 }
 
 .tick{
-display:inline-flex;
-gap:8px;
-margin:0 20px;
-font-size:13px;
-color:var(--muted);
+  display:inline-flex;
+  gap:8px;
+  margin:0 20px;
+  font-size:13px;
+  color:var(--muted);
 }
 
-.up{color:var(--green);}
-.down{color:var(--red);}
+.up{color:var(--green)}
+.down{color:var(--red)}
 
 @keyframes scroll{
-from{transform:translateX(0);}
-to{transform:translateX(-50%);}
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
 }
 
 .layout{
-display:grid;
-grid-template-columns:280px 1fr 360px;
-gap:16px;
-padding:16px;
+  display:grid;
+  grid-template-columns:280px 1fr 360px;
+  gap:16px;
+  padding:16px;
 }
 
 .panel{
-background:linear-gradient(180deg,#101917,#07100e);
-border:1px solid var(--line);
-border-radius:18px;
-padding:16px;
-box-shadow:0 20px 60px rgba(0,0,0,.35);
+  background:linear-gradient(180deg,#101917,#07100e);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
 .panel h2{
-font-size:13px;
-text-transform:uppercase;
-letter-spacing:.08em;
-margin-bottom:14px;
-color:var(--muted);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:14px;
+  color:var(--muted);
 }
 
 label{
-display:block;
-margin:12px 0 6px;
-font-size:12px;
-color:var(--muted);
+  display:block;
+  margin:12px 0 6px;
+  font-size:12px;
+  color:var(--muted);
 }
 
 select,input{
-width:100%;
-padding:11px;
-border-radius:10px;
-border:1px solid var(--line);
-background:#050908;
-color:var(--white);
+  width:100%;
+  padding:11px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#050908;
+  color:var(--white);
+}
+
+.filter-actions{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
+}
+
+.search-btn{
+  background:var(--green);
+  color:#00110a;
+}
+
+.reset-btn{
+  background:#18231f;
+  color:var(--white);
+  border:1px solid var(--line);
 }
 
 .hero-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin-bottom:16px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
 }
 
 .metric{
-background:#07100e;
-border:1px solid var(--line);
-border-radius:14px;
-padding:16px;
+  background:#07100e;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
 }
 
-.metric small{
-color:var(--muted);
-}
-
-.metric .num{
-font-size:26px;
-font-weight:800;
-margin-top:8px;
-}
+.metric small{color:var(--muted)}
+.metric .num{font-size:26px;font-weight:800;margin-top:8px}
 
 .chart-wrap{
-position:relative;
-height:320px;
-margin-bottom:16px;
+  position:relative;
+  height:350px;
+  margin-bottom:16px;
 }
 
 canvas{
-width:100%;
-height:100%;
-background:#050807;
-border-radius:18px;
-border:1px solid var(--line);
+  width:100%;
+  height:100%;
+  background:#050807;
+  border-radius:18px;
+  border:1px solid var(--line);
 }
 
 .chart-badge{
-position:absolute;
-top:14px;
-left:14px;
-padding:8px 12px;
-border-radius:999px;
-background:rgba(0,0,0,.5);
-border:1px solid var(--line);
-font-size:12px;
-color:var(--green);
+  position:absolute;
+  top:14px;
+  left:14px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  border:1px solid var(--line);
+  font-size:12px;
+  color:var(--green);
+}
+
+.timeframes{
+  position:absolute;
+  top:14px;
+  right:14px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.timeframes button{
+  padding:7px 9px;
+  border-radius:8px;
+  background:#111b18;
+  color:var(--muted);
+  border:1px solid var(--line);
+  font-size:11px;
+}
+
+.timeframes button.active{
+  background:rgba(0,255,156,.12);
+  color:var(--green);
+  border-color:rgba(0,255,156,.45);
 }
 
 .market-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
 }
 
 .card{
-background:#07100e;
-border:1px solid var(--line);
-border-radius:16px;
-padding:14px;
-transition:.2s;
-cursor:pointer;
+  background:#07100e;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  transition:.2s;
+  cursor:pointer;
 }
 
 .card:hover{
-transform:translateY(-2px);
-border-color:rgba(0,255,156,.35);
-box-shadow:0 0 25px rgba(0,255,156,.08);
+  transform:translateY(-2px);
+  border-color:rgba(0,255,156,.35);
+  box-shadow:0 0 25px rgba(0,255,156,.08);
 }
 
 .asset{
-display:inline-block;
-font-size:11px;
-padding:5px 8px;
-border-radius:999px;
-background:rgba(0,255,156,.08);
-border:1px solid rgba(0,255,156,.25);
-color:var(--green);
-margin-bottom:10px;
+  display:inline-block;
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(0,255,156,.08);
+  border:1px solid rgba(0,255,156,.25);
+  color:var(--green);
+  margin-bottom:10px;
 }
 
 .topline{
-display:flex;
-justify-content:space-between;
-align-items:flex-start;
-gap:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
 }
 
-.card h3{
-font-size:17px;
-margin-bottom:6px;
-}
-
-.rating{
-color:var(--gold);
-font-weight:800;
-}
+.card h3{font-size:17px;margin-bottom:6px}
+.rating{color:var(--gold);font-weight:800}
 
 .meta{
-font-size:12px;
-color:var(--muted);
-line-height:1.5;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
 }
 
 .price{
-font-size:24px;
-font-weight:900;
-margin:12px 0 6px;
+  font-size:24px;
+  font-weight:900;
+  margin:12px 0 6px;
 }
 
 .tags{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
 }
 
 .tag{
-font-size:11px;
-padding:5px 8px;
-border-radius:999px;
-background:#050908;
-border:1px solid var(--line);
-color:#b7c9c1;
+  font-size:11px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#050908;
+  border:1px solid var(--line);
+  color:#b7c9c1;
 }
 
 .btns{
-display:flex;
-gap:8px;
-margin-top:14px;
+  display:flex;
+  gap:8px;
+  margin-top:14px;
 }
 
 button{
-flex:1;
-padding:10px;
-border-radius:10px;
-border:0;
-font-weight:800;
-cursor:pointer;
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  border:0;
+  font-weight:800;
+  cursor:pointer;
 }
 
-.buy{
-background:var(--green);
-color:#00110a;
-}
-
-.sell{
-background:#18231f;
-border:1px solid var(--line);
-color:var(--white);
-}
+.buy{background:var(--green);color:#00110a}
+.sell{background:#18231f;border:1px solid var(--line);color:var(--white)}
 
 .feed{
-display:flex;
-flex-direction:column;
-gap:10px;
-max-height:400px;
-overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:400px;
+  overflow:auto;
 }
 
 .feed-item{
-padding:12px;
-border-radius:12px;
-background:#07100e;
-border:1px solid var(--line);
-font-size:12px;
+  padding:12px;
+  border-radius:12px;
+  background:#07100e;
+  border:1px solid var(--line);
+  font-size:12px;
 }
 
-.profile{
-margin-top:16px;
+.feed-buy{
+  border-color:rgba(0,255,156,.35);
+  background:rgba(0,255,156,.06);
 }
+
+.feed-sell{
+  border-color:rgba(255,92,92,.35);
+  background:rgba(255,92,92,.06);
+}
+
+.profile{margin-top:16px}
 
 .audit{
-margin-top:12px;
-border-left:1px solid var(--line);
-padding-left:12px;
+  margin-top:12px;
+  border-left:1px solid var(--line);
+  padding-left:12px;
 }
 
 .audit div{
-margin:10px 0;
-font-size:12px;
-color:var(--muted);
+  margin:10px 0;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .bar{
-height:8px;
-background:#10201a;
-border-radius:999px;
-overflow:hidden;
-margin-top:8px;
+  height:8px;
+  background:#10201a;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:8px;
 }
 
 .bar span{
-display:block;
-height:100%;
-background:linear-gradient(90deg,var(--green),var(--gold));
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--green),var(--gold));
 }
 
 @media(max-width:1100px){
-.layout{
-grid-template-columns:1fr;
-}
-.hero-grid,.market-grid{
-grid-template-columns:1fr 1fr;
-}
+  .layout{grid-template-columns:1fr}
+  .hero-grid,.market-grid{grid-template-columns:1fr 1fr}
 }
 
 @media(max-width:700px){
-.hero-grid,.market-grid{
-grid-template-columns:1fr;
-}
+  header{flex-direction:column;align-items:flex-start;gap:12px}
+  .hero-grid,.market-grid{grid-template-columns:1fr}
+  .timeframes{position:static;margin-top:10px;padding:0 12px 12px}
 }
 </style>
 </head>
@@ -364,102 +369,107 @@ grid-template-columns:1fr;
 <body>
 
 <header>
-<div class="brand">
-<div class="logo"></div>
-<div>
-<h1>Global Environmental Assets Terminal</h1>
-<div class="sub">Carbon • Biodiversity • Biomass • Water • Plastic • Soil • Renewable Energy</div>
-</div>
-</div>
-
-<div class="status">
-LIVE MARKET PREVIEW · SIMULATED DATA
-</div>
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <h1>Global Environmental Assets Terminal</h1>
+      <div class="sub">Carbon • Biodiversity • Biomass • Water • Plastic • Soil • Renewable Energy</div>
+    </div>
+  </div>
+  <div class="status">LIVE MARKET PREVIEW · SIMULATED DATA</div>
 </header>
 
 <section class="ticker">
-<div class="ticker-track" id="tickerTrack"></div>
+  <div class="ticker-track" id="tickerTrack"></div>
 </section>
 
 <main class="layout">
 
 <aside class="panel">
-<h2>Discovery Filters</h2>
+  <h2>Discovery Filters</h2>
 
-<label>Asset Type</label>
-<select id="assetFilter">
-<option value="all">All Assets</option>
-<option>Carbon</option>
-<option>Biochar</option>
-<option>EV Credits</option>
-<option>REDD+</option>
-<option>Biomass</option>
-<option>Biodiversity</option>
-<option>Water</option>
-<option>Plastic Recovery</option>
-<option>Soil Regeneration</option>
-</select>
+  <label>Asset Type</label>
+  <select id="assetFilter">
+    <option value="all">All Assets</option>
+    <option>Carbon</option>
+    <option>Biochar</option>
+    <option>EV Credits</option>
+    <option>REDD+</option>
+    <option>Biomass</option>
+    <option>Biodiversity</option>
+    <option>Water</option>
+    <option>Plastic Recovery</option>
+    <option>Soil Regeneration</option>
+  </select>
 
-<label>Country</label>
-<select id="geoFilter">
-<option value="all">Global</option>
-<option>Uganda</option>
-<option>Kenya</option>
-<option>Brazil</option>
-<option>Indonesia</option>
-<option>India</option>
-<option>Canada</option>
-<option>Ghana</option>
-</select>
+  <label>Country</label>
+  <select id="geoFilter">
+    <option value="all">Global</option>
+    <option>Uganda</option>
+    <option>Kenya</option>
+    <option>Brazil</option>
+    <option>Indonesia</option>
+    <option>India</option>
+    <option>Canada</option>
+    <option>Ghana</option>
+  </select>
 
-<label>Community Impact</label>
-<select id="impactFilter">
-<option value="all">All Impact</option>
-<option>School fees</option>
-<option>Boreholes</option>
-<option>Women-led</option>
-<option>Jobs created</option>
-<option>Biodiversity</option>
-</select>
+  <label>Community Impact</label>
+  <select id="impactFilter">
+    <option value="all">All Impact</option>
+    <option>School fees</option>
+    <option>Boreholes</option>
+    <option>Women-led</option>
+    <option>Jobs created</option>
+    <option>Biodiversity</option>
+  </select>
 
-<label>Search</label>
-<input id="searchInput" placeholder="Search Uganda EV, Biochar..." />
+  <label>Search</label>
+  <input id="searchInput" placeholder="Search Uganda EV, Biochar..." />
+
+  <div class="filter-actions">
+    <button class="search-btn" onclick="applyFilters()">Search</button>
+    <button class="reset-btn" onclick="resetFilters()">Reset</button>
+  </div>
 </aside>
 
 <section>
 
 <div class="hero-grid">
-<div class="metric">
-<small>Total Credits Listed</small>
-<div class="num" id="creditsListed">2,843,500</div>
-</div>
-
-<div class="metric">
-<small>Credits Sold</small>
-<div class="num" id="creditsSold">918,240</div>
-</div>
-
-<div class="metric">
-<small>Certificates Redeemed</small>
-<div class="num" id="redeemed">341,880</div>
-</div>
-
-<div class="metric">
-<small>Avg Burn Rate / Month</small>
-<div class="num" id="burnRate">42,600</div>
-</div>
+  <div class="metric">
+    <small>Total Credits Listed</small>
+    <div class="num" id="creditsListed">2,843,500</div>
+  </div>
+  <div class="metric">
+    <small>Credits Sold</small>
+    <div class="num" id="creditsSold">918,240</div>
+  </div>
+  <div class="metric">
+    <small>Certificates Redeemed</small>
+    <div class="num" id="redeemed">341,880</div>
+  </div>
+  <div class="metric">
+    <small>Avg Burn Rate / Month</small>
+    <div class="num" id="burnRate">42,600</div>
+  </div>
 </div>
 
 <div class="chart-wrap">
-<canvas id="marketChart"></canvas>
-<div class="chart-badge">
-LIVE ENVIRONMENTAL ASSET INDEX
-</div>
+  <canvas id="marketChart"></canvas>
+  <div class="chart-badge">LIVE CANDLESTICK ENVIRONMENTAL ASSET INDEX</div>
+  <div class="timeframes">
+    <button onclick="setTimeframe('15m')" id="tf-15m">15m</button>
+    <button onclick="setTimeframe('30m')" id="tf-30m">30m</button>
+    <button onclick="setTimeframe('1h')" id="tf-1h">1h</button>
+    <button onclick="setTimeframe('4h')" id="tf-4h">4h</button>
+    <button onclick="setTimeframe('1d')" id="tf-1d">1d</button>
+    <button onclick="setTimeframe('1m')" id="tf-1m">1m</button>
+  </div>
 </div>
 
 <div class="panel">
-<h2>Global Marketplace</h2>
-<div class="market-grid" id="projectGrid"></div>
+  <h2 id="resultsTitle">Global Marketplace</h2>
+  <div class="market-grid" id="projectGrid"></div>
 </div>
 
 </section>
@@ -467,13 +477,13 @@ LIVE ENVIRONMENTAL ASSET INDEX
 <aside>
 
 <div class="panel">
-<h2>Live Buy / Sell Feed</h2>
-<div class="feed" id="feed"></div>
+  <h2>Live Buy / Sell Feed</h2>
+  <div class="feed" id="feed"></div>
 </div>
 
 <div class="panel profile" id="profilePanel">
-<h2>Selected Project Intelligence</h2>
-<div class="meta">Click any project card.</div>
+  <h2>Selected Project Intelligence</h2>
+  <div class="meta">Click any project card.</div>
 </div>
 
 </aside>
@@ -481,80 +491,113 @@ LIVE ENVIRONMENTAL ASSET INDEX
 </main>
 
 <script>
-
 const projects = [
-{
-name:"Uganda EV Mobility Credits",
-country:"Uganda",
-asset:"EV Credits",
-price:14.8,
-change:2.4,
-rating:"AA",
-impact:"School fees",
-listed:85000,
-sold:38200,
-redeemed:12400,
-burn:3100,
-quality:88,
-social:92,
-tags:["EV","schools","East Africa"],
-audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]
-},
-
-{
-name:"Kenya Biochar Soil Project",
-country:"Kenya",
-asset:"Biochar",
-price:22.4,
-change:4.8,
-rating:"AAA",
-impact:"Jobs created",
-listed:120000,
-sold:77600,
-redeemed:41100,
-burn:5400,
-quality:96,
-social:89,
-tags:["Biochar","Soil","Farm income"],
-audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
-},
-
-{
-name:"Brazil Amazon REDD+",
-country:"Brazil",
-asset:"REDD+",
-price:11.2,
-change:-1.2,
-rating:"A",
-impact:"Biodiversity",
-listed:500000,
-sold:213000,
-redeemed:89200,
-burn:12100,
-quality:81,
-social:77,
-tags:["Forest","Satellite MRV","Large scale"],
-audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]
-},
-
-{
-name:"Indonesia Mangrove Blue Carbon",
-country:"Indonesia",
-asset:"Carbon",
-price:18.9,
-change:3.1,
-rating:"AA",
-impact:"Boreholes",
-listed:210000,
-sold:96500,
-redeemed:31700,
-burn:6700,
-quality:90,
-social:84,
-tags:["Blue Carbon","Mangroves","Restoration"],
-audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
-}
+  {
+    name:"Uganda EV Mobility Credits",
+    country:"Uganda",
+    asset:"EV Credits",
+    price:14.8,
+    change:2.4,
+    rating:"AA",
+    impact:"School fees",
+    listed:85000,
+    sold:38200,
+    redeemed:12400,
+    burn:3100,
+    quality:88,
+    social:92,
+    tags:["EV","schools","East Africa"],
+    audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]
+  },
+  {
+    name:"Kenya Biochar Soil Project",
+    country:"Kenya",
+    asset:"Biochar",
+    price:22.4,
+    change:4.8,
+    rating:"AAA",
+    impact:"Jobs created",
+    listed:120000,
+    sold:77600,
+    redeemed:41100,
+    burn:5400,
+    quality:96,
+    social:89,
+    tags:["Biochar","Soil","Farm income"],
+    audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
+  },
+  {
+    name:"Brazil Amazon REDD+",
+    country:"Brazil",
+    asset:"REDD+",
+    price:11.2,
+    change:-1.2,
+    rating:"A",
+    impact:"Biodiversity",
+    listed:500000,
+    sold:213000,
+    redeemed:89200,
+    burn:12100,
+    quality:81,
+    social:77,
+    tags:["Forest","Satellite MRV","Large scale"],
+    audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]
+  },
+  {
+    name:"Indonesia Mangrove Blue Carbon",
+    country:"Indonesia",
+    asset:"Carbon",
+    price:18.9,
+    change:3.1,
+    rating:"AA",
+    impact:"Boreholes",
+    listed:210000,
+    sold:96500,
+    redeemed:31700,
+    burn:6700,
+    quality:90,
+    social:84,
+    tags:["Blue Carbon","Mangroves","Restoration"],
+    audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
+  },
+  {
+    name:"Ghana Plastic Recovery Credits",
+    country:"Ghana",
+    asset:"Plastic Recovery",
+    price:9.3,
+    change:5.6,
+    rating:"AA",
+    impact:"Jobs created",
+    listed:160000,
+    sold:104000,
+    redeemed:58000,
+    burn:7400,
+    quality:84,
+    social:93,
+    tags:["Plastic","Waste recovery","Community"],
+    audit:["2024 Collection audit","2025 Recycler verification","2026 Proof certificate"]
+  },
+  {
+    name:"Canada Regenerative Soil Carbon",
+    country:"Canada",
+    asset:"Soil Regeneration",
+    price:16.7,
+    change:-0.6,
+    rating:"AA",
+    impact:"Jobs created",
+    listed:95000,
+    sold:39800,
+    redeemed:10200,
+    burn:2600,
+    quality:86,
+    social:70,
+    tags:["Soil","Regenerative agriculture","MRV"],
+    audit:["2024 Soil sampling","2025 Registry assessment","2026 Resilience review"]
+  }
 ];
+
+let activeProjects = [...projects];
+let currentTimeframe = "15m";
 
 const grid = document.getElementById("projectGrid");
 const feed = document.getElementById("feed");
@@ -562,244 +605,317 @@ const profile = document.getElementById("profilePanel");
 const ticker = document.getElementById("tickerTrack");
 
 function renderTicker(){
-const html = projects.map(p => `
-<span class="tick">
-<b>${p.asset}</b>
-${p.country}
-<span>$${p.price.toFixed(2)}</span>
-<span class="${p.change >=0 ? "up":"down"}">
-${p.change >=0 ? "▲":"▼"} ${Math.abs(p.change).toFixed(1)}%
-</span>
-</span>
-`).join("");
+  const html = projects.map(p => `
+    <span class="tick">
+      <b>${p.asset}</b>
+      ${p.country}
+      <span>$${p.price.toFixed(2)}</span>
+      <span class="${p.change >=0 ? "up":"down"}">
+        ${p.change >=0 ? "▲":"▼"} ${Math.abs(p.change).toFixed(1)}%
+      </span>
+    </span>
+  `).join("");
 
-ticker.innerHTML = html + html;
+  ticker.innerHTML = html + html;
+}
+
+function applyFilters(){
+  const asset = document.getElementById("assetFilter").value;
+  const country = document.getElementById("geoFilter").value;
+  const impact = document.getElementById("impactFilter").value;
+  const search = document.getElementById("searchInput").value.toLowerCase().trim();
+
+  activeProjects = projects.filter(p => {
+    const searchable = `${p.name} ${p.country} ${p.asset} ${p.impact} ${p.tags.join(" ")} ${p.audit.join(" ")}`.toLowerCase();
+
+    return (asset === "all" || p.asset === asset)
+      && (country === "all" || p.country === country)
+      && (impact === "all" || p.impact === impact)
+      && (!search || searchable.includes(search));
+  });
+
+  document.getElementById("resultsTitle").textContent =
+    `${activeProjects.length} Matching Project${activeProjects.length === 1 ? "" : "s"}`;
+
+  renderProjects();
+}
+
+function resetFilters(){
+  document.getElementById("assetFilter").value = "all";
+  document.getElementById("geoFilter").value = "all";
+  document.getElementById("impactFilter").value = "all";
+  document.getElementById("searchInput").value = "";
+
+  activeProjects = [...projects];
+  document.getElementById("resultsTitle").textContent = "Global Marketplace";
+  renderProjects();
 }
 
 function renderProjects(){
+  if(activeProjects.length === 0){
+    grid.innerHTML = `<div class="meta">No projects match your filters. Try widening the search.</div>`;
+    return;
+  }
 
-grid.innerHTML = projects.map(p => `
-<div class="card" onclick="selectProject('${p.name}')">
+  grid.innerHTML = activeProjects.map(p => `
+    <div class="card" onclick="selectProject('${p.name}')">
+      <div class="topline">
+        <div>
+          <span class="asset">${p.asset}</span>
+          <h3>${p.name}</h3>
+        </div>
+        <div class="rating">${p.rating}</div>
+      </div>
 
-<div class="topline">
-<div>
-<span class="asset">${p.asset}</span>
-<h3>${p.name}</h3>
-</div>
+      <div class="meta">
+        ${p.country}<br>
+        ${p.impact}
+      </div>
 
-<div class="rating">${p.rating}</div>
-</div>
+      <div class="price">
+        $${p.price.toFixed(2)}
+        <span class="${p.change >=0 ? "up":"down"}" style="font-size:13px;">
+          ${p.change >=0 ? "▲":"▼"} ${Math.abs(p.change).toFixed(1)}%
+        </span>
+      </div>
 
-<div class="meta">
-${p.country}<br>
-${p.impact}
-</div>
+      <div class="meta">
+        Available: ${(p.listed - p.sold).toLocaleString()} credits
+      </div>
 
-<div class="price">
-$${p.price.toFixed(2)}
-</div>
+      <div class="tags">
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+      </div>
 
-<div class="meta">
-Available: ${(p.listed - p.sold).toLocaleString()} credits
-</div>
-
-<div class="tags">
-${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-</div>
-
-<div class="btns">
-<button class="buy">Buy</button>
-<button class="sell">View Proof</button>
-</div>
-
-</div>
-`).join("");
+      <div class="btns">
+        <button class="buy">Buy</button>
+        <button class="sell">View Proof</button>
+      </div>
+    </div>
+  `).join("");
 }
 
 function selectProject(name){
+  const p = projects.find(x => x.name === name);
 
-const p = projects.find(x => x.name === name);
+  profile.innerHTML = `
+    <h2>${p.name}</h2>
+    <div class="price">$${p.price.toFixed(2)}</div>
 
-profile.innerHTML = `
-<h2>${p.name}</h2>
+    <div class="meta">
+      ${p.country}<br>
+      ${p.asset}<br>
+      ${p.rating} Rating
+    </div>
 
-<div class="price">$${p.price.toFixed(2)}</div>
+    <div style="margin-top:14px;">
+      <div class="meta">Carbon / Asset Quality Rating</div>
+      <div class="bar"><span style="width:${p.quality}%"></span></div>
+    </div>
 
-<div class="meta">
-${p.country}<br>
-${p.asset}<br>
-${p.rating} Rating
-</div>
+    <div style="margin-top:14px;">
+      <div class="meta">Social Impact Rating</div>
+      <div class="bar"><span style="width:${p.social}%"></span></div>
+    </div>
 
-<div style="margin-top:14px;">
-<div class="meta">Carbon Quality Rating</div>
-<div class="bar">
-<span style="width:${p.quality}%"></span>
-</div>
-</div>
-
-<div style="margin-top:14px;">
-<div class="meta">Social Impact Rating</div>
-<div class="bar">
-<span style="width:${p.social}%"></span>
-</div>
-</div>
-
-<div class="audit">
-${p.audit.map(a => `<div>✓ ${a}</div>`).join("")}
-</div>
-`;
+    <div class="audit">
+      ${p.audit.map(a => `<div>✓ ${a}</div>`).join("")}
+    </div>
+  `;
 }
 
 function addFeedItem(){
+  const p = projects[Math.floor(Math.random()*projects.length)];
+  const isBuy = Math.random() > .4;
+  const qty = Math.floor(Math.random()*900)+50;
 
-const p = projects[Math.floor(Math.random()*projects.length)];
-const isBuy = Math.random() > .4;
-const qty = Math.floor(Math.random()*900)+50;
+  const item = document.createElement("div");
+  item.className = `feed-item ${isBuy ? "feed-buy" : "feed-sell"}`;
 
-const item = document.createElement("div");
+  item.innerHTML = `
+    <strong class="${isBuy ? "up":"down"}">
+      ${isBuy ? "BUY":"SELL"} ${qty.toLocaleString()} ${p.asset}
+    </strong><br>
+    ${p.name}<br>
+    <span class="meta">${p.country} · just now</span>
+  `;
 
-item.className = "feed-item";
+  feed.prepend(item);
 
-item.innerHTML = `
-<strong class="${isBuy ? "up":"down"}">
-${isBuy ? "BUY":"SELL"} ${qty.toLocaleString()} ${p.asset}
-</strong><br>
-${p.name}<br>
-<span>${p.country} · just now</span>
-`;
+  while(feed.children.length > 12){
+    feed.removeChild(feed.lastChild);
+  }
 
-feed.prepend(item);
+  if(isBuy){
+    p.sold += qty;
+    p.price += Math.random() * .18;
+  }else{
+    p.price -= Math.random() * .12;
+  }
 
-while(feed.children.length > 12){
-feed.removeChild(feed.lastChild);
-}
+  p.change += (Math.random() - .45) * .3;
 
-if(isBuy){
-p.sold += qty;
-p.price += Math.random() * .18;
-}else{
-p.price -= Math.random() * .12;
-}
-
-p.change += (Math.random() - .45) * .3;
-
-updateMetrics();
-renderTicker();
-renderProjects();
+  updateMetrics();
+  renderTicker();
+  renderProjects();
 }
 
 function updateMetrics(){
+  const listed = projects.reduce((a,b)=>a+b.listed,0);
+  const sold = projects.reduce((a,b)=>a+b.sold,0);
+  const redeemed = projects.reduce((a,b)=>a+b.redeemed,0);
+  const burn = projects.reduce((a,b)=>a+b.burn,0);
 
-const listed = projects.reduce((a,b)=>a+b.listed,0);
-const sold = projects.reduce((a,b)=>a+b.sold,0);
-const redeemed = projects.reduce((a,b)=>a+b.redeemed,0);
-const burn = projects.reduce((a,b)=>a+b.burn,0);
-
-document.getElementById("creditsListed").textContent = listed.toLocaleString();
-document.getElementById("creditsSold").textContent = sold.toLocaleString();
-document.getElementById("redeemed").textContent = redeemed.toLocaleString();
-document.getElementById("burnRate").textContent = burn.toLocaleString();
+  document.getElementById("creditsListed").textContent = listed.toLocaleString();
+  document.getElementById("creditsSold").textContent = sold.toLocaleString();
+  document.getElementById("redeemed").textContent = redeemed.toLocaleString();
+  document.getElementById("burnRate").textContent = burn.toLocaleString();
 }
 
 const canvas = document.getElementById("marketChart");
 const ctx = canvas.getContext("2d");
 
-let points = Array.from({length:70}, (_,i)=>120 + Math.sin(i/5)*8 + Math.random()*8);
+let candles = [];
+
+function generateCandles(tf){
+  let base = {
+    "15m":120,
+    "30m":126,
+    "1h":134,
+    "4h":148,
+    "1d":162,
+    "1m":210
+  }[tf];
+
+  candles = [];
+
+  for(let i=0;i<55;i++){
+    const open = base + (Math.random() - .5) * 12;
+    const close = open + (Math.random() - .45) * 10;
+    const high = Math.max(open,close) + Math.random() * 6;
+    const low = Math.min(open,close) - Math.random() * 6;
+
+    candles.push({open,close,high,low});
+    base = close;
+  }
+}
+
+function setTimeframe(tf){
+  currentTimeframe = tf;
+
+  document.querySelectorAll(".timeframes button").forEach(btn => btn.classList.remove("active"));
+  document.getElementById(`tf-${tf}`).classList.add("active");
+
+  generateCandles(tf);
+  drawCandles();
+}
 
 function resizeCanvas(){
-canvas.width = canvas.offsetWidth * devicePixelRatio;
-canvas.height = canvas.offsetHeight * devicePixelRatio;
-ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  canvas.width = canvas.offsetWidth * devicePixelRatio;
+  canvas.height = canvas.offsetHeight * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
 }
 
-function drawChart(){
+function drawCandles(){
+  resizeCanvas();
 
-resizeCanvas();
+  const w = canvas.offsetWidth;
+  const h = canvas.offsetHeight;
 
-const w = canvas.offsetWidth;
-const h = canvas.offsetHeight;
+  ctx.clearRect(0,0,w,h);
 
-ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle = "rgba(255,255,255,.05)";
+  ctx.lineWidth = 1;
 
-ctx.strokeStyle = "rgba(255,255,255,.05)";
+  for(let i=0;i<8;i++){
+    ctx.beginPath();
+    ctx.moveTo(0,(h/8)*i);
+    ctx.lineTo(w,(h/8)*i);
+    ctx.stroke();
+  }
 
-for(let i=0;i<8;i++){
-ctx.beginPath();
-ctx.moveTo(0,(h/8)*i);
-ctx.lineTo(w,(h/8)*i);
-ctx.stroke();
-}
+  const highs = candles.map(c => c.high);
+  const lows = candles.map(c => c.low);
 
-const min = Math.min(...points)-5;
-const max = Math.max(...points)+5;
+  const max = Math.max(...highs) + 4;
+  const min = Math.min(...lows) - 4;
 
-ctx.beginPath();
+  const candleWidth = w / candles.length * .58;
 
-points.forEach((p,i)=>{
+  candles.forEach((c,i)=>{
+    const x = (w / candles.length) * i + 8;
 
-const x = (w/(points.length-1))*i;
-const y = h - ((p-min)/(max-min))*h;
+    const yHigh = h - ((c.high - min) / (max - min)) * h;
+    const yLow = h - ((c.low - min) / (max - min)) * h;
+    const yOpen = h - ((c.open - min) / (max - min)) * h;
+    const yClose = h - ((c.close - min) / (max - min)) * h;
 
-if(i===0) ctx.moveTo(x,y);
-else ctx.lineTo(x,y);
+    const green = c.close >= c.open;
 
-});
+    ctx.strokeStyle = green ? "#00ff9c" : "#ff5c5c";
+    ctx.fillStyle = green ? "#00ff9c" : "#ff5c5c";
 
-ctx.strokeStyle = "#00ff9c";
-ctx.lineWidth = 2;
-ctx.shadowBlur = 16;
-ctx.shadowColor = "#00ff9c";
-ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x + candleWidth/2, yHigh);
+    ctx.lineTo(x + candleWidth/2, yLow);
+    ctx.stroke();
 
-ctx.lineTo(w,h);
-ctx.lineTo(0,h);
+    const bodyTop = Math.min(yOpen,yClose);
+    const bodyHeight = Math.max(3, Math.abs(yClose-yOpen));
 
-ctx.fillStyle = "rgba(0,255,156,.08)";
-ctx.fill();
+    ctx.fillRect(x, bodyTop, candleWidth, bodyHeight);
+  });
 
-ctx.shadowBlur = 0;
+  const latest = candles[candles.length-1].close;
 
-ctx.fillStyle = "#00ff9c";
-ctx.font = "bold 24px Arial";
-ctx.fillText("$"+points[points.length-1].toFixed(2), w-120, 34);
+  ctx.fillStyle = "#00ff9c";
+  ctx.font = "bold 24px Arial";
+  ctx.fillText("$"+latest.toFixed(2), w-120, 34);
 
+  ctx.fillStyle = "#8fa39a";
+  ctx.font = "12px Arial";
+  ctx.fillText(`Timeframe: ${currentTimeframe}`, w-120, 56);
 }
 
 function moveChart(){
+  const last = candles[candles.length-1];
+  const open = last.close;
+  const close = open + (Math.random() - .45) * 8;
+  const high = Math.max(open,close) + Math.random() * 5;
+  const low = Math.min(open,close) - Math.random() * 5;
 
-const movement = (Math.random() - .45) * 4;
+  candles.push({open,close,high,low});
+  candles.shift();
 
-points.push(points[points.length-1] + movement);
-points.shift();
+  const movement = close - open;
+  const soldDelta = Math.max(40, Math.floor(Math.abs(movement) * 120));
+  const redeemedDelta = Math.max(10, Math.floor(Math.abs(movement) * 45));
+  const burnDelta = Math.floor((Math.random() - .45) * 120);
 
-const soldDelta = Math.max(40, Math.floor(Math.abs(movement) * 120));
-const redeemedDelta = Math.max(10, Math.floor(Math.abs(movement) * 45));
-const burnDelta = Math.floor((Math.random() - 0.45) * 120);
+  const randomProject = projects[Math.floor(Math.random() * projects.length)];
 
-const randomProject = projects[Math.floor(Math.random() * projects.length)];
+  randomProject.sold += soldDelta;
+  randomProject.redeemed += redeemedDelta;
+  randomProject.burn = Math.max(500, randomProject.burn + burnDelta);
+  randomProject.price = Math.max(2, randomProject.price + movement * .03);
+  randomProject.change += movement * .04;
 
-randomProject.sold += soldDelta;
-randomProject.redeemed += redeemedDelta;
-randomProject.burn = Math.max(500, randomProject.burn + burnDelta);
-
-updateMetrics();
-drawChart();
-renderProjects();
-renderTicker();
+  updateMetrics();
+  drawCandles();
+  renderProjects();
+  renderTicker();
 }
 
 renderTicker();
 renderProjects();
 updateMetrics();
-drawChart();
 selectProject(projects[0].name);
+setTimeframe("15m");
 
 for(let i=0;i<6;i++) addFeedItem();
 
 setInterval(moveChart, 1800);
 setInterval(addFeedItem, 4500);
-
 </script>
 
 </body>
