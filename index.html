@@ -4,936 +4,132 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title>Environmental Assets Terminal</title>
-
 <style>
-
-:root{
-  --bg:#050706;
-  --panel:#0b1110;
-  --panel2:#101917;
-  --line:#20362f;
-  --green:#00ff9c;
-  --lime:#9cff62;
-  --gold:#f6c85f;
-  --red:#ff5c5c;
-  --blue:#5cc8ff;
-  --muted:#8fa39a;
-  --white:#f1fff8;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  background:
-    radial-gradient(circle at top left,#143326 0,#050706 36%,#020303 100%);
-  color:var(--white);
-  font-family:Inter,Arial,sans-serif;
-}
-
-.topnav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:18px;
-  padding:0 20px;
-  height:58px;
-  background:#070908;
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-
-.nav-left,.nav-right{
-  display:flex;
-  align-items:center;
-  gap:24px;
-}
-
-.nav-link{
-  color:#d8e0dc;
-  font-size:15px;
-  cursor:pointer;
-  padding:19px 0;
-  border-bottom:2px solid transparent;
-}
-
-.nav-link.active{
-  color:var(--lime);
-  border-bottom-color:var(--lime);
-}
-
-.deposit{
-  background:var(--lime);
-  color:#001108;
-  border:0;
-  border-radius:8px;
-  padding:10px 20px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.avatar{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  background:#24d3d3;
-  display:grid;
-  place-items:center;
-  color:#001;
-  font-weight:900;
-}
-
-.username{
-  font-size:14px;
-  color:#aaa;
-}
-
-.icon{
-  color:#888;
-  font-size:20px;
-}
-
-.ticker{
-  overflow:hidden;
-  white-space:nowrap;
-  background:#040706;
-  border-bottom:1px solid var(--line);
-}
-
-.ticker-track{
-  display:inline-block;
-  padding:10px 0;
-  animation:scroll 45s linear infinite;
-}
-
-.tick{
-  display:inline-flex;
-  gap:8px;
-  margin:0 20px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.up{
-  color:var(--green);
-}
-
-.down{
-  color:var(--red);
-}
-
-@keyframes scroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-.page{
-  display:none;
-  padding:18px;
-}
-
-.page.active{
-  display:block;
-}
-
-.grid-main{
-  display:grid;
-  grid-template-columns:300px 1fr 370px;
-  gap:16px;
-}
-
-.big-layout{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:16px;
-}
-
-.panel{
-  background:
-    linear-gradient(180deg,#101917,#07100e);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
-
-.panel h2{
-  font-size:13px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:14px;
-}
-
-label{
-  display:block;
-  margin:12px 0 6px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-select,input{
-  width:100%;
-  padding:11px;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:#050908;
-  color:var(--white);
-}
-
-.btn-row{
-  display:flex;
-  gap:8px;
-  margin-top:14px;
-  flex-wrap:wrap;
-}
-
-button{
-  border:0;
-  border-radius:10px;
-  padding:10px 12px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.btn-green{
-  background:var(--green);
-  color:#00110a;
-}
-
-.btn-dark{
-  background:#18231f;
-  color:var(--white);
-  border:1px solid var(--line);
-}
-
-.btn-red{
-  background:var(--red);
-  color:#fff;
-}
-
-.btn-gold{
-  background:var(--gold);
-  color:#191100;
-}
-
-.mode-toggle{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.mode-toggle button.active{
-  background:var(--green);
-  color:#00110a;
-}
-
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:16px;
-}
-
-.metric{
-  background:#07100e;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-}
-
-.metric small{
-  color:var(--muted);
-}
-
-.metric .num{
-  font-size:24px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-.chart-wrap{
-  height:360px;
-  position:relative;
-  margin-bottom:16px;
-}
-
-canvas{
-  width:100%;
-  height:100%;
-  background:#050807;
-  border-radius:18px;
-  border:1px solid var(--line);
-}
-
-.chart-badge{
-  position:absolute;
-  top:14px;
-  left:14px;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(0,0,0,.55);
-  border:1px solid var(--line);
-  color:var(--green);
-  font-size:12px;
-}
-
-.timeframes{
-  position:absolute;
-  top:18px;
-  right:18px;
-  display:flex;
-  gap:10px;
-  flex-wrap:nowrap;
-  z-index:5;
-}
-
-.timeframes button{
-  min-width:58px;
-  height:46px;
-  border-radius:16px;
-  background:#0b1412;
-  border:1px solid rgba(0,255,156,.18);
-  color:#a9b7b1;
-  font-size:15px;
-  font-weight:800;
-  transition:.2s;
-}
-
-.timeframes button:hover{
-  border-color:rgba(0,255,156,.5);
-  color:white;
-}
-
-.timeframes button.active{
-  color:#00ff9c;
-  border-color:#00ff9c;
-  background:rgba(0,255,156,.08);
-  box-shadow:0 0 18px rgba(0,255,156,.15);
-}
-
-.market-grid,
-.project-grid,
-.holdings,
-.intel-grid,
-.cert-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.card{
-  background:#07100e;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:14px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-2px);
-  border-color:rgba(0,255,156,.45);
-  box-shadow:0 0 25px rgba(0,255,156,.08);
-}
-
-.card-img{
-  height:130px;
-  border-radius:13px;
-  background-size:cover;
-  background-position:center;
-  margin-bottom:12px;
-  border:1px solid var(--line);
-}
-
-.asset{
-  display:inline-block;
-  font-size:11px;
-  padding:5px 8px;
-  border-radius:999px;
-  background:rgba(0,255,156,.08);
-  border:1px solid rgba(0,255,156,.25);
-  color:var(--green);
-  margin-bottom:8px;
-}
-
-.topline{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.card h3{
-  font-size:16px;
-  margin-bottom:6px;
-}
-
-.rating{
-  color:var(--gold);
-  font-weight:900;
-}
-
-.meta{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.55;
-}
-
-.price{
-  font-size:23px;
-  font-weight:900;
-  margin:10px 0 6px;
-}
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:12px;
-}
-
-.tag{
-  font-size:11px;
-  padding:5px 8px;
-  border-radius:999px;
-  background:#050908;
-  border:1px solid var(--line);
-  color:#b7c9c1;
-}
-
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  max-height:410px;
-  overflow:auto;
-}
-
-.feed-item{
-  padding:12px;
-  border-radius:12px;
-  background:#07100e;
-  border:1px solid var(--line);
-  font-size:12px;
-}
-
-.feed-buy{
-  border-color:rgba(0,255,156,.4);
-  background:rgba(0,255,156,.06);
-}
-
-.feed-sell{
-  border-color:rgba(255,92,92,.45);
-  background:rgba(255,92,92,.06);
-}
-
-.profile{
-  margin-top:16px;
-}
-
-.bar{
-  height:8px;
-  background:#10201a;
-  border-radius:999px;
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.bar span{
-  display:block;
-  height:100%;
-  background:
-    linear-gradient(90deg,var(--green),var(--gold));
-}
-
-.audit{
-  margin-top:12px;
-  border-left:1px solid var(--line);
-  padding-left:12px;
-}
-
-.audit div{
-  margin:10px 0;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.project-detail-img{
-  height:340px;
-  border-radius:18px;
-  background-size:cover;
-  background-position:center;
-  border:1px solid var(--line);
-  margin-bottom:16px;
-}
-  .detail-title{
-  font-size:31px;
-  margin-bottom:8px;
-}
-
-.detail-bio{
-  color:#c6d8d0;
-  line-height:1.7;
-  margin:14px 0;
-}
-
-.section-title{
-  font-size:20px;
-  margin:10px 0;
-  color:#fff;
-}
-
-.table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-.table th,
-.table td{
-  border-bottom:1px solid var(--line);
-  padding:12px;
-  text-align:left;
-  font-size:12px;
-}
-
-.table th{
-  color:var(--muted);
-  text-transform:uppercase;
-  font-size:11px;
-}
-
-.table tr:hover{
-  background:rgba(0,255,156,.04);
-}
-
-.cert-preview{
-  background:
-    radial-gradient(circle at 80% 20%, rgba(246,200,95,.35), transparent 20%),
-    linear-gradient(135deg,#fff8e6,#f4e3b4 48%,#fffaf0);
-
-  color:#171209;
-  border-radius:26px;
-  padding:38px;
-  border:10px solid #cfa94a;
-  min-height:520px;
-  position:relative;
-  box-shadow:0 30px 120px rgba(0,0,0,.45);
-  overflow:hidden;
-}
-
-.cert-preview:before{
-  content:"★";
-  position:absolute;
-  right:34px;
-  top:30px;
-  width:92px;
-  height:92px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:42px;
-  color:#fff3b0;
-
-  background:
-    radial-gradient(circle,#f8d978,#b88918);
-
-  border:5px solid #fff1a8;
-  box-shadow:0 0 35px rgba(184,137,24,.45);
-}
-
-.cert-preview:after{
-  content:"VERIFIED RETIREMENT";
-  position:absolute;
-  right:-80px;
-  bottom:70px;
-  transform:rotate(-18deg);
-  color:rgba(0,0,0,.07);
-  font-size:54px;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-
-.cert-preview h1{
-  font-size:34px;
-  color:#111;
-  max-width:70%;
-  margin-bottom:14px;
-}
-
-.cert-kicker{
-  color:#7d5c12;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
-
-.cert-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:18px;
-}
-
-.cert-box{
-  background:rgba(255,255,255,.55);
-  border:1px solid rgba(120,84,12,.25);
-  border-radius:14px;
-  padding:14px;
-}
-
-.cert-box small{
-  display:block;
-  color:#7b6a45;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:5px;
-}
-
-.cert-box b{
-  color:#161009;
-}
-
-.issuer-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  padding:9px 12px;
-  border-radius:999px;
-  background:#111;
-  color:#f8d978;
-  font-weight:900;
-  font-size:12px;
-}
-
-.gold-seal{
-  margin-top:24px;
-  border-top:1px solid rgba(120,84,12,.25);
-  padding-top:18px;
-  color:#4d3a10;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:99;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-}
-
-.modal.active{
-  display:flex;
-}
-
-.modal-box{
-  width:min(640px,96vw);
-  background:#08110f;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 30px 100px #000;
-}
-
-.pay-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:14px 0;
-}
-
-.pay{
-  padding:14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#07100e;
-  cursor:pointer;
-}
-
-.pay.active{
-  border-color:var(--green);
-  background:rgba(0,255,156,.08);
-}
-
-@media(max-width:1150px){
-
-  .grid-main,
-  .big-layout{
-    grid-template-columns:1fr;
-  }
-
-  .metrics,
-  .market-grid,
-  .project-grid,
-  .holdings,
-  .intel-grid,
-  .cert-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .nav-left{
-    gap:14px;
-    overflow:auto;
-  }
-}
-
-@media(max-width:720px){
-
-  .topnav{
-    height:auto;
-    align-items:flex-start;
-    gap:12px;
-    flex-direction:column;
-    padding:12px;
-  }
-
-  .nav-left,
-  .nav-right{
-    gap:14px;
-    flex-wrap:wrap;
-  }
-
-  .metrics,
-  .market-grid,
-  .project-grid,
-  .holdings,
-  .intel-grid,
-  .cert-grid,
-  .pay-grid,
-  .cert-row{
-    grid-template-columns:1fr;
-  }
-
-  .timeframes{
-    position:static;
-    margin-top:10px;
-  }
-
-  .project-detail-img{
-    height:230px;
-  }
-
-  .cert-preview h1{
-    max-width:100%;
-    font-size:28px;
-  }
-
-  .cert-preview:before{
-    position:relative;
-    right:auto;
-    top:auto;
-    margin-bottom:20px;
-  }
-}
-
+:root{--bg:#050706;--panel:#0b1110;--line:#20362f;--green:#00ff9c;--lime:#9cff62;--gold:#f6c85f;--red:#ff5c5c;--muted:#8fa39a;--white:#f1fff8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:radial-gradient(circle at top left,#143326 0,#050706 36%,#020303 100%);color:var(--white);font-family:Inter,Arial,sans-serif}
+.topnav{height:58px;background:#070908;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 20px;position:sticky;top:0;z-index:50}
+.nav-left,.nav-right{display:flex;gap:22px;align-items:center}
+.nav-link{color:#d8e0dc;font-size:15px;cursor:pointer;padding:19px 0;border-bottom:2px solid transparent}
+.nav-link.active{color:var(--lime);border-bottom-color:var(--lime)}
+.deposit{background:var(--lime);color:#001108;border:0;border-radius:8px;padding:10px 20px;font-weight:900}
+.avatar{width:34px;height:34px;border-radius:50%;background:#24d3d3;display:grid;place-items:center;color:#001;font-weight:900}
+.username{font-size:14px;color:#aaa}
+.ticker{overflow:hidden;white-space:nowrap;background:#040706;border-bottom:1px solid var(--line)}
+.ticker-track{display:inline-block;padding:10px 0;animation:scroll 45s linear infinite}
+.tick{display:inline-flex;gap:8px;margin:0 20px;color:var(--muted);font-size:13px}
+.up{color:var(--green)}.down{color:var(--red)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.page{display:none;padding:18px}.page.active{display:block}
+.grid-main{display:grid;grid-template-columns:300px 1fr 370px;gap:16px}
+.big-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.panel{background:linear-gradient(180deg,#101917,#07100e);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.panel h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+label{display:block;margin:12px 0 6px;color:var(--muted);font-size:12px}
+select,input{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#050908;color:var(--white)}
+button{border:0;border-radius:10px;padding:10px 12px;font-weight:900;cursor:pointer}
+.btn-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn-green{background:var(--green);color:#00110a}.btn-dark{background:#18231f;color:var(--white);border:1px solid var(--line)}.btn-red{background:var(--red);color:#fff}.btn-gold{background:var(--gold);color:#191100}
+.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.mode-toggle button.active{background:var(--green);color:#00110a}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.metric{background:#07100e;border:1px solid var(--line);border-radius:14px;padding:16px}.metric small{color:var(--muted)}.metric .num{font-size:24px;font-weight:900;margin-top:8px}
+.chart-wrap{height:360px;position:relative;margin-bottom:16px}
+canvas{width:100%;height:100%;background:#050807;border-radius:18px;border:1px solid var(--line)}
+.chart-badge{position:absolute;top:14px;left:14px;padding:8px 12px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid var(--line);color:var(--green);font-size:12px}
+.timeframes{position:absolute;top:18px;right:18px;display:flex;gap:10px;flex-wrap:nowrap;z-index:5}
+.timeframes button{min-width:58px;height:46px;border-radius:16px;background:#0b1412;border:1px solid rgba(0,255,156,.18);color:#a9b7b1;font-size:15px;font-weight:800}
+.timeframes button.active{color:#00ff9c;border-color:#00ff9c;background:rgba(0,255,156,.08);box-shadow:0 0 18px rgba(0,255,156,.15)}
+.market-grid,.project-grid,.intel-grid,.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:#07100e;border:1px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-2px);border-color:rgba(0,255,156,.45);box-shadow:0 0 25px rgba(0,255,156,.08)}
+.card-img{height:130px;border-radius:13px;background-size:cover;background-position:center;margin-bottom:12px;border:1px solid var(--line)}
+.asset{display:inline-block;font-size:11px;padding:5px 8px;border-radius:999px;background:rgba(0,255,156,.08);border:1px solid rgba(0,255,156,.25);color:var(--green);margin-bottom:8px}
+.topline{display:flex;justify-content:space-between;gap:10px}.card h3{font-size:16px;margin-bottom:6px}.rating{color:var(--gold);font-weight:900}
+.meta{color:var(--muted);font-size:12px;line-height:1.55}.price{font-size:23px;font-weight:900;margin:10px 0 6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tag{font-size:11px;padding:5px 8px;border-radius:999px;background:#050908;border:1px solid var(--line);color:#b7c9c1}
+.feed{display:flex;flex-direction:column;gap:10px;max-height:410px;overflow:auto}
+.feed-item{padding:12px;border-radius:12px;background:#07100e;border:1px solid var(--line);font-size:12px}
+.feed-buy{border-color:rgba(0,255,156,.4);background:rgba(0,255,156,.06)}.feed-sell{border-color:rgba(255,92,92,.45);background:rgba(255,92,92,.06)}
+.profile{margin-top:16px}.bar{height:8px;background:#10201a;border-radius:999px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold))}
+.audit{margin-top:12px;border-left:1px solid var(--line);padding-left:12px}.audit div{margin:10px 0;color:var(--muted);font-size:12px}
+.project-detail-img{height:340px;border-radius:18px;background-size:cover;background-position:center;border:1px solid var(--line);margin-bottom:16px}
+.detail-title{font-size:31px;margin-bottom:8px}.detail-bio{color:#c6d8d0;line-height:1.7;margin:14px 0}.section-title{font-size:20px;margin:10px 0;color:#fff}
+.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid var(--line);padding:12px;text-align:left;font-size:12px}.table th{color:var(--muted);text-transform:uppercase;font-size:11px}.table tr:hover{background:rgba(0,255,156,.04)}
+.click-name{cursor:pointer;color:#00ff9c;font-weight:900}
+.cert-preview{background:radial-gradient(circle at 80% 20%,rgba(246,200,95,.35),transparent 20%),linear-gradient(135deg,#fff8e6,#f4e3b4 48%,#fffaf0);color:#171209;border-radius:26px;padding:38px;border:10px solid #cfa94a;min-height:520px;position:relative;box-shadow:0 30px 120px rgba(0,0,0,.45);overflow:hidden}
+.cert-preview:before{content:"★";position:absolute;right:34px;top:30px;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:42px;color:#fff3b0;background:radial-gradient(circle,#f8d978,#b88918);border:5px solid #fff1a8;box-shadow:0 0 35px rgba(184,137,24,.45)}
+.cert-preview:after{content:"VERIFIED RETIREMENT";position:absolute;right:-80px;bottom:70px;transform:rotate(-18deg);color:rgba(0,0,0,.07);font-size:54px;font-weight:900;letter-spacing:.08em}
+.cert-preview h1{font-size:34px;color:#111;max-width:70%;margin-bottom:14px}.cert-kicker{color:#7d5c12;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.cert-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.cert-box{background:rgba(255,255,255,.55);border:1px solid rgba(120,84,12,.25);border-radius:14px;padding:14px}.cert-box small{display:block;color:#7b6a45;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.cert-box b{color:#161009}
+.issuer-pill{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 12px;border-radius:999px;background:#111;color:#f8d978;font-weight:900;font-size:12px}
+.gold-seal{margin-top:24px;border-top:1px solid rgba(120,84,12,.25);padding-top:18px;color:#4d3a10;font-size:13px;line-height:1.6}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99;align-items:center;justify-content:center;padding:18px}.modal.active{display:flex}
+.modal-box{width:min(640px,96vw);background:#08110f;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 30px 100px #000}
+.pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.pay{padding:14px;border:1px solid var(--line);border-radius:12px;background:#07100e;cursor:pointer}.pay.active{border-color:var(--green);background:rgba(0,255,156,.08)}
+@media(max-width:1150px){.grid-main,.big-layout{grid-template-columns:1fr}.metrics,.market-grid,.project-grid,.intel-grid,.cert-grid{grid-template-columns:1fr 1fr}.nav-left{gap:14px;overflow:auto}}
+@media(max-width:720px){.topnav{height:auto;align-items:flex-start;gap:12px;flex-direction:column;padding:12px}.nav-left,.nav-right{gap:14px;flex-wrap:wrap}.metrics,.market-grid,.project-grid,.intel-grid,.cert-grid,.pay-grid,.cert-row{grid-template-columns:1fr}.timeframes{position:static;margin-top:10px}.project-detail-img{height:230px}.cert-preview h1{max-width:100%;font-size:28px}.cert-preview:before{position:relative;right:auto;top:auto;margin-bottom:20px}}
 </style>
 </head>
 
 <body>
-
 <nav class="topnav">
-
   <div class="nav-left">
-
-    <div class="nav-link active"
-      onclick="showPage('trade',this)">
-      Trade
-    </div>
-
-    <div class="nav-link"
-      onclick="showPage('portfolio',this)">
-      Portfolio
-    </div>
-
-    <div class="nav-link"
-      onclick="showPage('marketplace',this)">
-      Marketplace
-    </div>
-
-    <div class="nav-link"
-      onclick="showPage('projects',this)">
-      Projects
-    </div>
-
-    <div class="nav-link"
-      onclick="showPage('certificates',this)">
-      Certificates
-    </div>
-
-    <div class="nav-link"
-      onclick="showPage('intelligence',this)">
-      Intelligence
-    </div>
-
+    <div class="nav-link active" onclick="showPage('trade',this)">Trade</div>
+    <div class="nav-link" onclick="showPage('portfolio',this)">Portfolio</div>
+    <div class="nav-link" onclick="showPage('marketplace',this)">Marketplace</div>
+    <div class="nav-link" onclick="showPage('projects',this)">Projects</div>
+    <div class="nav-link" onclick="showPage('certificates',this)">Certificates</div>
+    <div class="nav-link" onclick="showPage('intelligence',this)">Intelligence</div>
   </div>
-
   <div class="nav-right">
-
-    <button class="deposit"
-      onclick="openBuyModal(1)">
-      Deposit
-    </button>
-
+    <button class="deposit" onclick="openBuyModal(1)">Deposit</button>
     <div class="avatar">J</div>
-
-    <div class="username">
-      Juna Vidyarthi⌄
-    </div>
-
+    <div class="username">Juna Vidyarthi⌄</div>
   </div>
-
 </nav>
 
-<section class="ticker">
-  <div class="ticker-track" id="tickerTrack"></div>
-</section>
+<section class="ticker"><div class="ticker-track" id="tickerTrack"></div></section>
 
 <section id="trade" class="page active">
-
 <div class="grid-main">
-
 <aside class="panel">
-
 <h2>Discovery Mode</h2>
-
 <div class="mode-toggle">
-
-<button id="buyerBtn"
-class="active"
-onclick="setMode('buyer')">
-Buyer
-</button>
-
-<button id="sellerBtn"
-class="btn-dark"
-onclick="setMode('seller')">
-Seller
-</button>
-
+<button id="buyerBtn" class="active" onclick="setMode('buyer')">Buyer</button>
+<button id="sellerBtn" class="btn-dark" onclick="setMode('seller')">Seller</button>
 </div>
 
 <div id="buyerFilters">
-
-<label>Asset Type</label>
-<select id="assetFilter">
-<option value="all">All Assets</option>
-</select>
-
-<label>Country</label>
-<select id="geoFilter">
-<option value="all">Global</option>
-</select>
-
-<label>Community Impact</label>
-<select id="impactFilter">
-<option value="all">All Impact</option>
-</select>
-
-<label>Search</label>
-
-<input id="searchInput"
-placeholder="Uganda EV, plastic, boreholes..." />
-
+<label>Asset Type</label><select id="assetFilter"><option value="all">All Assets</option></select>
+<label>Country</label><select id="geoFilter"><option value="all">Global</option></select>
+<label>Community Impact</label><select id="impactFilter"><option value="all">All Impact</option></select>
+<label>Search</label><input id="searchInput" placeholder="Uganda EV, plastic, boreholes..." />
 </div>
 
 <div id="sellerFilters" style="display:none">
-
-<label>Buyer Type</label>
-
-<select>
-<option>Corporate ESG Buyer</option>
-<option>Airline</option>
-<option>Retail Brand</option>
-<option>Compliance Buyer</option>
-<option>Luxury Travel Group</option>
-</select>
-
-<label>Buyer Need</label>
-
-<select>
-<option>Voluntary offset</option>
-<option>Legal compliance</option>
-<option>Brand impact</option>
-<option>Supply chain claim</option>
-</select>
-
-<label>Demand Geography</label>
-
-<select>
-<option>Europe</option>
-<option>North America</option>
-<option>GCC</option>
-<option>Asia</option>
-<option>Africa</option>
-</select>
-
+<label>Buyer Type</label><select id="sellerBuyerType"><option>Corporate ESG Buyer</option><option>Airline</option><option>Retail Brand</option><option>Compliance Buyer</option><option>Luxury Travel Group</option></select>
+<label>Buyer Need</label><select id="sellerBuyerNeed"><option>Voluntary offset</option><option>Legal compliance</option><option>Brand impact</option><option>Supply chain claim</option></select>
+<label>Demand Geography</label><select id="sellerDemandGeo"><option>Europe</option><option>North America</option><option>GCC</option><option>Asia</option><option>Africa</option></select>
 </div>
 
 <div class="btn-row">
-
-<button class="btn-green"
-onclick="applyFilters()">
-Search
-</button>
-
-<button class="btn-dark"
-onclick="resetFilters()">
-Reset
-</button>
-
+<button class="btn-green" onclick="applyFilters()">Search</button>
+<button class="btn-dark" onclick="resetFilters()">Reset</button>
 </div>
-
 </aside>
 
 <main>
-
 <div class="metrics">
-
-<div class="metric">
-<small>Total Credits Listed</small>
-<div class="num" id="creditsListed">0</div>
-</div>
-
-<div class="metric">
-<small>Credits Sold</small>
-<div class="num" id="creditsSold">0</div>
-</div>
-
-<div class="metric">
-<small>Certificates Redeemed</small>
-<div class="num" id="redeemed">0</div>
-</div>
-
-<div class="metric">
-<small>Avg Burn Rate / Month</small>
-<div class="num" id="burnRate">0</div>
-</div>
-
+<div class="metric"><small>Total Credits Listed</small><div class="num" id="creditsListed">0</div></div>
+<div class="metric"><small>Credits Sold</small><div class="num" id="creditsSold">0</div></div>
+<div class="metric"><small>Certificates Redeemed</small><div class="num" id="redeemed">0</div></div>
+<div class="metric"><small>Avg Burn Rate / Month</small><div class="num" id="burnRate">0</div></div>
 </div>
 
 <div class="chart-wrap">
-
 <canvas id="marketChart"></canvas>
-
-<div class="chart-badge">
-SIMULATED CANDLESTICK MARKET INDEX
-</div>
-
+<div class="chart-badge">SIMULATED CANDLESTICK MARKET INDEX</div>
 <div class="timeframes">
-
 <button onclick="setTimeframe('5m')" id="tf-5m">5m</button>
 <button onclick="setTimeframe('15m')" id="tf-15m">15m</button>
 <button onclick="setTimeframe('30m')" id="tf-30m">30m</button>
@@ -941,308 +137,86 @@ SIMULATED CANDLESTICK MARKET INDEX
 <button onclick="setTimeframe('4h')" id="tf-4h">4h</button>
 <button onclick="setTimeframe('1d')" id="tf-1d">1d</button>
 <button onclick="setTimeframe('1m')" id="tf-1m">1m</button>
-
 </div>
-
 </div>
 
 <div class="panel">
-
-<h2 id="resultsTitle">
-Trading Market
-</h2>
-
-<div class="market-grid"
-id="projectGrid">
+<h2 id="resultsTitle">Trading Market</h2>
+<div class="market-grid" id="projectGrid"></div>
 </div>
-
-</div>
-
 </main>
+
 <aside>
-
-<div class="panel">
-
-<h2>Live Buy / Sell Feed</h2>
-
-<div class="feed" id="feed"></div>
-
-</div>
-
-<div class="panel profile" id="profilePanel">
-
-<h2>Selected Asset</h2>
-
-<div class="meta">
-Click any asset card.
-</div>
-
-</div>
-
+<div class="panel"><h2>Live Buy / Sell Feed</h2><div class="feed" id="feed"></div></div>
+<div class="panel profile" id="profilePanel"><h2>Selected Asset</h2><div class="meta">Click any asset card.</div></div>
 </aside>
-
 </div>
-
 </section>
 
 <section id="portfolio" class="page">
-
-<div class="panel">
-
-<h2>Portfolio Overview</h2>
-
-<div class="metrics" id="portfolioMetrics"></div>
-
-</div>
-
-<br>
-
-<div class="panel">
-
-<h2>Holdings by Project</h2>
-
-<table class="table" id="holdingsTable"></table>
-
-</div>
-
-<br>
-
-<div class="panel">
-
-<h2>Retirement History</h2>
-
-<table class="table" id="retirementTable"></table>
-
-</div>
-
+<div class="panel"><h2>Portfolio Overview</h2><div class="metrics" id="portfolioMetrics"></div></div><br>
+<div class="panel"><h2>Holdings by Project</h2><table class="table" id="holdingsTable"></table></div><br>
+<div class="panel"><h2>Retirement History</h2><table class="table" id="retirementTable"></table></div>
 </section>
 
 <section id="marketplace" class="page">
-
 <div class="panel">
-
 <h2>Global Marketplace</h2>
-
-<p class="meta" style="margin-bottom:14px">
-
-Click any project to open a full project profile page with image, bio, impact, rating, credits and verification history.
-
-</p>
-
+<p class="meta" style="margin-bottom:14px">Click any project to open a full project profile.</p>
 <div class="market-grid" id="marketplaceGrid"></div>
-
 </div>
-
 </section>
 
 <section id="projects" class="page">
-
 <div class="big-layout">
-
-<div class="panel">
-
-<h2>Global Project Directory</h2>
-
-<div class="project-grid" id="projectsDirectory"></div>
-
+<div class="panel"><h2>Global Project Directory</h2><div class="project-grid" id="projectsDirectory"></div></div>
+<div class="panel" id="projectDetail"><h2>Project Profile</h2><div class="meta">Click a project to open the full dossier.</div></div>
 </div>
-
-<div class="panel" id="projectDetail">
-
-<h2>Project Profile</h2>
-
-<div class="meta">
-Click a project to open the full dossier.
-</div>
-
-</div>
-
-</div>
-
 </section>
 
 <section id="certificates" class="page">
-
 <div class="big-layout">
-
-<div class="panel">
-
-<h2>Certificate Vault</h2>
-
-<div class="cert-grid" id="certList"></div>
-
-</div>
-
+<div class="panel"><h2>Certificate Vault</h2><div class="cert-grid" id="certList"></div></div>
 <div id="certPreview"></div>
-
 </div>
-
 </section>
 
 <section id="intelligence" class="page">
-
-<div class="panel">
-
-<h2>Market Intelligence</h2>
-
-<div class="intel-grid" id="intelGrid"></div>
-
-</div>
-
-<br>
-
+<div class="panel"><h2>Market Intelligence</h2><div class="intel-grid" id="intelGrid"></div></div><br>
 <div class="big-layout">
-
-<div class="panel">
-
-<h2>Most Credits Sold</h2>
-
-<table class="table" id="mostSold"></table>
-
-</div>
-
-<div class="panel">
-
-<h2>Cheapest Credits</h2>
-
-<table class="table" id="cheapest"></table>
-
-</div>
-
-</div>
-
-<br>
-
+<div class="panel"><h2>Most Credits Sold</h2><table class="table" id="mostSold"></table></div>
+<div class="panel"><h2>Cheapest Credits</h2><table class="table" id="cheapest"></table></div>
+</div><br>
 <div class="big-layout">
-
-<div class="panel">
-
-<h2>Best Offers</h2>
-
-<div class="feed" id="bestOffers"></div>
-
+<div class="panel"><h2>Best Offers</h2><div class="feed" id="bestOffers"></div></div>
+<div class="panel"><h2>Buyer Demand Intelligence</h2><div class="feed" id="buyerDemand"></div></div>
 </div>
-
-<div class="panel">
-
-<h2>Buyer Demand Intelligence</h2>
-
-<div class="feed" id="buyerDemand"></div>
-
-</div>
-
-</div>
-
 </section>
 
 <div class="modal" id="buyModal">
-
 <div class="modal-box">
-
-<div class="topline">
-
-<h2>Buy Credits</h2>
-
-<button class="btn-dark"
-onclick="closeBuyModal()">
-Close
-</button>
-
-</div>
-
-<div id="buyProjectName"
-class="section-title">
-</div>
-
-<label>Credit Amount</label>
-
-<input id="buyAmount"
-type="number"
-value="1000"
-oninput="updateBuyQuote()" />
-
+<div class="topline"><h2>Buy Credits</h2><button class="btn-dark" onclick="closeBuyModal()">Close</button></div>
+<div id="buyProjectName" class="section-title"></div>
+<label>Credit Amount</label><input id="buyAmount" type="number" value="1000" oninput="updateBuyQuote()" />
 <label>Payment Method</label>
-
 <div class="pay-grid">
-
-<div class="pay active"
-onclick="selectPay(this,'USDC')">
-USDC
-<br>
-<span class="meta">Instant</span>
+<div class="pay active" onclick="selectPay(this,'USDC')">USDC<br><span class="meta">Instant</span></div>
+<div class="pay" onclick="selectPay(this,'USDT')">USDT<br><span class="meta">Instant</span></div>
+<div class="pay" onclick="selectPay(this,'Card')">Credit Card<br><span class="meta">2–5 mins</span></div>
+<div class="pay" onclick="selectPay(this,'Bank')">Bank Transfer<br><span class="meta">1–2 days</span></div>
+<div class="pay" onclick="selectPay(this,'M-Pesa')">M-Pesa<br><span class="meta">Kenya beta</span></div>
+<div class="pay" onclick="selectPay(this,'Wire')">Wire<br><span class="meta">Institutional</span></div>
 </div>
-
-<div class="pay"
-onclick="selectPay(this,'USDT')">
-USDT
-<br>
-<span class="meta">Instant</span>
+<div class="panel" style="box-shadow:none"><h2>Order Quote</h2><div id="buyQuote" class="meta"></div></div>
+<div class="btn-row"><button class="btn-green" onclick="confirmBuy()">Confirm Purchase</button><button class="btn-dark" onclick="closeBuyModal()">Cancel</button></div>
 </div>
-
-<div class="pay"
-onclick="selectPay(this,'Card')">
-Credit Card
-<br>
-<span class="meta">2–5 mins</span>
 </div>
-
-<div class="pay"
-onclick="selectPay(this,'Bank')">
-Bank Transfer
-<br>
-<span class="meta">1–2 days</span>
-</div>
-
-<div class="pay"
-onclick="selectPay(this,'M-Pesa')">
-M-Pesa
-<br>
-<span class="meta">Kenya beta</span>
-</div>
-
-<div class="pay"
-onclick="selectPay(this,'Wire')">
-Wire
-<br>
-<span class="meta">Institutional</span>
-</div>
-
-</div>
-
-<div class="panel" style="box-shadow:none">
-
-<h2>Order Quote</h2>
-
-<div id="buyQuote"
-class="meta">
-</div>
-
-</div>
-
-<div class="btn-row">
-
-<button class="btn-green"
-onclick="confirmBuy()">
-Confirm Purchase
-</button>
-
-<button class="btn-dark"
-onclick="closeBuyModal()">
-Cancel
-</button>
-
-</div>
-
-</div>
-
-</div>
-
 <script>
 
 let currentMode = "buyer";
+let currentPayMethod = "USDC";
 
 const projects = [
-
 {
 id:1,
 name:"Uganda EV Mobility Credits",
@@ -1264,7 +238,6 @@ tags:["EV","schools","urban mobility"],
 image:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=80",
 audit:["2024 EV baseline","2025 Third-party MRV","2026 Blockchain verification"]
 },
-
 {
 id:2,
 name:"Kenya Biochar Soil Project",
@@ -1285,9 +258,558 @@ bio:"Durable carbon removal project converting agricultural waste into biochar f
 tags:["biochar","soil","farm income"],
 image:"https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",
 audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
+},
+{
+id:3,
+name:"Brazil Amazon REDD+",
+country:"Brazil",
+region:"Pará",
+asset:"REDD+",
+price:11.2,
+change:-1.2,
+rating:"A",
+impact:"Biodiversity",
+listed:500000,
+sold:213000,
+redeemed:89200,
+burn:12100,
+quality:81,
+social:77,
+bio:"Forest protection project focused on avoided deforestation, biodiversity monitoring and community forest stewardship.",
+tags:["forest","satellite MRV","biodiversity"],
+image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]
+},
+{
+id:4,
+name:"Indonesia Mangrove Blue Carbon",
+country:"Indonesia",
+region:"Kalimantan",
+asset:"Blue Carbon",
+price:18.9,
+change:3.1,
+rating:"AA",
+impact:"Boreholes",
+listed:210000,
+sold:96500,
+redeemed:31700,
+burn:6700,
+quality:90,
+social:84,
+bio:"Coastal restoration project protecting mangrove ecosystems and combining blue carbon storage with community resilience and water access.",
+tags:["blue carbon","mangroves","restoration"],
+image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
+},
+{
+id:5,
+name:"Ghana Plastic Recovery Credits",
+country:"Ghana",
+region:"Accra",
+asset:"Plastic Recovery",
+price:9.3,
+change:5.6,
+rating:"AA",
+impact:"Jobs created",
+listed:160000,
+sold:104000,
+redeemed:58000,
+burn:7400,
+quality:84,
+social:93,
+bio:"Plastic recovery programme supporting waste collection, recycling and coastal cleanup while creating jobs for informal waste workers.",
+tags:["plastic","waste recovery","coastal cleanup"],
+image:"https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
+audit:["2024 Collection audit","2025 Recycler verification","2026 Proof certificate"]
+}
+];
+
+const certificates = [
+{
+project:"Uganda EV Mobility Credits",
+qty:1250,
+buyer:"Juna Vidyarthi",
+id:"VEA-UG-EV-2026-00129",
+date:"May 2026",
+type:"EV Credits",
+issuer:"Gold Standard",
+verifier:"Third-party MRV + On-chain Proof",
+hash:"0x8f2a...91c4",
+impact:"School fees support, cleaner urban transport and verified EV transition impact."
+},
+{
+project:"Kenya Biochar Soil Project",
+qty:800,
+buyer:"Juna Vidyarthi",
+id:"VEA-KE-BIO-2026-00412",
+date:"April 2026",
+type:"Biochar",
+issuer:"Puro.earth",
+verifier:"Carbon permanence audit",
+hash:"0x44ab...2fe1",
+impact:"Durable carbon removal, farmer income and verified soil health improvement."
+},
+{
+project:"Brazil Amazon REDD+",
+qty:2100,
+buyer:"Juna Vidyarthi",
+id:"VEA-BR-REDD-2026-00077",
+date:"March 2026",
+type:"REDD+",
+issuer:"Verra",
+verifier:"Satellite MRV + Registry Verification",
+hash:"0xa92d...cc72",
+impact:"Avoided deforestation, biodiversity protection and community forest stewardship."
+}
+];
+
+let activeProjects = [...projects];
+
+function showPage(id,el){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll(".nav-link").forEach(n=>n.classList.remove("active"));
+if(el)el.classList.add("active");
 }
 
-];
+function renderTicker(){
+const html = projects.map(p=>`
+<span class="tick">
+<b>${p.asset}</b>
+${p.country}
+<span>$${p.price.toFixed(2)}</span>
+<span class="${p.change>=0?'up':'down'}">
+${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%
+</span>
+</span>
+`).join("");
+document.getElementById("tickerTrack").innerHTML = html + html;
+}
+
+function cardHTML(p){
+return `
+<div class="card" onclick="openProject(${p.id})">
+
+<div class="card-img" style="background-image:url('${p.image}')"></div>
+
+<div class="topline">
+<div>
+<span class="asset">${p.asset}</span>
+<h3>${p.name}</h3>
+</div>
+<div class="rating">${p.rating}</div>
+</div>
+
+<div class="meta">
+${p.region}, ${p.country}<br>
+${p.impact}
+</div>
+
+<div class="price">
+$${p.price.toFixed(2)}
+<span class="${p.change>=0?'up':'down'}" style="font-size:13px">
+${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%
+</span>
+</div>
+
+<div class="meta">
+Available: ${(p.listed-p.sold).toLocaleString()} credits
+</div>
+
+<div class="tags">
+${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+</div>
+
+<div class="btn-row">
+<button class="btn-green" onclick="event.stopPropagation();openBuyModal(${p.id})">Buy Credits</button>
+<button class="btn-dark">View Profile</button>
+</div>
+
+</div>
+`;
+}
+
+function renderProjects(){
+projectGrid.innerHTML = activeProjects.map(cardHTML).join("");
+marketplaceGrid.innerHTML = projects.map(cardHTML).join("");
+projectsDirectory.innerHTML = projects.map(cardHTML).join("");
+}
+
+function openProject(id){
+
+const p = projects.find(x=>x.id===id);
+
+showPage('projects',document.querySelectorAll(".nav-link")[3]);
+
+projectDetail.innerHTML = `
+<h2>Project Profile</h2>
+
+<div class="project-detail-img"
+style="background-image:url('${p.image}')"></div>
+
+<span class="asset">${p.asset}</span>
+
+<div class="detail-title">${p.name}</div>
+
+<div class="meta">
+${p.region}, ${p.country} · Rating ${p.rating}
+</div>
+
+<p class="detail-bio">
+<b>Who they are / what they do:</b><br>
+${p.bio}
+</p>
+
+<p class="detail-bio">
+<b>Impact blurb:</b><br>
+This project creates verified environmental outcomes while linking credit purchases to real-world impact including ${p.impact.toLowerCase()}, local economic value, auditability and transparent retirement records.
+</p>
+
+<div class="metrics">
+<div class="metric"><small>Credits Listed</small><div class="num">${p.listed.toLocaleString()}</div></div>
+<div class="metric"><small>Credits Sold</small><div class="num">${p.sold.toLocaleString()}</div></div>
+<div class="metric"><small>Available</small><div class="num">${(p.listed-p.sold).toLocaleString()}</div></div>
+<div class="metric"><small>Redeemed</small><div class="num">${p.redeemed.toLocaleString()}</div></div>
+</div>
+
+<div class="meta">
+Credits sold: <b style="color:white">${p.asset}</b><br>
+Region: <b style="color:white">${p.region}, ${p.country}</b><br>
+Community impact: <b style="color:white">${p.impact}</b>
+</div>
+
+<br>
+
+<div class="meta">Asset Quality Rating</div>
+<div class="bar"><span style="width:${p.quality}%"></span></div>
+
+<br>
+
+<div class="meta">Social Impact Rating</div>
+<div class="bar"><span style="width:${p.social}%"></span></div>
+
+<div class="audit">
+${p.audit.map(a=>`<div>✓ ${a}</div>`).join("")}
+</div>
+
+<div class="btn-row">
+<button class="btn-green" onclick="openBuyModal(${p.id})">Buy Credits</button>
+<button class="btn-dark">View Verification Proof</button>
+</div>
+`;
+}
+
+function renderCertificates(){
+
+certList.innerHTML = certificates.map(c=>`
+<div class="card" onclick="selectCert('${c.id}')">
+<span class="asset">${c.type}</span>
+<h3>${c.project}</h3>
+<div class="meta">
+${c.qty.toLocaleString()} credits retired<br>
+${c.date}<br>
+${c.id}
+</div>
+</div>
+`).join("");
+
+selectCert(certificates[0].id);
+}
+
+function selectCert(id){
+
+const c = certificates.find(x=>x.id===id);
+
+certPreview.innerHTML = `
+<div class="cert-preview">
+
+<div class="cert-kicker">
+Verified Environmental Asset Certificate
+</div>
+
+<h1>Certificate of Credit Retirement</h1>
+
+<p>
+This certifies that <b>${c.buyer}</b>
+retired
+<b>${c.qty.toLocaleString()} ${c.type}</b>
+from <b>${c.project}</b>.
+</p>
+
+<div class="issuer-pill">
+★ Issued by ${c.issuer}
+</div>
+
+<div class="cert-row">
+
+<div class="cert-box">
+<small>Certificate ID</small>
+<b>${c.id}</b>
+</div>
+
+<div class="cert-box">
+<small>Retirement Date</small>
+<b>${c.date}</b>
+</div>
+
+<div class="cert-box">
+<small>Issuer / Registry</small>
+<b>${c.issuer}</b>
+</div>
+
+<div class="cert-box">
+<small>Verifier</small>
+<b>${c.verifier}</b>
+</div>
+
+<div class="cert-box">
+<small>Credit Type</small>
+<b>${c.type}</b>
+</div>
+
+<div class="cert-box">
+<small>Proof Hash</small>
+<b>${c.hash}</b>
+</div>
+
+</div>
+
+<div class="gold-seal">
+<b>Impact Statement:</b><br>
+${c.impact}
+<br><br>
+This record represents a verified retirement claim linked to issuer data, audit evidence and digital proof.
+</div>
+
+</div>
+`;
+}
+
+function openBuyModal(id){
+buyModal.classList.add("active");
+const p = projects.find(x=>x.id===id);
+buyProjectName.innerHTML = p.name;
+updateBuyQuote();
+}
+
+function closeBuyModal(){
+buyModal.classList.remove("active");
+}
+
+function selectPay(el,method){
+document.querySelectorAll(".pay").forEach(x=>x.classList.remove("active"));
+el.classList.add("active");
+currentPayMethod = method;
+updateBuyQuote();
+}
+
+function updateBuyQuote(){
+
+const amount = Number(document.getElementById("buyAmount").value||0);
+
+buyQuote.innerHTML = `
+${amount.toLocaleString()} credits<br>
+Estimated Total: <b style="color:white">$${(amount*14.2).toLocaleString()}</b><br>
+Settlement Method: <b style="color:white">${currentPayMethod}</b>
+`;
+
+}
+
+function confirmBuy(){
+alert("Purchase successful. Credits added to portfolio.");
+closeBuyModal();
+}
+
+function setMode(mode){
+
+currentMode = mode;
+
+buyerFilters.style.display = mode==="buyer" ? "block":"none";
+sellerFilters.style.display = mode==="seller" ? "block":"none";
+
+buyerBtn.classList.toggle("active",mode==="buyer");
+sellerBtn.classList.toggle("active",mode==="seller");
+
+resetFilters();
+}
+
+function applyFilters(){
+
+if(currentMode==="buyer"){
+
+const asset=assetFilter.value;
+const country=geoFilter.value;
+const impact=impactFilter.value;
+const search=searchInput.value.toLowerCase();
+
+activeProjects=projects.filter(p=>{
+
+const blob=`${p.name} ${p.country} ${p.region} ${p.asset} ${p.impact} ${p.bio}`.toLowerCase();
+
+return (
+(asset==="all"||p.asset===asset)&&
+(country==="all"||p.country===country)&&
+(impact==="all"||p.impact===impact)&&
+(!search||blob.includes(search))
+);
+
+});
+
+resultsTitle.textContent =
+`${activeProjects.length} Matching Buyer Projects`;
+
+}else{
+
+const buyerType=sellerBuyerType.value;
+const buyerNeed=sellerBuyerNeed.value;
+const demandGeo=sellerDemandGeo.value;
+
+activeProjects = projects.map(p=>{
+
+let score = 0;
+
+if(buyerNeed.includes("Voluntary") && ["Biochar","REDD+","Blue Carbon","Plastic Recovery","EV Credits"].includes(p.asset)) score+=3;
+
+if(buyerType.includes("Airline") && ["REDD+","Blue Carbon","Biochar"].includes(p.asset)) score+=2;
+
+if(demandGeo==="Europe" && ["Kenya","Brazil","Indonesia","Ghana"].includes(p.country)) score+=1;
+
+return {...p,sellerScore:score};
+
+}).filter(p=>p.sellerScore>0)
+.sort((a,b)=>b.sellerScore-a.sellerScore);
+
+resultsTitle.textContent =
+`${activeProjects.length} Seller Matches`;
+
+}
+
+renderProjects();
+}
+
+function resetFilters(){
+activeProjects=[...projects];
+renderProjects();
+}
+
+function populateFilters(){
+
+[...new Set(projects.map(p=>p.asset))]
+.forEach(v=>assetFilter.innerHTML+=`<option>${v}</option>`);
+
+[...new Set(projects.map(p=>p.country))]
+.forEach(v=>geoFilter.innerHTML+=`<option>${v}</option>`);
+
+[...new Set(projects.map(p=>p.impact))]
+.forEach(v=>impactFilter.innerHTML+=`<option>${v}</option>`);
+
+}
+
+function fakeFeed(){
+
+const p=projects[Math.floor(Math.random()*projects.length)];
+const isBuy=Math.random()>.4;
+const qty=Math.floor(Math.random()*900)+50;
+
+const div=document.createElement("div");
+
+div.className=`feed-item ${isBuy?'feed-buy':'feed-sell'}`;
+
+div.innerHTML=`
+<strong class="${isBuy?'up':'down'}">
+${isBuy?'BUY':'SELL'} ${qty.toLocaleString()} ${p.asset}
+</strong><br>
+${p.name}<br>
+<span class="meta">${p.country} · just now</span>
+`;
+
+feed.prepend(div);
+
+while(feed.children.length>12){
+feed.removeChild(feed.lastChild);
+}
+}
+
+function renderIntelligence(){
+
+const sold=[...projects].sort((a,b)=>b.sold-a.sold);
+const cheap=[...projects].sort((a,b)=>a.price-b.price);
+
+mostSold.innerHTML =
+`<tr><th>Project</th><th>Sold</th><th>Price</th><th>Rating</th></tr>` +
+sold.map(p=>`
+<tr>
+<td onclick="openProject(${p.id})" class="click-name">${p.name}</td>
+<td>${p.sold.toLocaleString()}</td>
+<td>$${p.price.toFixed(2)}</td>
+<td>${p.rating}</td>
+</tr>
+`).join("");
+
+cheapest.innerHTML =
+`<tr><th>Project</th><th>Asset</th><th>Price</th><th>Impact</th></tr>` +
+cheap.map(p=>`
+<tr>
+<td onclick="openProject(${p.id})" class="click-name">${p.name}</td>
+<td>${p.asset}</td>
+<td>$${p.price.toFixed(2)}</td>
+<td>${p.impact}</td>
+</tr>
+`).join("");
+
+bestOffers.innerHTML =
+cheap.map(p=>`
+<div class="feed-item feed-buy"
+onclick="openProject(${p.id})"
+style="cursor:pointer">
+<b style="color:#00ff9c">${p.name}</b><br>
+<span class="meta">${p.asset} · $${p.price.toFixed(2)} · ${p.rating}</span>
+</div>
+`).join("");
+
+buyerDemand.innerHTML =
+sold.map(p=>`
+<div class="feed-item">
+<b>${p.country}</b><br>
+<span class="meta">Strong demand for ${p.asset}</span>
+</div>
+`).join("");
+
+intelGrid.innerHTML = `
+<div class="card"><h3>Most Active Region</h3><div class="price">Brazil</div></div>
+<div class="card"><h3>Fastest Growing Asset</h3><div class="price">Biochar</div></div>
+<div class="card"><h3>Highest Social Rating</h3><div class="price">Plastic Recovery</div></div>
+<div class="card"><h3>Most Redeemed Credits</h3><div class="price">REDD+</div></div>
+`;
+
+}
+
+function updateMetrics(){
+
+creditsListed.innerHTML =
+projects.reduce((a,b)=>a+b.listed,0).toLocaleString();
+
+creditsSold.innerHTML =
+projects.reduce((a,b)=>a+b.sold,0).toLocaleString();
+
+redeemed.innerHTML =
+projects.reduce((a,b)=>a+b.redeemed,0).toLocaleString();
+
+burnRate.innerHTML =
+projects.reduce((a,b)=>a+b.burn,0).toLocaleString();
+
+}
+
+renderTicker();
+renderProjects();
+renderCertificates();
+populateFilters();
+renderIntelligence();
+updateMetrics();
+
+for(let i=0;i<6;i++) fakeFeed();
+
+setInterval(fakeFeed,10000);
 
 </script>
 
