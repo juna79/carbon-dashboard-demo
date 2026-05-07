@@ -6,6 +6,7 @@
 <title>Environmental Assets Terminal</title>
 
 <style>
+
 :root{
   --bg:#050706;
   --panel:#0b1110;
@@ -20,10 +21,15 @@
   --white:#f1fff8;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
-  background:radial-gradient(circle at top left,#143326 0,#050706 36%,#020303 100%);
+  background:
+    radial-gradient(circle at top left,#143326 0,#050706 36%,#020303 100%);
   color:var(--white);
   font-family:Inter,Arial,sans-serif;
 }
@@ -82,8 +88,15 @@ body{
   font-weight:900;
 }
 
-.username{font-size:14px;color:#aaa}
-.icon{color:#888;font-size:20px}
+.username{
+  font-size:14px;
+  color:#aaa;
+}
+
+.icon{
+  color:#888;
+  font-size:20px;
+}
 
 .ticker{
   overflow:hidden;
@@ -106,16 +119,27 @@ body{
   font-size:13px;
 }
 
-.up{color:var(--green)}
-.down{color:var(--red)}
+.up{
+  color:var(--green);
+}
+
+.down{
+  color:var(--red);
+}
 
 @keyframes scroll{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
 
-.page{display:none;padding:18px}
-.page.active{display:block}
+.page{
+  display:none;
+  padding:18px;
+}
+
+.page.active{
+  display:block;
+}
 
 .grid-main{
   display:grid;
@@ -130,7 +154,8 @@ body{
 }
 
 .panel{
-  background:linear-gradient(180deg,#101917,#07100e);
+  background:
+    linear-gradient(180deg,#101917,#07100e);
   border:1px solid var(--line);
   border-radius:18px;
   padding:16px;
@@ -176,10 +201,26 @@ button{
   cursor:pointer;
 }
 
-.btn-green{background:var(--green);color:#00110a}
-.btn-dark{background:#18231f;color:var(--white);border:1px solid var(--line)}
-.btn-red{background:var(--red);color:#fff}
-.btn-gold{background:var(--gold);color:#191100}
+.btn-green{
+  background:var(--green);
+  color:#00110a;
+}
+
+.btn-dark{
+  background:#18231f;
+  color:var(--white);
+  border:1px solid var(--line);
+}
+
+.btn-red{
+  background:var(--red);
+  color:#fff;
+}
+
+.btn-gold{
+  background:var(--gold);
+  color:#191100;
+}
 
 .mode-toggle{
   display:grid;
@@ -207,7 +248,10 @@ button{
   padding:16px;
 }
 
-.metric small{color:var(--muted)}
+.metric small{
+  color:var(--muted);
+}
+
 .metric .num{
   font-size:24px;
   font-weight:900;
@@ -242,28 +286,43 @@ canvas{
 
 .timeframes{
   position:absolute;
-  top:14px;
-  right:14px;
+  top:18px;
+  right:18px;
   display:flex;
-  gap:6px;
-  flex-wrap:wrap;
+  gap:10px;
+  flex-wrap:nowrap;
+  z-index:5;
 }
 
 .timeframes button{
-  background:#111b18;
-  border:1px solid var(--line);
-  color:var(--muted);
-  padding:7px 9px;
-  font-size:11px;
+  min-width:58px;
+  height:46px;
+  border-radius:16px;
+  background:#0b1412;
+  border:1px solid rgba(0,255,156,.18);
+  color:#a9b7b1;
+  font-size:15px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.timeframes button:hover{
+  border-color:rgba(0,255,156,.5);
+  color:white;
 }
 
 .timeframes button.active{
-  color:var(--green);
-  border-color:var(--green);
-  background:rgba(0,255,156,.1);
+  color:#00ff9c;
+  border-color:#00ff9c;
+  background:rgba(0,255,156,.08);
+  box-shadow:0 0 18px rgba(0,255,156,.15);
 }
 
-.market-grid,.project-grid,.holdings,.intel-grid,.cert-grid{
+.market-grid,
+.project-grid,
+.holdings,
+.intel-grid,
+.cert-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:14px;
@@ -374,7 +433,9 @@ canvas{
   background:rgba(255,92,92,.06);
 }
 
-.profile{margin-top:16px}
+.profile{
+  margin-top:16px;
+}
 
 .bar{
   height:8px;
@@ -387,7 +448,8 @@ canvas{
 .bar span{
   display:block;
   height:100%;
-  background:linear-gradient(90deg,var(--green),var(--gold));
+  background:
+    linear-gradient(90deg,var(--green),var(--gold));
 }
 
 .audit{
@@ -410,8 +472,7 @@ canvas{
   border:1px solid var(--line);
   margin-bottom:16px;
 }
-
-.detail-title{
+  .detail-title{
   font-size:31px;
   margin-bottom:8px;
 }
@@ -433,7 +494,8 @@ canvas{
   border-collapse:collapse;
 }
 
-.table th,.table td{
+.table th,
+.table td{
   border-bottom:1px solid var(--line);
   padding:12px;
   text-align:left;
@@ -450,11 +512,11 @@ canvas{
   background:rgba(0,255,156,.04);
 }
 
-/* PREMIUM CERTIFICATE */
 .cert-preview{
   background:
     radial-gradient(circle at 80% 20%, rgba(246,200,95,.35), transparent 20%),
     linear-gradient(135deg,#fff8e6,#f4e3b4 48%,#fffaf0);
+
   color:#171209;
   border-radius:26px;
   padding:38px;
@@ -477,7 +539,10 @@ canvas{
   place-items:center;
   font-size:42px;
   color:#fff3b0;
-  background:radial-gradient(circle,#f8d978,#b88918);
+
+  background:
+    radial-gradient(circle,#f8d978,#b88918);
+
   border:5px solid #fff1a8;
   box-shadow:0 0 35px rgba(184,137,24,.45);
 }
@@ -570,7 +635,9 @@ canvas{
   padding:18px;
 }
 
-.modal.active{display:flex}
+.modal.active{
+  display:flex;
+}
 
 .modal-box{
   width:min(640px,96vw);
@@ -602,12 +669,29 @@ canvas{
 }
 
 @media(max-width:1150px){
-  .grid-main,.big-layout{grid-template-columns:1fr}
-  .metrics,.market-grid,.project-grid,.holdings,.intel-grid,.cert-grid{grid-template-columns:1fr 1fr}
-  .nav-left{gap:14px;overflow:auto}
+
+  .grid-main,
+  .big-layout{
+    grid-template-columns:1fr;
+  }
+
+  .metrics,
+  .market-grid,
+  .project-grid,
+  .holdings,
+  .intel-grid,
+  .cert-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .nav-left{
+    gap:14px;
+    overflow:auto;
+  }
 }
 
 @media(max-width:720px){
+
   .topnav{
     height:auto;
     align-items:flex-start;
@@ -616,37 +700,101 @@ canvas{
     padding:12px;
   }
 
-  .nav-left,.nav-right{gap:14px;flex-wrap:wrap}
-  .metrics,.market-grid,.project-grid,.holdings,.intel-grid,.cert-grid,.pay-grid,.cert-row{grid-template-columns:1fr}
-  .timeframes{position:static;margin-top:10px}
-  .project-detail-img{height:230px}
-  .cert-preview h1{max-width:100%;font-size:28px}
-  .cert-preview:before{position:relative;right:auto;top:auto;margin-bottom:20px}
+  .nav-left,
+  .nav-right{
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  .metrics,
+  .market-grid,
+  .project-grid,
+  .holdings,
+  .intel-grid,
+  .cert-grid,
+  .pay-grid,
+  .cert-row{
+    grid-template-columns:1fr;
+  }
+
+  .timeframes{
+    position:static;
+    margin-top:10px;
+  }
+
+  .project-detail-img{
+    height:230px;
+  }
+
+  .cert-preview h1{
+    max-width:100%;
+    font-size:28px;
+  }
+
+  .cert-preview:before{
+    position:relative;
+    right:auto;
+    top:auto;
+    margin-bottom:20px;
+  }
 }
+
 </style>
 </head>
 
 <body>
 
 <nav class="topnav">
+
   <div class="nav-left">
-    <div class="nav-link active" onclick="showPage('trade',this)">Trade</div>
-    <div class="nav-link" onclick="showPage('portfolio',this)">Portfolio</div>
-    <div class="nav-link" onclick="showPage('marketplace',this)">Marketplace</div>
-    <div class="nav-link" onclick="showPage('projects',this)">Projects</div>
-    <div class="nav-link" onclick="showPage('certificates',this)">Certificates</div>
-    <div class="nav-link" onclick="showPage('intelligence',this)">Intelligence</div>
-    <div class="nav-link" onclick="showPage('more',this)">More⌄</div>
+
+    <div class="nav-link active"
+      onclick="showPage('trade',this)">
+      Trade
+    </div>
+
+    <div class="nav-link"
+      onclick="showPage('portfolio',this)">
+      Portfolio
+    </div>
+
+    <div class="nav-link"
+      onclick="showPage('marketplace',this)">
+      Marketplace
+    </div>
+
+    <div class="nav-link"
+      onclick="showPage('projects',this)">
+      Projects
+    </div>
+
+    <div class="nav-link"
+      onclick="showPage('certificates',this)">
+      Certificates
+    </div>
+
+    <div class="nav-link"
+      onclick="showPage('intelligence',this)">
+      Intelligence
+    </div>
+
   </div>
 
   <div class="nav-right">
-    <button class="deposit" onclick="openBuyModal(projects[0])">Deposit</button>
+
+    <button class="deposit"
+      onclick="openBuyModal(1)">
+      Deposit
+    </button>
+
     <div class="avatar">J</div>
-    <div class="username">Juna Vidyarthi⌄</div>
-    <div class="icon">▣</div>
-    <div class="icon">◎</div>
-    <div class="icon">⚙</div>
+
+    <div class="username">
+      Juna Vidyarthi⌄
+    </div>
+
   </div>
+
 </nav>
 
 <section class="ticker">
@@ -654,244 +802,447 @@ canvas{
 </section>
 
 <section id="trade" class="page active">
-  <div class="grid-main">
 
-    <aside class="panel">
-      <h2>Discovery Mode</h2>
+<div class="grid-main">
 
-      <div class="mode-toggle">
-        <button id="buyerBtn" class="active" onclick="setMode('buyer')">Buyer</button>
-        <button id="sellerBtn" class="btn-dark" onclick="setMode('seller')">Seller</button>
-      </div>
+<aside class="panel">
 
-      <div id="buyerFilters">
-        <label>Asset Type</label>
-        <select id="assetFilter"><option value="all">All Assets</option></select>
+<h2>Discovery Mode</h2>
 
-        <label>Country</label>
-        <select id="geoFilter"><option value="all">Global</option></select>
+<div class="mode-toggle">
 
-        <label>Community Impact</label>
-        <select id="impactFilter"><option value="all">All Impact</option></select>
+<button id="buyerBtn"
+class="active"
+onclick="setMode('buyer')">
+Buyer
+</button>
 
-        <label>Search</label>
-        <input id="searchInput" placeholder="Uganda EV, plastic, boreholes..." />
-      </div>
+<button id="sellerBtn"
+class="btn-dark"
+onclick="setMode('seller')">
+Seller
+</button>
 
-      <div id="sellerFilters" style="display:none">
-        <label>Buyer Type</label>
-        <select>
-          <option>Corporate ESG Buyer</option>
-          <option>Airline</option>
-          <option>Retail Brand</option>
-          <option>Compliance Buyer</option>
-          <option>Luxury Travel Group</option>
-        </select>
+</div>
 
-        <label>Buyer Need</label>
-        <select>
-          <option>Voluntary offset</option>
-          <option>Legal compliance</option>
-          <option>Brand impact</option>
-          <option>Supply chain claim</option>
-        </select>
+<div id="buyerFilters">
 
-        <label>Demand Geography</label>
-        <select>
-          <option>Europe</option>
-          <option>North America</option>
-          <option>GCC</option>
-          <option>Asia</option>
-          <option>Africa</option>
-        </select>
-      </div>
+<label>Asset Type</label>
+<select id="assetFilter">
+<option value="all">All Assets</option>
+</select>
 
-      <div class="btn-row">
-        <button class="btn-green" onclick="applyFilters()">Search</button>
-        <button class="btn-dark" onclick="resetFilters()">Reset</button>
-      </div>
-    </aside>
+<label>Country</label>
+<select id="geoFilter">
+<option value="all">Global</option>
+</select>
 
-    <main>
-      <div class="metrics">
-        <div class="metric"><small>Total Credits Listed</small><div class="num" id="creditsListed">0</div></div>
-        <div class="metric"><small>Credits Sold</small><div class="num" id="creditsSold">0</div></div>
-        <div class="metric"><small>Certificates Redeemed</small><div class="num" id="redeemed">0</div></div>
-        <div class="metric"><small>Avg Burn Rate / Month</small><div class="num" id="burnRate">0</div></div>
-      </div>
+<label>Community Impact</label>
+<select id="impactFilter">
+<option value="all">All Impact</option>
+</select>
 
-      <div class="chart-wrap">
-        <canvas id="marketChart"></canvas>
-        <div class="chart-badge">SIMULATED CANDLESTICK MARKET INDEX</div>
+<label>Search</label>
 
-        <div class="timeframes">
-          <button onclick="setTimeframe('5m')" id="tf-5m">5m</button>
-          <button onclick="setTimeframe('15m')" id="tf-15m">15m</button>
-          <button onclick="setTimeframe('30m')" id="tf-30m">30m</button>
-          <button onclick="setTimeframe('1h')" id="tf-1h">1h</button>
-          <button onclick="setTimeframe('4h')" id="tf-4h">4h</button>
-          <button onclick="setTimeframe('1d')" id="tf-1d">1d</button>
-          <button onclick="setTimeframe('1m')" id="tf-1m">1m</button>
-        </div>
-      </div>
+<input id="searchInput"
+placeholder="Uganda EV, plastic, boreholes..." />
 
-      <div class="panel">
-        <h2 id="resultsTitle">Trading Market</h2>
-        <div class="market-grid" id="projectGrid"></div>
-      </div>
-    </main>
+</div>
 
-    <aside>
-      <div class="panel">
-        <h2>Live Buy / Sell Feed</h2>
-        <div class="feed" id="feed"></div>
-      </div>
+<div id="sellerFilters" style="display:none">
 
-      <div class="panel profile" id="profilePanel">
-        <h2>Selected Asset</h2>
-        <div class="meta">Click any asset card.</div>
-      </div>
-    </aside>
+<label>Buyer Type</label>
 
-  </div>
+<select>
+<option>Corporate ESG Buyer</option>
+<option>Airline</option>
+<option>Retail Brand</option>
+<option>Compliance Buyer</option>
+<option>Luxury Travel Group</option>
+</select>
+
+<label>Buyer Need</label>
+
+<select>
+<option>Voluntary offset</option>
+<option>Legal compliance</option>
+<option>Brand impact</option>
+<option>Supply chain claim</option>
+</select>
+
+<label>Demand Geography</label>
+
+<select>
+<option>Europe</option>
+<option>North America</option>
+<option>GCC</option>
+<option>Asia</option>
+<option>Africa</option>
+</select>
+
+</div>
+
+<div class="btn-row">
+
+<button class="btn-green"
+onclick="applyFilters()">
+Search
+</button>
+
+<button class="btn-dark"
+onclick="resetFilters()">
+Reset
+</button>
+
+</div>
+
+</aside>
+
+<main>
+
+<div class="metrics">
+
+<div class="metric">
+<small>Total Credits Listed</small>
+<div class="num" id="creditsListed">0</div>
+</div>
+
+<div class="metric">
+<small>Credits Sold</small>
+<div class="num" id="creditsSold">0</div>
+</div>
+
+<div class="metric">
+<small>Certificates Redeemed</small>
+<div class="num" id="redeemed">0</div>
+</div>
+
+<div class="metric">
+<small>Avg Burn Rate / Month</small>
+<div class="num" id="burnRate">0</div>
+</div>
+
+</div>
+
+<div class="chart-wrap">
+
+<canvas id="marketChart"></canvas>
+
+<div class="chart-badge">
+SIMULATED CANDLESTICK MARKET INDEX
+</div>
+
+<div class="timeframes">
+
+<button onclick="setTimeframe('5m')" id="tf-5m">5m</button>
+<button onclick="setTimeframe('15m')" id="tf-15m">15m</button>
+<button onclick="setTimeframe('30m')" id="tf-30m">30m</button>
+<button onclick="setTimeframe('1h')" id="tf-1h">1h</button>
+<button onclick="setTimeframe('4h')" id="tf-4h">4h</button>
+<button onclick="setTimeframe('1d')" id="tf-1d">1d</button>
+<button onclick="setTimeframe('1m')" id="tf-1m">1m</button>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2 id="resultsTitle">
+Trading Market
+</h2>
+
+<div class="market-grid"
+id="projectGrid">
+</div>
+
+</div>
+
+</main>
+<aside>
+
+<div class="panel">
+
+<h2>Live Buy / Sell Feed</h2>
+
+<div class="feed" id="feed"></div>
+
+</div>
+
+<div class="panel profile" id="profilePanel">
+
+<h2>Selected Asset</h2>
+
+<div class="meta">
+Click any asset card.
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
 </section>
 
 <section id="portfolio" class="page">
-  <div class="panel">
-    <h2>Portfolio Overview</h2>
-    <div class="metrics" id="portfolioMetrics"></div>
-  </div>
 
-  <br>
+<div class="panel">
 
-  <div class="panel">
-    <h2>Holdings by Project</h2>
-    <table class="table" id="holdingsTable"></table>
-  </div>
+<h2>Portfolio Overview</h2>
 
-  <br>
+<div class="metrics" id="portfolioMetrics"></div>
 
-  <div class="panel">
-    <h2>Retirement History</h2>
-    <table class="table" id="retirementTable"></table>
-  </div>
+</div>
+
+<br>
+
+<div class="panel">
+
+<h2>Holdings by Project</h2>
+
+<table class="table" id="holdingsTable"></table>
+
+</div>
+
+<br>
+
+<div class="panel">
+
+<h2>Retirement History</h2>
+
+<table class="table" id="retirementTable"></table>
+
+</div>
+
 </section>
 
 <section id="marketplace" class="page">
-  <div class="panel">
-    <h2>Global Marketplace</h2>
-    <p class="meta" style="margin-bottom:14px">
-      Click any project to open a full project profile page with image, bio, impact, rating, credits and verification history.
-    </p>
-    <div class="market-grid" id="marketplaceGrid"></div>
-  </div>
+
+<div class="panel">
+
+<h2>Global Marketplace</h2>
+
+<p class="meta" style="margin-bottom:14px">
+
+Click any project to open a full project profile page with image, bio, impact, rating, credits and verification history.
+
+</p>
+
+<div class="market-grid" id="marketplaceGrid"></div>
+
+</div>
+
 </section>
 
 <section id="projects" class="page">
-  <div class="big-layout">
-    <div class="panel">
-      <h2>Global Project Directory</h2>
-      <div class="project-grid" id="projectsDirectory"></div>
-    </div>
 
-    <div class="panel" id="projectDetail">
-      <h2>Project Profile</h2>
-      <div class="meta">Click a project to open the full dossier.</div>
-    </div>
-  </div>
+<div class="big-layout">
+
+<div class="panel">
+
+<h2>Global Project Directory</h2>
+
+<div class="project-grid" id="projectsDirectory"></div>
+
+</div>
+
+<div class="panel" id="projectDetail">
+
+<h2>Project Profile</h2>
+
+<div class="meta">
+Click a project to open the full dossier.
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <section id="certificates" class="page">
-  <div class="big-layout">
-    <div class="panel">
-      <h2>Certificate Vault</h2>
-      <div class="cert-grid" id="certList"></div>
-    </div>
 
-    <div id="certPreview"></div>
-  </div>
+<div class="big-layout">
+
+<div class="panel">
+
+<h2>Certificate Vault</h2>
+
+<div class="cert-grid" id="certList"></div>
+
+</div>
+
+<div id="certPreview"></div>
+
+</div>
+
 </section>
 
 <section id="intelligence" class="page">
-  <div class="panel">
-    <h2>Market Intelligence</h2>
-    <div class="intel-grid" id="intelGrid"></div>
-  </div>
 
-  <br>
+<div class="panel">
 
-  <div class="big-layout">
-    <div class="panel">
-      <h2>Most Credits Sold</h2>
-      <table class="table" id="mostSold"></table>
-    </div>
+<h2>Market Intelligence</h2>
 
-    <div class="panel">
-      <h2>Cheapest Credits</h2>
-      <table class="table" id="cheapest"></table>
-    </div>
-  </div>
+<div class="intel-grid" id="intelGrid"></div>
 
-  <br>
+</div>
 
-  <div class="big-layout">
-    <div class="panel">
-      <h2>Best Offers</h2>
-      <div class="feed" id="bestOffers"></div>
-    </div>
+<br>
 
-    <div class="panel">
-      <h2>Buyer Demand Intelligence</h2>
-      <div class="feed" id="buyerDemand"></div>
-    </div>
-  </div>
-</section>
+<div class="big-layout">
 
-<section id="more" class="page">
-  <div class="panel">
-    <h2>More</h2>
-    <p class="meta">
-      API access, reports, seller onboarding, buyer verification, admin tools and integrations can live here.
-    </p>
-  </div>
+<div class="panel">
+
+<h2>Most Credits Sold</h2>
+
+<table class="table" id="mostSold"></table>
+
+</div>
+
+<div class="panel">
+
+<h2>Cheapest Credits</h2>
+
+<table class="table" id="cheapest"></table>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="big-layout">
+
+<div class="panel">
+
+<h2>Best Offers</h2>
+
+<div class="feed" id="bestOffers"></div>
+
+</div>
+
+<div class="panel">
+
+<h2>Buyer Demand Intelligence</h2>
+
+<div class="feed" id="buyerDemand"></div>
+
+</div>
+
+</div>
+
 </section>
 
 <div class="modal" id="buyModal">
-  <div class="modal-box">
-    <div class="topline">
-      <h2>Buy Credits</h2>
-      <button class="btn-dark" onclick="closeBuyModal()">Close</button>
-    </div>
 
-    <div id="buyProjectName" class="section-title"></div>
+<div class="modal-box">
 
-    <label>Credit Amount</label>
-    <input id="buyAmount" type="number" value="1000" oninput="updateBuyQuote()" />
+<div class="topline">
 
-    <label>Payment Method</label>
-    <div class="pay-grid">
-      <div class="pay active" onclick="selectPay(this,'USDC')">USDC<br><span class="meta">Instant</span></div>
-      <div class="pay" onclick="selectPay(this,'USDT')">USDT<br><span class="meta">Instant</span></div>
-      <div class="pay" onclick="selectPay(this,'Card')">Credit Card<br><span class="meta">2–5 mins</span></div>
-      <div class="pay" onclick="selectPay(this,'Bank')">Bank Transfer<br><span class="meta">1–2 days</span></div>
-      <div class="pay" onclick="selectPay(this,'M-Pesa')">M-Pesa<br><span class="meta">Kenya beta</span></div>
-      <div class="pay" onclick="selectPay(this,'Wire')">Wire<br><span class="meta">Institutional</span></div>
-    </div>
+<h2>Buy Credits</h2>
 
-    <div class="panel" style="box-shadow:none">
-      <h2>Order Quote</h2>
-      <div id="buyQuote" class="meta"></div>
-    </div>
+<button class="btn-dark"
+onclick="closeBuyModal()">
+Close
+</button>
 
-    <div class="btn-row">
-      <button class="btn-green" onclick="confirmBuy()">Confirm Purchase</button>
-      <button class="btn-dark" onclick="closeBuyModal()">Cancel</button>
-    </div>
-  </div>
 </div>
+
+<div id="buyProjectName"
+class="section-title">
+</div>
+
+<label>Credit Amount</label>
+
+<input id="buyAmount"
+type="number"
+value="1000"
+oninput="updateBuyQuote()" />
+
+<label>Payment Method</label>
+
+<div class="pay-grid">
+
+<div class="pay active"
+onclick="selectPay(this,'USDC')">
+USDC
+<br>
+<span class="meta">Instant</span>
+</div>
+
+<div class="pay"
+onclick="selectPay(this,'USDT')">
+USDT
+<br>
+<span class="meta">Instant</span>
+</div>
+
+<div class="pay"
+onclick="selectPay(this,'Card')">
+Credit Card
+<br>
+<span class="meta">2–5 mins</span>
+</div>
+
+<div class="pay"
+onclick="selectPay(this,'Bank')">
+Bank Transfer
+<br>
+<span class="meta">1–2 days</span>
+</div>
+
+<div class="pay"
+onclick="selectPay(this,'M-Pesa')">
+M-Pesa
+<br>
+<span class="meta">Kenya beta</span>
+</div>
+
+<div class="pay"
+onclick="selectPay(this,'Wire')">
+Wire
+<br>
+<span class="meta">Institutional</span>
+</div>
+
+</div>
+
+<div class="panel" style="box-shadow:none">
+
+<h2>Order Quote</h2>
+
+<div id="buyQuote"
+class="meta">
+</div>
+
+</div>
+
+<div class="btn-row">
+
+<button class="btn-green"
+onclick="confirmBuy()">
+Confirm Purchase
+</button>
+
+<button class="btn-dark"
+onclick="closeBuyModal()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 <script>
 
+let currentMode = "buyer";
+
 const projects = [
+
 {
 id:1,
 name:"Uganda EV Mobility Credits",
@@ -934,482 +1285,9 @@ bio:"Durable carbon removal project converting agricultural waste into biochar f
 tags:["biochar","soil","farm income"],
 image:"https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",
 audit:["2024 Feedstock audit","2025 Carbon permanence","2026 Farmer verification"]
-},
-
-{
-id:3,
-name:"Brazil Amazon REDD+",
-country:"Brazil",
-region:"Pará",
-asset:"REDD+",
-price:11.2,
-change:-1.2,
-rating:"A",
-impact:"Biodiversity",
-listed:500000,
-sold:213000,
-redeemed:89200,
-burn:12100,
-quality:81,
-social:77,
-bio:"Forest protection project focused on avoided deforestation, biodiversity monitoring and community forest stewardship.",
-tags:["forest","satellite MRV","biodiversity"],
-image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
-audit:["2023 Forest survey","2025 Satellite review","2026 Community report"]
-},
-
-{
-id:4,
-name:"Indonesia Mangrove Blue Carbon",
-country:"Indonesia",
-region:"Kalimantan",
-asset:"Blue Carbon",
-price:18.9,
-change:3.1,
-rating:"AA",
-impact:"Boreholes",
-listed:210000,
-sold:96500,
-redeemed:31700,
-burn:6700,
-quality:90,
-social:84,
-bio:"Coastal restoration project protecting mangrove ecosystems and combining blue carbon storage with community resilience and water access.",
-tags:["blue carbon","mangroves","restoration"],
-image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-audit:["2024 Coastal baseline","2025 Registry verification","2026 Water impact review"]
-},
-
-{
-id:5,
-name:"Ghana Plastic Recovery Credits",
-country:"Ghana",
-region:"Accra",
-asset:"Plastic Recovery",
-price:9.3,
-change:5.6,
-rating:"AA",
-impact:"Jobs created",
-listed:160000,
-sold:104000,
-redeemed:58000,
-burn:7400,
-quality:84,
-social:93,
-bio:"Plastic recovery programme supporting waste collection, recycling and coastal cleanup while creating jobs for informal waste workers.",
-tags:["plastic","waste recovery","coastal cleanup"],
-image:"https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1200&q=80",
-audit:["2024 Collection audit","2025 Recycler verification","2026 Proof certificate"]
 }
+
 ];
-
-const certificates = [
-{
-project:"Uganda EV Mobility Credits",
-qty:1250,
-buyer:"Juna Vidyarthi",
-id:"VEA-UG-EV-2026-00129",
-date:"May 2026",
-type:"EV Credits",
-issuer:"Gold Standard",
-verifier:"Third-party MRV + On-chain Proof",
-hash:"0x8f2a...91c4",
-impact:"School fees support, cleaner urban transport and verified EV transition impact."
-},
-
-{
-project:"Kenya Biochar Soil Project",
-qty:800,
-buyer:"Juna Vidyarthi",
-id:"VEA-KE-BIO-2026-00412",
-date:"April 2026",
-type:"Biochar",
-issuer:"Puro.earth",
-verifier:"Carbon permanence audit",
-hash:"0x44ab...2fe1",
-impact:"Durable carbon removal, farmer income and verified soil health improvement."
-},
-
-{
-project:"Brazil Amazon REDD+",
-qty:2100,
-buyer:"Juna Vidyarthi",
-id:"VEA-BR-REDD-2026-00077",
-date:"March 2026",
-type:"REDD+",
-issuer:"Verra",
-verifier:"Satellite MRV + Registry Verification",
-hash:"0xa92d...cc72",
-impact:"Avoided deforestation, biodiversity protection and community forest stewardship."
-}
-];
-
-let activeProjects=[...projects];
-
-function showPage(id,el){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-
-document.querySelectorAll(".nav-link").forEach(n=>n.classList.remove("active"));
-if(el)el.classList.add("active");
-}
-
-function renderTicker(){
-const html=projects.map(p=>`
-<span class="tick">
-<b>${p.asset}</b>
-${p.country}
-<span>$${p.price.toFixed(2)}</span>
-<span class="${p.change>=0?'up':'down'}">
-${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%
-</span>
-</span>
-`).join("");
-
-document.getElementById("tickerTrack").innerHTML=html+html;
-}
-
-function cardHTML(p){
-return `
-<div class="card" onclick="openProject(${p.id})">
-
-<div class="card-img" style="background-image:url('${p.image}')"></div>
-
-<div class="topline">
-<div>
-<span class="asset">${p.asset}</span>
-<h3>${p.name}</h3>
-</div>
-
-<div class="rating">${p.rating}</div>
-</div>
-
-<div class="meta">
-${p.region}, ${p.country}<br>
-${p.impact}
-</div>
-
-<div class="price">
-$${p.price.toFixed(2)}
-<span class="${p.change>=0?'up':'down'}" style="font-size:13px">
-${p.change>=0?'▲':'▼'} ${Math.abs(p.change).toFixed(1)}%
-</span>
-</div>
-
-<div class="meta">
-Available: ${(p.listed-p.sold).toLocaleString()} credits
-</div>
-
-<div class="tags">
-${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-</div>
-
-<div class="btn-row">
-<button class="btn-green" onclick="event.stopPropagation();openBuyModal(${p.id})">Buy Credits</button>
-<button class="btn-dark">View Profile</button>
-</div>
-
-</div>
-`;
-}
-
-function renderProjects(){
-document.getElementById("projectGrid").innerHTML=activeProjects.map(cardHTML).join("");
-document.getElementById("marketplaceGrid").innerHTML=projects.map(cardHTML).join("");
-document.getElementById("projectsDirectory").innerHTML=projects.map(cardHTML).join("");
-}
-
-function openProject(id){
-
-const p=projects.find(x=>x.id===id);
-
-showPage('projects',document.querySelectorAll(".nav-link")[3]);
-
-document.getElementById("projectDetail").innerHTML=`
-
-<h2>Project Profile</h2>
-
-<div class="project-detail-img" style="background-image:url('${p.image}')"></div>
-
-<span class="asset">${p.asset}</span>
-
-<div class="detail-title">${p.name}</div>
-
-<div class="meta">
-${p.region}, ${p.country} · Rating ${p.rating}
-</div>
-
-<p class="detail-bio">
-<b>Who they are / what they do:</b><br>
-${p.bio}
-</p>
-
-<p class="detail-bio">
-<b>Impact blurb:</b><br>
-This project creates verified environmental outcomes while linking credit purchases to real-world impact including ${p.impact.toLowerCase()}, local economic value, auditability and transparent retirement records.
-</p>
-
-<div class="metrics">
-
-<div class="metric">
-<small>Credits Listed</small>
-<div class="num">${p.listed.toLocaleString()}</div>
-</div>
-
-<div class="metric">
-<small>Credits Sold</small>
-<div class="num">${p.sold.toLocaleString()}</div>
-</div>
-
-<div class="metric">
-<small>Available</small>
-<div class="num">${(p.listed-p.sold).toLocaleString()}</div>
-</div>
-
-<div class="metric">
-<small>Redeemed</small>
-<div class="num">${p.redeemed.toLocaleString()}</div>
-</div>
-
-</div>
-
-<div class="meta">
-Credits sold: <b style="color:white">${p.asset}</b><br>
-Region: <b style="color:white">${p.region}, ${p.country}</b><br>
-Community impact: <b style="color:white">${p.impact}</b>
-</div>
-
-<br>
-
-<div class="meta">Asset Quality Rating</div>
-<div class="bar"><span style="width:${p.quality}%"></span></div>
-
-<br>
-
-<div class="meta">Social Impact Rating</div>
-<div class="bar"><span style="width:${p.social}%"></span></div>
-
-<div class="audit">
-${p.audit.map(a=>`<div>✓ ${a}</div>`).join("")}
-</div>
-
-<div class="btn-row">
-<button class="btn-green" onclick="openBuyModal(${p.id})">Buy Credits</button>
-<button class="btn-dark">View Verification Proof</button>
-</div>
-
-`;
-
-}
-
-function renderCertificates(){
-
-document.getElementById("certList").innerHTML=certificates.map(c=>`
-
-<div class="card" onclick="selectCert('${c.id}')">
-
-<span class="asset">${c.type}</span>
-
-<h3>${c.project}</h3>
-
-<div class="meta">
-${c.qty.toLocaleString()} credits retired<br>
-${c.date}<br>
-${c.id}
-</div>
-
-</div>
-
-`).join("");
-
-selectCert(certificates[0].id);
-
-}
-
-function selectCert(id){
-
-const c=certificates.find(x=>x.id===id);
-
-document.getElementById("certPreview").innerHTML=`
-
-<div class="cert-preview">
-
-<div class="cert-kicker">
-Verified Environmental Asset Certificate
-</div>
-
-<h1>Certificate of Credit Retirement</h1>
-
-<p>
-This certifies that <b>${c.buyer}</b> retired
-<b>${c.qty.toLocaleString()} ${c.type}</b>
-from <b>${c.project}</b>.
-</p>
-
-<div class="issuer-pill">
-★ Issued by ${c.issuer}
-</div>
-
-<div class="cert-row">
-
-<div class="cert-box">
-<small>Certificate ID</small>
-<b>${c.id}</b>
-</div>
-
-<div class="cert-box">
-<small>Retirement Date</small>
-<b>${c.date}</b>
-</div>
-
-<div class="cert-box">
-<small>Issuer / Registry</small>
-<b>${c.issuer}</b>
-</div>
-
-<div class="cert-box">
-<small>Verifier</small>
-<b>${c.verifier}</b>
-</div>
-
-<div class="cert-box">
-<small>Credit Type</small>
-<b>${c.type}</b>
-</div>
-
-<div class="cert-box">
-<small>Proof Hash</small>
-<b>${c.hash}</b>
-</div>
-
-</div>
-
-<div class="gold-seal">
-
-<b>Impact Statement:</b><br>
-
-${c.impact}
-
-<br><br>
-
-This record represents a verified retirement claim linked to issuer data, audit evidence and digital proof.
-
-</div>
-
-</div>
-
-`;
-
-}
-
-function openBuyModal(id){
-document.getElementById("buyModal").classList.add("active");
-}
-
-function closeBuyModal(){
-document.getElementById("buyModal").classList.remove("active");
-}
-
-function updateBuyQuote(){}
-
-function confirmBuy(){
-alert("Purchase successful. Credits added to portfolio.");
-closeBuyModal();
-}
-
-function setMode(mode){
-document.getElementById("buyerFilters").style.display=mode==="buyer"?"block":"none";
-document.getElementById("sellerFilters").style.display=mode==="seller"?"block":"none";
-
-buyerBtn.classList.toggle("active",mode==="buyer");
-sellerBtn.classList.toggle("active",mode==="seller");
-}
-
-function applyFilters(){
-
-const asset=document.getElementById("assetFilter").value;
-const country=document.getElementById("geoFilter").value;
-const impact=document.getElementById("impactFilter").value;
-const search=document.getElementById("searchInput").value.toLowerCase();
-
-activeProjects=projects.filter(p=>{
-
-const blob=`${p.name} ${p.country} ${p.region} ${p.asset} ${p.impact} ${p.bio}`.toLowerCase();
-
-return (
-(asset==="all"||p.asset===asset)&&
-(country==="all"||p.country===country)&&
-(impact==="all"||p.impact===impact)&&
-(!search||blob.includes(search))
-);
-
-});
-
-renderProjects();
-
-}
-
-function resetFilters(){
-activeProjects=[...projects];
-renderProjects();
-}
-
-function populateFilters(){
-
-const assets=[...new Set(projects.map(p=>p.asset))];
-const countries=[...new Set(projects.map(p=>p.country))];
-const impacts=[...new Set(projects.map(p=>p.impact))];
-
-assets.forEach(v=>{
-assetFilter.innerHTML+=`<option>${v}</option>`;
-});
-
-countries.forEach(v=>{
-geoFilter.innerHTML+=`<option>${v}</option>`;
-});
-
-impacts.forEach(v=>{
-impactFilter.innerHTML+=`<option>${v}</option>`;
-});
-
-}
-
-function fakeFeed(){
-
-const p=projects[Math.floor(Math.random()*projects.length)];
-const isBuy=Math.random()>.4;
-const qty=Math.floor(Math.random()*900)+50;
-
-const div=document.createElement("div");
-
-div.className=`feed-item ${isBuy?'feed-buy':'feed-sell'}`;
-
-div.innerHTML=`
-<strong class="${isBuy?'up':'down'}">
-${isBuy?'BUY':'SELL'} ${qty.toLocaleString()} ${p.asset}
-</strong>
-<br>
-${p.name}
-<br>
-<span class="meta">${p.country} · just now</span>
-`;
-
-document.getElementById("feed").prepend(div);
-
-while(document.getElementById("feed").children.length>12){
-document.getElementById("feed").removeChild(document.getElementById("feed").lastChild);
-}
-
-}
-
-renderTicker();
-renderProjects();
-renderCertificates();
-populateFilters();
-
-for(let i=0;i<6;i++)fakeFeed();
-
-setInterval(fakeFeed,10000);
 
 </script>
 
