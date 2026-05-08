@@ -84,6 +84,27 @@ input,select{outline:none;font-family:inherit}
 .reset-btn:hover{color:var(--text);border-color:var(--border2)}
 .seller-hint{font-size:10px;color:var(--text3);line-height:1.5;margin-bottom:10px;padding:6px 8px;background:var(--bg3);border-radius:var(--radius);border-left:2px solid var(--border2)}
 
+/* Mobile filter toggle button — only shown on mobile */
+.mob-filter-btn{display:none}
+@media(max-width:768px){
+  .mob-filter-btn{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:9px 14px;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:var(--radius2);
+    color:var(--text);
+    font-size:12px;
+    font-weight:700;
+    width:100%;
+    margin-bottom:6px;
+    cursor:pointer;
+    text-align:left;
+  }
+}
+
 /* ── CENTER COLUMN ── */
 .trade-center{}
 
@@ -1015,8 +1036,65 @@ input,select{outline:none;font-family:inherit}
   .intel-kpi-row{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  #trade-layout{grid-template-columns:1fr}
-  .trade-right{grid-template-columns:1fr}
+  /* ── TRADE LAYOUT: single column, no sticky panels ── */
+  #trade-layout{
+    grid-template-columns:1fr;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  /* Sidebar: hidden by default on mobile, shown as drawer when open */
+  .sidebar{
+    position:static!important;
+    top:auto!important;
+    max-height:none!important;
+    overflow-y:visible!important;
+    display:none;
+    order:-1;
+  }
+  .sidebar.mob-open{display:block}
+
+  /* Mobile filter toggle button */
+  .mob-filter-btn{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:9px 14px;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:var(--radius2);
+    color:var(--text);
+    font-size:12px;
+    font-weight:700;
+    width:100%;
+    margin-bottom:2px;
+    cursor:pointer;
+  }
+  .mob-filter-btn-icon{
+    font-size:14px;
+  }
+  .mob-filter-btn-badge{
+    margin-left:auto;
+    font-size:10px;
+    color:var(--text3);
+    font-weight:600;
+  }
+
+  /* Trade center and right: normal block flow */
+  .trade-center{order:0}
+  .trade-right{
+    position:static!important;
+    max-height:none!important;
+    overflow-y:visible!important;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    order:1;
+    grid-template-columns:unset;
+  }
+
+  /* Other responsive fixes */
   .market-stats-bar{grid-template-columns:1fr 1fr}
   .intel-kpi-row{grid-template-columns:1fr 1fr}
   .intel-tables-2col{grid-template-columns:1fr}
@@ -1034,6 +1112,7 @@ input,select{outline:none;font-family:inherit}
   .intel-kpi-row{grid-template-columns:1fr}
   .global-hm-grid{grid-template-columns:1fr}
   .section{padding:10px}
+  .chart-ohlc{display:none}
 }
 </style>
 </head>
@@ -1572,7 +1651,14 @@ input,select{outline:none;font-family:inherit}
      TRADE SECTION
 ══════════════════════════════════════════════ -->
 <div id="section-trade" class="section">
-  <div id="trade-layout">
+  <!-- Mobile filter toggle — only visible on mobile -->
+<button class="mob-filter-btn" onclick="toggleMobileFilters()" id="mobFilterBtn">
+  <span>⚙</span>
+  <span id="mobFilterBtnLabel">Show Filters</span>
+  <span style="margin-left:auto;font-size:10px;color:var(--text3)" id="mobFilterBtnMode">BUYER MODE</span>
+</button>
+
+<div id="trade-layout">
 
     <!-- LEFT: Discovery Filters -->
     <div class="sidebar">
@@ -2662,6 +2748,16 @@ function showSection(id,btn){
 }
 function toggleMobileNav(){document.getElementById('navLinks').classList.toggle('mob-open')}
 
+function toggleMobileFilters(){
+  const sidebar=document.querySelector('#section-trade .sidebar');
+  const btn=document.getElementById('mobFilterBtn');
+  const lbl=document.getElementById('mobFilterBtnLabel');
+  if(!sidebar)return;
+  const isOpen=sidebar.classList.toggle('mob-open');
+  if(lbl)lbl.textContent=isOpen?'Hide Filters':'Show Filters';
+  if(btn)btn.style.borderColor=isOpen?'var(--green)':'var(--border)';
+}
+
 // ════════════════════════════════════════════════════════
 // CHART ENGINE
 // ════════════════════════════════════════════════════════
@@ -2967,6 +3063,8 @@ function setMode(mode){
   document.getElementById('seller-filters').style.display=mode==='seller'?'block':'none';
   document.getElementById('modebuyer').classList.toggle('active',mode==='buyer');
   document.getElementById('modeseller').classList.toggle('active',mode==='seller');
+  const mbl=document.getElementById('mobFilterBtnMode');
+  if(mbl)mbl.textContent=mode==='seller'?'SELLER MODE':'BUYER MODE';
   applyFilters();
 }
 
