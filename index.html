@@ -518,104 +518,115 @@ input,select{outline:none;font-family:inherit}
 .ss-data-val{font-family:var(--mono);font-weight:600;color:var(--text)}
 .ss-listings-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--text3);margin-bottom:8px}
 
-/* ══ LANDING PAGE ══ */
+/* ══ LANDING PAGE — COMPACT ══ */
 #section-home{padding:0!important}
-.home-wrap{min-height:100vh;display:flex;flex-direction:column}
-
-/* Hero */
-.home-hero{padding:80px 48px 64px;background:radial-gradient(ellipse at 20% 40%,rgba(0,217,126,0.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(245,158,11,0.04) 0%,transparent 50%),var(--bg);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.home-hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,217,126,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,126,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
-.home-hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
-.home-hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.08);border:1px solid rgba(0,217,126,0.2);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:24px}
-.home-hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:ldpulse 1.4s ease-in-out infinite}
-.home-hero-h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:16px;letter-spacing:-1px;font-family:var(--mono)}
-.home-hero-h1 span{color:var(--green)}
-.home-hero-sub{font-size:clamp(13px,1.8vw,17px);color:var(--text2);line-height:1.65;max-width:640px;margin-bottom:36px}
-.home-hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
-.cta-primary{padding:11px 26px;background:var(--green);color:#000;border-radius:var(--radius);font-size:13px;font-weight:800;letter-spacing:0.3px;transition:all 0.2s}
-.cta-primary:hover{background:var(--green2);transform:translateY(-1px)}
-.cta-secondary{padding:10px 22px;background:transparent;color:var(--gold);border-radius:var(--radius);font-size:13px;font-weight:700;border:1px solid rgba(245,158,11,0.4);transition:all 0.2s}
-.cta-secondary:hover{background:rgba(245,158,11,0.1)}
-.cta-ghost{padding:10px 22px;background:transparent;color:var(--text2);border-radius:var(--radius);font-size:13px;font-weight:600;border:1px solid var(--border2);transition:all 0.2s}
-.cta-ghost:hover{color:var(--text);border-color:var(--border2);background:var(--bg3)}
-
-/* Hero ticker strip */
-.home-ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:0;overflow:hidden;display:flex;align-items:center}
-.home-ticker-label{font-size:9px;font-weight:800;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;border-right:1px solid var(--border);white-space:nowrap;background:var(--bg3)}
-.home-ticker-scroll{display:flex;gap:0;overflow:hidden;flex:1}
-.home-ticker-inner{display:flex;gap:0;animation:tickerScroll 28s linear infinite;white-space:nowrap}
+.home-wrap{min-height:calc(100vh - 48px);display:flex;flex-direction:column;background:var(--bg)}
+.home-ticker{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;overflow:hidden;height:34px}
+.home-ticker-label{font-size:9px;font-weight:800;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;padding:0 12px;border-right:1px solid var(--border);white-space:nowrap;background:var(--bg3);height:100%;display:flex;align-items:center;gap:5px}
+.home-ticker-scroll{overflow:hidden;flex:1;height:100%}
+.home-ticker-inner{display:flex;animation:tickerScroll 30s linear infinite;white-space:nowrap;height:100%;align-items:center}
 @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-item{display:flex;align-items:center;gap:8px;padding:8px 20px;border-right:1px solid var(--border);font-size:11px;font-family:var(--mono)}
-.ticker-name{color:var(--text2)}
+.ticker-item{display:flex;align-items:center;gap:7px;padding:0 18px;border-right:1px solid var(--border);font-size:11px;font-family:var(--mono);height:100%}
+.ticker-name{color:var(--text3)}
 .ticker-price{font-weight:700;color:var(--text)}
 .ticker-chg{font-weight:700;font-size:10px}
 .ticker-up{color:var(--green)}
 .ticker-dn{color:var(--red)}
-
-/* Home sections */
-.home-section{padding:56px 48px;max-width:1100px;margin:0 auto;width:100%}
-.home-section-label{font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-.home-section-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--text);margin-bottom:6px;font-family:var(--mono)}
-.home-section-sub{font-size:13px;color:var(--text3);margin-bottom:36px;max-width:560px}
-
-/* Pillars */
-.home-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.home-pillar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:22px;position:relative;overflow:hidden;transition:border-color 0.2s}
+.home-hero-row{display:grid;grid-template-columns:1fr 400px;gap:0;background:radial-gradient(ellipse at 15% 60%,rgba(0,217,126,0.055) 0%,transparent 55%),var(--bg);border-bottom:1px solid var(--border);position:relative}
+.home-hero-row::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,217,126,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,126,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.home-hero-left{padding:34px 36px 34px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.home-hero-right{border-left:1px solid var(--border);background:rgba(15,18,23,0.7);display:flex;flex-direction:column;position:relative;z-index:1;overflow:hidden}
+.home-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.08);border:1px solid rgba(0,217,126,0.18);border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px;width:fit-content}
+.home-eyebrow-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:ldpulse 1.4s ease-in-out infinite}
+.home-h1{font-size:clamp(24px,2.8vw,38px);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:10px;letter-spacing:-0.5px;font-family:var(--mono)}
+.home-h1 em{color:var(--green);font-style:normal}
+.home-sub{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:20px;max-width:460px}
+.home-ctas{display:flex;gap:8px;flex-wrap:wrap}
+.cta-primary{padding:9px 20px;background:var(--green);color:#000;border-radius:var(--radius);font-size:12px;font-weight:800;letter-spacing:0.3px;transition:all 0.2s;white-space:nowrap;cursor:pointer}
+.cta-primary:hover{background:var(--green2);transform:translateY(-1px)}
+.cta-secondary{padding:8px 16px;background:transparent;color:var(--gold);border-radius:var(--radius);font-size:12px;font-weight:700;border:1px solid rgba(245,158,11,0.4);transition:all 0.2s;white-space:nowrap;cursor:pointer}
+.cta-secondary:hover{background:rgba(245,158,11,0.1)}
+.cta-ghost{padding:8px 16px;background:transparent;color:var(--text2);border-radius:var(--radius);font-size:12px;font-weight:600;border:1px solid var(--border2);transition:all 0.2s;white-space:nowrap;cursor:pointer}
+.cta-ghost:hover{color:var(--text);background:var(--bg3)}
+.mp-header{padding:8px 12px;border-bottom:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mp-header-title{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;display:flex;align-items:center;gap:5px}
+.mp-header-tag{font-size:9px;font-weight:800;color:var(--green);letter-spacing:0.5px}
+.mp-stats-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);flex-shrink:0}
+.mp-stat{padding:8px 12px;border-right:1px solid var(--border)}
+.mp-stat:nth-child(even){border-right:none}
+.mp-stat-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:2px}
+.mp-stat-val{font-size:15px;font-weight:800;font-family:var(--mono);color:var(--green);line-height:1}
+.mp-stat-sub{font-size:9px;color:var(--text3)}
+.mp-feed{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.mp-feed-hdr{font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;padding:6px 12px 4px;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.mp-feed-row{display:grid;grid-template-columns:34px 48px 1fr 50px;gap:4px;align-items:center;padding:4px 12px;border-bottom:1px solid rgba(31,39,55,0.5);font-size:10px;font-family:var(--mono)}
+.mp-feed-row:last-child{border-bottom:none}
+.mp-movers{border-top:1px solid var(--border);padding:7px 12px;flex-shrink:0}
+.mp-movers-label{font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px}
+.mp-mover-row{display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:11px}
+.mp-mover-name{color:var(--text2)}
+.mp-mover-chg{font-family:var(--mono);font-weight:700;font-size:10px}
+.mp-enter-btn{margin:7px 12px;padding:7px;background:rgba(0,217,126,0.12);color:var(--green);border-radius:var(--radius);font-size:11px;font-weight:700;border:1px solid rgba(0,217,126,0.25);cursor:pointer;transition:all 0.2s;text-align:center;display:block;flex-shrink:0}
+.mp-enter-btn:hover{background:rgba(0,217,126,0.2)}
+.home-lower{padding:16px 28px 0;display:flex;flex-direction:column}
+.home-pillars-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.home-pillar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:13px 15px;position:relative;overflow:hidden;transition:border-color 0.2s}
 .home-pillar:hover{border-color:var(--border2)}
 .home-pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .hp-green::before{background:var(--green)}
 .hp-gold::before{background:var(--gold)}
 .hp-blue::before{background:var(--blue)}
-.home-pillar-icon{font-size:22px;margin-bottom:12px}
-.home-pillar-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:7px}
-.home-pillar-text{font-size:12px;color:var(--text3);line-height:1.65}
-
-/* Who it's for */
-.home-who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.home-who-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;align-items:center;gap:10px;transition:all 0.2s;cursor:default}
-.home-who-card:hover{border-color:var(--green);background:var(--bg3)}
-.who-icon{font-size:18px;flex-shrink:0}
-.who-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px}
-.who-desc{font-size:10px;color:var(--text3)}
-
-/* Verification section */
-.home-verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-.home-verify-item{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2)}
-.verify-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-.verify-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
-.verify-desc{font-size:11px;color:var(--text3);line-height:1.5}
-
-/* Market modules */
-.home-modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.home-module{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:16px;transition:all 0.2s;cursor:pointer}
-.home-module:hover{border-color:var(--border2);background:var(--bg3)}
-.hm-badge{display:inline-flex;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;margin-bottom:9px}
-.hm-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px}
-.hm-desc{font-size:11px;color:var(--text3);line-height:1.5;margin-bottom:10px}
-.hm-link{font-size:11px;font-weight:700;color:var(--green)}
-
-/* Live preview strip */
-.home-live-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 48px}
-.home-live-inner{max-width:1100px;margin:0 auto}
-.home-live-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start}
-.home-live-block{display:flex;flex-direction:column;gap:3px}
-.home-live-label{font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.home-feed-mini{display:flex;flex-direction:column;gap:2px}
-.home-feed-row{display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:1px solid rgba(31,39,55,0.6);font-size:11px;font-family:var(--mono)}
-.home-stat-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.home-stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px}
-.hsb-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px}
-.hsb-val{font-size:15px;font-weight:800;font-family:var(--mono);color:var(--green)}
-
-/* Footer */
-.home-footer{background:var(--bg2);border-top:1px solid var(--border);padding:20px 48px;margin-top:auto}
-.home-footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-logo{font-size:14px;font-weight:900;color:var(--green);font-family:var(--mono);letter-spacing:2px}
-.footer-links{display:flex;gap:16px;align-items:center}
-.footer-link{font-size:11px;color:var(--text3);cursor:pointer;transition:color 0.2s}
+.hp-icon{font-size:14px;margin-bottom:5px}
+.hp-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px}
+.hp-text{font-size:11px;color:var(--text3);line-height:1.5}
+.home-pt-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.home-pt-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden}
+.home-pt-hdr{padding:8px 12px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px}
+.home-who-list{padding:6px 8px;display:flex;flex-direction:column;gap:1px}
+.home-who-row{display:flex;align-items:center;gap:7px;padding:4px 6px;border-radius:4px;transition:background 0.15s}
+.home-who-row:hover{background:var(--bg3)}
+.who-row-icon{font-size:12px;flex-shrink:0;width:16px;text-align:center}
+.who-row-label{font-size:12px;font-weight:600;color:var(--text);flex:1}
+.who-row-tag{font-size:9px;color:var(--text3);padding:1px 5px;border:1px solid var(--border);border-radius:3px;white-space:nowrap}
+.home-trust-list{padding:6px 8px;display:flex;flex-direction:column;gap:2px}
+.home-trust-row{display:flex;align-items:flex-start;gap:7px;padding:4px 6px;border-radius:4px;transition:background 0.15s}
+.home-trust-row:hover{background:var(--bg3)}
+.trust-row-icon{font-size:11px;flex-shrink:0;margin-top:2px}
+.trust-row-label{font-size:12px;font-weight:600;color:var(--text);margin-bottom:1px}
+.trust-row-desc{font-size:10px;color:var(--text3);line-height:1.4}
+.home-pt-footer{padding:7px 10px;border-top:1px solid var(--border);background:var(--bg3)}
+.home-modules-strip{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.home-mod-chip{display:flex;align-items:center;gap:6px;padding:6px 11px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.home-mod-chip:hover{border-color:var(--border2);background:var(--bg3)}
+.hmc-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.hmc-label{font-size:12px;font-weight:600;color:var(--text)}
+.hmc-arrow{font-size:10px;color:var(--text3)}
+.home-footer{border-top:1px solid var(--border);padding:9px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;background:var(--bg2);margin-top:auto}
+.footer-logo{font-size:13px;font-weight:900;color:var(--green);font-family:var(--mono);letter-spacing:2px}
+.footer-links{display:flex;gap:14px}
+.footer-link{font-size:10px;color:var(--text3);cursor:pointer;transition:color 0.2s}
 .footer-link:hover{color:var(--text)}
 .footer-right{font-size:10px;color:var(--text3)}
-
+@media(max-width:1024px){
+  .home-hero-row{grid-template-columns:1fr}
+  .home-hero-right{border-left:none;border-top:1px solid var(--border)}
+  .mp-stats-row{grid-template-columns:repeat(4,1fr)}
+  .mp-stat{border-right:1px solid var(--border)}
+}
+@media(max-width:760px){
+  .home-hero-left{padding:22px 18px}
+  .home-lower{padding:12px 14px 0}
+  .home-pillars-row{grid-template-columns:1fr}
+  .home-pt-row{grid-template-columns:1fr}
+  .home-modules-strip{flex-wrap:wrap}
+  .home-footer{padding:9px 14px}
+  .footer-right{display:none}
+}
+@media(max-width:480px){
+  .dep-methods{grid-template-columns:1fr}
+  .home-ctas{flex-direction:column}
+  .cta-primary,.cta-secondary,.cta-ghost{width:100%;text-align:center}
+}
 /* ══ DEPOSIT MODAL ══ */
 #deposit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
 #deposit-modal.open{display:flex}
@@ -742,216 +753,165 @@ input,select{outline:none;font-family:inherit}
 <div id="section-home" class="section active">
   <div class="home-wrap">
 
-    <!-- Hero -->
-    <div class="home-hero">
-      <div class="home-hero-inner">
-        <div class="home-hero-eyebrow"><span></span>Live Market · Verified Infrastructure</div>
-        <h1 class="home-hero-h1">Environmental<br><span>Asset Exchange</span></h1>
-        <p class="home-hero-sub">Verified market infrastructure for environmental credits, retirements, secondary trading and institutional intelligence. Built for serious market participants.</p>
-        <div class="home-hero-ctas">
+    <!-- Ticker strip -->
+    <div class="home-ticker">
+      <div class="home-ticker-label"><span class="home-eyebrow-dot" style="width:5px;height:5px;background:var(--green);border-radius:50%;animation:ldpulse 1.4s infinite"></span>LIVE</div>
+      <div class="home-ticker-scroll">
+        <div class="home-ticker-inner">
+          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲+2.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲+1.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲+8.3%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲+4.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲+12.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼−0.8%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲+5.1%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲+7.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲+3.5%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼−1.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-GH-008</span><span class="ticker-price">$12.30</span><span class="ticker-chg ticker-up">▲+0.9%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-MZ-012</span><span class="ticker-price">$19.70</span><span class="ticker-chg ticker-up">▲+6.8%</span></div>
+          <!-- duplicate for seamless loop -->
+          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲+2.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲+1.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲+8.3%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲+4.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲+12.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼−0.8%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲+5.1%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲+7.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲+3.5%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼−1.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-GH-008</span><span class="ticker-price">$12.30</span><span class="ticker-chg ticker-up">▲+0.9%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-MZ-012</span><span class="ticker-price">$19.70</span><span class="ticker-chg ticker-up">▲+6.8%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Row: Left headline + CTAs | Right market preview -->
+    <div class="home-hero-row">
+
+      <!-- Left -->
+      <div class="home-hero-left">
+        <div class="home-eyebrow"><span class="home-eyebrow-dot"></span>Live Market · Verified Infrastructure</div>
+        <h1 class="home-h1">Environmental<br><em>Asset Exchange</em></h1>
+        <p class="home-sub">Verified market infrastructure for environmental credits, retirements, secondary trading and institutional intelligence. Built for serious market participants.</p>
+        <div class="home-ctas">
           <button class="cta-primary" onclick="showSection('trade',null)">Enter Exchange →</button>
           <button class="cta-secondary" onclick="openRegisterModal()">Register</button>
           <button class="cta-ghost" onclick="openVerifyModal()">Get Verified</button>
         </div>
       </div>
-    </div>
 
-    <!-- Ticker strip -->
-    <div class="home-ticker">
-      <div class="home-ticker-label">◉ LIVE</div>
-      <div class="home-ticker-scroll">
-        <div class="home-ticker-inner" id="homeTicker">
-          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲ +2.4%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲ +1.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲ +8.3%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲ +4.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲ +12.4%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼ −0.8%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲ +5.1%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲ +7.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲ +3.5%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼ −1.4%</span></div>
-          <!-- duplicate for seamless loop -->
-          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲ +2.4%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲ +1.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲ +8.3%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲ +4.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲ +12.4%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼ −0.8%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲ +5.1%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲ +7.2%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲ +3.5%</span></div>
-          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼ −1.4%</span></div>
+      <!-- Right: Live Market Preview Panel -->
+      <div class="home-hero-right">
+        <div class="mp-header">
+          <div class="mp-header-title"><span class="live-dot"></span>Market Overview</div>
+          <div class="mp-header-tag">LIVE</div>
         </div>
+        <div class="mp-stats-row">
+          <div class="mp-stat"><div class="mp-stat-label">Credits Listed</div><div class="mp-stat-val">842K</div><div class="mp-stat-sub">across 32 projects</div></div>
+          <div class="mp-stat"><div class="mp-stat-label">24h Volume</div><div class="mp-stat-val">$4.2M</div><div class="mp-stat-sub">↑ +18.4%</div></div>
+          <div class="mp-stat"><div class="mp-stat-label">Active Sellers</div><div class="mp-stat-val">9</div><div class="mp-stat-sub">verified</div></div>
+          <div class="mp-stat"><div class="mp-stat-label">Avg Price</div><div class="mp-stat-val">$16.80</div><div class="mp-stat-sub">↑ +2.1%</div></div>
+        </div>
+        <div class="mp-feed">
+          <div class="mp-feed-hdr"><span class="live-dot"></span>Order Flow</div>
+          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">1,200</span><span style="color:var(--text3)">REDD+</span><span style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Maasai Mara</span></div>
+          <div class="mp-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text);font-weight:700">800</span><span style="color:var(--text3)">BLUE</span><span style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Zanzibar</span></div>
+          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">2,500</span><span style="color:var(--text3)">VCU</span><span style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Kilimanjaro</span></div>
+          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">450</span><span style="color:var(--text3)">GS</span><span style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Rwanda</span></div>
+          <div class="mp-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text);font-weight:700">3,000</span><span style="color:var(--text3)">SOLAR</span><span style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sahel Niger</span></div>
+        </div>
+        <div class="mp-movers">
+          <div class="mp-movers-label">Top Movers</div>
+          <div class="mp-mover-row"><span class="mp-mover-name">Norway Arctic Kelp</span><span class="mp-mover-chg" style="color:var(--green)">▲ +12.4%</span></div>
+          <div class="mp-mover-row"><span class="mp-mover-name">Philippines Coral</span><span class="mp-mover-chg" style="color:var(--green)">▲ +9.1%</span></div>
+          <div class="mp-mover-row"><span class="mp-mover-name">Zanzibar Blue Carbon</span><span class="mp-mover-chg" style="color:var(--green)">▲ +8.3%</span></div>
+          <div class="mp-mover-row"><span class="mp-mover-name">Rwanda Cookstove</span><span class="mp-mover-chg" style="color:var(--red)">▼ −1.4%</span></div>
+        </div>
+        <button class="mp-enter-btn" onclick="showSection('trade',null)">Enter Exchange →</button>
       </div>
-    </div>
 
-    <!-- What EAX is — 3 pillars -->
-    <div class="home-section">
-      <div class="home-section-label">Platform Overview</div>
-      <h2 class="home-section-h2">What EAX Is</h2>
-      <p class="home-section-sub">Three integrated layers forming the complete environmental asset exchange.</p>
-      <div class="home-pillars">
+    </div><!-- end hero row -->
+
+    <!-- Below-hero lower section -->
+    <div class="home-lower">
+
+      <!-- Three pillars in one compact row -->
+      <div class="home-pillars-row">
         <div class="home-pillar hp-green">
-          <div class="home-pillar-icon">◈</div>
-          <div class="home-pillar-title">Verified Markets</div>
-          <div class="home-pillar-text">Discover and trade verified environmental assets across carbon, biochar, blue carbon, plastic recovery, EV credits and more. Every project is verified before listing.</div>
+          <div class="hp-icon">◈</div>
+          <div class="hp-title">Verified Markets</div>
+          <div class="hp-text">Trade verified carbon, blue carbon, biochar, EV credits and more. Every project verified before listing.</div>
         </div>
         <div class="home-pillar hp-gold">
-          <div class="home-pillar-icon">⬡</div>
-          <div class="home-pillar-title">Exchange Infrastructure</div>
-          <div class="home-pillar-text">Primary markets, P2P OTC trading, portfolio tracking, certificate retirements, verified seller profiles and institutional settlement options.</div>
+          <div class="hp-icon">⬡</div>
+          <div class="hp-title">Exchange Infrastructure</div>
+          <div class="hp-text">Primary markets, P2P OTC, portfolio tracking, certificate retirements and verified seller profiles.</div>
         </div>
         <div class="home-pillar hp-blue">
-          <div class="home-pillar-icon">◎</div>
-          <div class="home-pillar-title">Market Intelligence</div>
-          <div class="home-pillar-text">Live pricing, regional demand heatmaps, buyer flow analytics, project intelligence and environmental asset data — in real time.</div>
+          <div class="hp-icon">◎</div>
+          <div class="hp-title">Market Intelligence</div>
+          <div class="hp-text">Live pricing, regional demand, buyer flows, project analytics and environmental asset intelligence.</div>
         </div>
       </div>
-    </div>
 
-    <!-- Who EAX is for -->
-    <div class="home-section" style="padding-top:0">
-      <div class="home-section-label">Participants</div>
-      <h2 class="home-section-h2">Who EAX Is For</h2>
-      <p class="home-section-sub">Built for institutional and professional market participants across the environmental asset ecosystem.</p>
-      <div class="home-who-grid">
-        <div class="home-who-card"><span class="who-icon">🏗️</span><div><div class="who-label">Project Developers</div><div class="who-desc">List and sell verified carbon and environmental credits</div></div></div>
-        <div class="home-who-card"><span class="who-icon">📊</span><div><div class="who-label">Brokers &amp; OTC Desks</div><div class="who-desc">Access P2P liquidity and counterparty profiles</div></div></div>
-        <div class="home-who-card"><span class="who-icon">💼</span><div><div class="who-label">Funds &amp; Asset Managers</div><div class="who-desc">Portfolio tracking, market intelligence and block trades</div></div></div>
-        <div class="home-who-card"><span class="who-icon">🏢</span><div><div class="who-label">Corporates &amp; ESG Teams</div><div class="who-desc">Source verified credits for scope 1, 2 and 3 retirement</div></div></div>
-        <div class="home-who-card"><span class="who-icon">🛡️</span><div><div class="who-label">Compliance Buyers</div><div class="who-desc">Legal compliance credits with full registry metadata</div></div></div>
-        <div class="home-who-card"><span class="who-icon">🏛️</span><div><div class="who-label">Governments &amp; Institutions</div><div class="who-desc">Sovereign and institutional environmental asset access</div></div></div>
-        <div class="home-who-card"><span class="who-icon">🌍</span><div><div class="who-label">Carbon Buyers</div><div class="who-desc">Direct access to primary and secondary credit markets</div></div></div>
-        <div class="home-who-card"><span class="who-icon">✓</span><div><div class="who-label">Verified Sellers</div><div class="who-desc">KYB-verified counterparty listings on the P2P exchange</div></div></div>
-        <div class="home-who-card"><span class="who-icon">📈</span><div><div class="who-label">Market Intelligence Users</div><div class="who-desc">Regional data, flows, pricing and demand analytics</div></div></div>
-      </div>
-    </div>
+      <!-- Participants + Trust side by side -->
+      <div class="home-pt-row">
 
-    <!-- Verification / Trust -->
-    <div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0">
-      <div class="home-section">
-        <div class="home-section-label">Trust Infrastructure</div>
-        <h2 class="home-section-h2">Verification &amp; Trust Layer</h2>
-        <p class="home-section-sub">Every participant, project and credit goes through a structured verification process before access to the exchange.</p>
-        <div class="home-verify-grid">
-          <div class="home-verify-item"><span class="verify-icon">🔐</span><div><div class="verify-title">Verified Sellers &amp; Buyers</div><div class="verify-desc">KYB/KYC verification for all active counterparties. Trust metrics, trade history and dispute records visible on every seller profile.</div></div></div>
-          <div class="home-verify-item"><span class="verify-icon">📋</span><div><div class="verify-title">Verified Project Registry</div><div class="verify-desc">All listed projects are cross-referenced with Verra VCS, Gold Standard, CCB Standards and other recognised registries.</div></div></div>
-          <div class="home-verify-item"><span class="verify-icon">🏆</span><div><div class="verify-title">Certificate Viewer</div><div class="verify-desc">Institutional-grade certificate documents with verification hashes, registry metadata, beneficiary details and retirement proof.</div></div></div>
-          <div class="home-verify-item"><span class="verify-icon">🔗</span><div><div class="verify-title">Retirement Proof</div><div class="verify-desc">Permanent retirement records with issuer branding, quantity, vintage, SDG alignment and cryptographic verification hash.</div></div></div>
-        </div>
-        <button class="cta-secondary" onclick="openVerifyModal()">Get Verified →</button>
-      </div>
-    </div>
-
-    <!-- Market Structure -->
-    <div class="home-section">
-      <div class="home-section-label">Market Structure</div>
-      <h2 class="home-section-h2">Platform Modules</h2>
-      <p class="home-section-sub">Six integrated modules forming the complete exchange infrastructure.</p>
-      <div class="home-modules-grid">
-        <div class="home-module" onclick="showSection('marketplace',null)">
-          <div class="hm-badge b-green">Primary</div>
-          <div class="hm-title">Marketplace</div>
-          <div class="hm-desc">Browse 32+ verified environmental asset projects. Filter by type, geography, social score and price.</div>
-          <div class="hm-link">Open Marketplace →</div>
-        </div>
-        <div class="home-module" onclick="showSection('p2p',null)">
-          <div class="hm-badge b-gold">OTC</div>
-          <div class="hm-title">P2P Exchange</div>
-          <div class="hm-desc">Direct peer-to-peer trading with verified counterparties. Make offers, negotiate and settle directly.</div>
-          <div class="hm-link">Open P2P →</div>
-        </div>
-        <div class="home-module" onclick="showSection('portfolio',null)">
-          <div class="hm-badge b-blue">Account</div>
-          <div class="hm-title">Portfolio</div>
-          <div class="hm-desc">Track holdings, unrealized P&L, retirement history and certificate ownership across all positions.</div>
-          <div class="hm-link">View Portfolio →</div>
-        </div>
-        <div class="home-module" onclick="showSection('certificates',null)">
-          <div class="hm-badge" style="background:rgba(6,182,212,0.15);color:var(--cyan)">Certificates</div>
-          <div class="hm-title">Certificate Vault</div>
-          <div class="hm-desc">Premium institutional-grade retirement certificates with registry metadata and cryptographic proof.</div>
-          <div class="hm-link">Open Vault →</div>
-        </div>
-        <div class="home-module" onclick="showSection('intelligence',null)">
-          <div class="hm-badge" style="background:rgba(139,92,246,0.15);color:var(--purple)">Intelligence</div>
-          <div class="hm-title">Market Intelligence</div>
-          <div class="hm-desc">Live pricing, regional demand heatmaps, buyer flow analytics, ranked tables and order flow.</div>
-          <div class="hm-link">Open Intelligence →</div>
-        </div>
-        <div class="home-module" onclick="showSection('projects',null)">
-          <div class="hm-badge" style="background:rgba(245,158,11,0.15);color:var(--gold)">Directory</div>
-          <div class="hm-title">Project Directory</div>
-          <div class="hm-desc">Full profiles for every listed project — description, SDGs, vintage, standard, social score and buy flow.</div>
-          <div class="hm-link">Browse Projects →</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Live Market Preview -->
-    <div class="home-live-strip">
-      <div class="home-live-inner">
-        <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px"><span class="live-dot"></span>Live Market Preview</div>
-        <div class="home-live-row">
-          <div class="home-live-block">
-            <div class="home-live-label"><span class="live-dot"></span>Recent Activity</div>
-            <div class="home-feed-mini" id="homeFeedMini">
-              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">1,200</span><span style="color:var(--text3)">REDD+</span><span style="color:var(--text2)">Maasai Mara</span></div>
-              <div class="home-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text)">800</span><span style="color:var(--text3)">BLUE</span><span style="color:var(--text2)">Zanzibar</span></div>
-              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">2,500</span><span style="color:var(--text3)">VCU</span><span style="color:var(--text2)">Kilimanjaro</span></div>
-              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">450</span><span style="color:var(--text3)">GS</span><span style="color:var(--text2)">Rwanda</span></div>
-              <div class="home-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text)">3,000</span><span style="color:var(--text3)">SOLAR</span><span style="color:var(--text2)">Sahel</span></div>
-            </div>
-          </div>
-          <div class="home-live-block">
-            <div class="home-live-label">Market Stats</div>
-            <div class="home-stat-mini">
-              <div class="home-stat-box"><div class="hsb-label">Credits Listed</div><div class="hsb-val" id="homeStatCredits">842K</div></div>
-              <div class="home-stat-box"><div class="hsb-label">24h Volume</div><div class="hsb-val" id="homeStatVol">$4.2M</div></div>
-              <div class="home-stat-box"><div class="hsb-label">Active Projects</div><div class="hsb-val">32</div></div>
-              <div class="home-stat-box"><div class="hsb-label">Verified Sellers</div><div class="hsb-val">9</div></div>
-            </div>
-          </div>
-          <div class="home-live-block">
-            <div class="home-live-label">Top Movers</div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
-                <span style="color:var(--text2)">Norway Arctic Kelp</span>
-                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +12.4%</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
-                <span style="color:var(--text2)">Philippines Coral</span>
-                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +9.1%</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
-                <span style="color:var(--text2)">Zanzibar Blue Carbon</span>
-                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +8.3%</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
-                <span style="color:var(--text2)">Rwanda Cookstove</span>
-                <span style="color:var(--red);font-family:var(--mono);font-weight:700">▼ −1.4%</span>
-              </div>
-            </div>
-            <button class="cta-primary" style="width:100%;margin-top:12px;font-size:12px" onclick="showSection('trade',null)">Enter Exchange →</button>
+        <!-- Who it's for -->
+        <div class="home-pt-panel">
+          <div class="home-pt-hdr">Who EAX Is For</div>
+          <div class="home-who-list">
+            <div class="home-who-row"><span class="who-row-icon">🏗️</span><span class="who-row-label">Project Developers</span><span class="who-row-tag">Sell</span></div>
+            <div class="home-who-row"><span class="who-row-icon">📊</span><span class="who-row-label">Brokers &amp; OTC Desks</span><span class="who-row-tag">P2P</span></div>
+            <div class="home-who-row"><span class="who-row-icon">💼</span><span class="who-row-label">Funds &amp; Asset Managers</span><span class="who-row-tag">Portfolio</span></div>
+            <div class="home-who-row"><span class="who-row-icon">🏢</span><span class="who-row-label">Corporates &amp; ESG Teams</span><span class="who-row-tag">Retire</span></div>
+            <div class="home-who-row"><span class="who-row-icon">🏛️</span><span class="who-row-label">Governments &amp; Institutions</span><span class="who-row-tag">Sovereign</span></div>
+            <div class="home-who-row"><span class="who-row-icon">🌍</span><span class="who-row-label">Carbon Buyers</span><span class="who-row-tag">Buy</span></div>
+            <div class="home-who-row"><span class="who-row-icon">✓</span><span class="who-row-label">Verified Sellers</span><span class="who-row-tag">KYB</span></div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Footer -->
+        <!-- Trust layer -->
+        <div class="home-pt-panel">
+          <div class="home-pt-hdr">Verification &amp; Trust</div>
+          <div class="home-trust-list">
+            <div class="home-trust-row"><span class="trust-row-icon">🔐</span><div><div class="trust-row-label">Verified Sellers &amp; Buyers</div><div class="trust-row-desc">KYB/KYC with trust metrics on every seller profile</div></div></div>
+            <div class="home-trust-row"><span class="trust-row-icon">📋</span><div><div class="trust-row-label">Verified Project Registry</div><div class="trust-row-desc">Verra VCS, Gold Standard, CCB &amp; ART TREES</div></div></div>
+            <div class="home-trust-row"><span class="trust-row-icon">🏆</span><div><div class="trust-row-label">Certificate Viewer</div><div class="trust-row-desc">Premium certs with registry metadata &amp; hashes</div></div></div>
+            <div class="home-trust-row"><span class="trust-row-icon">🔗</span><div><div class="trust-row-label">Retirement Proof</div><div class="trust-row-desc">Permanent records with cryptographic verification</div></div></div>
+          </div>
+          <div class="home-pt-footer">
+            <button class="cta-secondary" style="padding:6px 14px;font-size:11px" onclick="openVerifyModal()">Get Verified →</button>
+          </div>
+        </div>
+
+      </div><!-- end pt-row -->
+
+      <!-- Module strip — compact chips -->
+      <div class="home-modules-strip">
+        <div class="home-mod-chip" onclick="showSection('marketplace',null)"><span class="hmc-dot" style="background:var(--green)"></span><span class="hmc-label">Marketplace</span><span class="hmc-arrow">→</span></div>
+        <div class="home-mod-chip" onclick="showSection('p2p',null)"><span class="hmc-dot" style="background:var(--gold)"></span><span class="hmc-label">P2P Exchange</span><span class="hmc-arrow">→</span></div>
+        <div class="home-mod-chip" onclick="showSection('portfolio',null)"><span class="hmc-dot" style="background:var(--blue)"></span><span class="hmc-label">Portfolio</span><span class="hmc-arrow">→</span></div>
+        <div class="home-mod-chip" onclick="showSection('certificates',null)"><span class="hmc-dot" style="background:var(--cyan)"></span><span class="hmc-label">Certificates</span><span class="hmc-arrow">→</span></div>
+        <div class="home-mod-chip" onclick="showSection('intelligence',null)"><span class="hmc-dot" style="background:var(--purple)"></span><span class="hmc-label">Intelligence</span><span class="hmc-arrow">→</span></div>
+        <div class="home-mod-chip" onclick="showSection('projects',null)"><span class="hmc-dot" style="background:var(--gold)"></span><span class="hmc-label">Projects</span><span class="hmc-arrow">→</span></div>
+      </div>
+
+    </div><!-- end home-lower -->
+
+    <!-- Minimal footer -->
     <div class="home-footer">
-      <div class="home-footer-inner">
-        <div class="footer-logo">EAX</div>
-        <div class="footer-links">
-          <span class="footer-link">About</span>
-          <span class="footer-link" onclick="openVerifyModal()">Verification</span>
-          <span class="footer-link">Contact</span>
-          <span class="footer-link">LinkedIn</span>
-          <span class="footer-link">X / Twitter</span>
-        </div>
-        <div class="footer-right">© 2025 Environmental Asset Exchange · All rights reserved</div>
+      <div class="footer-logo">EAX</div>
+      <div class="footer-links">
+        <span class="footer-link">About</span>
+        <span class="footer-link" onclick="openVerifyModal()">Verification</span>
+        <span class="footer-link">Contact</span>
+        <span class="footer-link">LinkedIn</span>
+        <span class="footer-link">X / Twitter</span>
       </div>
+      <div class="footer-right">© 2025 Environmental Asset Exchange</div>
     </div>
 
   </div>
