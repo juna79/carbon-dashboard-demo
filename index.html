@@ -518,6 +518,163 @@ input,select{outline:none;font-family:inherit}
 .ss-data-val{font-family:var(--mono);font-weight:600;color:var(--text)}
 .ss-listings-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--text3);margin-bottom:8px}
 
+/* ══ LANDING PAGE ══ */
+#section-home{padding:0!important}
+.home-wrap{min-height:100vh;display:flex;flex-direction:column}
+
+/* Hero */
+.home-hero{padding:80px 48px 64px;background:radial-gradient(ellipse at 20% 40%,rgba(0,217,126,0.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(245,158,11,0.04) 0%,transparent 50%),var(--bg);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.home-hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,217,126,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,126,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.home-hero-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.home-hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.08);border:1px solid rgba(0,217,126,0.2);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:24px}
+.home-hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:ldpulse 1.4s ease-in-out infinite}
+.home-hero-h1{font-size:clamp(32px,5vw,56px);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:16px;letter-spacing:-1px;font-family:var(--mono)}
+.home-hero-h1 span{color:var(--green)}
+.home-hero-sub{font-size:clamp(13px,1.8vw,17px);color:var(--text2);line-height:1.65;max-width:640px;margin-bottom:36px}
+.home-hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.cta-primary{padding:11px 26px;background:var(--green);color:#000;border-radius:var(--radius);font-size:13px;font-weight:800;letter-spacing:0.3px;transition:all 0.2s}
+.cta-primary:hover{background:var(--green2);transform:translateY(-1px)}
+.cta-secondary{padding:10px 22px;background:transparent;color:var(--gold);border-radius:var(--radius);font-size:13px;font-weight:700;border:1px solid rgba(245,158,11,0.4);transition:all 0.2s}
+.cta-secondary:hover{background:rgba(245,158,11,0.1)}
+.cta-ghost{padding:10px 22px;background:transparent;color:var(--text2);border-radius:var(--radius);font-size:13px;font-weight:600;border:1px solid var(--border2);transition:all 0.2s}
+.cta-ghost:hover{color:var(--text);border-color:var(--border2);background:var(--bg3)}
+
+/* Hero ticker strip */
+.home-ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:0;overflow:hidden;display:flex;align-items:center}
+.home-ticker-label{font-size:9px;font-weight:800;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;border-right:1px solid var(--border);white-space:nowrap;background:var(--bg3)}
+.home-ticker-scroll{display:flex;gap:0;overflow:hidden;flex:1}
+.home-ticker-inner{display:flex;gap:0;animation:tickerScroll 28s linear infinite;white-space:nowrap}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:8px;padding:8px 20px;border-right:1px solid var(--border);font-size:11px;font-family:var(--mono)}
+.ticker-name{color:var(--text2)}
+.ticker-price{font-weight:700;color:var(--text)}
+.ticker-chg{font-weight:700;font-size:10px}
+.ticker-up{color:var(--green)}
+.ticker-dn{color:var(--red)}
+
+/* Home sections */
+.home-section{padding:56px 48px;max-width:1100px;margin:0 auto;width:100%}
+.home-section-label{font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.home-section-h2{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--text);margin-bottom:6px;font-family:var(--mono)}
+.home-section-sub{font-size:13px;color:var(--text3);margin-bottom:36px;max-width:560px}
+
+/* Pillars */
+.home-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.home-pillar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:22px;position:relative;overflow:hidden;transition:border-color 0.2s}
+.home-pillar:hover{border-color:var(--border2)}
+.home-pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.hp-green::before{background:var(--green)}
+.hp-gold::before{background:var(--gold)}
+.hp-blue::before{background:var(--blue)}
+.home-pillar-icon{font-size:22px;margin-bottom:12px}
+.home-pillar-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:7px}
+.home-pillar-text{font-size:12px;color:var(--text3);line-height:1.65}
+
+/* Who it's for */
+.home-who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.home-who-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px 16px;display:flex;align-items:center;gap:10px;transition:all 0.2s;cursor:default}
+.home-who-card:hover{border-color:var(--green);background:var(--bg3)}
+.who-icon{font-size:18px;flex-shrink:0}
+.who-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:1px}
+.who-desc{font-size:10px;color:var(--text3)}
+
+/* Verification section */
+.home-verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.home-verify-item{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2)}
+.verify-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.verify-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
+.verify-desc{font-size:11px;color:var(--text3);line-height:1.5}
+
+/* Market modules */
+.home-modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.home-module{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:16px;transition:all 0.2s;cursor:pointer}
+.home-module:hover{border-color:var(--border2);background:var(--bg3)}
+.hm-badge{display:inline-flex;padding:2px 7px;border-radius:3px;font-size:9px;font-weight:700;margin-bottom:9px}
+.hm-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px}
+.hm-desc{font-size:11px;color:var(--text3);line-height:1.5;margin-bottom:10px}
+.hm-link{font-size:11px;font-weight:700;color:var(--green)}
+
+/* Live preview strip */
+.home-live-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 48px}
+.home-live-inner{max-width:1100px;margin:0 auto}
+.home-live-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start}
+.home-live-block{display:flex;flex-direction:column;gap:3px}
+.home-live-label{font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.home-feed-mini{display:flex;flex-direction:column;gap:2px}
+.home-feed-row{display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:1px solid rgba(31,39,55,0.6);font-size:11px;font-family:var(--mono)}
+.home-stat-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.home-stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:9px 11px}
+.hsb-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px}
+.hsb-val{font-size:15px;font-weight:800;font-family:var(--mono);color:var(--green)}
+
+/* Footer */
+.home-footer{background:var(--bg2);border-top:1px solid var(--border);padding:20px 48px;margin-top:auto}
+.home-footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-size:14px;font-weight:900;color:var(--green);font-family:var(--mono);letter-spacing:2px}
+.footer-links{display:flex;gap:16px;align-items:center}
+.footer-link{font-size:11px;color:var(--text3);cursor:pointer;transition:color 0.2s}
+.footer-link:hover{color:var(--text)}
+.footer-right{font-size:10px;color:var(--text3)}
+
+/* ══ DEPOSIT MODAL ══ */
+#deposit-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
+#deposit-modal.open{display:flex}
+.dep-box{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;max-width:440px;width:100%;padding:22px;position:relative;max-height:90vh;overflow-y:auto}
+.dep-methods{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
+.dep-method{padding:10px 12px;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg3);cursor:pointer;transition:all 0.2s;text-align:left}
+.dep-method:hover{border-color:var(--border2)}
+.dep-method.sel{border-color:var(--green);background:var(--green3)}
+.dep-method-name{font-size:12px;font-weight:700;color:var(--text)}
+.dep-method-sub{font-size:10px;color:var(--text3)}
+.dep-instructions{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px;margin-bottom:14px;font-size:12px;color:var(--text2);line-height:1.6;min-height:60px}
+.dep-instructions b{color:var(--green)}
+.dep-address{background:rgba(0,0,0,0.3);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 11px;font-size:11px;font-family:var(--mono);color:var(--cyan);word-break:break-all;margin-bottom:12px}
+.dep-confirm-btn{width:100%;padding:11px;background:var(--green);color:#000;border-radius:var(--radius);font-weight:800;font-size:13px}
+.dep-cancel-btn{width:100%;padding:9px;background:transparent;color:var(--text3);border-radius:var(--radius);font-size:12px;margin-top:6px;border:1px solid var(--border)}
+
+/* ══ REGISTER MODAL ══ */
+#register-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
+#register-modal.open{display:flex}
+.reg-box{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;max-width:460px;width:100%;padding:22px;position:relative;max-height:90vh;overflow-y:auto}
+.modal-form-group{margin-bottom:12px}
+.modal-form-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;display:block;margin-bottom:5px}
+.modal-form-input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 11px;border-radius:var(--radius);font-size:12px}
+.modal-form-input:focus{border-color:var(--border2)}
+.modal-form-select{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 11px;border-radius:var(--radius);font-size:12px;appearance:none}
+.reg-submit-btn{width:100%;padding:11px;background:var(--green);color:#000;border-radius:var(--radius);font-weight:800;font-size:13px;margin-top:4px}
+.reg-cancel-btn{width:100%;padding:9px;background:transparent;color:var(--text3);border-radius:var(--radius);font-size:12px;margin-top:6px;border:1px solid var(--border)}
+
+/* ══ VERIFY MODAL ══ */
+#verify-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
+#verify-modal.open{display:flex}
+.ver-box{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;max-width:460px;width:100%;padding:22px;position:relative;max-height:90vh;overflow-y:auto}
+.ver-docs{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.ver-doc-item{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius)}
+.ver-doc-check{width:16px;height:16px;border-radius:3px;border:1px solid var(--border2);background:var(--bg4);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;margin-top:1px}
+.ver-doc-check.checked{background:var(--green);border-color:var(--green);color:#000;font-size:10px;font-weight:900}
+.ver-doc-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px}
+.ver-doc-desc{font-size:10px;color:var(--text3)}
+.ver-submit-btn{width:100%;padding:11px;background:var(--gold);color:#000;border-radius:var(--radius);font-weight:800;font-size:13px;margin-top:4px}
+.ver-cancel-btn{width:100%;padding:9px;background:transparent;color:var(--text3);border-radius:var(--radius);font-size:12px;margin-top:6px;border:1px solid var(--border)}
+
+/* Landing responsive */
+@media(max-width:900px){
+  .home-hero{padding:60px 24px 48px}
+  .home-section{padding:40px 24px}
+  .home-pillars{grid-template-columns:1fr}
+  .home-who-grid{grid-template-columns:1fr 1fr}
+  .home-verify-grid{grid-template-columns:1fr}
+  .home-modules-grid{grid-template-columns:1fr 1fr}
+  .home-live-row{grid-template-columns:1fr}
+  .home-live-strip{padding:20px 24px}
+  .home-footer{padding:16px 24px}
+}
+@media(max-width:560px){
+  .home-who-grid{grid-template-columns:1fr}
+  .home-modules-grid{grid-template-columns:1fr}
+  .dep-methods{grid-template-columns:1fr}
+}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:1200px){
   #trade-layout{grid-template-columns:190px 1fr 260px}
@@ -558,19 +715,21 @@ input,select{outline:none;font-family:inherit}
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <div class="nav-logo">EAX</div>
+  <div class="nav-logo" onclick="showSection('home',null)" style="cursor:pointer" title="Home">EAX</div>
   <div class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></div>
   <div class="nav-links" id="navLinks">
-    <button class="nav-btn active" onclick="showSection('trade',this)">Trade</button>
+    <button class="nav-btn" onclick="showSection('trade',this)">Exchange</button>
     <button class="nav-btn" onclick="showSection('portfolio',this)">Portfolio</button>
     <button class="nav-btn" onclick="showSection('marketplace',this)">Marketplace</button>
+    <button class="nav-btn nav-p2p" onclick="showSection('p2p',this)">P2P</button>
     <button class="nav-btn" onclick="showSection('projects',this)">Projects</button>
     <button class="nav-btn" onclick="showSection('certificates',this)">Certificates</button>
     <button class="nav-btn" onclick="showSection('intelligence',this)">Intelligence</button>
-    <button class="nav-btn nav-p2p" onclick="showSection('p2p',this)">P2P</button>
   </div>
   <div class="nav-right">
-    <button class="deposit-btn">+ Deposit</button>
+    <button class="nav-btn" onclick="openRegisterModal()" style="color:var(--text2)">Register</button>
+    <button class="nav-btn" onclick="openVerifyModal()" style="color:var(--gold);border-color:rgba(245,158,11,0.25)">Get Verified</button>
+    <button class="deposit-btn" onclick="openDepositModal()">+ Deposit</button>
     <div class="user-chip"><div class="user-avatar">J</div>Juna V.</div>
   </div>
 </nav>
@@ -578,9 +737,229 @@ input,select{outline:none;font-family:inherit}
 <div id="main">
 
 <!-- ══════════════════════════════════════════════
+     HOME / LANDING PAGE SECTION
+══════════════════════════════════════════════ -->
+<div id="section-home" class="section active">
+  <div class="home-wrap">
+
+    <!-- Hero -->
+    <div class="home-hero">
+      <div class="home-hero-inner">
+        <div class="home-hero-eyebrow"><span></span>Live Market · Verified Infrastructure</div>
+        <h1 class="home-hero-h1">Environmental<br><span>Asset Exchange</span></h1>
+        <p class="home-hero-sub">Verified market infrastructure for environmental credits, retirements, secondary trading and institutional intelligence. Built for serious market participants.</p>
+        <div class="home-hero-ctas">
+          <button class="cta-primary" onclick="showSection('trade',null)">Enter Exchange →</button>
+          <button class="cta-secondary" onclick="openRegisterModal()">Register</button>
+          <button class="cta-ghost" onclick="openVerifyModal()">Get Verified</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker strip -->
+    <div class="home-ticker">
+      <div class="home-ticker-label">◉ LIVE</div>
+      <div class="home-ticker-scroll">
+        <div class="home-ticker-inner" id="homeTicker">
+          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲ +2.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲ +1.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲ +8.3%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲ +4.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲ +12.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼ −0.8%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲ +5.1%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲ +7.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲ +3.5%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼ −1.4%</span></div>
+          <!-- duplicate for seamless loop -->
+          <div class="ticker-item"><span class="ticker-name">EAX-KE-001</span><span class="ticker-price">$14.80</span><span class="ticker-chg ticker-up">▲ +2.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-DRC-004</span><span class="ticker-price">$16.40</span><span class="ticker-chg ticker-up">▲ +1.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-005</span><span class="ticker-price">$22.60</span><span class="ticker-chg ticker-up">▲ +8.3%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BW-009</span><span class="ticker-price">$18.90</span><span class="ticker-chg ticker-up">▲ +4.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NO-029</span><span class="ticker-price">$35.40</span><span class="ticker-chg ticker-up">▲ +12.4%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-TZ-002</span><span class="ticker-price">$11.20</span><span class="ticker-chg ticker-dn">▼ −0.8%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-NE-003</span><span class="ticker-price">$8.50</span><span class="ticker-chg ticker-up">▲ +5.1%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-BR-016</span><span class="ticker-price">$21.30</span><span class="ticker-chg ticker-up">▲ +7.2%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-ID-017</span><span class="ticker-price">$24.80</span><span class="ticker-chg ticker-up">▲ +3.5%</span></div>
+          <div class="ticker-item"><span class="ticker-name">EAX-RW-006</span><span class="ticker-price">$6.90</span><span class="ticker-chg ticker-dn">▼ −1.4%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What EAX is — 3 pillars -->
+    <div class="home-section">
+      <div class="home-section-label">Platform Overview</div>
+      <h2 class="home-section-h2">What EAX Is</h2>
+      <p class="home-section-sub">Three integrated layers forming the complete environmental asset exchange.</p>
+      <div class="home-pillars">
+        <div class="home-pillar hp-green">
+          <div class="home-pillar-icon">◈</div>
+          <div class="home-pillar-title">Verified Markets</div>
+          <div class="home-pillar-text">Discover and trade verified environmental assets across carbon, biochar, blue carbon, plastic recovery, EV credits and more. Every project is verified before listing.</div>
+        </div>
+        <div class="home-pillar hp-gold">
+          <div class="home-pillar-icon">⬡</div>
+          <div class="home-pillar-title">Exchange Infrastructure</div>
+          <div class="home-pillar-text">Primary markets, P2P OTC trading, portfolio tracking, certificate retirements, verified seller profiles and institutional settlement options.</div>
+        </div>
+        <div class="home-pillar hp-blue">
+          <div class="home-pillar-icon">◎</div>
+          <div class="home-pillar-title">Market Intelligence</div>
+          <div class="home-pillar-text">Live pricing, regional demand heatmaps, buyer flow analytics, project intelligence and environmental asset data — in real time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who EAX is for -->
+    <div class="home-section" style="padding-top:0">
+      <div class="home-section-label">Participants</div>
+      <h2 class="home-section-h2">Who EAX Is For</h2>
+      <p class="home-section-sub">Built for institutional and professional market participants across the environmental asset ecosystem.</p>
+      <div class="home-who-grid">
+        <div class="home-who-card"><span class="who-icon">🏗️</span><div><div class="who-label">Project Developers</div><div class="who-desc">List and sell verified carbon and environmental credits</div></div></div>
+        <div class="home-who-card"><span class="who-icon">📊</span><div><div class="who-label">Brokers &amp; OTC Desks</div><div class="who-desc">Access P2P liquidity and counterparty profiles</div></div></div>
+        <div class="home-who-card"><span class="who-icon">💼</span><div><div class="who-label">Funds &amp; Asset Managers</div><div class="who-desc">Portfolio tracking, market intelligence and block trades</div></div></div>
+        <div class="home-who-card"><span class="who-icon">🏢</span><div><div class="who-label">Corporates &amp; ESG Teams</div><div class="who-desc">Source verified credits for scope 1, 2 and 3 retirement</div></div></div>
+        <div class="home-who-card"><span class="who-icon">🛡️</span><div><div class="who-label">Compliance Buyers</div><div class="who-desc">Legal compliance credits with full registry metadata</div></div></div>
+        <div class="home-who-card"><span class="who-icon">🏛️</span><div><div class="who-label">Governments &amp; Institutions</div><div class="who-desc">Sovereign and institutional environmental asset access</div></div></div>
+        <div class="home-who-card"><span class="who-icon">🌍</span><div><div class="who-label">Carbon Buyers</div><div class="who-desc">Direct access to primary and secondary credit markets</div></div></div>
+        <div class="home-who-card"><span class="who-icon">✓</span><div><div class="who-label">Verified Sellers</div><div class="who-desc">KYB-verified counterparty listings on the P2P exchange</div></div></div>
+        <div class="home-who-card"><span class="who-icon">📈</span><div><div class="who-label">Market Intelligence Users</div><div class="who-desc">Regional data, flows, pricing and demand analytics</div></div></div>
+      </div>
+    </div>
+
+    <!-- Verification / Trust -->
+    <div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0">
+      <div class="home-section">
+        <div class="home-section-label">Trust Infrastructure</div>
+        <h2 class="home-section-h2">Verification &amp; Trust Layer</h2>
+        <p class="home-section-sub">Every participant, project and credit goes through a structured verification process before access to the exchange.</p>
+        <div class="home-verify-grid">
+          <div class="home-verify-item"><span class="verify-icon">🔐</span><div><div class="verify-title">Verified Sellers &amp; Buyers</div><div class="verify-desc">KYB/KYC verification for all active counterparties. Trust metrics, trade history and dispute records visible on every seller profile.</div></div></div>
+          <div class="home-verify-item"><span class="verify-icon">📋</span><div><div class="verify-title">Verified Project Registry</div><div class="verify-desc">All listed projects are cross-referenced with Verra VCS, Gold Standard, CCB Standards and other recognised registries.</div></div></div>
+          <div class="home-verify-item"><span class="verify-icon">🏆</span><div><div class="verify-title">Certificate Viewer</div><div class="verify-desc">Institutional-grade certificate documents with verification hashes, registry metadata, beneficiary details and retirement proof.</div></div></div>
+          <div class="home-verify-item"><span class="verify-icon">🔗</span><div><div class="verify-title">Retirement Proof</div><div class="verify-desc">Permanent retirement records with issuer branding, quantity, vintage, SDG alignment and cryptographic verification hash.</div></div></div>
+        </div>
+        <button class="cta-secondary" onclick="openVerifyModal()">Get Verified →</button>
+      </div>
+    </div>
+
+    <!-- Market Structure -->
+    <div class="home-section">
+      <div class="home-section-label">Market Structure</div>
+      <h2 class="home-section-h2">Platform Modules</h2>
+      <p class="home-section-sub">Six integrated modules forming the complete exchange infrastructure.</p>
+      <div class="home-modules-grid">
+        <div class="home-module" onclick="showSection('marketplace',null)">
+          <div class="hm-badge b-green">Primary</div>
+          <div class="hm-title">Marketplace</div>
+          <div class="hm-desc">Browse 32+ verified environmental asset projects. Filter by type, geography, social score and price.</div>
+          <div class="hm-link">Open Marketplace →</div>
+        </div>
+        <div class="home-module" onclick="showSection('p2p',null)">
+          <div class="hm-badge b-gold">OTC</div>
+          <div class="hm-title">P2P Exchange</div>
+          <div class="hm-desc">Direct peer-to-peer trading with verified counterparties. Make offers, negotiate and settle directly.</div>
+          <div class="hm-link">Open P2P →</div>
+        </div>
+        <div class="home-module" onclick="showSection('portfolio',null)">
+          <div class="hm-badge b-blue">Account</div>
+          <div class="hm-title">Portfolio</div>
+          <div class="hm-desc">Track holdings, unrealized P&L, retirement history and certificate ownership across all positions.</div>
+          <div class="hm-link">View Portfolio →</div>
+        </div>
+        <div class="home-module" onclick="showSection('certificates',null)">
+          <div class="hm-badge" style="background:rgba(6,182,212,0.15);color:var(--cyan)">Certificates</div>
+          <div class="hm-title">Certificate Vault</div>
+          <div class="hm-desc">Premium institutional-grade retirement certificates with registry metadata and cryptographic proof.</div>
+          <div class="hm-link">Open Vault →</div>
+        </div>
+        <div class="home-module" onclick="showSection('intelligence',null)">
+          <div class="hm-badge" style="background:rgba(139,92,246,0.15);color:var(--purple)">Intelligence</div>
+          <div class="hm-title">Market Intelligence</div>
+          <div class="hm-desc">Live pricing, regional demand heatmaps, buyer flow analytics, ranked tables and order flow.</div>
+          <div class="hm-link">Open Intelligence →</div>
+        </div>
+        <div class="home-module" onclick="showSection('projects',null)">
+          <div class="hm-badge" style="background:rgba(245,158,11,0.15);color:var(--gold)">Directory</div>
+          <div class="hm-title">Project Directory</div>
+          <div class="hm-desc">Full profiles for every listed project — description, SDGs, vintage, standard, social score and buy flow.</div>
+          <div class="hm-link">Browse Projects →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Market Preview -->
+    <div class="home-live-strip">
+      <div class="home-live-inner">
+        <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px"><span class="live-dot"></span>Live Market Preview</div>
+        <div class="home-live-row">
+          <div class="home-live-block">
+            <div class="home-live-label"><span class="live-dot"></span>Recent Activity</div>
+            <div class="home-feed-mini" id="homeFeedMini">
+              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">1,200</span><span style="color:var(--text3)">REDD+</span><span style="color:var(--text2)">Maasai Mara</span></div>
+              <div class="home-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text)">800</span><span style="color:var(--text3)">BLUE</span><span style="color:var(--text2)">Zanzibar</span></div>
+              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">2,500</span><span style="color:var(--text3)">VCU</span><span style="color:var(--text2)">Kilimanjaro</span></div>
+              <div class="home-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text)">450</span><span style="color:var(--text3)">GS</span><span style="color:var(--text2)">Rwanda</span></div>
+              <div class="home-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text)">3,000</span><span style="color:var(--text3)">SOLAR</span><span style="color:var(--text2)">Sahel</span></div>
+            </div>
+          </div>
+          <div class="home-live-block">
+            <div class="home-live-label">Market Stats</div>
+            <div class="home-stat-mini">
+              <div class="home-stat-box"><div class="hsb-label">Credits Listed</div><div class="hsb-val" id="homeStatCredits">842K</div></div>
+              <div class="home-stat-box"><div class="hsb-label">24h Volume</div><div class="hsb-val" id="homeStatVol">$4.2M</div></div>
+              <div class="home-stat-box"><div class="hsb-label">Active Projects</div><div class="hsb-val">32</div></div>
+              <div class="home-stat-box"><div class="hsb-label">Verified Sellers</div><div class="hsb-val">9</div></div>
+            </div>
+          </div>
+          <div class="home-live-block">
+            <div class="home-live-label">Top Movers</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
+                <span style="color:var(--text2)">Norway Arctic Kelp</span>
+                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +12.4%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
+                <span style="color:var(--text2)">Philippines Coral</span>
+                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +9.1%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
+                <span style="color:var(--text2)">Zanzibar Blue Carbon</span>
+                <span style="color:var(--green);font-family:var(--mono);font-weight:700">▲ +8.3%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:var(--bg3);border-radius:4px;font-size:11px">
+                <span style="color:var(--text2)">Rwanda Cookstove</span>
+                <span style="color:var(--red);font-family:var(--mono);font-weight:700">▼ −1.4%</span>
+              </div>
+            </div>
+            <button class="cta-primary" style="width:100%;margin-top:12px;font-size:12px" onclick="showSection('trade',null)">Enter Exchange →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="home-footer">
+      <div class="home-footer-inner">
+        <div class="footer-logo">EAX</div>
+        <div class="footer-links">
+          <span class="footer-link">About</span>
+          <span class="footer-link" onclick="openVerifyModal()">Verification</span>
+          <span class="footer-link">Contact</span>
+          <span class="footer-link">LinkedIn</span>
+          <span class="footer-link">X / Twitter</span>
+        </div>
+        <div class="footer-right">© 2025 Environmental Asset Exchange · All rights reserved</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ══════════════════════════════════════════════
      TRADE SECTION — 3-column Netlify layout
 ══════════════════════════════════════════════ -->
-<div id="section-trade" class="section active">
+<div id="section-trade" class="section">
   <div id="trade-layout">
 
     <!-- LEFT: Discovery Filters -->
@@ -1437,6 +1816,131 @@ input,select{outline:none;font-family:inherit}
   </div>
 </div>
 
+<!-- ══ DEPOSIT MODAL ══ -->
+<div id="deposit-modal">
+  <div class="dep-box">
+    <button class="bm-close" onclick="closeDepositModal()">✕</button>
+    <div id="depContent">
+      <div class="bm-title">Deposit Funds</div>
+      <div class="bm-sub" style="margin-bottom:16px">Select a deposit method to fund your EAX account</div>
+      <div class="dep-methods">
+        <div class="dep-method sel" onclick="selDepMethod(this,'usdc')"><div class="dep-method-name">USDC</div><div class="dep-method-sub">Instant settlement</div></div>
+        <div class="dep-method" onclick="selDepMethod(this,'usdt')"><div class="dep-method-name">USDT</div><div class="dep-method-sub">Instant settlement</div></div>
+        <div class="dep-method" onclick="selDepMethod(this,'bank')"><div class="dep-method-name">Bank Transfer</div><div class="dep-method-sub">1–3 business days</div></div>
+        <div class="dep-method" onclick="selDepMethod(this,'card')"><div class="dep-method-name">Credit Card</div><div class="dep-method-sub">2–5 minutes</div></div>
+        <div class="dep-method" onclick="selDepMethod(this,'mpesa')"><div class="dep-method-name">M-Pesa</div><div class="dep-method-sub">Kenya beta</div></div>
+        <div class="dep-method" onclick="selDepMethod(this,'wire')"><div class="dep-method-name">Wire Transfer</div><div class="dep-method-sub">Institutional</div></div>
+      </div>
+      <div class="dep-instructions" id="depInstructions">
+        <b>USDC Deposit</b><br>Send USDC to your assigned exchange deposit address below. Deposits are credited after 1 network confirmation.
+      </div>
+      <div class="dep-address" id="depAddress">0x4EAX…a3f9C2d1B7e0F58A6C4D3E2F1A0B9C8D7E6F5A4B3C2D1E0F9A8B7C6D5E4F3</div>
+      <button class="dep-confirm-btn" onclick="closeDepositModal()">I've Sent the Funds</button>
+      <button class="dep-cancel-btn" onclick="closeDepositModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REGISTER MODAL ══ -->
+<div id="register-modal">
+  <div class="reg-box">
+    <button class="bm-close" onclick="closeRegisterModal()">✕</button>
+    <div id="regContent">
+      <div class="bm-title">Create Account</div>
+      <div class="bm-sub" style="margin-bottom:16px">Register to access the EAX exchange platform</div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Account Type</label>
+        <select class="modal-form-select" id="regType">
+          <option value="">Select account type</option>
+          <option>Individual</option>
+          <option>Company</option>
+          <option>Broker</option>
+          <option>Project Developer</option>
+          <option>Fund</option>
+          <option>Government / Institution</option>
+        </select>
+      </div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Full Name / Organisation</label>
+        <input class="modal-form-input" id="regName" placeholder="Name or organisation" type="text">
+      </div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Email Address</label>
+        <input class="modal-form-input" id="regEmail" placeholder="you@organisation.com" type="email">
+      </div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Country</label>
+        <select class="modal-form-select" id="regCountry">
+          <option value="">Select country</option>
+          <option>Kenya</option><option>Tanzania</option><option>Ghana</option>
+          <option>Nigeria</option><option>South Africa</option><option>Ethiopia</option>
+          <option>United Kingdom</option><option>Germany</option><option>France</option>
+          <option>United States</option><option>Canada</option><option>Australia</option>
+          <option>Norway</option><option>Brazil</option><option>Indonesia</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Intended Use</label>
+        <select class="modal-form-select" id="regUse">
+          <option value="">Select intended use</option>
+          <option>Buy credits</option>
+          <option>Sell credits</option>
+          <option>Retire credits</option>
+          <option>Broker trades</option>
+          <option>Market intelligence</option>
+          <option>Multiple use cases</option>
+        </select>
+      </div>
+      <button class="reg-submit-btn" onclick="submitRegister()">Submit Registration</button>
+      <button class="reg-cancel-btn" onclick="closeRegisterModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GET VERIFIED MODAL ══ -->
+<div id="verify-modal">
+  <div class="ver-box">
+    <button class="bm-close" onclick="closeVerifyModal()">✕</button>
+    <div id="verContent">
+      <div class="bm-title">Get Verified</div>
+      <div class="bm-sub" style="margin-bottom:16px">Submit your verification request to access full exchange features</div>
+      <div class="modal-form-group">
+        <label class="modal-form-label">Verification Type</label>
+        <select class="modal-form-select" id="verType">
+          <option value="">Select verification type</option>
+          <option>Buyer Verification</option>
+          <option>Seller Verification</option>
+          <option>Broker Verification</option>
+          <option>Project Developer Verification</option>
+          <option>Institutional Verification</option>
+        </select>
+      </div>
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px">Required Documents</div>
+      <div class="ver-docs">
+        <div class="ver-doc-item">
+          <div class="ver-doc-check" onclick="toggleVerDoc(this)" id="vdoc1">✓</div>
+          <div><div class="ver-doc-title">Identity / Company Registration</div><div class="ver-doc-desc">Government-issued ID or company registration certificate</div></div>
+        </div>
+        <div class="ver-doc-item">
+          <div class="ver-doc-check" onclick="toggleVerDoc(this)" id="vdoc2"></div>
+          <div><div class="ver-doc-title">Proof of Authority</div><div class="ver-doc-desc">Board resolution, power of attorney or signatory authorisation</div></div>
+        </div>
+        <div class="ver-doc-item">
+          <div class="ver-doc-check" onclick="toggleVerDoc(this)" id="vdoc3"></div>
+          <div><div class="ver-doc-title">Registry Account / Project Documentation</div><div class="ver-doc-desc">Verra, Gold Standard, CCB or equivalent registry account details</div></div>
+        </div>
+        <div class="ver-doc-item">
+          <div class="ver-doc-check" onclick="toggleVerDoc(this)" id="vdoc4"></div>
+          <div><div class="ver-doc-title">Settlement Information</div><div class="ver-doc-desc">Bank account details, crypto wallet or institutional settlement instructions</div></div>
+        </div>
+      </div>
+      <button class="ver-submit-btn" onclick="submitVerify()">Submit Verification Request</button>
+      <button class="ver-cancel-btn" onclick="closeVerifyModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ════════════════════════════════════════════════════════
 // PROJECT DATA
@@ -1542,6 +2046,7 @@ function showSection(id,btn){
   if(id==='portfolio')renderPortfolio();
   if(id==='certificates')renderCerts();
   if(id==='projects')filterProjs();
+  if(id==='trade'){drawChart();updateChartHeader();}
 }
 function toggleMobileNav(){document.getElementById('navLinks').classList.toggle('mob-open')}
 
@@ -2564,6 +3069,95 @@ function closeSellerProfile(){
 }
 
 // ════════════════════════════════════════════════════════
+// DEPOSIT MODAL
+// ════════════════════════════════════════════════════════
+const DEP_INFO={
+  usdc:{title:'USDC Deposit',text:'Send USDC to your assigned exchange deposit address below. Deposits are credited after 1 network confirmation.',addr:'0x4EAX…a3f9C2d1B7e0F58A6C4D3E2F1A0B9C8D7E6F5A4B3C2D1E0F9A8B7C6D5E4F3'},
+  usdt:{title:'USDT Deposit',text:'Send USDT (ERC-20 or TRC-20) to your assigned exchange deposit address. Specify network when sending.',addr:'0x4EAX…b8d2A1e0F9C7B6A5D4E3F2A1B0C9D8E7F6A5B4C3D2E1F0A9B8C7D6E5F4A3B2'},
+  bank:{title:'Bank Transfer',text:'Bank details will be issued after account verification is complete. Transfers typically clear within 1–3 business days depending on your jurisdiction.',addr:'IBAN: EAX-INST-2025 · Contact your verified account manager for full banking instructions.'},
+  card:{title:'Credit / Debit Card',text:'Card deposits are processed via our secure payment gateway. A 1.5% processing fee applies. Funds are credited within 2–5 minutes.',addr:'Redirecting to secure payment gateway after confirmation…'},
+  mpesa:{title:'M-Pesa Deposit',text:'M-Pesa deposits are available for verified Kenya accounts only. Send to the Paybill number below and use your EAX account number as the reference.',addr:'Paybill: 600700 · Account: EAX-KE-00142 · Minimum: KES 1,000'},
+  wire:{title:'Wire Transfer (Institutional)',text:'Wire transfers are available for verified institutional accounts. Full correspondent banking details including SWIFT/BIC will be provided by your account manager.',addr:'Contact: institutional@eax.exchange · Minimum: $10,000 USD equivalent'}
+};
+
+function openDepositModal(){
+  const el=document.getElementById('deposit-modal');
+  if(el){el.classList.add('open');selDepMethod(document.querySelector('#deposit-modal .dep-method.sel')||document.querySelector('#deposit-modal .dep-method'),'usdc');}
+}
+function closeDepositModal(){const el=document.getElementById('deposit-modal');if(el)el.classList.remove('open');}
+function selDepMethod(el,key){
+  document.querySelectorAll('.dep-method').forEach(e=>e.classList.remove('sel'));
+  if(el)el.classList.add('sel');
+  const info=DEP_INFO[key]||DEP_INFO.usdc;
+  const inst=document.getElementById('depInstructions');
+  const addr=document.getElementById('depAddress');
+  if(inst)inst.innerHTML=`<b>${info.title}</b><br>${info.text}`;
+  if(addr)addr.textContent=info.addr;
+}
+
+// ════════════════════════════════════════════════════════
+// REGISTER MODAL
+// ════════════════════════════════════════════════════════
+function openRegisterModal(){const el=document.getElementById('register-modal');if(el)el.classList.add('open');}
+function closeRegisterModal(){const el=document.getElementById('register-modal');if(el)el.classList.remove('open');resetRegister();}
+function resetRegister(){
+  const c=document.getElementById('regContent');
+  if(!c)return;
+  // restore form if in success state
+  if(c.querySelector('.modal-success')){
+    c.innerHTML=`<div class="bm-title">Create Account</div>
+    <div class="bm-sub" style="margin-bottom:16px">Register to access the EAX exchange platform</div>
+    <div class="modal-form-group"><label class="modal-form-label">Account Type</label><select class="modal-form-select" id="regType"><option value="">Select account type</option><option>Individual</option><option>Company</option><option>Broker</option><option>Project Developer</option><option>Fund</option><option>Government / Institution</option></select></div>
+    <div class="modal-form-group"><label class="modal-form-label">Full Name / Organisation</label><input class="modal-form-input" id="regName" placeholder="Name or organisation" type="text"></div>
+    <div class="modal-form-group"><label class="modal-form-label">Email Address</label><input class="modal-form-input" id="regEmail" placeholder="you@organisation.com" type="email"></div>
+    <div class="modal-form-group"><label class="modal-form-label">Country</label><select class="modal-form-select" id="regCountry"><option value="">Select country</option><option>Kenya</option><option>Tanzania</option><option>Ghana</option><option>Nigeria</option><option>South Africa</option><option>United Kingdom</option><option>Germany</option><option>United States</option><option>Other</option></select></div>
+    <div class="modal-form-group"><label class="modal-form-label">Intended Use</label><select class="modal-form-select" id="regUse"><option value="">Select intended use</option><option>Buy credits</option><option>Sell credits</option><option>Retire credits</option><option>Broker trades</option><option>Market intelligence</option><option>Multiple use cases</option></select></div>
+    <button class="reg-submit-btn" onclick="submitRegister()">Submit Registration</button>
+    <button class="reg-cancel-btn" onclick="closeRegisterModal()">Cancel</button>`;
+  }
+}
+function submitRegister(){
+  const c=document.getElementById('regContent');
+  if(!c)return;
+  c.innerHTML=`<div class="modal-success">
+    <div class="ms-icon">✅</div>
+    <div class="ms-title" style="color:var(--green)">Registration Submitted</div>
+    <div class="ms-sub">Your registration request has been submitted.<br>Our team will review your application and contact you at the email provided within 1–2 business days.</div>
+    <button class="ms-close" style="background:var(--green);color:#000" onclick="closeRegisterModal()">Close</button>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════════════
+// VERIFY MODAL
+// ════════════════════════════════════════════════════════
+function openVerifyModal(){const el=document.getElementById('verify-modal');if(el)el.classList.add('open');}
+function closeVerifyModal(){const el=document.getElementById('verify-modal');if(el)el.classList.remove('open');resetVerify();}
+function resetVerify(){
+  const c=document.getElementById('verContent');
+  if(c&&c.querySelector('.modal-success')){
+    // reset checkboxes
+    ['vdoc1','vdoc2','vdoc3','vdoc4'].forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(el){el.textContent=i===0?'✓':'';el.className='ver-doc-check'+(i===0?' checked':'');}
+    });
+  }
+}
+function toggleVerDoc(el){
+  if(el.classList.contains('checked')){el.classList.remove('checked');el.textContent='';}
+  else{el.classList.add('checked');el.textContent='✓';}
+}
+function submitVerify(){
+  const c=document.getElementById('verContent');
+  if(!c)return;
+  c.innerHTML=`<div class="modal-success">
+    <div class="ms-icon">📨</div>
+    <div class="ms-title" style="color:var(--gold)">Verification Request Submitted</div>
+    <div class="ms-sub">Your verification request has been submitted.<br>Our compliance team will review your documents and update your account status within 3–5 business days.</div>
+    <button class="ms-close" style="background:var(--gold);color:#000" onclick="closeVerifyModal()">Close</button>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════════════
 // UTILITIES
 // ════════════════════════════════════════════════════════
 function fmt(n){if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return n.toLocaleString();}
@@ -2578,7 +3172,9 @@ function init(){
   currentPrice=12+Math.random()*5;
   candles=genCandles(currentPrice,TF[currentTF].bars,TF[currentTF].vol);
   currentPrice=candles[candles.length-1].c;
-  drawChart();updateChartHeader();syncMetrics();startInterval();
+  // Draw chart in background (trade section may be hidden but canvas will render when shown)
+  setTimeout(()=>{drawChart();updateChartHeader();syncMetrics();},100);
+  startInterval();
 
   applyFilters();
   filterMkt();
@@ -2587,15 +3183,18 @@ function init(){
   renderPortfolio();
 
   // Seed live feed
-  for(let i=0;i<10;i++)setTimeout(()=>emitFeedEvent(),i*250);
+  for(let i=0;i<10;i++)setTimeout(()=>emitFeedEvent(),i*250+300);
 
   window.addEventListener('resize',()=>drawChart());
 
-  // Close overlays on bg click
+  // Close overlays on background click
   document.getElementById('project-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeProfile();});
   document.getElementById('buy-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBuyModal();});
   document.getElementById('offer-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeOfferModal();});
   document.getElementById('cert-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeCertModal();});
+  document.getElementById('deposit-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeDepositModal();});
+  document.getElementById('register-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeRegisterModal();});
+  document.getElementById('verify-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeVerifyModal();});
 }
 
 document.addEventListener('DOMContentLoaded',init);
