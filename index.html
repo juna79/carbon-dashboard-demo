@@ -203,13 +203,15 @@ input,select{outline:none;font-family:inherit}
 .ptab{padding:6px 13px;border-radius:var(--radius);background:var(--bg2);color:var(--text3);font-size:12px;font-weight:600;border:1px solid var(--border)}
 .ptab.active{background:var(--bg4);color:var(--green);border-color:rgba(0,217,126,0.3)}
 .panel-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden;margin-bottom:10px}
-.htable{width:100%;border-collapse:collapse}
-.htable th{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3)}
-.htable td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle}
+.htable{width:100%;border-collapse:collapse;min-width:900px}
+.htable th{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3);white-space:nowrap}
+.htable td{padding:9px 10px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle;white-space:nowrap}
 .htable tr:hover td{background:var(--bg3)}
 .htable tr:last-child td{border-bottom:none}
 .cl-green{color:var(--green)}
 .cl-red{color:var(--red)}
+@media(max-width:1100px){#portKpiRow{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:680px){#portKpiRow{grid-template-columns:repeat(2,1fr)!important}}
 
 /* ══ CERTIFICATES ══ */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
@@ -737,65 +739,107 @@ input,select{outline:none;font-family:inherit}
      PORTFOLIO SECTION
 ══════════════════════════════════════════════ -->
 <div id="section-portfolio" class="section">
-  <div id="port-layout">
-    <div class="port-main">
-      <div class="port-hdr">
-        <div>
-          <div class="port-title">My Portfolio</div>
-          <div class="port-val" id="portVal">$0.00</div>
-          <div class="port-sub">Total portfolio value</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:11px;color:var(--text3)">Unrealized P&amp;L</div>
-          <div class="sc-badge up" id="portPnL" style="margin-top:3px">+$0.00</div>
-        </div>
-      </div>
-      <div class="ptabs">
-        <button class="ptab active" onclick="showPortTab('summary',this)">Summary</button>
-        <button class="ptab" onclick="showPortTab('holdings',this)">Holdings</button>
-        <button class="ptab" onclick="showPortTab('performance',this)">Performance</button>
-        <button class="ptab" onclick="showPortTab('retirement',this)">Retirement History</button>
-      </div>
-      <div id="port-summary">
-        <div class="market-stats-bar" style="margin-bottom:12px">
-          <div class="stat-card c-green"><div class="sc-label">Total Credits</div><div class="sc-value" id="ptCredits">0</div></div>
-          <div class="stat-card c-blue"><div class="sc-label">Projects Held</div><div class="sc-value" id="ptProjects">0</div></div>
-          <div class="stat-card c-gold"><div class="sc-label">Retired Credits</div><div class="sc-value" id="ptRetired">0</div></div>
-          <div class="stat-card c-red"><div class="sc-label">Avg Cost Basis</div><div class="sc-value" id="ptAvgCost">$0</div></div>
-        </div>
-        <div class="panel-box">
-          <div class="panel-hdr"><div class="phdr-title">Holdings by Project</div></div>
-          <div id="portHoldingsList" style="padding:8px"></div>
-        </div>
-      </div>
-      <div id="port-holdings" style="display:none">
-        <div class="panel-box">
-          <div class="panel-hdr"><div class="phdr-title">All Holdings</div></div>
-          <div style="overflow-x:auto">
-            <table class="htable"><thead><tr>
-              <th>Project</th><th>Credits</th><th>Avg Price</th><th>Current</th><th>P&L</th><th>Value</th><th>Action</th>
-            </tr></thead><tbody id="holdingsBody"></tbody></table>
-          </div>
-        </div>
-      </div>
-      <div id="port-performance" style="display:none">
-        <div class="panel-box"><div class="panel-hdr"><div class="phdr-title">Performance Summary</div></div>
-          <canvas id="perfChart" height="160" style="width:100%;padding:12px;display:block"></canvas>
-        </div>
-      </div>
-      <div id="port-retirement" style="display:none">
-        <div class="panel-box"><div class="panel-hdr"><div class="phdr-title">Retirement History</div></div>
-          <div id="retirementList" style="padding:8px"></div>
-        </div>
-      </div>
+
+  <!-- Overview KPI cards: 6 stats -->
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px" id="portKpiRow">
+    <div class="stat-card c-green">
+      <div class="sc-label">Portfolio Value</div>
+      <div class="sc-value" id="portVal">$0.00</div>
+      <div class="sc-sub">total current value</div>
     </div>
-    <div class="port-side">
-      <div class="panel-box">
-        <div class="panel-hdr"><div class="phdr-title">Asset Distribution</div></div>
-        <canvas id="portDonut" height="180" style="width:100%;padding:10px;display:block"></canvas>
+    <div class="stat-card c-blue">
+      <div class="sc-label">Credits Held</div>
+      <div class="sc-value" id="ptCredits">0</div>
+      <div class="sc-sub">across all projects</div>
+    </div>
+    <div class="stat-card c-red">
+      <div class="sc-label">Credits Retired</div>
+      <div class="sc-value" id="ptRetired">0</div>
+      <div class="sc-sub">lifetime retirements</div>
+    </div>
+    <div class="stat-card c-gold">
+      <div class="sc-label">Unrealized P&amp;L</div>
+      <div class="sc-value" id="portPnL" style="font-size:16px">+$0.00</div>
+      <div class="sc-sub" id="portPnLPct">+0.00%</div>
+    </div>
+    <div class="stat-card c-green">
+      <div class="sc-label">Projects Held</div>
+      <div class="sc-value" id="ptProjects">0</div>
+      <div class="sc-sub">unique assets</div>
+    </div>
+    <div class="stat-card c-blue">
+      <div class="sc-label">Certificates</div>
+      <div class="sc-value" id="ptCerts">0</div>
+      <div class="sc-sub">active &amp; retired</div>
+    </div>
+  </div>
+
+  <!-- Tab nav -->
+  <div class="ptabs">
+    <button class="ptab active" onclick="showPortTab('holdings',this)">Holdings</button>
+    <button class="ptab" onclick="showPortTab('retirement',this)">Retirement History</button>
+  </div>
+
+  <!-- HOLDINGS TAB -->
+  <div id="port-holdings">
+    <div class="panel-box">
+      <div class="panel-hdr">
+        <div class="phdr-title">Holdings by Project</div>
+        <span style="font-size:10px;color:var(--text3)" id="portHoldingsCount">0 positions</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="htable" id="holdingsTable">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Type</th>
+              <th>Country</th>
+              <th style="text-align:right">Credits Held</th>
+              <th style="text-align:right">Avg Buy</th>
+              <th style="text-align:right">Current</th>
+              <th style="text-align:right">Value</th>
+              <th style="text-align:right">P&amp;L</th>
+              <th style="text-align:right">Retired</th>
+              <th>Certificates</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="holdingsBody">
+            <tr><td colspan="11" style="text-align:center;padding:28px;color:var(--text3)">No holdings yet. Buy credits from the Trade section.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+
+  <!-- RETIREMENT HISTORY TAB -->
+  <div id="port-retirement" style="display:none">
+    <div class="panel-box">
+      <div class="panel-hdr">
+        <div class="phdr-title">Retirement History</div>
+        <span style="font-size:10px;color:var(--text3)" id="portRetiredCount">0 events</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="htable" id="retiredTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Project</th>
+              <th>Credit Type</th>
+              <th style="text-align:right">Qty Retired</th>
+              <th>Issuer</th>
+              <th>Certificate ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="retiredBody">
+            <tr><td colspan="7" style="text-align:center;padding:28px;color:var(--text3)">No retirement events yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ══════════════════════════════════════════════
@@ -1281,7 +1325,24 @@ let chartInterval=null;
 let candles=[];
 let currentPrice=0;
 let chartTrend=0;
-let portfolio={holdings:[],retired:[]};
+// Pre-seeded simulated portfolio holdings
+let portfolio={
+  holdings:[
+    {projectId:'P001',qty:2500,avgPrice:13.20,purchaseDate:'2024-01-15',certIds:['EAX-2024-KE-001']},
+    {projectId:'P004',qty:1800,avgPrice:14.90,purchaseDate:'2024-02-08',certIds:['EAX-2024-DRC-004']},
+    {projectId:'P005',qty:800,avgPrice:19.40,purchaseDate:'2024-03-22',certIds:['EAX-2024-TZ-005']},
+    {projectId:'P009',qty:1200,avgPrice:16.80,purchaseDate:'2024-04-10',certIds:['EAX-2024-BW-009']},
+    {projectId:'P016',qty:600,avgPrice:18.50,purchaseDate:'2024-05-01',certIds:['EAX-2024-BR-016']},
+    {projectId:'P003',qty:3000,avgPrice:7.90,purchaseDate:'2024-06-14',certIds:['EAX-2024-NE-003']},
+    {projectId:'P017',qty:400,avgPrice:22.10,purchaseDate:'2024-07-03',certIds:['EAX-2024-ID-017']},
+    {projectId:'P029',qty:150,avgPrice:31.00,purchaseDate:'2024-08-19',certIds:['EAX-2024-NO-029']},
+  ],
+  retired:[
+    {projectId:'P002',qty:500,retiredDate:'2024-02-28',certId:'EAX-RET-2024-TZ-001',issuer:'Verra VCS',status:'Verified'},
+    {projectId:'P006',qty:1000,retiredDate:'2024-04-15',certId:'EAX-RET-2024-RW-002',issuer:'Gold Standard',status:'Verified'},
+    {projectId:'P008',qty:750,retiredDate:'2024-06-30',certId:'EAX-RET-2024-GH-003',issuer:'Gold Standard',status:'Verified'},
+  ]
+};
 let p2pSort='cheapest';
 let offerTarget=null;
 let selectedProjectId=null;
@@ -1771,69 +1832,151 @@ function confirmBuy(){
 }
 
 // ════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
 // PORTFOLIO
 // ════════════════════════════════════════════════════════
 function showPortTab(tab,btn){
-  ['summary','holdings','performance','retirement'].forEach(t=>{
-    const el=document.getElementById('port-'+t);if(el)el.style.display='none';
+  ['holdings','retirement'].forEach(t=>{
+    const el=document.getElementById('port-'+t);
+    if(el)el.style.display='none';
   });
-  const el=document.getElementById('port-'+tab);if(el)el.style.display='block';
+  const el=document.getElementById('port-'+tab);
+  if(el)el.style.display='block';
   document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
 }
+
 function renderPortfolio(){
   const holdings=portfolio.holdings;
-  let total=0,credits=0,cost=0;
+  const retired=portfolio.retired;
+
+  // ── Aggregate totals ──
+  let totalValue=0,totalCost=0,totalCredits=0;
   holdings.forEach(h=>{
     const p=PROJECTS.find(x=>x.id===h.projectId);
-    if(p){total+=h.qty*p.price;credits+=h.qty;cost+=h.qty*h.avgPrice;}
+    if(!p)return;
+    totalValue+=h.qty*p.price;
+    totalCost+=h.qty*h.avgPrice;
+    totalCredits+=h.qty;
   });
-  const pnl=total-cost;
-  setText('portVal','$'+total.toFixed(2));
-  const pnlEl=document.getElementById('portPnL');
-  if(pnlEl){pnlEl.textContent=(pnl>=0?'+$':'$')+pnl.toFixed(2);pnlEl.className='sc-badge '+(pnl>=0?'up':'dn');}
-  setText('ptCredits',fmt(credits));
-  setText('ptProjects',holdings.length);
-  setText('ptRetired',portfolio.retired.reduce((s,r)=>s+r.qty,0));
-  setText('ptAvgCost',credits>0?'$'+(cost/credits).toFixed(2):'$0');
+  const totalRetiredQty=retired.reduce((s,r)=>s+r.qty,0);
+  const pnl=totalValue-totalCost;
+  const pnlPct=totalCost>0?(pnl/totalCost*100):0;
+  const totalCerts=holdings.reduce((s,h)=>s+(h.certIds?h.certIds.length:0),0)+retired.length;
 
-  const hl=document.getElementById('portHoldingsList');
-  if(hl){
-    if(!holdings.length){hl.innerHTML='<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">No holdings. Buy credits from the Trade section.</div>';}
-    else{hl.innerHTML='';holdings.forEach(h=>{
-      const p=PROJECTS.find(x=>x.id===h.projectId);if(!p)return;
-      const v2=h.qty*p.price;const pnl2=v2-h.qty*h.avgPrice;const bull=pnl2>=0;
-      const row=document.createElement('div');
-      row.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border);font-size:12px';
-      row.innerHTML=`<div><div style="font-weight:700;color:var(--text)">${p.name}</div><div style="font-size:10px;color:var(--text3)">${h.qty.toLocaleString()} credits · ${p.type}</div></div><div style="text-align:right"><div style="font-family:var(--mono);font-weight:700;color:var(--green)">$${v2.toFixed(2)}</div><div style="font-size:11px;color:${bull?'var(--green)':'var(--red)'}">${bull?'+':''}$${pnl2.toFixed(2)}</div></div>`;
-      hl.appendChild(row);
-    });}
+  // ── KPI cards ──
+  setText('portVal','$'+totalValue.toFixed(2));
+  setText('ptCredits',fmt(totalCredits));
+  setText('ptRetired',fmt(totalRetiredQty));
+  setText('ptProjects',holdings.length);
+  setText('ptCerts',totalCerts);
+
+  const pnlEl=document.getElementById('portPnL');
+  const pnlPctEl=document.getElementById('portPnLPct');
+  if(pnlEl){
+    pnlEl.textContent=(pnl>=0?'+$':'−$')+Math.abs(pnl).toFixed(2);
+    pnlEl.style.color=pnl>=0?'var(--green)':'var(--red)';
   }
+  if(pnlPctEl){
+    pnlPctEl.textContent=(pnlPct>=0?'+':'')+pnlPct.toFixed(2)+'%';
+    pnlPctEl.style.color=pnlPct>=0?'var(--green)':'var(--red)';
+  }
+
+  // ── Holdings count ──
+  setText('portHoldingsCount',holdings.length+' position'+(holdings.length!==1?'s':''));
+
+  // ── Holdings table ──
   const tbody=document.getElementById('holdingsBody');
-  if(tbody){tbody.innerHTML='';holdings.forEach(h=>{
-    const p=PROJECTS.find(x=>x.id===h.projectId);if(!p)return;
-    const v2=h.qty*p.price;const pnl2=v2-h.qty*h.avgPrice;const bull=pnl2>=0;
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td><span style="color:var(--blue);cursor:pointer" onclick="openProfile('${p.id}')">${p.name}</span></td><td class="cl-green">${h.qty.toLocaleString()}</td><td>$${h.avgPrice.toFixed(2)}</td><td>$${p.price.toFixed(2)}</td><td class="${bull?'cl-green':'cl-red'}">${bull?'+':''}$${pnl2.toFixed(2)}</td><td class="cl-green">$${v2.toFixed(2)}</td><td><button style="padding:4px 9px;background:var(--red3);color:var(--red);border-radius:var(--radius);font-size:11px;font-weight:600;border:1px solid var(--red2);cursor:pointer" onclick="retireHolding('${p.id}')">Retire</button></td>`;
-    tbody.appendChild(tr);
-  });}
-  const rl=document.getElementById('retirementList');
-  if(rl){
-    if(!portfolio.retired.length){rl.innerHTML='<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">No retired credits yet.</div>';}
-    else{rl.innerHTML='';portfolio.retired.forEach(r=>{
-      const p=PROJECTS.find(x=>x.id===r.projectId);
-      const row=document.createElement('div');
-      row.style.cssText='display:flex;justify-content:space-between;padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px';
-      row.innerHTML=`<div><div style="font-weight:700;color:var(--text)">${p?p.name:'Unknown'}</div><div style="font-size:10px;color:var(--text3)">${r.date}</div></div><div style="text-align:right"><div style="color:var(--red);font-family:var(--mono);font-weight:700">${r.qty.toLocaleString()} credits</div><div style="font-size:10px;color:var(--text3)">RETIRED</div></div>`;
-      rl.appendChild(row);
-    });}
+  if(tbody){
+    if(!holdings.length){
+      tbody.innerHTML=`<tr><td colspan="11" style="text-align:center;padding:32px;color:var(--text3);font-size:13px">
+        <div style="margin-bottom:8px;font-size:24px;opacity:0.3">📭</div>
+        No holdings yet. Buy credits from the <span style="color:var(--green);cursor:pointer;font-weight:700" onclick="showSection('trade',document.querySelector('.nav-btn'))">Trade</span> section.
+      </td></tr>`;
+    } else {
+      tbody.innerHTML='';
+      holdings.forEach(h=>{
+        const p=PROJECTS.find(x=>x.id===h.projectId);
+        if(!p)return;
+        const currVal=h.qty*p.price;
+        const costVal=h.qty*h.avgPrice;
+        const rowPnl=currVal-costVal;
+        const rowPnlPct=costVal>0?(rowPnl/costVal*100):0;
+        const bull=rowPnl>=0;
+        // retired qty for this project
+        const retiredForProj=retired.filter(r=>r.projectId===h.projectId).reduce((s,r)=>s+r.qty,0);
+        // cert IDs
+        const certLinks=(h.certIds||[]).map(cid=>`<span style="color:var(--cyan);cursor:pointer;font-size:11px;font-family:var(--mono)" onclick="showSection('certificates',null)">${cid}</span>`).join('<br>');
+
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+          <td><span style="color:var(--blue);cursor:pointer;font-weight:600" onclick="openProfile('${p.id}')">${p.name}</span></td>
+          <td><span class="badge ${getTypeBadgeClass(p.type)}">${p.type}</span></td>
+          <td style="color:var(--text2)">${p.country}</td>
+          <td style="text-align:right;font-family:var(--mono);font-weight:700;color:var(--text)">${h.qty.toLocaleString()}</td>
+          <td style="text-align:right;font-family:var(--mono);color:var(--text2)">$${h.avgPrice.toFixed(2)}</td>
+          <td style="text-align:right;font-family:var(--mono);color:var(--green);font-weight:700">$${p.price.toFixed(2)}</td>
+          <td style="text-align:right;font-family:var(--mono);font-weight:700;color:var(--text)">$${currVal.toFixed(2)}</td>
+          <td style="text-align:right">
+            <div style="font-family:var(--mono);font-weight:700;color:${bull?'var(--green)':'var(--red)'}">${bull?'+':'−'}$${Math.abs(rowPnl).toFixed(2)}</div>
+            <div style="font-size:10px;color:${bull?'var(--green)':'var(--red)'}">${bull?'+':''}${rowPnlPct.toFixed(1)}%</div>
+          </td>
+          <td style="text-align:right;font-family:var(--mono);color:${retiredForProj>0?'var(--red)':'var(--text3)'}">${retiredForProj>0?retiredForProj.toLocaleString():'—'}</td>
+          <td style="font-size:11px">${certLinks||'<span style="color:var(--text3)">—</span>'}</td>
+          <td><button style="padding:4px 9px;background:var(--red3);color:var(--red);border-radius:var(--radius);font-size:11px;font-weight:600;border:1px solid var(--red2);cursor:pointer;white-space:nowrap" onclick="retireHolding('${p.id}')">Retire</button></td>`;
+        tbody.appendChild(tr);
+      });
+    }
+  }
+
+  // ── Retirement history ──
+  setText('portRetiredCount',retired.length+' event'+(retired.length!==1?'s':''));
+  const retBody=document.getElementById('retiredBody');
+  if(retBody){
+    if(!retired.length){
+      retBody.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--text3);font-size:13px">
+        <div style="margin-bottom:8px;font-size:22px;opacity:0.3">🔥</div>No retirement events yet.</td></tr>`;
+    } else {
+      retBody.innerHTML='';
+      retired.forEach((r,i)=>{
+        const p=PROJECTS.find(x=>x.id===r.projectId);
+        const certId=r.certId||('EAX-RET-'+String(i+1).padStart(3,'0'));
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+          <td style="font-family:var(--mono);color:var(--text2)">${r.retiredDate||r.date||'—'}</td>
+          <td><span style="color:var(--blue);cursor:pointer;font-weight:600" onclick="openProfile('${r.projectId}')">${p?p.name:'Unknown Project'}</span></td>
+          <td><span class="badge ${p?getTypeBadgeClass(p.type):'b-blue'}">${p?p.type:'—'}</span></td>
+          <td style="text-align:right;font-family:var(--mono);font-weight:700;color:var(--red)">${r.qty.toLocaleString()}</td>
+          <td style="color:var(--text2)">${r.issuer||(p?p.standard:'—')}</td>
+          <td><span style="color:var(--cyan);cursor:pointer;font-family:var(--mono);font-size:11px" onclick="showSection('certificates',null)">${certId}</span></td>
+          <td><span class="cert-status cs-retired" style="font-size:10px">${r.status||'Verified'}</span></td>`;
+        retBody.appendChild(tr);
+      });
+    }
   }
 }
+
+function getTypeBadgeClass(type){
+  const m={VCU:'b-blue',GS:'b-gold','REDD+':'b-green',BIO:'b-purple',BLUE:'b-cyan',SOLAR:'b-gold',WIND:'b-purple'};
+  return m[type]||'b-blue';
+}
+
 function retireHolding(id){
-  const h=portfolio.holdings.find(x=>x.projectId===id);if(!h)return;
-  portfolio.retired.push({projectId:id,qty:h.qty,date:new Date().toLocaleDateString()});
+  const h=portfolio.holdings.find(x=>x.projectId===id);
+  if(!h)return;
+  const p=PROJECTS.find(x=>x.id===id);
+  const certId='EAX-RET-'+(new Date().getFullYear())+'-'+id.replace('P','')+'-'+String(portfolio.retired.length+1).padStart(3,'0');
+  portfolio.retired.push({
+    projectId:id,
+    qty:h.qty,
+    retiredDate:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),
+    certId:certId,
+    issuer:p?p.standard:'Verra VCS',
+    status:'Verified'
+  });
   portfolio.holdings=portfolio.holdings.filter(x=>x.projectId!==id);
-  renderPortfolio();renderCerts();
+  renderPortfolio();
+  renderCerts();
 }
 
 // ════════════════════════════════════════════════════════
@@ -2118,6 +2261,7 @@ function init(){
   filterMkt();
   filterProjs();
   renderCerts();
+  renderPortfolio();
 
   // Seed live feed
   for(let i=0;i<10;i++)setTimeout(()=>emitFeedEvent(),i*250);
