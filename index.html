@@ -544,10 +544,10 @@ input,select{outline:none;font-family:inherit}
   position:relative;
   overflow:hidden;
   min-height:340px;
-  background:#060809;
+  background:#05070a;
 }
 
-/* Real cinematic environmental image layer */
+/* Background canvas container */
 .home-hero-bg{
   position:absolute;
   inset:0;
@@ -555,107 +555,95 @@ input,select{outline:none;font-family:inherit}
   pointer-events:none;
   overflow:hidden;
 }
-.home-hero-bg-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 40%;
-  /* Visibility ~38% — image shows through but stays dark and premium */
-  opacity:0.38;
-  filter:saturate(0.55) brightness(0.65);
-  z-index:0;
-}
 
-/* Dark cinematic gradient layered over the image */
+/* Multi-layer atmospheric gradient over bg */
 .home-hero-row::after{
   content:'';
   position:absolute;
   inset:0;
   background:
-    linear-gradient(105deg, rgba(6,8,10,0.78) 0%, rgba(6,8,10,0.52) 50%, rgba(6,8,10,0.68) 100%),
-    radial-gradient(ellipse 70% 80% at 22% 55%, rgba(0,217,126,0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 55% at 80% 20%, rgba(6,182,212,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(6,8,10,0.9) 0%, transparent 100%);
-  z-index:1;
+    radial-gradient(ellipse 55% 80% at 18% 55%, rgba(0,217,126,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 72% 25%, rgba(6,182,212,0.045) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 50% at 50% 85%, rgba(0,217,126,0.04) 0%, transparent 55%),
+    linear-gradient(160deg, rgba(5,7,10,0.55) 0%, rgba(5,7,10,0.22) 40%, rgba(5,7,10,0.6) 100%);
+  z-index:2;
   pointer-events:none;
 }
 
-/* Vignette — soft edge darkening */
+/* Vignette — pulls edges dark */
 .home-hero-vignette{
   position:absolute;
   inset:0;
-  z-index:2;
+  z-index:3;
   pointer-events:none;
-  background:radial-gradient(ellipse 110% 110% at 40% 50%, transparent 30%, rgba(5,7,9,0.55) 100%);
+  background:
+    radial-gradient(ellipse 100% 120% at 35% 50%, transparent 35%, rgba(4,6,9,0.65) 100%),
+    linear-gradient(to bottom, rgba(4,6,9,0.3) 0%, transparent 25%, transparent 75%, rgba(4,6,9,0.5) 100%);
 }
 
-/* Soft animated glow orb */
+/* Animated glow orbs — volumetric atmosphere */
 .home-hero-glow{
   position:absolute;
-  width:480px;
-  height:280px;
+  width:520px;height:300px;
   border-radius:50%;
-  background:radial-gradient(ellipse, rgba(0,217,126,0.055) 0%, transparent 70%);
-  top:10%;
-  left:5%;
-  z-index:1;
-  pointer-events:none;
-  animation:glowDrift 12s ease-in-out infinite;
+  background:radial-gradient(ellipse, rgba(0,217,126,0.07) 0%, transparent 70%);
+  top:5%;left:2%;
+  z-index:1;pointer-events:none;
+  animation:glowDrift 14s ease-in-out infinite;
 }
 .home-hero-glow2{
   position:absolute;
-  width:320px;
-  height:200px;
+  width:360px;height:220px;
   border-radius:50%;
-  background:radial-gradient(ellipse, rgba(6,182,212,0.035) 0%, transparent 70%);
-  bottom:15%;
-  left:30%;
-  z-index:1;
-  pointer-events:none;
-  animation:glowDrift2 16s ease-in-out infinite;
+  background:radial-gradient(ellipse, rgba(6,182,212,0.05) 0%, transparent 70%);
+  bottom:10%;left:28%;
+  z-index:1;pointer-events:none;
+  animation:glowDrift2 18s ease-in-out infinite;
+}
+.home-hero-glow3{
+  position:absolute;
+  width:200px;height:180px;
+  border-radius:50%;
+  background:radial-gradient(ellipse, rgba(245,158,11,0.04) 0%, transparent 70%);
+  top:20%;right:420px;
+  z-index:1;pointer-events:none;
+  animation:glowDrift 20s ease-in-out infinite reverse;
 }
 @keyframes glowDrift{
-  0%,100%{transform:translate(0,0) scale(1);opacity:0.7}
-  33%{transform:translate(18px,-12px) scale(1.06);opacity:1}
-  66%{transform:translate(-10px,8px) scale(0.96);opacity:0.8}
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(22px,-14px) scale(1.07)}
+  66%{transform:translate(-12px,9px) scale(0.95)}
 }
 @keyframes glowDrift2{
-  0%,100%{transform:translate(0,0) scale(1);opacity:0.5}
-  50%{transform:translate(-20px,10px) scale(1.1);opacity:0.9}
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-18px,12px) scale(1.08)}
 }
 
-/* Grid overlay on hero */
+/* Grid overlay — terminal data feel */
 .home-hero-grid{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
+  position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:
-    linear-gradient(rgba(0,217,126,0.028) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,217,126,0.028) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.4) 70%, transparent 100%);
-  -webkit-mask-image:linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.4) 70%, transparent 100%);
+    linear-gradient(rgba(0,217,126,0.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,126,0.032) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(125deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.2) 70%, transparent 100%);
+  -webkit-mask-image:linear-gradient(125deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.2) 70%, transparent 100%);
 }
 
-/* Contour line overlay */
-.home-hero-contours{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-  opacity:0.18;
+/* Contour line overlay — unused, kept for compatibility */
+.home-hero-contours{display:none}
+
+/* Canvas for animated particles */
+#heroCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:1;pointer-events:none;
+  opacity:0.7;
 }
 
 .home-hero-left{
   padding:36px 40px 36px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  position:relative;
-  z-index:5;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:5;
 }
 .home-hero-right{
   border-left:1px solid rgba(31,39,55,0.8);
@@ -1141,71 +1129,203 @@ input,select{outline:none;font-family:inherit}
     <!-- Hero Row -->
     <div class="home-hero-row">
 
-      <!-- Cinematic environmental background: real image + SVG overlays -->
+
+      <!-- ══ HERO BACKGROUND — Satellite environmental intelligence ══ -->
       <div class="home-hero-bg">
-        <!-- Real aerial/environmental image — dark, atmospheric, institutional -->
-        <img
-          class="home-hero-bg-img"
-          src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1400&q=80&fm=jpg"
-          alt=""
-          loading="eager"
-          onerror="this.style.display='none'"
-        >
-        <!-- SVG contour / data overlay on top of image -->
-        <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Primary SVG: satellite terrain / climate data intelligence aesthetic -->
+        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <radialGradient id="hg1" cx="20%" cy="60%" r="55%"><stop offset="0%" stop-color="#00d97e" stop-opacity="0.08"/><stop offset="100%" stop-color="#00d97e" stop-opacity="0"/></radialGradient>
-            <radialGradient id="hg2" cx="80%" cy="25%" r="40%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.05"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+            <!-- Deep space base -->
+            <linearGradient id="bgBase" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#030508"/>
+              <stop offset="45%" stop-color="#060a0d"/>
+              <stop offset="100%" stop-color="#040709"/>
+            </linearGradient>
+            <!-- Green atmospheric wash -->
+            <radialGradient id="gAtm" cx="22%" cy="58%" r="50%">
+              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.09"/>
+              <stop offset="100%" stop-color="#00d97e" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Cyan atmospheric wash -->
+            <radialGradient id="cAtm" cx="75%" cy="28%" r="38%">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.055"/>
+              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Subtle gold wash bottom right -->
+            <radialGradient id="gAtm2" cx="88%" cy="82%" r="30%">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.032"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+            </radialGradient>
+            <!-- Hexagon pattern -->
+            <pattern id="hexPat" x="0" y="0" width="52" height="60" patternUnits="userSpaceOnUse">
+              <polygon points="26,2 50,16 50,44 26,58 2,44 2,16" fill="none" stroke="#00d97e" stroke-width="0.35" stroke-opacity="0.18"/>
+            </pattern>
+            <!-- Fine dot grid -->
+            <pattern id="dotGrid" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
+              <circle cx="13" cy="13" r="0.7" fill="#00d97e" fill-opacity="0.12"/>
+            </pattern>
           </defs>
-          <!-- Atmosphere color washes -->
-          <ellipse cx="260" cy="200" rx="420" ry="240" fill="url(#hg1)"/>
-          <ellipse cx="920" cy="90" rx="300" ry="200" fill="url(#hg2)"/>
-          <!-- Topographic contour lines — environmental data feel -->
-          <g opacity="0.14" fill="none" stroke="#00d97e" stroke-width="0.6">
-            <path d="M-20,85 Q120,60 260,82 Q380,100 480,74 Q600,46 720,70 Q840,94 960,65 Q1080,40 1220,74"/>
-            <path d="M-20,112 Q100,88 240,106 Q380,124 500,100 Q630,74 750,98 Q870,120 990,92 Q1110,66 1220,98"/>
-            <path d="M-20,138 Q140,115 280,132 Q420,148 540,122 Q660,98 780,125 Q900,150 1020,118 Q1140,90 1220,120"/>
-            <path d="M-20,162 Q130,140 270,158 Q420,172 560,148 Q690,124 810,152 Q930,176 1060,145 Q1160,120 1220,148"/>
-            <path d="M-20,186 Q150,165 300,180 Q460,192 590,170 Q720,148 840,175 Q960,200 1100,170 Q1180,148 1220,172"/>
-            <path d="M-20,228 Q180,210 340,224 Q500,236 640,214 Q770,194 890,218 Q1010,242 1150,212 Q1200,198 1220,215"/>
-            <path d="M-20,255 Q160,238 320,252 Q490,264 640,243 Q780,222 910,248 Q1040,272 1180,242 Q1210,230 1220,245"/>
+
+          <!-- Base fill -->
+          <rect width="1200" height="360" fill="url(#bgBase)"/>
+
+          <!-- Atmospheric colour washes -->
+          <rect width="1200" height="360" fill="url(#gAtm)"/>
+          <rect width="1200" height="360" fill="url(#cAtm)"/>
+          <rect width="1200" height="360" fill="url(#gAtm2)"/>
+
+          <!-- Hexagonal grid — satellite / climate monitoring aesthetic -->
+          <rect width="1200" height="360" fill="url(#hexPat)" opacity="0.55"
+            mask="url(#hexMask)"/>
+          <defs>
+            <mask id="hexMask">
+              <rect width="1200" height="360" fill="white"/>
+              <!-- Fade out hex grid on right side (where market panel is) -->
+              <rect x="760" y="0" width="440" height="360"
+                fill="url(#hexFadeR)"/>
+            </mask>
+            <linearGradient id="hexFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="white" stop-opacity="1"/>
+              <stop offset="100%" stop-color="white" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Fine dot grid — data density texture -->
+          <rect width="760" height="360" fill="url(#dotGrid)" opacity="0.6"/>
+
+          <!-- ── TOPOGRAPHIC / TERRAIN CONTOUR SYSTEM ── -->
+          <!-- Reads like satellite elevation / carbon density mapping -->
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Outer elevation rings — subtle, wide -->
+            <g opacity="0.09" stroke="#00d97e" stroke-width="0.8">
+              <path d="M-30,290 Q80,268 200,278 Q320,288 440,264 Q560,240 680,262 Q800,282 920,255 Q1040,230 1160,252 Q1190,256 1230,250"/>
+              <path d="M-30,315 Q90,295 220,305 Q360,314 480,290 Q600,268 720,290 Q840,310 970,280 Q1080,256 1230,278"/>
+            </g>
+            <!-- Mid elevation — more definition -->
+            <g opacity="0.14" stroke="#00d97e" stroke-width="0.6">
+              <path d="M-30,195 Q60,174 180,190 Q280,204 400,182 Q520,160 640,178 Q760,196 880,168 Q1000,142 1120,165 Q1180,174 1230,162"/>
+              <path d="M-30,222 Q70,200 195,216 Q310,230 430,208 Q560,186 680,206 Q800,224 920,196 Q1040,170 1165,193 Q1200,198 1230,190"/>
+              <path d="M-30,248 Q80,228 210,242 Q340,254 460,232 Q590,210 712,232 Q836,252 960,222 Q1080,196 1200,218"/>
+            </g>
+            <!-- Inner dense contours — centre zone of interest -->
+            <g opacity="0.22" stroke="#00d97e" stroke-width="0.55">
+              <path d="M-30,108 Q60,86 185,100 Q295,114 415,90 Q535,68 655,88 Q775,108 895,78 Q1010,52 1130,74 Q1190,84 1230,72"/>
+              <path d="M-30,132 Q70,110 195,126 Q318,140 438,116 Q558,92 678,114 Q798,134 918,104 Q1038,76 1158,100 Q1200,110 1230,98"/>
+              <path d="M-30,156 Q80,134 205,150 Q340,164 462,140 Q582,116 705,140 Q828,162 952,130 Q1065,100 1185,124 Q1214,130 1230,122"/>
+              <path d="M-30,175 Q85,155 210,170 Q348,184 470,160 Q592,136 716,158 Q840,180 965,148 Q1080,120 1200,142"/>
+            </g>
+            <!-- Innermost tight contours — high data density zone -->
+            <g opacity="0.32" stroke="#00d97e" stroke-width="0.45">
+              <path d="M40,60 Q130,42 240,56 Q340,68 440,48 Q540,28 640,46 Q740,64 840,40 Q940,18 1020,38"/>
+              <path d="M40,78 Q135,58 245,74 Q348,88 450,66 Q555,44 658,64 Q762,84 865,58 Q960,36 1040,56"/>
+              <path d="M40,94 Q138,74 252,90 Q356,104 462,82 Q570,60 676,82 Q784,102 892,74 Q985,52 1060,72"/>
+            </g>
           </g>
-          <!-- Data coordinate marks -->
-          <g fill="#00d97e" opacity="0.28">
-            <circle cx="192" cy="116" r="2"/>
-            <circle cx="432" cy="100" r="1.8"/>
-            <circle cx="680" cy="122" r="2"/>
-            <circle cx="895" cy="106" r="1.6"/>
-            <circle cx="290" cy="62" r="1.6"/>
-            <circle cx="560" cy="76" r="1.6"/>
+
+          <!-- ── SATELLITE DATA NODES — location/monitoring markers ── -->
+          <!-- Primary nodes — active monitoring stations -->
+          <g opacity="0.55">
+            <!-- Node pulses: outer ring + inner dot -->
+            <g fill="none" stroke="#00d97e">
+              <circle cx="195" cy="112" r="6" stroke-width="0.6" stroke-opacity="0.4"/>
+              <circle cx="195" cy="112" r="3" stroke-width="0.8" stroke-opacity="0.7"/>
+            </g>
+            <circle cx="195" cy="112" r="1.4" fill="#00d97e" opacity="0.9"/>
+            <g fill="none" stroke="#00d97e">
+              <circle cx="448" cy="90" r="5" stroke-width="0.6" stroke-opacity="0.35"/>
+              <circle cx="448" cy="90" r="2.5" stroke-width="0.7" stroke-opacity="0.6"/>
+            </g>
+            <circle cx="448" cy="90" r="1.2" fill="#00d97e" opacity="0.85"/>
+            <g fill="none" stroke="#06b6d4">
+              <circle cx="690" cy="116" r="6" stroke-width="0.6" stroke-opacity="0.4"/>
+              <circle cx="690" cy="116" r="3" stroke-width="0.8" stroke-opacity="0.65"/>
+            </g>
+            <circle cx="690" cy="116" r="1.4" fill="#06b6d4" opacity="0.9"/>
+            <g fill="none" stroke="#00d97e">
+              <circle cx="310" cy="56" r="4.5" stroke-width="0.6" stroke-opacity="0.3"/>
+              <circle cx="310" cy="56" r="2" stroke-width="0.7" stroke-opacity="0.55"/>
+            </g>
+            <circle cx="310" cy="56" r="1" fill="#00d97e" opacity="0.8"/>
+            <g fill="none" stroke="#f59e0b">
+              <circle cx="545" cy="72" r="5" stroke-width="0.6" stroke-opacity="0.35"/>
+              <circle cx="545" cy="72" r="2.5" stroke-width="0.7" stroke-opacity="0.6"/>
+            </g>
+            <circle cx="545" cy="72" r="1.2" fill="#f59e0b" opacity="0.85"/>
+            <g fill="none" stroke="#06b6d4">
+              <circle cx="125" cy="168" r="4" stroke-width="0.5" stroke-opacity="0.3"/>
+              <circle cx="125" cy="168" r="2" stroke-width="0.6" stroke-opacity="0.5"/>
+            </g>
+            <circle cx="125" cy="168" r="1" fill="#06b6d4" opacity="0.75"/>
           </g>
-          <!-- Subtle scan-line texture -->
-          <g opacity="0.04" stroke="#e2e8f0" stroke-width="0.5">
-            <line x1="0" y1="20" x2="1200" y2="20"/>
-            <line x1="0" y1="40" x2="1200" y2="40"/>
-            <line x1="0" y1="60" x2="1200" y2="60"/>
-            <line x1="0" y1="80" x2="1200" y2="80"/>
-            <line x1="0" y1="100" x2="1200" y2="100"/>
-            <line x1="0" y1="120" x2="1200" y2="120"/>
-            <line x1="0" y1="140" x2="1200" y2="140"/>
-            <line x1="0" y1="160" x2="1200" y2="160"/>
-            <line x1="0" y1="180" x2="1200" y2="180"/>
-            <line x1="0" y1="200" x2="1200" y2="200"/>
-            <line x1="0" y1="220" x2="1200" y2="220"/>
-            <line x1="0" y1="240" x2="1200" y2="240"/>
-            <line x1="0" y1="260" x2="1200" y2="260"/>
-            <line x1="0" y1="280" x2="1200" y2="280"/>
-            <line x1="0" y1="300" x2="1200" y2="300"/>
-            <line x1="0" y1="320" x2="1200" y2="320"/>
-            <line x1="0" y1="340" x2="1200" y2="340"/>
+
+          <!-- ── NETWORK LINES — connecting monitoring nodes ── -->
+          <g opacity="0.18" stroke="#00d97e" stroke-width="0.5" fill="none" stroke-dasharray="3,6">
+            <line x1="195" y1="112" x2="310" y2="56"/>
+            <line x1="310" y1="56" x2="448" y2="90"/>
+            <line x1="448" y1="90" x2="545" y2="72"/>
+            <line x1="545" y1="72" x2="690" y2="116"/>
+            <line x1="195" y1="112" x2="125" y2="168"/>
+            <line x1="448" y1="90" x2="690" y2="116"/>
           </g>
+
+          <!-- ── SCAN LINE RASTER — satellite readout texture ── -->
+          <g opacity="0.035" stroke="#94a3b8" stroke-width="0.4">
+            <line x1="0" y1="18" x2="780" y2="18"/><line x1="0" y1="34" x2="780" y2="34"/>
+            <line x1="0" y1="50" x2="780" y2="50"/><line x1="0" y1="66" x2="780" y2="66"/>
+            <line x1="0" y1="82" x2="780" y2="82"/><line x1="0" y1="98" x2="780" y2="98"/>
+            <line x1="0" y1="114" x2="780" y2="114"/><line x1="0" y1="130" x2="780" y2="130"/>
+            <line x1="0" y1="146" x2="780" y2="146"/><line x1="0" y1="162" x2="780" y2="162"/>
+            <line x1="0" y1="178" x2="780" y2="178"/><line x1="0" y1="194" x2="780" y2="194"/>
+            <line x1="0" y1="210" x2="780" y2="210"/><line x1="0" y1="226" x2="780" y2="226"/>
+            <line x1="0" y1="242" x2="780" y2="242"/><line x1="0" y1="258" x2="780" y2="258"/>
+            <line x1="0" y1="274" x2="780" y2="274"/><line x1="0" y1="290" x2="780" y2="290"/>
+            <line x1="0" y1="306" x2="780" y2="306"/><line x1="0" y1="322" x2="780" y2="322"/>
+            <line x1="0" y1="338" x2="780" y2="338"/>
+          </g>
+
+          <!-- ── DATA LABELS — tiny coordinate readouts ── -->
+          <g font-family="'Courier New',monospace" font-size="7" fill="#00d97e" opacity="0.28">
+            <text x="200" y="106">1°S 36°E</text>
+            <text x="452" y="84">4°N 18°E</text>
+            <text x="548" y="66">3°N 25°E</text>
+            <text x="695" y="110">9°S 23°E</text>
+            <text x="314" y="50">5°N 30°E</text>
+          </g>
+          <g font-family="'Courier New',monospace" font-size="6.5" fill="#64748b" opacity="0.35">
+            <text x="40" y="24">EAX-SAT-01 ·</text>
+            <text x="40" y="38">CARBON DENSITY: ACTIVE</text>
+          </g>
+
+          <!-- ── LEFT EDGE GLOW — horizon atmospheric light ── -->
+          <rect x="0" y="0" width="3" height="360"
+            fill="url(#edgeGlow)" opacity="0.5"/>
+          <defs>
+            <linearGradient id="edgeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#00d97e" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Bottom fade to match page bg -->
+          <rect x="0" y="260" width="1200" height="100"
+            fill="url(#bottomFade2)" opacity="1"/>
+          <defs>
+            <linearGradient id="bottomFade2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#05070a" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#05070a" stop-opacity="0.75"/>
+            </linearGradient>
+          </defs>
         </svg>
+
+        <!-- Canvas: animated floating data particles -->
+        <canvas id="heroCanvas"></canvas>
       </div>
 
-      <!-- Animated glow orbs -->
+      <!-- Glow orbs (animated via CSS) -->
       <div class="home-hero-glow"></div>
       <div class="home-hero-glow2"></div>
-      <!-- Terminal grid overlay -->
+      <div class="home-hero-glow3"></div>
+      <!-- Terminal grid -->
       <div class="home-hero-grid"></div>
       <!-- Vignette -->
       <div class="home-hero-vignette"></div>
@@ -3572,6 +3692,110 @@ function init(){
   document.getElementById('register-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeRegisterModal();});
   document.getElementById('verify-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeVerifyModal();});
 }
+
+// ════════════════════════════════════════════════════════
+// HERO CANVAS — Animated data particles
+// ════════════════════════════════════════════════════════
+(function initHeroCanvas(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const row=canvas.closest('.home-hero-bg');
+  if(!row)return;
+  function resize(){
+    const hero=row.closest('.home-hero-row');
+    canvas.width=hero?hero.offsetWidth:window.innerWidth;
+    canvas.height=hero?hero.offsetHeight:360;
+  }
+  resize();
+  const ctx=canvas.getContext('2d');
+  // Particle types: floating data points, connection lines, pulse rings
+  const particles=[];
+  const N=55;
+  const W=()=>canvas.width;
+  const H=()=>canvas.height;
+  const COLS=['rgba(0,217,126,','rgba(6,182,212,','rgba(245,158,11,'];
+  for(let i=0;i<N;i++){
+    const col=COLS[Math.floor(Math.random()*3)];
+    particles.push({
+      x:Math.random()*W()*0.75, // keep left 75% — market panel side clear
+      y:Math.random()*H(),
+      vx:(Math.random()-0.5)*0.18,
+      vy:(Math.random()-0.5)*0.12,
+      r:Math.random()*1.2+0.4,
+      alpha:Math.random()*0.45+0.12,
+      col,
+      pulse:Math.random()<0.12, // some particles have pulse rings
+      pulseR:0,
+      pulseMax:8+Math.random()*6,
+      pulseSpeed:0.08+Math.random()*0.06,
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W(),H());
+    // Draw connection lines between nearby particles
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x;
+        const dy=particles[i].y-particles[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<80){
+          const a=(1-dist/80)*0.07;
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(0,217,126,${a})`;
+          ctx.lineWidth=0.4;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    // Draw particles
+    particles.forEach(p=>{
+      // Pulse ring
+      if(p.pulse){
+        p.pulseR+=p.pulseSpeed;
+        if(p.pulseR>p.pulseMax)p.pulseR=0;
+        const pa=(1-p.pulseR/p.pulseMax)*0.25;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.pulseR,0,Math.PI*2);
+        ctx.strokeStyle=p.col+pa+')';
+        ctx.lineWidth=0.6;
+        ctx.stroke();
+      }
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col+p.alpha+')';
+      ctx.fill();
+      // Move
+      p.x+=p.vx;
+      p.y+=p.vy;
+      // Wrap within left 75%
+      if(p.x<0)p.x=W()*0.75;
+      if(p.x>W()*0.75)p.x=0;
+      if(p.y<0)p.y=H();
+      if(p.y>H())p.y=0;
+    });
+  }
+  let raf;
+  function loop(){raf=requestAnimationFrame(loop);draw();}
+  // Only run animation when home section is visible
+  function startStop(){
+    const home=document.getElementById('section-home');
+    if(home&&home.classList.contains('active')){
+      if(!raf)loop();
+    } else {
+      if(raf){cancelAnimationFrame(raf);raf=null;}
+    }
+  }
+  // Observe section visibility changes
+  const observer=new MutationObserver(startStop);
+  const homeEl=document.getElementById('section-home');
+  if(homeEl)observer.observe(homeEl,{attributes:true,attributeFilter:['class']});
+  window.addEventListener('resize',()=>{resize();});
+  // Start if home is active on load
+  setTimeout(startStop,100);
+})();
 
 document.addEventListener('DOMContentLoaded',init);
 </script>
