@@ -215,7 +215,8 @@ input,select{outline:none;font-family:inherit}
 
 /* ══ CERTIFICATES ══ */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px;position:relative;overflow:hidden}
+.cert-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);padding:14px;position:relative;overflow:hidden;cursor:pointer;transition:border-color 0.2s,transform 0.2s}
+.cert-card:hover{border-color:var(--gold);transform:translateY(-1px)}
 .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan))}
 .cert-id{font-size:9px;color:var(--text3);font-family:var(--mono);margin-bottom:5px}
 .cert-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px}
@@ -226,6 +227,61 @@ input,select{outline:none;font-family:inherit}
 .cert-status{display:inline-flex;align-items:center;gap:3px;margin-top:7px;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700}
 .cs-active{background:var(--green3);color:var(--green)}
 .cs-retired{background:var(--red3);color:var(--red)}
+.cert-view-btn{width:100%;margin-top:9px;padding:6px;background:transparent;color:var(--gold);border-radius:var(--radius);font-size:11px;font-weight:700;border:1px solid rgba(245,158,11,0.35);cursor:pointer;transition:all 0.2s}
+.cert-view-btn:hover{background:rgba(245,158,11,0.1)}
+
+/* ══ PREMIUM CERTIFICATE MODAL ══ */
+#cert-modal{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:3500;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(12px)}
+#cert-modal.open{display:flex}
+.cert-modal-outer{max-width:620px;width:100%;position:relative}
+.cert-modal-close{position:absolute;top:-36px;right:0;background:rgba(255,255,255,0.08);color:var(--text2);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;border:1px solid rgba(255,255,255,0.12);z-index:1}
+.cert-modal-close:hover{color:#fff}
+
+/* The certificate document */
+.cert-doc{background:linear-gradient(145deg,#0d1118 0%,#111820 40%,#0d1118 100%);border:1px solid rgba(245,158,11,0.5);border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(245,158,11,0.12),0 24px 48px rgba(0,0,0,0.6);position:relative}
+.cert-doc::before{content:'';position:absolute;inset:6px;border:1px solid rgba(245,158,11,0.15);border-radius:8px;pointer-events:none;z-index:0}
+.cert-doc-inner{position:relative;z-index:1;padding:28px 32px}
+
+/* Header band */
+.cert-header-band{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(245,158,11,0.2);margin-bottom:20px}
+.cert-issuer-block{display:flex;flex-direction:column;gap:2px}
+.cert-issuer-name{font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
+.cert-issuer-sub{font-size:10px;color:var(--text3);letter-spacing:0.5px}
+.cert-doc-title{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:2px;text-align:center}
+.cert-seal{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.25) 0%,rgba(245,158,11,0.08) 60%,transparent 100%);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;position:relative}
+.cert-seal::before{content:'';position:absolute;inset:4px;border-radius:50%;border:1px dashed rgba(245,158,11,0.4)}
+.cert-seal-star{font-size:20px;line-height:1}
+.cert-seal-text{font-size:7px;color:var(--gold);font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
+
+/* Quantity hero */
+.cert-qty-hero{text-align:center;padding:16px 0 14px;border-bottom:1px solid rgba(245,158,11,0.12);margin-bottom:18px}
+.cert-qty-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.cert-qty-value{font-size:40px;font-weight:900;font-family:var(--mono);color:var(--green);line-height:1;margin-bottom:2px}
+.cert-qty-unit{font-size:13px;color:var(--text2);letter-spacing:0.5px}
+
+/* Data grid */
+.cert-data-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.cert-data-cell{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:10px 12px}
+.cert-data-key{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px}
+.cert-data-val{font-size:12px;font-weight:700;color:var(--text);font-family:var(--mono)}
+.cert-data-val.green{color:var(--green)}
+.cert-data-val.gold{color:var(--gold)}
+.cert-data-val.cyan{color:var(--cyan)}
+
+/* Hash section */
+.cert-hash-section{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:10px 12px;margin-bottom:18px}
+.cert-hash-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.cert-hash-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.cert-hash-val{font-size:10px;font-family:var(--mono);color:var(--cyan);word-break:break-all;line-height:1.5}
+
+/* Footer */
+.cert-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(245,158,11,0.15)}
+.cert-footer-status{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700}
+.cert-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cert-footer-registry{font-size:10px;color:var(--text3);text-align:right;line-height:1.5}
+.cert-footer-registry span{display:block;font-weight:700;color:var(--gold);font-size:11px}
+.cert-download-btn{width:100%;margin-top:14px;padding:10px;background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.08));color:var(--gold);border-radius:var(--radius);font-size:12px;font-weight:700;border:1px solid rgba(245,158,11,0.35);cursor:pointer;letter-spacing:0.5px;transition:all 0.2s}
+.cert-download-btn:hover{background:rgba(245,158,11,0.2)}
 
 /* ══ PROJECT OVERLAY ══ */
 #project-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding:52px 16px 16px;backdrop-filter:blur(10px);overflow-y:auto}
@@ -600,33 +656,64 @@ input,select{outline:none;font-family:inherit}
       <div id="seller-filters" style="display:none">
         <div class="fgroup">
           <label class="flabel">Buyer Type</label>
-          <select class="fsel">
-            <option value="">Corporate ESG Buyer</option>
-            <option>Airline</option>
-            <option>Retail Brand</option>
-            <option>Compliance Buyer</option>
-            <option>Luxury Travel Group</option>
+          <select class="fsel" id="sBuyerType" onchange="applyFilters()">
+            <option value="">All Buyer Types</option>
+            <option value="Corporate ESG Buyer">Corporate ESG Buyer</option>
+            <option value="Airline">Airline</option>
+            <option value="Retail Brand">Retail Brand</option>
+            <option value="Compliance Buyer">Compliance Buyer</option>
+            <option value="Luxury Travel Group">Luxury Travel Group</option>
           </select>
         </div>
         <div class="fgroup">
           <label class="flabel">Buyer Need</label>
-          <select class="fsel">
-            <option value="">Voluntary offset</option>
-            <option>Legal compliance</option>
-            <option>Brand impact</option>
-            <option>Supply chain claim</option>
+          <select class="fsel" id="sBuyerNeed" onchange="applyFilters()">
+            <option value="">All Needs</option>
+            <option value="Voluntary offset">Voluntary offset</option>
+            <option value="Legal compliance">Legal compliance</option>
+            <option value="Brand impact">Brand impact</option>
+            <option value="Supply chain claim">Supply chain claim</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Asset Type</label>
+          <select class="fsel" id="sAssetType" onchange="applyFilters()">
+            <option value="">All Assets</option>
+            <option value="VCU">VCU</option>
+            <option value="GS">Gold Standard</option>
+            <option value="REDD+">REDD+</option>
+            <option value="BIO">Biodiversity</option>
+            <option value="BLUE">Blue Carbon</option>
+            <option value="SOLAR">Solar</option>
+            <option value="WIND">Wind</option>
           </select>
         </div>
         <div class="fgroup">
           <label class="flabel">Project Geography</label>
-          <select class="fsel">
+          <select class="fsel" id="sGeo" onchange="applyFilters()">
             <option value="">Global</option>
-            <option>Europe</option><option>North America</option>
-            <option>GCC</option><option>Asia</option>
-            <option>Africa</option><option>South America</option>
+            <option value="Africa">Africa</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Asia">Asia</option>
+            <option value="South America">South America</option>
           </select>
         </div>
-        <div class="seller-hint">Seller mode ranks projects by buyer type, need and project geography alignment.</div>
+        <div class="fgroup">
+          <label class="flabel">Sort By</label>
+          <select class="fsel" id="sSort" onchange="applyFilters()">
+            <option value="">Default</option>
+            <option value="cheapest">Cheapest First</option>
+            <option value="social">Highest Social Impact</option>
+            <option value="traded">Most Traded</option>
+            <option value="rated">Highest Rated</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Search</label>
+          <input class="finp" id="sSearch" placeholder="Search projects..." oninput="applyFilters()">
+        </div>
+        <div class="seller-hint">Seller mode ranks projects by buyer type, need and geography alignment.</div>
       </div>
 
       <button class="apply-btn" onclick="applyFilters()">Apply Filters</button>
@@ -1257,6 +1344,99 @@ input,select{outline:none;font-family:inherit}
   <div class="ss-body" id="ssBody"></div>
 </div>
 
+<!-- ══ PREMIUM CERTIFICATE MODAL ══ -->
+<div id="cert-modal">
+  <div class="cert-modal-outer">
+    <button class="cert-modal-close" onclick="closeCertModal()">✕</button>
+    <div class="cert-doc">
+      <div class="cert-doc-inner">
+        <!-- Header: issuer left, title center, seal right -->
+        <div class="cert-header-band">
+          <div class="cert-issuer-block">
+            <div class="cert-issuer-name" id="cmIssuerName">Verra VCS</div>
+            <div class="cert-issuer-sub" id="cmIssuerSub">Verified Carbon Standard Registry</div>
+          </div>
+          <div class="cert-doc-title">Certificate of<br>Carbon Retirement</div>
+          <div class="cert-seal">
+            <div class="cert-seal-star">★</div>
+            <div class="cert-seal-text">Verified</div>
+          </div>
+        </div>
+
+        <!-- Quantity hero -->
+        <div class="cert-qty-hero">
+          <div class="cert-qty-label">Total Carbon Credits Retired</div>
+          <div class="cert-qty-value" id="cmQty">0</div>
+          <div class="cert-qty-unit">Verified Carbon Units (tCO₂e)</div>
+        </div>
+
+        <!-- Data grid -->
+        <div class="cert-data-grid">
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Certificate ID</div>
+            <div class="cert-data-val cyan" id="cmCertId">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Status</div>
+            <div class="cert-data-val" id="cmStatus">—</div>
+          </div>
+          <div class="cert-data-cell" style="grid-column:1/-1">
+            <div class="cert-data-key">Project Name</div>
+            <div class="cert-data-val" id="cmProjectName">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Asset Type</div>
+            <div class="cert-data-val green" id="cmAssetType">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Country</div>
+            <div class="cert-data-val" id="cmCountry">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Vintage Year</div>
+            <div class="cert-data-val gold" id="cmVintage">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Retirement Date</div>
+            <div class="cert-data-val" id="cmRetireDate">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">Registry</div>
+            <div class="cert-data-val" id="cmRegistry">—</div>
+          </div>
+          <div class="cert-data-cell">
+            <div class="cert-data-key">SDGs</div>
+            <div class="cert-data-val cyan" id="cmSDGs">—</div>
+          </div>
+          <div class="cert-data-cell" style="grid-column:1/-1">
+            <div class="cert-data-key">Retirement Beneficiary</div>
+            <div class="cert-data-val" id="cmBeneficiary">—</div>
+          </div>
+        </div>
+
+        <!-- Verification hash -->
+        <div class="cert-hash-section">
+          <div class="cert-hash-label">Verification Hash</div>
+          <div class="cert-hash-val" id="cmHash">—</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="cert-footer">
+          <div class="cert-footer-status" id="cmFooterStatus">
+            <div class="cert-status-dot" id="cmStatusDot" style="background:var(--green)"></div>
+            <span id="cmFooterStatusText">Verified &amp; Active</span>
+          </div>
+          <div class="cert-footer-registry">
+            <span id="cmFooterRegistry">Verra VCS</span>
+            Environmental Asset Exchange · EAX Terminal
+          </div>
+        </div>
+        <button class="cert-download-btn" onclick="closeCertModal()">↓ Download Certificate PDF &nbsp;·&nbsp; Share to Registry</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // ════════════════════════════════════════════════════════
 // PROJECT DATA
@@ -1675,11 +1855,40 @@ function setMode(mode){
 
 function getFiltered(){
   let list=[...PROJECTS];
-  const asset=v('fAsset'),country=v('fCountry'),sort=v('fSort'),search=v('fSearch').toLowerCase();
-  if(asset)list=list.filter(p=>p.type===asset);
-  if(country)list=list.filter(p=>p.country.includes(country)||p.region.includes(country));
-  if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
-  return sortList(list,sort);
+  if(currentMode==='seller'){
+    // Seller mode: filter by geography, asset type, search
+    const geo=v('sGeo');
+    const asset=v('sAssetType');
+    const sort=v('sSort');
+    const search=v('sSearch').toLowerCase();
+    const buyerType=v('sBuyerType');
+    if(geo)list=list.filter(p=>p.region===geo||p.country===geo);
+    if(asset)list=list.filter(p=>p.type===asset);
+    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
+    // Buyer type alignment: prioritise matching projects
+    if(buyerType){
+      const corpTypes=['REDD+','VCU','BIO'];
+      const airlineTypes=['VCU','REDD+'];
+      const retailTypes=['GS','BIO','VCU'];
+      const complianceTypes=['VCU','GS','REDD+'];
+      const luxuryTypes=['BLUE','BIO','GS'];
+      const typeMap={'Corporate ESG Buyer':corpTypes,'Airline':airlineTypes,'Retail Brand':retailTypes,'Compliance Buyer':complianceTypes,'Luxury Travel Group':luxuryTypes};
+      const preferred=typeMap[buyerType]||[];
+      list=list.sort((a,b)=>{
+        const aMatch=preferred.includes(a.type)?1:0;
+        const bMatch=preferred.includes(b.type)?1:0;
+        return bMatch-aMatch;
+      });
+    }
+    return sortList(list,sort);
+  } else {
+    // Buyer mode
+    const asset=v('fAsset'),country=v('fCountry'),sort=v('fSort'),search=v('fSearch').toLowerCase();
+    if(asset)list=list.filter(p=>p.type===asset);
+    if(country)list=list.filter(p=>p.country.includes(country)||p.region.includes(country));
+    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
+    return sortList(list,sort);
+  }
 }
 
 function sortList(list,sort){
@@ -1697,13 +1906,26 @@ function applyFilters(){
   const list=getFiltered();
   const grid=document.getElementById('tradeGrid');if(!grid)return;
   grid.innerHTML='';
-  list.forEach(p=>grid.appendChild(makeCard(p)));
+  if(list.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text3)">
+      <div style="font-size:28px;margin-bottom:10px;opacity:0.3">🔍</div>
+      <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px">No projects match your filters</div>
+      <div style="font-size:12px">Try adjusting your filter criteria</div>
+    </div>`;
+  } else {
+    list.forEach(p=>grid.appendChild(makeCard(p)));
+  }
   setText('tmCount',list.length+' projects');
 }
 
 function resetFilters(){
-  ['fAsset','fCountry','fImpact','fSort'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
-  const s=document.getElementById('fSearch');if(s)s.value='';
+  if(currentMode==='buyer'){
+    ['fAsset','fCountry','fImpact','fSort'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    const s=document.getElementById('fSearch');if(s)s.value='';
+  } else {
+    ['sAssetType','sGeo','sSort','sBuyerType','sBuyerNeed'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    const s=document.getElementById('sSearch');if(s)s.value='';
+  }
   applyFilters();
 }
 
@@ -1906,7 +2128,7 @@ function renderPortfolio(){
         // retired qty for this project
         const retiredForProj=retired.filter(r=>r.projectId===h.projectId).reduce((s,r)=>s+r.qty,0);
         // cert IDs
-        const certLinks=(h.certIds||[]).map(cid=>`<span style="color:var(--cyan);cursor:pointer;font-size:11px;font-family:var(--mono)" onclick="showSection('certificates',null)">${cid}</span>`).join('<br>');
+        const certLinks=(h.certIds||[]).map(cid=>`<span style="color:var(--cyan);cursor:pointer;font-size:11px;font-family:var(--mono);text-decoration:underline;text-underline-offset:2px" onclick="openCertViewer('${cid}')">${cid}</span>`).join('<br>');
 
         const tr=document.createElement('tr');
         tr.innerHTML=`
@@ -1948,7 +2170,7 @@ function renderPortfolio(){
           <td><span class="badge ${p?getTypeBadgeClass(p.type):'b-blue'}">${p?p.type:'—'}</span></td>
           <td style="text-align:right;font-family:var(--mono);font-weight:700;color:var(--red)">${r.qty.toLocaleString()}</td>
           <td style="color:var(--text2)">${r.issuer||(p?p.standard:'—')}</td>
-          <td><span style="color:var(--cyan);cursor:pointer;font-family:var(--mono);font-size:11px" onclick="showSection('certificates',null)">${certId}</span></td>
+          <td><span style="color:var(--cyan);cursor:pointer;font-family:var(--mono);font-size:11px;text-decoration:underline;text-underline-offset:2px" onclick="openCertViewer('${certId}')">${certId}</span></td>
           <td><span class="cert-status cs-retired" style="font-size:10px">${r.status||'Verified'}</span></td>`;
         retBody.appendChild(tr);
       });
@@ -1982,20 +2204,121 @@ function retireHolding(id){
 // ════════════════════════════════════════════════════════
 // CERTIFICATES
 // ════════════════════════════════════════════════════════
-function renderCerts(){
-  const grid=document.getElementById('certGrid');if(!grid)return;grid.innerHTML='';
+// ════════════════════════════════════════════════════════
+// CERTIFICATES
+// ════════════════════════════════════════════════════════
+// Master cert registry — single source of truth
+function getAllCerts(){
   const base=[
-    {id:'EAX-2024-KE-001',projectId:'P001',qty:500,date:'2024-03-15',status:'active'},
-    {id:'EAX-2024-TZ-002',projectId:'P002',qty:250,date:'2024-04-22',status:'active'},
-    {id:'EAX-2023-GH-003',projectId:'P008',qty:1000,date:'2023-11-08',status:'retired'},
+    {id:'EAX-2024-KE-001',projectId:'P001',qty:500,date:'15 Mar 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-DRC-004',projectId:'P004',qty:1800,date:'08 Feb 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-TZ-005',projectId:'P005',qty:800,date:'22 Mar 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-BW-009',projectId:'P009',qty:1200,date:'10 Apr 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-BR-016',projectId:'P016',qty:600,date:'01 May 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-NE-003',projectId:'P003',qty:3000,date:'14 Jun 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-ID-017',projectId:'P017',qty:400,date:'03 Jul 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
+    {id:'EAX-2024-NO-029',projectId:'P029',qty:150,date:'19 Aug 2024',status:'active',beneficiary:'Juna V. / EAX Account #00142'},
   ];
-  const all=[...base,...portfolio.retired.map((r,i)=>({id:'EAX-RET-'+String(i+1).padStart(3,'0'),projectId:r.projectId,qty:r.qty,date:r.date,status:'retired'}))];
+  const retiredCerts=portfolio.retired.map((r,i)=>({
+    id:r.certId||('EAX-RET-'+String(i+1).padStart(3,'0')),
+    projectId:r.projectId,
+    qty:r.qty,
+    date:r.retiredDate||r.date||'—',
+    status:'retired',
+    beneficiary:'Juna V. / EAX Account #00142 (Retired)',
+    issuer:r.issuer
+  }));
+  return [...base,...retiredCerts];
+}
+
+function renderCerts(){
+  const grid=document.getElementById('certGrid');if(!grid)return;
+  grid.innerHTML='';
+  const all=getAllCerts();
+  if(!all.length){
+    grid.innerHTML='<div style="color:var(--text3);font-size:13px;padding:24px">No certificates yet.</div>';
+    return;
+  }
   all.forEach(cert=>{
     const p=PROJECTS.find(x=>x.id===cert.projectId);
-    const card=document.createElement('div');card.className='cert-card';
-    card.innerHTML=`<div class="cert-id">${cert.id}</div><div class="cert-name">${p?p.name:'Unknown'}</div><div class="cert-qty">${cert.qty.toLocaleString()} credits</div><div class="cert-row"><span class="cert-k">Type</span><span class="cert-v">${p?p.type:'–'}</span></div><div class="cert-row"><span class="cert-k">Country</span><span class="cert-v">${p?p.country:'–'}</span></div><div class="cert-row"><span class="cert-k">Standard</span><span class="cert-v">${p?p.standard:'–'}</span></div><div class="cert-row"><span class="cert-k">Issued</span><span class="cert-v">${cert.date}</span></div><span class="cert-status ${cert.status==='active'?'cs-active':'cs-retired'}">${cert.status==='active'?'✓ Active':'🔥 Retired'}</span>`;
+    const isRetired=cert.status==='retired';
+    const card=document.createElement('div');
+    card.className='cert-card';
+    card.onclick=()=>openCertViewer(cert.id);
+    card.innerHTML=`
+      <div class="cert-id">${cert.id}</div>
+      <div class="cert-name">${p?p.name:'Unknown Project'}</div>
+      <div class="cert-qty">${cert.qty.toLocaleString()} <span style="font-size:12px;color:var(--text3)">tCO₂e</span></div>
+      <div class="cert-row"><span class="cert-k">Type</span><span class="cert-v">${p?p.type:'–'}</span></div>
+      <div class="cert-row"><span class="cert-k">Country</span><span class="cert-v">${p?p.country:'–'}</span></div>
+      <div class="cert-row"><span class="cert-k">Standard</span><span class="cert-v">${cert.issuer||(p?p.standard:'–')}</span></div>
+      <div class="cert-row"><span class="cert-k">Date</span><span class="cert-v">${cert.date}</span></div>
+      <span class="cert-status ${isRetired?'cs-retired':'cs-active'}">${isRetired?'🔥 Retired':'✓ Active'}</span>
+      <button class="cert-view-btn" onclick="openCertViewer('${cert.id}');event.stopPropagation()">★ View Certificate</button>`;
     grid.appendChild(card);
   });
+}
+
+function openCertViewer(certId){
+  const all=getAllCerts();
+  const cert=all.find(c=>c.id===certId);
+  if(!cert)return;
+  const p=PROJECTS.find(x=>x.id===cert.projectId);
+  const isRetired=cert.status==='retired';
+  const issuerName=cert.issuer||(p?p.standard:'Verra VCS');
+  const issuerSub=getIssuerSub(issuerName);
+
+  // Generate a deterministic-looking hash
+  const hashSeed=certId.replace(/[^A-Z0-9]/g,'');
+  const hash=generateHash(hashSeed);
+
+  setText('cmIssuerName',issuerName);
+  setText('cmIssuerSub',issuerSub);
+  setText('cmQty',cert.qty.toLocaleString());
+  setText('cmCertId',certId);
+  setText('cmProjectName',p?p.name:'Unknown Project');
+  setText('cmAssetType',p?p.type:'—');
+  setText('cmCountry',p?p.country:'—');
+  setText('cmVintage',p?String(p.vintage):'—');
+  setText('cmRetireDate',cert.date);
+  setText('cmRegistry',issuerName);
+  setText('cmSDGs',p?p.sdgs.join(' · '):'—');
+  setText('cmBeneficiary',cert.beneficiary||'EAX Account Holder');
+  setText('cmHash',hash);
+  setText('cmFooterRegistry',issuerName);
+
+  // Status
+  const statusEl=document.getElementById('cmStatus');
+  const dotEl=document.getElementById('cmStatusDot');
+  const footerStatusEl=document.getElementById('cmFooterStatusText');
+  if(statusEl){statusEl.textContent=isRetired?'Permanently Retired':'Active & Verified';statusEl.style.color=isRetired?'var(--red)':'var(--green)';}
+  if(dotEl)dotEl.style.background=isRetired?'var(--red)':'var(--green)';
+  if(footerStatusEl)footerStatusEl.textContent=isRetired?'Permanently Retired':'Verified & Active';
+
+  document.getElementById('cert-modal').classList.add('open');
+}
+
+function closeCertModal(){
+  document.getElementById('cert-modal').classList.remove('open');
+}
+
+function getIssuerSub(name){
+  if(name.includes('Gold Standard'))return'Gold Standard for the Global Goals Registry';
+  if(name.includes('Verra')||name.includes('VCS'))return'Verified Carbon Standard Registry';
+  if(name.includes('CCB'))return'Climate, Community & Biodiversity Standards';
+  if(name.includes('ART'))return'Architecture for REDD+ Transactions';
+  return'Environmental Asset Registry';
+}
+
+function generateHash(seed){
+  // Deterministic pseudo-hash from cert ID string
+  const chars='0123456789abcdef';
+  let h='0x';
+  for(let i=0;i<64;i++){
+    const charCode=seed.charCodeAt(i%seed.length)||97;
+    h+=chars[(charCode*31+i*17+i*i)%16];
+  }
+  return h;
 }
 
 // ════════════════════════════════════════════════════════
@@ -2272,6 +2595,7 @@ function init(){
   document.getElementById('project-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeProfile();});
   document.getElementById('buy-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBuyModal();});
   document.getElementById('offer-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeOfferModal();});
+  document.getElementById('cert-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeCertModal();});
 }
 
 document.addEventListener('DOMContentLoaded',init);
