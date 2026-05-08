@@ -544,106 +544,81 @@ input,select{outline:none;font-family:inherit}
   position:relative;
   overflow:hidden;
   min-height:340px;
-  background:#05070a;
+  background:#04060a;
 }
 
-/* Background canvas container */
+/* Background container */
 .home-hero-bg{
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  overflow:hidden;
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
 
-/* Multi-layer atmospheric gradient over bg */
+/* Cinematic dark overlay over everything */
 .home-hero-row::after{
-  content:'';
-  position:absolute;
-  inset:0;
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    radial-gradient(ellipse 55% 80% at 18% 55%, rgba(0,217,126,0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 72% 25%, rgba(6,182,212,0.045) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 50% at 50% 85%, rgba(0,217,126,0.04) 0%, transparent 55%),
-    linear-gradient(160deg, rgba(5,7,10,0.55) 0%, rgba(5,7,10,0.22) 40%, rgba(5,7,10,0.6) 100%);
-  z-index:2;
-  pointer-events:none;
+    linear-gradient(135deg,rgba(4,6,10,0.52) 0%,rgba(4,6,10,0.18) 45%,rgba(4,6,10,0.58) 100%),
+    radial-gradient(ellipse 60% 85% at 20% 55%,rgba(0,217,126,0.10) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 55% at 70% 22%,rgba(6,182,212,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 100% 30% at 50% 100%,rgba(4,6,10,0.85) 0%,transparent 100%);
 }
 
-/* Vignette — pulls edges dark */
+/* Vignette */
 .home-hero-vignette{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse 100% 120% at 35% 50%, transparent 35%, rgba(4,6,9,0.65) 100%),
-    linear-gradient(to bottom, rgba(4,6,9,0.3) 0%, transparent 25%, transparent 75%, rgba(4,6,9,0.5) 100%);
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:radial-gradient(ellipse 110% 120% at 35% 48%,transparent 32%,rgba(3,5,9,0.72) 100%);
 }
 
-/* Animated glow orbs — volumetric atmosphere */
+/* Animated glow orbs */
 .home-hero-glow{
-  position:absolute;
-  width:520px;height:300px;
-  border-radius:50%;
-  background:radial-gradient(ellipse, rgba(0,217,126,0.07) 0%, transparent 70%);
-  top:5%;left:2%;
-  z-index:1;pointer-events:none;
+  position:absolute;width:560px;height:320px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,217,126,0.09) 0%,transparent 70%);
+  top:0%;left:-2%;z-index:1;pointer-events:none;
   animation:glowDrift 14s ease-in-out infinite;
 }
 .home-hero-glow2{
-  position:absolute;
-  width:360px;height:220px;
-  border-radius:50%;
-  background:radial-gradient(ellipse, rgba(6,182,212,0.05) 0%, transparent 70%);
-  bottom:10%;left:28%;
-  z-index:1;pointer-events:none;
-  animation:glowDrift2 18s ease-in-out infinite;
+  position:absolute;width:380px;height:240px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(6,182,212,0.06) 0%,transparent 70%);
+  bottom:5%;left:25%;z-index:1;pointer-events:none;
+  animation:glowDrift2 19s ease-in-out infinite;
 }
 .home-hero-glow3{
-  position:absolute;
-  width:200px;height:180px;
-  border-radius:50%;
-  background:radial-gradient(ellipse, rgba(245,158,11,0.04) 0%, transparent 70%);
-  top:20%;right:420px;
-  z-index:1;pointer-events:none;
-  animation:glowDrift 20s ease-in-out infinite reverse;
+  position:absolute;width:220px;height:190px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(245,158,11,0.05) 0%,transparent 70%);
+  top:15%;right:430px;z-index:1;pointer-events:none;
+  animation:glowDrift 21s ease-in-out infinite reverse;
 }
 @keyframes glowDrift{
   0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(22px,-14px) scale(1.07)}
-  66%{transform:translate(-12px,9px) scale(0.95)}
+  33%{transform:translate(24px,-16px) scale(1.08)}
+  66%{transform:translate(-14px,10px) scale(0.94)}
 }
 @keyframes glowDrift2{
   0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(-18px,12px) scale(1.08)}
+  50%{transform:translate(-20px,14px) scale(1.09)}
 }
 
-/* Grid overlay — terminal data feel */
+/* Subtle terminal grid */
 .home-hero-grid{
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:
-    linear-gradient(rgba(0,217,126,0.032) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,217,126,0.032) 1px,transparent 1px);
-  background-size:52px 52px;
-  mask-image:linear-gradient(125deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.2) 70%, transparent 100%);
-  -webkit-mask-image:linear-gradient(125deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.2) 70%, transparent 100%);
+    linear-gradient(rgba(0,217,126,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,126,0.025) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(120deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 50%,transparent 80%);
+  -webkit-mask-image:linear-gradient(120deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 50%,transparent 80%);
 }
 
-/* Contour line overlay — unused, kept for compatibility */
 .home-hero-contours{display:none}
 
-/* Canvas for animated particles */
+/* Canvas particles */
 #heroCanvas{
   position:absolute;inset:0;width:100%;height:100%;
-  z-index:1;pointer-events:none;
-  opacity:0.7;
+  z-index:1;pointer-events:none;opacity:0.85;
 }
 
 .home-hero-left{
-  padding:36px 40px 36px;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;z-index:5;
+  padding:36px 40px;display:flex;flex-direction:column;
+  justify-content:center;position:relative;z-index:5;
 }
 .home-hero-right{
   border-left:1px solid rgba(31,39,55,0.8);
@@ -1130,198 +1105,338 @@ input,select{outline:none;font-family:inherit}
     <div class="home-hero-row">
 
 
-      <!-- ══ HERO BACKGROUND — Satellite environmental intelligence ══ -->
+      <!-- ══ HERO BACKGROUND — Global Environmental Market Scene ══ -->
       <div class="home-hero-bg">
-        <!-- Primary SVG: satellite terrain / climate data intelligence aesthetic -->
-        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <svg style="position:absolute;inset:0;width:100%;height:100%"
+             viewBox="0 0 1200 360"
+             preserveAspectRatio="xMidYMid slice"
+             xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <!-- Deep space base -->
-            <linearGradient id="bgBase" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#030508"/>
-              <stop offset="45%" stop-color="#060a0d"/>
-              <stop offset="100%" stop-color="#040709"/>
+            <!-- Base atmosphere -->
+            <linearGradient id="skyBase" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"  stop-color="#020407"/>
+              <stop offset="40%" stop-color="#050a0f"/>
+              <stop offset="100%" stop-color="#03070c"/>
             </linearGradient>
-            <!-- Green atmospheric wash -->
-            <radialGradient id="gAtm" cx="22%" cy="58%" r="50%">
-              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.09"/>
-              <stop offset="100%" stop-color="#00d97e" stop-opacity="0"/>
-            </radialGradient>
-            <!-- Cyan atmospheric wash -->
-            <radialGradient id="cAtm" cx="75%" cy="28%" r="38%">
-              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.055"/>
-              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-            </radialGradient>
-            <!-- Subtle gold wash bottom right -->
-            <radialGradient id="gAtm2" cx="88%" cy="82%" r="30%">
-              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.032"/>
-              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
-            </radialGradient>
-            <!-- Hexagon pattern -->
-            <pattern id="hexPat" x="0" y="0" width="52" height="60" patternUnits="userSpaceOnUse">
-              <polygon points="26,2 50,16 50,44 26,58 2,44 2,16" fill="none" stroke="#00d97e" stroke-width="0.35" stroke-opacity="0.18"/>
+            <!-- Region glows -->
+            <radialGradient id="rgAfrica"   cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d97e" stop-opacity="0.28"/><stop offset="100%" stop-color="#00d97e" stop-opacity="0"/></radialGradient>
+            <radialGradient id="rgEurope"   cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.22"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+            <radialGradient id="rgSAm"      cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00d97e" stop-opacity="0.18"/><stop offset="100%" stop-color="#00d97e" stop-opacity="0"/></radialGradient>
+            <radialGradient id="rgAsia"     cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f59e0b" stop-opacity="0.18"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
+            <radialGradient id="rgNA"       cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.16"/><stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+            <!-- Ocean depth gradient -->
+            <radialGradient id="oceanGlow"  cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.06"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/></radialGradient>
+            <!-- Land texture fill -->
+            <linearGradient id="landFill" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0d1a12" stop-opacity="1"/><stop offset="100%" stop-color="#0a1510" stop-opacity="1"/></linearGradient>
+            <!-- Animated connection line gradient -->
+            <linearGradient id="flowAE" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00d97e" stop-opacity="0.8"/><stop offset="50%" stop-color="#06b6d4" stop-opacity="0.9"/><stop offset="100%" stop-color="#00d97e" stop-opacity="0.5"/></linearGradient>
+            <linearGradient id="flowAS" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00d97e" stop-opacity="0.7"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0.6"/></linearGradient>
+            <linearGradient id="flowEA" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#06b6d4" stop-opacity="0.75"/><stop offset="100%" stop-color="#f59e0b" stop-opacity="0.6"/></linearGradient>
+            <linearGradient id="flowNA" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.6"/><stop offset="100%" stop-color="#06b6d4" stop-opacity="0.55"/></linearGradient>
+            <!-- Dot grid texture -->
+            <pattern id="dotTex" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="0.55" fill="#00d97e" fill-opacity="0.10"/>
             </pattern>
-            <!-- Fine dot grid -->
-            <pattern id="dotGrid" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
-              <circle cx="13" cy="13" r="0.7" fill="#00d97e" fill-opacity="0.12"/>
-            </pattern>
+            <!-- Certificate panel filter -->
+            <filter id="glow4"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <!-- Line dash flow animation -->
+            <style>
+              .flow-line{stroke-dasharray:8 14;animation:dashFlow 3s linear infinite}
+              .flow-line2{stroke-dasharray:6 18;animation:dashFlow 4.5s linear infinite}
+              .flow-line3{stroke-dasharray:5 20;animation:dashFlow 6s linear infinite reverse}
+              .flow-line4{stroke-dasharray:4 22;animation:dashFlow 5s linear infinite}
+              @keyframes dashFlow{to{stroke-dashoffset:-44}}
+              .pulse-ring{animation:pulseRing 2.4s ease-out infinite}
+              .pulse-ring2{animation:pulseRing 2.4s ease-out infinite 0.8s}
+              .pulse-ring3{animation:pulseRing 2.4s ease-out infinite 1.6s}
+              @keyframes pulseRing{0%{r:5;opacity:0.7}100%{r:18;opacity:0}}
+              .cert-float{animation:certFloat 6s ease-in-out infinite}
+              .cert-float2{animation:certFloat 7s ease-in-out infinite 2s}
+              @keyframes certFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+            </style>
           </defs>
 
-          <!-- Base fill -->
-          <rect width="1200" height="360" fill="url(#bgBase)"/>
+          <!-- ══ BASE: Deep ocean / atmosphere ══ -->
+          <rect width="1200" height="360" fill="url(#skyBase)"/>
+          <!-- Global ocean depth -->
+          <ellipse cx="550" cy="200" rx="600" ry="220" fill="url(#oceanGlow)"/>
+          <!-- Fine dot texture across entire scene -->
+          <rect width="830" height="360" fill="url(#dotTex)"/>
 
-          <!-- Atmospheric colour washes -->
-          <rect width="1200" height="360" fill="url(#gAtm)"/>
-          <rect width="1200" height="360" fill="url(#cAtm)"/>
-          <rect width="1200" height="360" fill="url(#gAtm2)"/>
+          <!-- ══ WORLD MAP CONTINENTS ══ -->
+          <!-- Rendered at ~45% visibility: fill opacity 0.45-0.55, stroke at 0.55 -->
 
-          <!-- Hexagonal grid — satellite / climate monitoring aesthetic -->
-          <rect width="1200" height="360" fill="url(#hexPat)" opacity="0.55"
-            mask="url(#hexMask)"/>
-          <defs>
-            <mask id="hexMask">
-              <rect width="1200" height="360" fill="white"/>
-              <!-- Fade out hex grid on right side (where market panel is) -->
-              <rect x="760" y="0" width="440" height="360"
-                fill="url(#hexFadeR)"/>
-            </mask>
-            <linearGradient id="hexFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="white" stop-opacity="1"/>
-              <stop offset="100%" stop-color="white" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Fine dot grid — data density texture -->
-          <rect width="760" height="360" fill="url(#dotGrid)" opacity="0.6"/>
-
-          <!-- ── TOPOGRAPHIC / TERRAIN CONTOUR SYSTEM ── -->
-          <!-- Reads like satellite elevation / carbon density mapping -->
-          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Outer elevation rings — subtle, wide -->
-            <g opacity="0.09" stroke="#00d97e" stroke-width="0.8">
-              <path d="M-30,290 Q80,268 200,278 Q320,288 440,264 Q560,240 680,262 Q800,282 920,255 Q1040,230 1160,252 Q1190,256 1230,250"/>
-              <path d="M-30,315 Q90,295 220,305 Q360,314 480,290 Q600,268 720,290 Q840,310 970,280 Q1080,256 1230,278"/>
+          <!-- AFRICA — centre of the scene, most prominent -->
+          <g id="africa">
+            <!-- Glow halo behind continent -->
+            <ellipse cx="490" cy="195" rx="88" ry="105" fill="url(#rgAfrica)" transform="scale(1.4)" style="transform-origin:490px 195px"/>
+            <!-- Continent silhouette — stylised simplified -->
+            <path d="
+              M458,90 L480,82 L510,84 L528,92 L540,104 L544,120 L538,136
+              L548,148 L550,164 L544,180 L548,196 L542,212 L530,228
+              L518,248 L506,262 L494,272 L480,268 L468,256 L458,240
+              L448,222 L442,204 L436,188 L440,172 L436,158 L432,140
+              L428,124 L432,108 L442,96 Z
+              M472,84 L486,76 L502,80 L472,84Z
+            "
+            fill="url(#landFill)" fill-opacity="0.52"
+            stroke="#00d97e" stroke-width="0.9" stroke-opacity="0.55"/>
+            <!-- Madagascar -->
+            <path d="M545,200 L550,190 L556,196 L558,210 L552,220 L546,214 Z"
+              fill="url(#landFill)" fill-opacity="0.45" stroke="#00d97e" stroke-width="0.6" stroke-opacity="0.4"/>
+            <!-- Internal terrain lines — gives depth -->
+            <g opacity="0.18" fill="none" stroke="#00d97e" stroke-width="0.5">
+              <path d="M448,130 Q462,126 476,132 Q490,138 504,132"/>
+              <path d="M442,158 Q458,154 472,160 Q488,166 502,158"/>
+              <path d="M440,186 Q456,180 472,186 Q490,192 508,185"/>
+              <path d="M448,214 Q462,210 476,216 Q490,222 506,214"/>
             </g>
-            <!-- Mid elevation — more definition -->
-            <g opacity="0.14" stroke="#00d97e" stroke-width="0.6">
-              <path d="M-30,195 Q60,174 180,190 Q280,204 400,182 Q520,160 640,178 Q760,196 880,168 Q1000,142 1120,165 Q1180,174 1230,162"/>
-              <path d="M-30,222 Q70,200 195,216 Q310,230 430,208 Q560,186 680,206 Q800,224 920,196 Q1040,170 1165,193 Q1200,198 1230,190"/>
-              <path d="M-30,248 Q80,228 210,242 Q340,254 460,232 Q590,210 712,232 Q836,252 960,222 Q1080,196 1200,218"/>
-            </g>
-            <!-- Inner dense contours — centre zone of interest -->
-            <g opacity="0.22" stroke="#00d97e" stroke-width="0.55">
-              <path d="M-30,108 Q60,86 185,100 Q295,114 415,90 Q535,68 655,88 Q775,108 895,78 Q1010,52 1130,74 Q1190,84 1230,72"/>
-              <path d="M-30,132 Q70,110 195,126 Q318,140 438,116 Q558,92 678,114 Q798,134 918,104 Q1038,76 1158,100 Q1200,110 1230,98"/>
-              <path d="M-30,156 Q80,134 205,150 Q340,164 462,140 Q582,116 705,140 Q828,162 952,130 Q1065,100 1185,124 Q1214,130 1230,122"/>
-              <path d="M-30,175 Q85,155 210,170 Q348,184 470,160 Q592,136 716,158 Q840,180 965,148 Q1080,120 1200,142"/>
-            </g>
-            <!-- Innermost tight contours — high data density zone -->
-            <g opacity="0.32" stroke="#00d97e" stroke-width="0.45">
-              <path d="M40,60 Q130,42 240,56 Q340,68 440,48 Q540,28 640,46 Q740,64 840,40 Q940,18 1020,38"/>
-              <path d="M40,78 Q135,58 245,74 Q348,88 450,66 Q555,44 658,64 Q762,84 865,58 Q960,36 1040,56"/>
-              <path d="M40,94 Q138,74 252,90 Q356,104 462,82 Q570,60 676,82 Q784,102 892,74 Q985,52 1060,72"/>
-            </g>
+            <!-- Environmental project texture patches -->
+            <!-- Congo rainforest patch -->
+            <rect x="448" y="178" width="28" height="22" rx="3"
+              fill="#00d97e" fill-opacity="0.08" stroke="#00d97e" stroke-width="0.5" stroke-opacity="0.3"/>
+            <!-- East Africa savanna -->
+            <rect x="510" y="152" width="20" height="16" rx="2"
+              fill="#f59e0b" fill-opacity="0.07" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.28"/>
           </g>
 
-          <!-- ── SATELLITE DATA NODES — location/monitoring markers ── -->
-          <!-- Primary nodes — active monitoring stations -->
+          <!-- EUROPE — upper left -->
+          <g id="europe">
+            <ellipse cx="290" cy="88" rx="55" ry="42" fill="url(#rgEurope)" transform="scale(1.3)" style="transform-origin:290px 88px"/>
+            <path d="
+              M250,72 L262,64 L278,60 L296,62 L312,68 L324,76
+              L330,86 L326,96 L318,100 L308,104 L294,108 L280,110
+              L268,106 L256,100 L246,90 L244,80 Z
+              M310,60 L318,56 L326,60 L322,68 L314,64 Z
+              M280,110 L276,118 L272,116 L276,108 Z
+            "
+            fill="url(#landFill)" fill-opacity="0.48"
+            stroke="#06b6d4" stroke-width="0.8" stroke-opacity="0.5"/>
+            <!-- UK peninsula -->
+            <path d="M244,72 L238,66 L234,72 L238,80 L244,80Z"
+              fill="url(#landFill)" fill-opacity="0.4" stroke="#06b6d4" stroke-width="0.5" stroke-opacity="0.4"/>
+            <!-- Scandinavia -->
+            <path d="M278,60 L280,48 L288,42 L296,48 L300,60"
+              fill="url(#landFill)" fill-opacity="0.38" stroke="#06b6d4" stroke-width="0.55" stroke-opacity="0.35"/>
+          </g>
+
+          <!-- SOUTH AMERICA — left side -->
+          <g id="southamerica">
+            <ellipse cx="210" cy="228" rx="60" ry="88" fill="url(#rgSAm)" transform="scale(1.25)" style="transform-origin:210px 228px"/>
+            <path d="
+              M190,148 L208,140 L222,144 L234,152 L240,164 L238,180
+              L232,196 L234,214 L230,232 L224,250 L216,268 L208,282
+              L198,288 L188,282 L178,268 L172,252 L170,234 L174,216
+              L172,200 L174,184 L178,168 L184,156 Z
+            "
+            fill="url(#landFill)" fill-opacity="0.5"
+            stroke="#00d97e" stroke-width="0.85" stroke-opacity="0.5"/>
+            <!-- Amazon basin texture -->
+            <rect x="180" y="192" width="38" height="32" rx="4"
+              fill="#00d97e" fill-opacity="0.09" stroke="#00d97e" stroke-width="0.5" stroke-opacity="0.28"/>
+          </g>
+
+          <!-- ASIA — right zone -->
+          <g id="asia">
+            <ellipse cx="720" cy="148" rx="110" ry="88" fill="url(#rgAsia)" transform="scale(1.2)" style="transform-origin:720px 148px"/>
+            <path d="
+              M628,80 L656,68 L688,62 L720,64 L748,68 L772,76
+              L790,88 L798,104 L796,118 L786,130 L770,140 L756,148
+              L740,152 L720,154 L700,156 L682,150 L666,140 L650,128
+              L636,114 L626,100 Z
+              M790,88 L810,82 L820,90 L812,100 L798,104Z
+              M748,68 L760,60 L774,66 L770,76 L756,72Z
+            "
+            fill="url(#landFill)" fill-opacity="0.46"
+            stroke="#f59e0b" stroke-width="0.8" stroke-opacity="0.48"/>
+            <!-- Indian subcontinent -->
+            <path d="M700,156 L708,170 L712,188 L704,196 L692,192 L688,176 L690,160 Z"
+              fill="url(#landFill)" fill-opacity="0.44" stroke="#f59e0b" stroke-width="0.65" stroke-opacity="0.4"/>
+            <!-- South-East Asia islands -->
+            <ellipse cx="776" cy="165" rx="14" ry="8" fill="url(#landFill)" fill-opacity="0.36"
+              stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.32"/>
+            <ellipse cx="755" cy="175" rx="10" ry="6" fill="url(#landFill)" fill-opacity="0.32"
+              stroke="#f59e0b" stroke-width="0.4" stroke-opacity="0.28"/>
+          </g>
+
+          <!-- NORTH AMERICA — far left -->
+          <g id="northamerica">
+            <ellipse cx="88" cy="130" rx="70" ry="70" fill="url(#rgNA)" transform="scale(1.2)" style="transform-origin:88px 130px"/>
+            <path d="
+              M48,72 L72,60 L100,58 L122,66 L134,80 L136,96
+              L130,110 L120,122 L106,130 L90,136 L74,132 L60,122
+              L50,108 L44,92 Z
+              M122,66 L138,58 L148,66 L140,76 L130,72Z
+            "
+            fill="url(#landFill)" fill-opacity="0.42"
+            stroke="#8b5cf6" stroke-width="0.75" stroke-opacity="0.45"/>
+            <!-- Central America connector -->
+            <path d="M50,136 L44,148 L40,160 L46,164 L52,156 L54,142Z"
+              fill="url(#landFill)" fill-opacity="0.36" stroke="#8b5cf6" stroke-width="0.5" stroke-opacity="0.35"/>
+          </g>
+
+          <!-- ══ OCEAN / ATMOSPHERE LAYER ══ -->
+          <!-- Subtle ocean texture lines -->
+          <g opacity="0.06" fill="none" stroke="#06b6d4" stroke-width="0.4">
+            <path d="M0,200 Q150,195 300,202 Q450,208 600,200 Q750,192 900,200"/>
+            <path d="M0,220 Q120,216 260,222 Q400,228 540,220 Q680,212 820,220 Q960,228 1100,218"/>
+            <path d="M0,240 Q140,236 290,243 Q440,250 590,240 Q740,230 890,240 Q1040,250 1180,238"/>
+          </g>
+
+          <!-- ══ GLOWING REGION NODES — market hubs ══ -->
+          <!-- Africa node: East Africa (Nairobi area) -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring"  cx="512" cy="172" r="5" fill="none" stroke="#00d97e" stroke-width="1.2"/>
+            <circle class="pulse-ring2" cx="512" cy="172" r="5" fill="none" stroke="#00d97e" stroke-width="0.8"/>
+            <circle cx="512" cy="172" r="4" fill="#00d97e" fill-opacity="0.9"/>
+            <circle cx="512" cy="172" r="2" fill="#e2e8f0"/>
+          </g>
+          <!-- Africa node 2: West Africa -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring3" cx="442" cy="188" r="4" fill="none" stroke="#00d97e" stroke-width="1"/>
+            <circle cx="442" cy="188" r="3.5" fill="#00d97e" fill-opacity="0.85"/>
+            <circle cx="442" cy="188" r="1.5" fill="#e2e8f0"/>
+          </g>
+          <!-- Africa node 3: Southern Africa -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring2" cx="478" cy="248" r="4" fill="none" stroke="#00d97e" stroke-width="1"/>
+            <circle cx="478" cy="248" r="3.5" fill="#00d97e" fill-opacity="0.8"/>
+            <circle cx="478" cy="248" r="1.5" fill="#e2e8f0"/>
+          </g>
+          <!-- Europe node -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring"  cx="298" cy="86" r="4.5" fill="none" stroke="#06b6d4" stroke-width="1.2"/>
+            <circle class="pulse-ring3" cx="298" cy="86" r="4.5" fill="none" stroke="#06b6d4" stroke-width="0.7"/>
+            <circle cx="298" cy="86" r="3.8" fill="#06b6d4" fill-opacity="0.9"/>
+            <circle cx="298" cy="86" r="1.8" fill="#e2e8f0"/>
+          </g>
+          <!-- South America node -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring2" cx="205" cy="218" r="4.5" fill="none" stroke="#00d97e" stroke-width="1.1"/>
+            <circle cx="205" cy="218" r="3.8" fill="#00d97e" fill-opacity="0.88"/>
+            <circle cx="205" cy="218" r="1.8" fill="#e2e8f0"/>
+          </g>
+          <!-- Asia node -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring"  cx="710" cy="124" r="5" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+            <circle class="pulse-ring3" cx="710" cy="124" r="5" fill="none" stroke="#f59e0b" stroke-width="0.7"/>
+            <circle cx="710" cy="124" r="4" fill="#f59e0b" fill-opacity="0.88"/>
+            <circle cx="710" cy="124" r="2" fill="#e2e8f0"/>
+          </g>
+          <!-- North America node -->
+          <g filter="url(#glow4)">
+            <circle class="pulse-ring2" cx="90" cy="108" r="4" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+            <circle cx="90" cy="108" r="3.5" fill="#8b5cf6" fill-opacity="0.85"/>
+            <circle cx="90" cy="108" r="1.5" fill="#e2e8f0"/>
+          </g>
+
+          <!-- ══ GLOWING CONNECTION LINES — carbon credit flows ══ -->
+          <!-- South America → Africa (REDD+ flow) -->
+          <path d="M205,218 Q330,170 442,188"
+            fill="none" stroke="url(#flowAE)" stroke-width="1.4"
+            class="flow-line" stroke-opacity="0.7"/>
+          <!-- Africa East → Europe (VCU flow) -->
+          <path d="M512,172 Q415,128 298,86"
+            fill="none" stroke="url(#flowAE)" stroke-width="1.5"
+            class="flow-line2" stroke-opacity="0.75"/>
+          <!-- Africa East → Asia (BLUE Carbon flow) -->
+          <path d="M512,172 Q600,148 710,124"
+            fill="none" stroke="url(#flowEA)" stroke-width="1.3"
+            class="flow-line3" stroke-opacity="0.65"/>
+          <!-- North America → Europe -->
+          <path d="M90,108 Q192,82 298,86"
+            fill="none" stroke="url(#flowNA)" stroke-width="1.2"
+            class="flow-line4" stroke-opacity="0.6"/>
+          <!-- Africa West → Europe -->
+          <path d="M442,188 Q370,138 298,86"
+            fill="none" stroke="#00d97e" stroke-width="1"
+            class="flow-line2" stroke-opacity="0.5"/>
+          <!-- Africa Southern → East -->
+          <path d="M478,248 Q494,210 512,172"
+            fill="none" stroke="#00d97e" stroke-width="0.9"
+            class="flow-line" stroke-opacity="0.45"/>
+          <!-- South America → North America -->
+          <path d="M205,218 Q148,164 90,108"
+            fill="none" stroke="#00d97e" stroke-width="0.9"
+            class="flow-line3" stroke-opacity="0.45"/>
+
+          <!-- ══ FLOATING VERIFIED CERTIFICATE PANELS ══ -->
+          <!-- Certificate 1 — near East Africa node -->
+          <g class="cert-float" filter="url(#glow4)" transform="translate(530,130)">
+            <rect width="72" height="38" rx="4" fill="rgba(10,16,22,0.88)" stroke="#00d97e" stroke-width="0.8" stroke-opacity="0.6"/>
+            <rect width="72" height="3" rx="4" fill="#00d97e" fill-opacity="0.5" y="0"/>
+            <text x="4" y="13" font-family="'Courier New',monospace" font-size="5.5" fill="#00d97e" opacity="0.9">★ VERIFIED</text>
+            <text x="4" y="22" font-family="'Courier New',monospace" font-size="5" fill="#94a3b8">REDD+ · 1,200 tCO₂e</text>
+            <text x="4" y="30" font-family="'Courier New',monospace" font-size="5" fill="#64748b">EAX-KE-001 · Active</text>
+          </g>
+          <!-- Certificate 2 — Europe area -->
+          <g class="cert-float2" filter="url(#glow4)" transform="translate(228,52)">
+            <rect width="70" height="36" rx="4" fill="rgba(10,16,22,0.88)" stroke="#06b6d4" stroke-width="0.8" stroke-opacity="0.55"/>
+            <rect width="70" height="3" rx="4" fill="#06b6d4" fill-opacity="0.45" y="0"/>
+            <text x="4" y="12" font-family="'Courier New',monospace" font-size="5.5" fill="#06b6d4" opacity="0.9">★ VERIFIED</text>
+            <text x="4" y="21" font-family="'Courier New',monospace" font-size="5" fill="#94a3b8">VCU · 2,500 tCO₂e</text>
+            <text x="4" y="29" font-family="'Courier New',monospace" font-size="5" fill="#64748b">EAX-EU-013 · Active</text>
+          </g>
+          <!-- Certificate 3 — South America -->
+          <g class="cert-float" filter="url(#glow4)" transform="translate(128,248)">
+            <rect width="68" height="36" rx="4" fill="rgba(10,16,22,0.88)" stroke="#00d97e" stroke-width="0.8" stroke-opacity="0.55"/>
+            <rect width="68" height="3" rx="4" fill="#00d97e" fill-opacity="0.4" y="0"/>
+            <text x="4" y="12" font-family="'Courier New',monospace" font-size="5.5" fill="#00d97e" opacity="0.85">★ VERIFIED</text>
+            <text x="4" y="21" font-family="'Courier New',monospace" font-size="5" fill="#94a3b8">REDD+ · 800 tCO₂e</text>
+            <text x="4" y="29" font-family="'Courier New',monospace" font-size="5" fill="#64748b">EAX-BR-016 · Active</text>
+          </g>
+
+          <!-- ══ CREDIT TOKEN MARKERS ── floating carbon credit indicators -->
+          <!-- Small hexagon credit tokens along flow lines -->
           <g opacity="0.55">
-            <!-- Node pulses: outer ring + inner dot -->
-            <g fill="none" stroke="#00d97e">
-              <circle cx="195" cy="112" r="6" stroke-width="0.6" stroke-opacity="0.4"/>
-              <circle cx="195" cy="112" r="3" stroke-width="0.8" stroke-opacity="0.7"/>
-            </g>
-            <circle cx="195" cy="112" r="1.4" fill="#00d97e" opacity="0.9"/>
-            <g fill="none" stroke="#00d97e">
-              <circle cx="448" cy="90" r="5" stroke-width="0.6" stroke-opacity="0.35"/>
-              <circle cx="448" cy="90" r="2.5" stroke-width="0.7" stroke-opacity="0.6"/>
-            </g>
-            <circle cx="448" cy="90" r="1.2" fill="#00d97e" opacity="0.85"/>
-            <g fill="none" stroke="#06b6d4">
-              <circle cx="690" cy="116" r="6" stroke-width="0.6" stroke-opacity="0.4"/>
-              <circle cx="690" cy="116" r="3" stroke-width="0.8" stroke-opacity="0.65"/>
-            </g>
-            <circle cx="690" cy="116" r="1.4" fill="#06b6d4" opacity="0.9"/>
-            <g fill="none" stroke="#00d97e">
-              <circle cx="310" cy="56" r="4.5" stroke-width="0.6" stroke-opacity="0.3"/>
-              <circle cx="310" cy="56" r="2" stroke-width="0.7" stroke-opacity="0.55"/>
-            </g>
-            <circle cx="310" cy="56" r="1" fill="#00d97e" opacity="0.8"/>
-            <g fill="none" stroke="#f59e0b">
-              <circle cx="545" cy="72" r="5" stroke-width="0.6" stroke-opacity="0.35"/>
-              <circle cx="545" cy="72" r="2.5" stroke-width="0.7" stroke-opacity="0.6"/>
-            </g>
-            <circle cx="545" cy="72" r="1.2" fill="#f59e0b" opacity="0.85"/>
-            <g fill="none" stroke="#06b6d4">
-              <circle cx="125" cy="168" r="4" stroke-width="0.5" stroke-opacity="0.3"/>
-              <circle cx="125" cy="168" r="2" stroke-width="0.6" stroke-opacity="0.5"/>
-            </g>
-            <circle cx="125" cy="168" r="1" fill="#06b6d4" opacity="0.75"/>
+            <!-- Along Africa → Europe flow -->
+            <polygon points="370,140 376,136 382,140 382,148 376,152 370,148"
+              fill="none" stroke="#00d97e" stroke-width="0.9"/>
+            <text x="368" y="147" font-family="'Courier New',monospace" font-size="4.5" fill="#00d97e">C</text>
+            <polygon points="340,155 346,151 352,155 352,163 346,167 340,163"
+              fill="none" stroke="#00d97e" stroke-width="0.8"/>
+            <text x="338" y="162" font-family="'Courier New',monospace" font-size="4.5" fill="#00d97e">C</text>
+            <!-- Along Africa → Asia flow -->
+            <polygon points="598,152 604,148 610,152 610,160 604,164 598,160"
+              fill="none" stroke="#06b6d4" stroke-width="0.8"/>
+            <text x="596" y="159" font-family="'Courier New',monospace" font-size="4.5" fill="#06b6d4">C</text>
+            <polygon points="568,159 574,155 580,159 580,167 574,171 568,167"
+              fill="none" stroke="#f59e0b" stroke-width="0.8"/>
+            <text x="566" y="166" font-family="'Courier New',monospace" font-size="4.5" fill="#f59e0b">C</text>
           </g>
 
-          <!-- ── NETWORK LINES — connecting monitoring nodes ── -->
-          <g opacity="0.18" stroke="#00d97e" stroke-width="0.5" fill="none" stroke-dasharray="3,6">
-            <line x1="195" y1="112" x2="310" y2="56"/>
-            <line x1="310" y1="56" x2="448" y2="90"/>
-            <line x1="448" y1="90" x2="545" y2="72"/>
-            <line x1="545" y1="72" x2="690" y2="116"/>
-            <line x1="195" y1="112" x2="125" y2="168"/>
-            <line x1="448" y1="90" x2="690" y2="116"/>
-          </g>
+          <!-- ══ EXCHANGE OVERLAY — market data readouts ══ -->
+          <!-- Left edge: EAX terminal label -->
+          <rect x="0" y="0" width="2.5" height="360" fill="#00d97e" fill-opacity="0.55"/>
+          <!-- Top bar status line -->
+          <rect x="0" y="0" width="830" height="18" fill="rgba(0,0,0,0.35)"/>
+          <text x="10" y="12" font-family="'Courier New',monospace" font-size="7" fill="#00d97e" opacity="0.7">EAX GLOBAL · ENVIRONMENTAL ASSET EXCHANGE · LIVE MARKET INFRASTRUCTURE</text>
+          <text x="680" y="12" font-family="'Courier New',monospace" font-size="7" fill="#06b6d4" opacity="0.55">32 PROJECTS · 9 VERIFIED SELLERS · $4.2M 24H VOL</text>
 
-          <!-- ── SCAN LINE RASTER — satellite readout texture ── -->
-          <g opacity="0.035" stroke="#94a3b8" stroke-width="0.4">
-            <line x1="0" y1="18" x2="780" y2="18"/><line x1="0" y1="34" x2="780" y2="34"/>
-            <line x1="0" y1="50" x2="780" y2="50"/><line x1="0" y1="66" x2="780" y2="66"/>
-            <line x1="0" y1="82" x2="780" y2="82"/><line x1="0" y1="98" x2="780" y2="98"/>
-            <line x1="0" y1="114" x2="780" y2="114"/><line x1="0" y1="130" x2="780" y2="130"/>
-            <line x1="0" y1="146" x2="780" y2="146"/><line x1="0" y1="162" x2="780" y2="162"/>
-            <line x1="0" y1="178" x2="780" y2="178"/><line x1="0" y1="194" x2="780" y2="194"/>
-            <line x1="0" y1="210" x2="780" y2="210"/><line x1="0" y1="226" x2="780" y2="226"/>
-            <line x1="0" y1="242" x2="780" y2="242"/><line x1="0" y1="258" x2="780" y2="258"/>
-            <line x1="0" y1="274" x2="780" y2="274"/><line x1="0" y1="290" x2="780" y2="290"/>
-            <line x1="0" y1="306" x2="780" y2="306"/><line x1="0" y1="322" x2="780" y2="322"/>
-            <line x1="0" y1="338" x2="780" y2="338"/>
-          </g>
-
-          <!-- ── DATA LABELS — tiny coordinate readouts ── -->
-          <g font-family="'Courier New',monospace" font-size="7" fill="#00d97e" opacity="0.28">
-            <text x="200" y="106">1°S 36°E</text>
-            <text x="452" y="84">4°N 18°E</text>
-            <text x="548" y="66">3°N 25°E</text>
-            <text x="695" y="110">9°S 23°E</text>
-            <text x="314" y="50">5°N 30°E</text>
-          </g>
-          <g font-family="'Courier New',monospace" font-size="6.5" fill="#64748b" opacity="0.35">
-            <text x="40" y="24">EAX-SAT-01 ·</text>
-            <text x="40" y="38">CARBON DENSITY: ACTIVE</text>
-          </g>
-
-          <!-- ── LEFT EDGE GLOW — horizon atmospheric light ── -->
-          <rect x="0" y="0" width="3" height="360"
-            fill="url(#edgeGlow)" opacity="0.5"/>
+          <!-- Right edge: bottom dark fade (before market panel) -->
+          <rect x="0" y="280" width="830" height="80" fill="url(#bottomF)" opacity="1"/>
           <defs>
-            <linearGradient id="edgeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#00d97e" stop-opacity="0"/>
+            <linearGradient id="bottomF" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#04060a" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#04060a" stop-opacity="0.82"/>
             </linearGradient>
           </defs>
 
-          <!-- Bottom fade to match page bg -->
-          <rect x="0" y="260" width="1200" height="100"
-            fill="url(#bottomFade2)" opacity="1"/>
+          <!-- Right fade: transition to market panel -->
+          <rect x="680" y="0" width="150" height="360" fill="url(#rightF)"/>
           <defs>
-            <linearGradient id="bottomFade2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#05070a" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#05070a" stop-opacity="0.75"/>
+            <linearGradient id="rightF" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#04060a" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#04060a" stop-opacity="0.92"/>
             </linearGradient>
           </defs>
         </svg>
 
-        <!-- Canvas: animated floating data particles -->
+        <!-- Canvas: animated data particles over the map -->
         <canvas id="heroCanvas"></canvas>
       </div>
 
-      <!-- Glow orbs (animated via CSS) -->
+      <!-- Glow orbs (CSS animated) -->
       <div class="home-hero-glow"></div>
       <div class="home-hero-glow2"></div>
       <div class="home-hero-glow3"></div>
@@ -1453,7 +1568,8 @@ input,select{outline:none;font-family:inherit}
 
   </div>
 </div>
-     TRADE SECTION — 3-column Netlify layout
+<!-- ══════════════════════════════════════════════
+     TRADE SECTION
 ══════════════════════════════════════════════ -->
 <div id="section-trade" class="section">
   <div id="trade-layout">
