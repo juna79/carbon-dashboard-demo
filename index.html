@@ -575,10 +575,7 @@ input,select{outline:none;font-family:inherit}
   background-repeat:no-repeat;
 }
 
-/* Empty bg container — kept for compatibility */
-.home-hero-bg{display:none}
-.hero-bg-img{display:none}
-.hero-svg-overlay{display:none}
+/* Old hero bg containers removed — cinematic image is on .home-hero-row via background-image CSS */
 
 /* Dark text-zone gradient — left side reading area */
 .home-hero-row::before{
@@ -662,8 +659,6 @@ input,select{outline:none;font-family:inherit}
     rgba(0,0,0,0.45) 0%,rgba(0,0,0,0.28) 32%,
     rgba(0,0,0,0.10) 58%,transparent 80%);
 }
-.home-hero-contours{display:none}
-#heroCanvas{display:none}
 
 .home-hero-left{
   padding:40px 44px 36px;
@@ -3606,131 +3601,6 @@ function init(){
   document.getElementById('register-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeRegisterModal();});
   document.getElementById('verify-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeVerifyModal();});
 }
-
-// ════════════════════════════════════════════════════════
-// HERO IMAGE FALLBACK CHAIN
-// ════════════════════════════════════════════════════════
-const HERO_FALLBACKS=[
-  // Earth from space, dark global infrastructure views
-  'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1800&q=88&fm=jpg&fit=crop&crop=center',
-  'https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1800&q=88&fm=jpg&fit=crop&crop=center',
-  'https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1800&q=88&fm=jpg&fit=crop&crop=center',
-  'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1800&q=88&fm=jpg&fit=crop&crop=center',
-  'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1800&q=88&fm=jpg&fit=crop&crop=center',
-];
-let heroBgFallbackIdx=0;
-function heroImgFallback(img){
-  if(heroBgFallbackIdx<HERO_FALLBACKS.length){
-    img.src=HERO_FALLBACKS[heroBgFallbackIdx++];
-  } else {
-    // All fallbacks exhausted — hide img, let CSS gradients handle it
-    img.style.display='none';
-  }
-}
-
-// ════════════════════════════════════════════════════════
-// HERO CANVAS — Animated data particles
-// ════════════════════════════════════════════════════════
-(function initHeroCanvas(){
-  const canvas=document.getElementById('heroCanvas');
-  if(!canvas)return;
-  const row=canvas.closest('.home-hero-bg');
-  if(!row)return;
-  function resize(){
-    const hero=row.closest('.home-hero-row');
-    canvas.width=hero?hero.offsetWidth:window.innerWidth;
-    canvas.height=hero?hero.offsetHeight:360;
-  }
-  resize();
-  const ctx=canvas.getContext('2d');
-  // Particle types: floating data points, connection lines, pulse rings
-  const particles=[];
-  const N=55;
-  const W=()=>canvas.width;
-  const H=()=>canvas.height;
-  const COLS=['rgba(0,217,126,','rgba(6,182,212,','rgba(245,158,11,'];
-  for(let i=0;i<N;i++){
-    const col=COLS[Math.floor(Math.random()*3)];
-    particles.push({
-      x:Math.random()*W()*0.75, // keep left 75% — market panel side clear
-      y:Math.random()*H(),
-      vx:(Math.random()-0.5)*0.18,
-      vy:(Math.random()-0.5)*0.12,
-      r:Math.random()*1.2+0.4,
-      alpha:Math.random()*0.45+0.12,
-      col,
-      pulse:Math.random()<0.12, // some particles have pulse rings
-      pulseR:0,
-      pulseMax:8+Math.random()*6,
-      pulseSpeed:0.08+Math.random()*0.06,
-    });
-  }
-  function draw(){
-    ctx.clearRect(0,0,W(),H());
-    // Draw connection lines between nearby particles
-    for(let i=0;i<particles.length;i++){
-      for(let j=i+1;j<particles.length;j++){
-        const dx=particles[i].x-particles[j].x;
-        const dy=particles[i].y-particles[j].y;
-        const dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<80){
-          const a=(1-dist/80)*0.07;
-          ctx.beginPath();
-          ctx.strokeStyle=`rgba(0,217,126,${a})`;
-          ctx.lineWidth=0.4;
-          ctx.moveTo(particles[i].x,particles[i].y);
-          ctx.lineTo(particles[j].x,particles[j].y);
-          ctx.stroke();
-        }
-      }
-    }
-    // Draw particles
-    particles.forEach(p=>{
-      // Pulse ring
-      if(p.pulse){
-        p.pulseR+=p.pulseSpeed;
-        if(p.pulseR>p.pulseMax)p.pulseR=0;
-        const pa=(1-p.pulseR/p.pulseMax)*0.25;
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.pulseR,0,Math.PI*2);
-        ctx.strokeStyle=p.col+pa+')';
-        ctx.lineWidth=0.6;
-        ctx.stroke();
-      }
-      // Core dot
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.col+p.alpha+')';
-      ctx.fill();
-      // Move
-      p.x+=p.vx;
-      p.y+=p.vy;
-      // Wrap within left 75%
-      if(p.x<0)p.x=W()*0.75;
-      if(p.x>W()*0.75)p.x=0;
-      if(p.y<0)p.y=H();
-      if(p.y>H())p.y=0;
-    });
-  }
-  let raf;
-  function loop(){raf=requestAnimationFrame(loop);draw();}
-  // Only run animation when home section is visible
-  function startStop(){
-    const home=document.getElementById('section-home');
-    if(home&&home.classList.contains('active')){
-      if(!raf)loop();
-    } else {
-      if(raf){cancelAnimationFrame(raf);raf=null;}
-    }
-  }
-  // Observe section visibility changes
-  const observer=new MutationObserver(startStop);
-  const homeEl=document.getElementById('section-home');
-  if(homeEl)observer.observe(homeEl,{attributes:true,attributeFilter:['class']});
-  window.addEventListener('resize',()=>{resize();});
-  // Start if home is active on load
-  setTimeout(startStop,100);
-})();
 
 document.addEventListener('DOMContentLoaded',init);
 </script>
