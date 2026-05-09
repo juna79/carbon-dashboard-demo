@@ -156,6 +156,10 @@ input,select{outline:none;font-family:inherit}
 .pcard-img{height:110px;background:var(--bg3);position:relative;overflow:hidden}
 .pcard-img img{width:100%;height:100%;object-fit:cover;opacity:0.8}
 .pcard-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px}
+
+.pcard-img-ph{background:linear-gradient(135deg,#07130f,#10221b 55%,#05070b);color:var(--green);font-size:34px;letter-spacing:1px}
+.pcard-img img,.pp-img{background:linear-gradient(135deg,#07130f,#10221b 55%,#05070b)}
+
 .pcard-badges{position:absolute;top:6px;left:6px;display:flex;gap:4px;flex-wrap:wrap}
 .badge{padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:0.3px}
 .b-green{background:rgba(0,217,126,0.18);color:var(--green);border:1px solid rgba(0,217,126,0.3)}
@@ -2696,12 +2700,45 @@ function addIntelFeedRow(side,qty,asset,proj,country,ts,price){
 
 
 // ════════════════════════════════════════════════════════
-// COUNTRY FLAGS — lightweight emoji flags for project cards
+// COUNTRY FLAGS — complete map for all project/P2P countries
 // ════════════════════════════════════════════════════════
 const COUNTRY_FLAGS={
-  'Kenya':'🇰🇪','Tanzania':'🇹🇿','Uganda':'🇺🇬','Rwanda':'🇷🇼','Ghana':'🇬🇭','Nigeria':'🇳🇬','Ethiopia':'🇪🇹','Botswana':'🇧🇼','Mozambique':'🇲🇿','Senegal':'🇸🇳','Morocco':'🇲🇦','Somalia':'🇸🇴','Niger':'🇳🇪','DRC':'🇨🇩','Democratic Republic of Congo':'🇨🇩','Brazil':'🇧🇷','Peru':'🇵🇪','Mexico':'🇲🇽','Chile':'🇨🇱','United States':'🇺🇸','USA':'🇺🇸','Canada':'🇨🇦','Norway':'🇳🇴','Germany':'🇩🇪','Scotland':'🏴','Portugal':'🇵🇹','Spain':'🇪🇸','Japan':'🇯🇵','Indonesia':'🇮🇩','India':'🇮🇳','Vietnam':'🇻🇳','Thailand':'🇹🇭','Philippines':'🇵🇭','Malaysia':'🇲🇾','Australia':'🇦🇺','Turkey':'🇹🇷','Malawi':'🇲🇼'
+  'Kenya':'🇰🇪','Tanzania':'🇹🇿','Uganda':'🇺🇬','Rwanda':'🇷🇼','Ghana':'🇬🇭','Nigeria':'🇳🇬','Ethiopia':'🇪🇹','Botswana':'🇧🇼','Mozambique':'🇲🇿','Senegal':'🇸🇳','Morocco':'🇲🇦','Somalia':'🇸🇴','Niger':'🇳🇪','Malawi':'🇲🇼','Zambia':'🇿🇲','Cameroon':'🇨🇲','Gabon':'🇬🇦','South Africa':'🇿🇦','DRC':'🇨🇩','Democratic Republic of Congo':'🇨🇩','Congo':'🇨🇩',
+  'Brazil':'🇧🇷','Peru':'🇵🇪','Mexico':'🇲🇽','Chile':'🇨🇱','United States':'🇺🇸','USA':'🇺🇸','Canada':'🇨🇦',
+  'Norway':'🇳🇴','Germany':'🇩🇪','Scotland':'🏴','United Kingdom':'🇬🇧','UK':'🇬🇧','Portugal':'🇵🇹','Spain':'🇪🇸',
+  'Japan':'🇯🇵','Indonesia':'🇮🇩','India':'🇮🇳','Vietnam':'🇻🇳','Thailand':'🇹🇭','Philippines':'🇵🇭','Malaysia':'🇲🇾','Australia':'🇦🇺','Turkey':'🇹🇷'
 };
-function flagFor(country){return COUNTRY_FLAGS[country]||'🌍';}
+function flagFor(country){
+  const key=(country||'').trim();
+  if(!key||key==='–'||key==='—')return '🌍';
+  return COUNTRY_FLAGS[key]||'🌍';
+}
+function countryLabel(country){return `${flagFor(country)} ${country||'—'}`;}
+
+// Robust image fallback so project cards/profile images never look broken.
+function projectPlaceholder(type='ASSET',emoji='🌍'){
+  const safeType=String(type||'ASSET').replace(/[<>&]/g,'');
+  const safeEmoji=String(emoji||'🌍').replace(/[<>&]/g,'');
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#07130f"/><stop offset="0.55" stop-color="#10221b"/><stop offset="1" stop-color="#05070b"/></linearGradient>
+      <radialGradient id="r" cx="70%" cy="30%" r="70%"><stop offset="0" stop-color="#00d97e" stop-opacity="0.18"/><stop offset="1" stop-color="#00d97e" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="800" height="450" fill="url(#g)"/>
+    <rect width="800" height="450" fill="url(#r)"/>
+    <g opacity="0.2" stroke="#00d97e" stroke-width="1"><path d="M0 350 C160 280 260 420 420 300 S650 250 800 160" fill="none"/><path d="M0 260 C180 160 300 310 470 190 S680 150 800 70" fill="none"/></g>
+    <text x="50%" y="43%" text-anchor="middle" dominant-baseline="middle" font-size="78">${safeEmoji}</text>
+    <text x="50%" y="62%" text-anchor="middle" fill="#00d97e" font-family="Courier New, monospace" font-size="32" font-weight="700" letter-spacing="3">${safeType}</text>
+    <text x="50%" y="73%" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="20">Verified Environmental Asset</text>
+  </svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+function fallbackProjectImage(img,type,emoji){
+  if(!img)return;
+  img.onerror=null;
+  img.src=projectPlaceholder(type,emoji);
+  img.style.display='block';
+}
 
 // ════════════════════════════════════════════════════════
 // PROJECT CARDS
@@ -2713,7 +2750,7 @@ function makeCard(p){
   el.onclick=e=>{if(!e.target.classList.contains('buy-btn'))openProfile(p.id);else e.stopPropagation();};
   el.innerHTML=`
     <div class="pcard-img">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="fallbackProjectImage(this,'${p.type}','${p.emoji}')">
       <div class="pcard-img-ph" style="display:none">${p.emoji}</div>
       <div class="pcard-badges">
         <span class="badge b-green">${p.type}</span>
@@ -2882,7 +2919,7 @@ function openProfile(id){
   const bull=p.change>=0;
   document.getElementById('projProfileContent').innerHTML=`
     <button class="pp-close" onclick="closeProfile()">✕</button>
-    <img class="pp-img" src="${p.img}" alt="${p.name}" onerror="this.style.background='var(--bg3)'">
+    <img class="pp-img" src="${p.img}" alt="${p.name}" referrerpolicy="no-referrer" onerror="fallbackProjectImage(this,'${p.type}','${p.emoji}')">
     <div class="pp-name">${p.name}</div>
     <div class="pp-loc">${flagFor(p.country)} ${p.country} · ${p.region} · ${p.standard}</div>
     <div style="display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap">
@@ -3174,7 +3211,7 @@ function renderCerts(){
       <div class="cert-name">${p?p.name:'Unknown Project'}</div>
       <div class="cert-qty">${cert.qty.toLocaleString()} <span style="font-size:12px;color:var(--text3)">tCO₂e</span></div>
       <div class="cert-row"><span class="cert-k">Type</span><span class="cert-v">${p?p.type:'–'}</span></div>
-      <div class="cert-row"><span class="cert-k">Country</span><span class="cert-v">${p?p.country:'–'}</span></div>
+      <div class="cert-row"><span class="cert-k">Country</span><span class="cert-v">${p?countryLabel(p.country):'–'}</span></div>
       <div class="cert-row"><span class="cert-k">Standard</span><span class="cert-v">${cert.issuer||(p?p.standard:'–')}</span></div>
       <div class="cert-row"><span class="cert-k">Date</span><span class="cert-v">${cert.date}</span></div>
       <span class="cert-status ${isRetired?'cs-retired':'cs-active'}">${isRetired?'🔥 Retired':'✓ Active'}</span>
@@ -3202,7 +3239,7 @@ function openCertViewer(certId){
   setText('cmCertId',certId);
   setText('cmProjectName',p?p.name:'Unknown Project');
   setText('cmAssetType',p?p.type:'—');
-  setText('cmCountry',p?p.country:'—');
+  setText('cmCountry',p?countryLabel(p.country):'—');
   setText('cmVintage',p?String(p.vintage):'—');
   setText('cmRetireDate',cert.date);
   setText('cmRegistry',issuerName);
@@ -3340,7 +3377,7 @@ function renderP2P(){
       </div>
       <div>
         <span class="p2p-proj-link" onclick="openProfile('${l.projectId}')">${pName.length>18?pName.substring(0,16)+'…':pName}</span>
-        <div class="p2p-proj-country">${l.country}</div>
+        <div class="p2p-proj-country">${countryLabel(l.country)}</div>
       </div>
       <div><span class="badge ${getAssetBadgeClass(l.assetType)}">${l.assetType}</span></div>
       <div><div style="font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text)">${fmt(l.qty)}</div><div style="font-size:10px;color:var(--text3)">credits</div></div>
@@ -3363,7 +3400,7 @@ function renderP2P(){
         <div style="display:flex;justify-content:space-between;margin-bottom:8px">
           <div>
             <div style="font-size:13px;font-weight:700;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:4px" onclick="openSellerProfile('${l.id}')">${l.sellerName}${l.verified?'<span style="color:var(--gold);font-size:10px">✓</span>':''}</div>
-            <div style="font-size:10px;color:var(--text3)">${l.sellerType} · ${l.country}</div>
+            <div style="font-size:10px;color:var(--text3)">${l.sellerType} · ${countryLabel(l.country)}</div>
             <div style="font-size:10px;color:var(--gold)">${stars} ${l.rating}</div>
           </div>
           <span class="badge ${getAssetBadgeClass(l.assetType)}">${l.assetType}</span>
@@ -3445,7 +3482,7 @@ function openSellerProfile(listingId){
       <div>
         <div class="ss-name">${l.sellerName}${l.verified?'<span style="color:var(--gold);font-size:12px">✓</span>':''}</div>
         <div class="ss-type">${l.sellerType}</div>
-        <div class="ss-country">📍 ${l.country} · ${l.region}</div>
+        <div class="ss-country">📍 ${countryLabel(l.country)} · ${l.region}</div>
         ${l.verified?'<div class="ss-ver-badge">✓ Verified Counterparty</div>':'<div class="ss-ver-badge" style="background:rgba(100,116,139,0.1);color:var(--text3);border-color:var(--border)">⟳ Unverified</div>'}
       </div>
     </div>
