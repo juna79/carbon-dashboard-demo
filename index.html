@@ -557,6 +557,7 @@ input,select{outline:none;font-family:inherit}
 .ticker-dn{color:var(--red)}
 
 
+
 /* ── Hero Row ── */
 .home-hero-row{
   display:grid;
@@ -566,77 +567,88 @@ input,select{outline:none;font-family:inherit}
   position:relative;
   overflow:hidden;
   min-height:340px;
-  background:#04060a;
+  background:#03050a;
 }
 .home-hero-bg{
   position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
-/* Real cinematic image — 60% visible */
+
+/* Dark cinematic image — 48% visible, heavily tinted dark */
 .hero-bg-img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 40%;
-  opacity:0.60;filter:saturate(0.72) brightness(0.78);z-index:0;
+  object-fit:cover;object-position:center 50%;
+  opacity:0.48;
+  filter:saturate(0.35) brightness(0.55) hue-rotate(160deg);
+  z-index:0;
 }
-/* SVG data overlay above image */
+
+/* SVG overlay sits above image */
 .hero-svg-overlay{
   position:absolute;inset:0;width:100%;height:100%;z-index:1;
 }
-/* Dark gradient overlay — 40% max */
+
+/* Strong institutional dark gradient — keeps UI in front */
 .home-hero-row::after{
   content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(135deg,rgba(4,6,10,0.42) 0%,rgba(4,6,10,0.14) 45%,rgba(4,6,10,0.46) 100%),
-    radial-gradient(ellipse 60% 80% at 20% 55%,rgba(0,217,126,0.07) 0%,transparent 65%),
-    radial-gradient(ellipse 40% 55% at 68% 22%,rgba(6,182,212,0.04) 0%,transparent 60%);
+    linear-gradient(135deg, rgba(3,5,10,0.72) 0%, rgba(3,5,10,0.38) 40%, rgba(3,5,10,0.68) 100%),
+    radial-gradient(ellipse 55% 75% at 18% 52%, rgba(0,217,126,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 50% at 65% 20%, rgba(6,182,212,0.04) 0%, transparent 60%);
 }
-/* Vignette — lightened so image breathes */
+
+/* Vignette — frames the image, darkens edges */
 .home-hero-vignette{
   position:absolute;inset:0;z-index:3;pointer-events:none;
-  background:radial-gradient(ellipse 110% 120% at 34% 48%,transparent 28%,rgba(3,5,9,0.50) 100%);
+  background:
+    radial-gradient(ellipse 105% 115% at 33% 48%, transparent 25%, rgba(2,4,9,0.68) 100%),
+    linear-gradient(to bottom, rgba(2,4,9,0.35) 0%, transparent 20%, transparent 72%, rgba(2,4,9,0.55) 100%);
 }
-/* Glow orbs */
+
+/* Glow orbs — very subtle, don't compete with image */
 .home-hero-glow{
-  position:absolute;width:560px;height:320px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(0,217,126,0.07) 0%,transparent 70%);
+  position:absolute;width:500px;height:300px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,217,126,0.055) 0%,transparent 70%);
   top:0%;left:-2%;z-index:1;pointer-events:none;
-  animation:glowDrift 14s ease-in-out infinite;
+  animation:glowDrift 16s ease-in-out infinite;
 }
 .home-hero-glow2{
-  position:absolute;width:380px;height:240px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(6,182,212,0.045) 0%,transparent 70%);
-  bottom:5%;left:25%;z-index:1;pointer-events:none;
-  animation:glowDrift2 19s ease-in-out infinite;
+  position:absolute;width:350px;height:220px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(6,182,212,0.038) 0%,transparent 70%);
+  bottom:8%;left:30%;z-index:1;pointer-events:none;
+  animation:glowDrift2 22s ease-in-out infinite;
 }
 .home-hero-glow3{
-  position:absolute;width:220px;height:190px;border-radius:50%;
-  background:radial-gradient(ellipse,rgba(245,158,11,0.038) 0%,transparent 70%);
-  top:15%;right:430px;z-index:1;pointer-events:none;
-  animation:glowDrift 21s ease-in-out infinite reverse;
+  position:absolute;width:200px;height:180px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(245,158,11,0.030) 0%,transparent 70%);
+  top:18%;right:430px;z-index:1;pointer-events:none;
+  animation:glowDrift 24s ease-in-out infinite reverse;
 }
 @keyframes glowDrift{
   0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(24px,-16px) scale(1.08)}
-  66%{transform:translate(-14px,10px) scale(0.94)}
+  33%{transform:translate(22px,-14px) scale(1.06)}
+  66%{transform:translate(-12px,8px) scale(0.96)}
 }
 @keyframes glowDrift2{
   0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(-20px,14px) scale(1.09)}
+  50%{transform:translate(-18px,12px) scale(1.07)}
 }
-/* Terminal grid — reduced so image shows */
+
+/* Terminal grid — very subtle, institutional texture */
 .home-hero-grid{
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:
-    linear-gradient(rgba(0,217,126,0.016) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,217,126,0.016) 1px,transparent 1px);
-  background-size:54px 54px;
-  mask-image:linear-gradient(120deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.2) 55%,transparent 80%);
-  -webkit-mask-image:linear-gradient(120deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.2) 55%,transparent 80%);
+    linear-gradient(rgba(0,217,126,0.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,126,0.018) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(125deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 50%,transparent 78%);
+  -webkit-mask-image:linear-gradient(125deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 50%,transparent 78%);
 }
 .home-hero-contours{display:none}
-/* Canvas particles — reduced so they complement not compete */
+
+/* Canvas — barely visible, just adds depth */
 #heroCanvas{
   position:absolute;inset:0;width:100%;height:100%;
-  z-index:3;pointer-events:none;opacity:0.45;
+  z-index:3;pointer-events:none;opacity:0.30;
 }
 .home-hero-left{
   padding:36px 40px;display:flex;flex-direction:column;
@@ -1185,204 +1197,139 @@ input,select{outline:none;font-family:inherit}
     <div class="home-hero-row">
 
 
-      <!-- ══ HERO BACKGROUND — Cinematic environmental image ══ -->
+      <!-- ══ HERO BACKGROUND — Institutional dark environmental ══ -->
       <div class="home-hero-bg">
 
-        <!-- Primary cinematic environmental image: aerial savanna / landscape -->
-        <!-- Cinematic aerial environmental image — primary + fallback chain -->
+        <!-- Dark cinematic environmental image
+             Primary: Earth at night / satellite aerial (dark, institutional)
+             Fallback chain tries darker environmental scenes -->
         <img
           id="heroBgImg"
           class="hero-bg-img"
-          src="https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1600&q=80&fm=jpg&fit=crop&crop=center"
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=85&fm=jpg&fit=crop&crop=center"
           alt=""
           loading="eager"
           onerror="heroImgFallback(this)"
         >
 
-        <!-- SVG overlay layer: grid + data markers + certificate chips + glow lines -->
-        <!-- This sits ON TOP of the image, below the CSS overlays -->
+        <!-- Minimal SVG overlay: status bar + 5 clean trade nodes + 4 flow lines -->
         <svg class="hero-svg-overlay"
              viewBox="0 0 1200 360"
              preserveAspectRatio="xMidYMid slice"
              xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <!-- Animated dash flow -->
             <style>
-              .hfl{stroke-dasharray:6 16;animation:hfDash 4s linear infinite}
-              .hfl2{stroke-dasharray:5 20;animation:hfDash 6s linear infinite}
-              .hfl3{stroke-dasharray:4 22;animation:hfDash 8s linear infinite reverse}
-              @keyframes hfDash{to{stroke-dashoffset:-88}}
-              .hpr{animation:hpRing 2.8s ease-out infinite}
-              .hpr2{animation:hpRing 2.8s ease-out infinite 0.9s}
-              .hpr3{animation:hpRing 2.8s ease-out infinite 1.8s}
-              @keyframes hpRing{0%{r:4;opacity:0.8}100%{r:20;opacity:0}}
-              .hcf{animation:hcFloat 6s ease-in-out infinite}
-              .hcf2{animation:hcFloat 7.5s ease-in-out infinite 2.5s}
-              .hcf3{animation:hcFloat 5.5s ease-in-out infinite 4s}
-              @keyframes hcFloat{0%,100%{transform:translateY(0px)}50%{transform:translateY(-6px)}}
+              .tfl{stroke-dasharray:7 18;animation:tfDash 5s linear infinite}
+              .tfl2{stroke-dasharray:5 22;animation:tfDash 7s linear infinite}
+              .tfl3{stroke-dasharray:6 20;animation:tfDash 9s linear infinite reverse}
+              @keyframes tfDash{to{stroke-dashoffset:-100}}
+              .tnd{animation:tndPulse 3.5s ease-in-out infinite}
+              .tnd2{animation:tndPulse 3.5s ease-in-out infinite 1.2s}
+              .tnd3{animation:tndPulse 3.5s ease-in-out infinite 2.4s}
+              @keyframes tndPulse{0%,100%{opacity:0.5}50%{opacity:1}}
             </style>
-            <filter id="hglow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            <linearGradient id="hlineAE" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.85"/>
-              <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#00d97e" stop-opacity="0.5"/>
+            <filter id="nglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <linearGradient id="lnGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.0"/>
+              <stop offset="40%" stop-color="#00d97e" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.35"/>
             </linearGradient>
-            <linearGradient id="hlineAS" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.75"/>
-              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.65"/>
+            <linearGradient id="lnGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00d97e" stop-opacity="0.0"/>
+              <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.25"/>
             </linearGradient>
-            <linearGradient id="hlineEu" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.7"/>
-              <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.65"/>
+            <linearGradient id="lnCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.0"/>
+              <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.50"/>
+              <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.30"/>
+            </linearGradient>
+            <!-- Edge fade right (into market panel) -->
+            <linearGradient id="fadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#03050a" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#03050a" stop-opacity="0.96"/>
+            </linearGradient>
+            <!-- Edge fade bottom -->
+            <linearGradient id="fadeB" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stop-color="#03050a" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#03050a" stop-opacity="0.82"/>
             </linearGradient>
           </defs>
 
           <!-- Top status bar -->
-          <rect x="0" y="0" width="830" height="20" fill="rgba(0,0,0,0.4)"/>
-          <rect x="0" y="0" width="2.5" height="360" fill="#00d97e" fill-opacity="0.6"/>
-          <text x="10" y="13" font-family="'Courier New',monospace" font-size="7.5"
-                fill="#00d97e" opacity="0.75">EAX · ENVIRONMENTAL ASSET EXCHANGE · LIVE MARKET</text>
-          <text x="630" y="13" font-family="'Courier New',monospace" font-size="7"
-                fill="#06b6d4" opacity="0.55">32 PROJECTS · $4.2M 24H VOL · 9 VERIFIED SELLERS</text>
+          <rect x="0" y="0" width="2.5" height="360" fill="#00d97e" fill-opacity="0.5"/>
+          <rect x="0" y="0" width="830" height="18" fill="rgba(0,0,0,0.45)"/>
+          <text x="10" y="12" font-family="'Courier New',monospace" font-size="7"
+                fill="#00d97e" opacity="0.70">EAX · ENVIRONMENTAL ASSET EXCHANGE · VERIFIED MARKET INFRASTRUCTURE</text>
+          <text x="620" y="12" font-family="'Courier New',monospace" font-size="7"
+                fill="#64748b" opacity="0.55">32 PROJECTS · $4.2M VOL</text>
 
-          <!-- ── Market node constellation (no continent shapes) ── -->
-          <!-- Node: East Africa -->
-          <g filter="url(#hglow)">
-            <circle class="hpr"  cx="440" cy="178" r="4" fill="none" stroke="#00d97e" stroke-width="1.2"/>
-            <circle class="hpr2" cx="440" cy="178" r="4" fill="none" stroke="#00d97e" stroke-width="0.8"/>
-            <circle cx="440" cy="178" r="5"   fill="#00d97e" fill-opacity="0.2"/>
-            <circle cx="440" cy="178" r="3.5" fill="#00d97e" fill-opacity="0.9"/>
-            <circle cx="440" cy="178" r="1.5" fill="#e2e8f0"/>
-          </g>
-          <!-- Node: West Africa -->
-          <g filter="url(#hglow)">
-            <circle class="hpr3" cx="335" cy="200" r="4" fill="none" stroke="#00d97e" stroke-width="1"/>
-            <circle cx="335" cy="200" r="4.5" fill="#00d97e" fill-opacity="0.18"/>
-            <circle cx="335" cy="200" r="3"   fill="#00d97e" fill-opacity="0.85"/>
-            <circle cx="335" cy="200" r="1.3" fill="#e2e8f0"/>
-          </g>
-          <!-- Node: Southern Africa -->
-          <g filter="url(#hglow)">
-            <circle class="hpr2" cx="398" cy="260" r="3.5" fill="none" stroke="#00d97e" stroke-width="0.9"/>
-            <circle cx="398" cy="260" r="3" fill="#00d97e" fill-opacity="0.82"/>
-            <circle cx="398" cy="260" r="1.2" fill="#e2e8f0"/>
-          </g>
-          <!-- Node: Europe -->
-          <g filter="url(#hglow)">
-            <circle class="hpr"  cx="240" cy="92" r="4" fill="none" stroke="#06b6d4" stroke-width="1.1"/>
-            <circle class="hpr3" cx="240" cy="92" r="4" fill="none" stroke="#06b6d4" stroke-width="0.7"/>
-            <circle cx="240" cy="92" r="4.5" fill="#06b6d4" fill-opacity="0.15"/>
-            <circle cx="240" cy="92" r="3.5" fill="#06b6d4" fill-opacity="0.88"/>
-            <circle cx="240" cy="92" r="1.6" fill="#e2e8f0"/>
-          </g>
-          <!-- Node: S. America -->
-          <g filter="url(#hglow)">
-            <circle class="hpr2" cx="138" cy="228" r="4" fill="none" stroke="#00d97e" stroke-width="1"/>
-            <circle cx="138" cy="228" r="4" fill="#00d97e" fill-opacity="0.18"/>
-            <circle cx="138" cy="228" r="3" fill="#00d97e" fill-opacity="0.85"/>
-            <circle cx="138" cy="228" r="1.4" fill="#e2e8f0"/>
-          </g>
-          <!-- Node: Asia -->
-          <g filter="url(#hglow)">
-            <circle class="hpr"  cx="618" cy="126" r="4.5" fill="none" stroke="#f59e0b" stroke-width="1.1"/>
-            <circle class="hpr2" cx="618" cy="126" r="4.5" fill="none" stroke="#f59e0b" stroke-width="0.7"/>
-            <circle cx="618" cy="126" r="5"   fill="#f59e0b" fill-opacity="0.15"/>
-            <circle cx="618" cy="126" r="3.5" fill="#f59e0b" fill-opacity="0.88"/>
-            <circle cx="618" cy="126" r="1.6" fill="#e2e8f0"/>
-          </g>
-
-          <!-- ── Animated flow lines between market nodes ── -->
+          <!-- Trade flow lines — elegant, minimal, animated dashes -->
+          <!-- Africa → Europe -->
+          <path d="M390,185 C340,148 295,118 245,96"
+                fill="none" stroke="url(#lnGreen)" stroke-width="1.2" class="tfl"/>
           <!-- S.America → Africa -->
-          <path d="M138,228 C220,195 300,185 335,200"
-                fill="none" stroke="url(#hlineAE)" stroke-width="1.3"
-                class="hfl" stroke-opacity="0.7"/>
-          <!-- W.Africa → E.Africa -->
-          <path d="M335,200 C368,192 406,184 440,178"
-                fill="none" stroke="#00d97e" stroke-width="1.1"
-                class="hfl2" stroke-opacity="0.6"/>
-          <!-- E.Africa → Europe -->
-          <path d="M440,178 C380,148 310,118 240,92"
-                fill="none" stroke="url(#hlineAE)" stroke-width="1.4"
-                class="hfl" stroke-opacity="0.72"/>
-          <!-- E.Africa → Asia -->
-          <path d="M440,178 C510,158 565,140 618,126"
-                fill="none" stroke="url(#hlineAS)" stroke-width="1.2"
-                class="hfl3" stroke-opacity="0.65"/>
-          <!-- Europe → Asia -->
-          <path d="M240,92 C380,88 500,102 618,126"
-                fill="none" stroke="url(#hlineEu)" stroke-width="1"
-                class="hfl2" stroke-opacity="0.55"/>
-          <!-- Africa S → E Africa -->
-          <path d="M398,260 C418,228 430,204 440,178"
-                fill="none" stroke="#00d97e" stroke-width="0.9"
-                class="hfl3" stroke-opacity="0.45"/>
+          <path d="M142,230 C220,200 310,190 390,185"
+                fill="none" stroke="url(#lnGreen)" stroke-width="1.0" class="tfl2"/>
+          <!-- Africa → Asia -->
+          <path d="M390,185 C470,162 545,144 615,130"
+                fill="none" stroke="url(#lnGold)" stroke-width="1.1" class="tfl3"/>
+          <!-- Europe → Asia (arc) -->
+          <path d="M245,96 C370,88 495,104 615,130"
+                fill="none" stroke="url(#lnCyan)" stroke-width="0.9" class="tfl2"/>
+          <!-- N.America → Europe -->
+          <path d="M88,118 C155,104 200,98 245,96"
+                fill="none" stroke="#8b5cf6" stroke-width="0.85" class="tfl" stroke-opacity="0.35"/>
 
-          <!-- ── Floating Verified Certificate panels ── -->
-          <g class="hcf" filter="url(#hglow)">
-            <rect x="458" y="132" width="76" height="40" rx="4"
-                  fill="rgba(8,14,20,0.86)" stroke="#00d97e"
-                  stroke-width="0.85" stroke-opacity="0.65"/>
-            <rect x="458" y="132" width="76" height="3" rx="4"
-                  fill="#00d97e" fill-opacity="0.55"/>
-            <text x="462" y="144" font-family="'Courier New',monospace" font-size="5.5" fill="#00d97e" opacity="0.95">★ VERIFIED</text>
-            <text x="462" y="153" font-family="'Courier New',monospace" font-size="5"   fill="#94a3b8">REDD+ · 1,200 tCO₂e</text>
-            <text x="462" y="161" font-family="'Courier New',monospace" font-size="4.5" fill="#64748b">EAX-KE-001 · Active</text>
+          <!-- Market nodes — minimal, clean dots with single pulse -->
+          <!-- Africa hub -->
+          <g filter="url(#nglow)">
+            <circle cx="390" cy="185" r="8" fill="#00d97e" fill-opacity="0.08" class="tnd"/>
+            <circle cx="390" cy="185" r="3.5" fill="#00d97e" fill-opacity="0.88"/>
+            <circle cx="390" cy="185" r="1.4" fill="#ffffff"/>
+          </g>
+          <!-- Europe hub -->
+          <g filter="url(#nglow)">
+            <circle cx="245" cy="96" r="7" fill="#06b6d4" fill-opacity="0.08" class="tnd2"/>
+            <circle cx="245" cy="96" r="3" fill="#06b6d4" fill-opacity="0.9"/>
+            <circle cx="245" cy="96" r="1.2" fill="#ffffff"/>
+          </g>
+          <!-- S.America hub -->
+          <g filter="url(#nglow)">
+            <circle cx="142" cy="230" r="6" fill="#00d97e" fill-opacity="0.08" class="tnd3"/>
+            <circle cx="142" cy="230" r="2.8" fill="#00d97e" fill-opacity="0.85"/>
+            <circle cx="142" cy="230" r="1.1" fill="#ffffff"/>
+          </g>
+          <!-- Asia hub -->
+          <g filter="url(#nglow)">
+            <circle cx="615" cy="130" r="7" fill="#f59e0b" fill-opacity="0.08" class="tnd"/>
+            <circle cx="615" cy="130" r="3" fill="#f59e0b" fill-opacity="0.88"/>
+            <circle cx="615" cy="130" r="1.2" fill="#ffffff"/>
+          </g>
+          <!-- N.America hub -->
+          <g filter="url(#nglow)">
+            <circle cx="88" cy="118" r="6" fill="#8b5cf6" fill-opacity="0.08" class="tnd2"/>
+            <circle cx="88" cy="118" r="2.6" fill="#8b5cf6" fill-opacity="0.82"/>
+            <circle cx="88" cy="118" r="1.0" fill="#ffffff"/>
           </g>
 
-          <g class="hcf2" filter="url(#hglow)">
-            <rect x="166" y="56" width="74" height="38" rx="4"
-                  fill="rgba(8,14,20,0.86)" stroke="#06b6d4"
-                  stroke-width="0.85" stroke-opacity="0.6"/>
-            <rect x="166" y="56" width="74" height="3" rx="4"
-                  fill="#06b6d4" fill-opacity="0.5"/>
-            <text x="170" y="68" font-family="'Courier New',monospace" font-size="5.5" fill="#06b6d4" opacity="0.95">★ VERIFIED</text>
-            <text x="170" y="77" font-family="'Courier New',monospace" font-size="5"   fill="#94a3b8">VCU · 2,500 tCO₂e</text>
-            <text x="170" y="85" font-family="'Courier New',monospace" font-size="4.5" fill="#64748b">EAX-EU-013 · Active</text>
+          <!-- Node labels — institutional, minimal -->
+          <g font-family="'Courier New',monospace" font-size="6.5" fill="#64748b" opacity="0.6">
+            <text x="397" y="192">AFRICA</text>
+            <text x="252" y="102">EU</text>
+            <text x="148" y="238">S.AM</text>
+            <text x="622" y="136">ASIA</text>
+            <text x="70"  y="126">N.AM</text>
           </g>
 
-          <g class="hcf3" filter="url(#hglow)">
-            <rect x="60" y="256" width="72" height="38" rx="4"
-                  fill="rgba(8,14,20,0.86)" stroke="#f59e0b"
-                  stroke-width="0.85" stroke-opacity="0.55"/>
-            <rect x="60" y="256" width="72" height="3" rx="4"
-                  fill="#f59e0b" fill-opacity="0.45"/>
-            <text x="64" y="268" font-family="'Courier New',monospace" font-size="5.5" fill="#f59e0b" opacity="0.9">★ VERIFIED</text>
-            <text x="64" y="277" font-family="'Courier New',monospace" font-size="5"   fill="#94a3b8">BLUE · 800 tCO₂e</text>
-            <text x="64" y="285" font-family="'Courier New',monospace" font-size="4.5" fill="#64748b">EAX-BR-016 · Active</text>
-          </g>
-
-          <!-- ── Small credit hex tokens along flow lines ── -->
-          <g opacity="0.6">
-            <polygon points="286,194 292,190 298,194 298,202 292,206 286,202"
-                     fill="none" stroke="#00d97e" stroke-width="0.9"/>
-            <text x="289" y="200" font-family="'Courier New',monospace" font-size="5" fill="#00d97e">C</text>
-            <polygon points="390,162 396,158 402,162 402,170 396,174 390,170"
-                     fill="none" stroke="#06b6d4" stroke-width="0.9"/>
-            <text x="393" y="168" font-family="'Courier New',monospace" font-size="5" fill="#06b6d4">C</text>
-            <polygon points="530,148 536,144 542,148 542,156 536,160 530,156"
-                     fill="none" stroke="#f59e0b" stroke-width="0.85"/>
-            <text x="533" y="154" font-family="'Courier New',monospace" font-size="5" fill="#f59e0b">C</text>
-          </g>
-
-          <!-- ── Right edge fade into market panel ── -->
-          <defs>
-            <linearGradient id="hrightF" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%"   stop-color="#04060a" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#04060a" stop-opacity="0.95"/>
-            </linearGradient>
-            <linearGradient id="hbotF" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%"   stop-color="#04060a" stop-opacity="0"/>
-              <stop offset="100%" stop-color="#04060a" stop-opacity="0.78"/>
-            </linearGradient>
-          </defs>
-          <rect x="660" y="0"   width="170" height="360" fill="url(#hrightF)"/>
-          <rect x="0"   y="270" width="830" height="90"  fill="url(#hbotF)"/>
+          <!-- Edge fades -->
+          <rect x="660" y="0"   width="170" height="360" fill="url(#fadeR)"/>
+          <rect x="0"   y="275" width="830" height="85"  fill="url(#fadeB)"/>
         </svg>
 
-        <!-- Canvas: animated data particles -->
+        <!-- Canvas: very subtle ambient particles -->
         <canvas id="heroCanvas"></canvas>
       </div>
-
       <!-- Glow orbs (CSS animated) -->
       <div class="home-hero-glow"></div>
       <div class="home-hero-glow2"></div>
@@ -3779,16 +3726,12 @@ function init(){
 // HERO IMAGE FALLBACK CHAIN
 // ════════════════════════════════════════════════════════
 const HERO_FALLBACKS=[
-  // Aerial savanna / African landscape at golden hour
-  'https://images.unsplash.com/photo-1547970810-dc1eac37d174?w=1600&q=80&fm=jpg&fit=crop&crop=center',
-  // Aerial rainforest canopy
-  'https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?w=1600&q=80&fm=jpg&fit=crop&crop=center',
-  // Aerial coast / mangrove landscape
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&fm=jpg&fit=crop&crop=center',
-  // Aerial green hills / landscape
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&q=80&fm=jpg&fit=crop&crop=center',
-  // Solar / renewable energy aerial
-  'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80&fm=jpg&fit=crop&crop=center',
+  // Dark aerial / infrastructure / satellite views
+  'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1600&q=85&fm=jpg&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1600&q=85&fm=jpg&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1600&q=85&fm=jpg&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1547970810-dc1eac37d174?w=1600&q=85&fm=jpg&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=85&fm=jpg&fit=crop&crop=center',
 ];
 let heroBgFallbackIdx=0;
 function heroImgFallback(img){
