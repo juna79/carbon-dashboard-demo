@@ -720,7 +720,6 @@ input,select{outline:none;font-family:inherit}
 }
 .home-eyebrow-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:ldpulse 1.4s ease-in-out infinite;box-shadow:0 0 6px rgba(0,217,126,0.6)}
 .home-h1{
-  text-shadow:0 0 24px rgba(0,217,126,0.18),0 3px 18px rgba(0,0,0,0.9);
   font-size:clamp(26px,3vw,40px);
   font-weight:900;
   color:#f0f4f8;
@@ -732,7 +731,6 @@ input,select{outline:none;font-family:inherit}
 }
 .home-h1 em{color:var(--green);font-style:normal;text-shadow:0 0 28px rgba(0,217,126,0.5),0 2px 16px rgba(0,0,0,0.85)}
 .home-sub{
-  text-shadow:0 2px 12px rgba(0,0,0,0.85);
   font-size:13px;
   color:rgba(226,232,240,0.93);
   line-height:1.65;
@@ -2696,6 +2694,15 @@ function addIntelFeedRow(side,qty,asset,proj,country,ts,price){
   while(feed.children.length>80)feed.removeChild(feed.lastChild);
 }
 
+
+// ════════════════════════════════════════════════════════
+// COUNTRY FLAGS — lightweight emoji flags for project cards
+// ════════════════════════════════════════════════════════
+const COUNTRY_FLAGS={
+  'Kenya':'🇰🇪','Tanzania':'🇹🇿','Uganda':'🇺🇬','Rwanda':'🇷🇼','Ghana':'🇬🇭','Nigeria':'🇳🇬','Ethiopia':'🇪🇹','Botswana':'🇧🇼','Mozambique':'🇲🇿','Senegal':'🇸🇳','Morocco':'🇲🇦','Somalia':'🇸🇴','Niger':'🇳🇪','DRC':'🇨🇩','Democratic Republic of Congo':'🇨🇩','Brazil':'🇧🇷','Peru':'🇵🇪','Mexico':'🇲🇽','Chile':'🇨🇱','United States':'🇺🇸','USA':'🇺🇸','Canada':'🇨🇦','Norway':'🇳🇴','Germany':'🇩🇪','Scotland':'🏴','Portugal':'🇵🇹','Spain':'🇪🇸','Japan':'🇯🇵','Indonesia':'🇮🇩','India':'🇮🇳','Vietnam':'🇻🇳','Thailand':'🇹🇭','Philippines':'🇵🇭','Malaysia':'🇲🇾','Australia':'🇦🇺','Turkey':'🇹🇷','Malawi':'🇲🇼'
+};
+function flagFor(country){return COUNTRY_FLAGS[country]||'🌍';}
+
 // ════════════════════════════════════════════════════════
 // PROJECT CARDS
 // ════════════════════════════════════════════════════════
@@ -2706,16 +2713,16 @@ function makeCard(p){
   el.onclick=e=>{if(!e.target.classList.contains('buy-btn'))openProfile(p.id);else e.stopPropagation();};
   el.innerHTML=`
     <div class="pcard-img">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="pcard-img-ph" style="display:none">${p.emoji}</div>
       <div class="pcard-badges">
         <span class="badge b-green">${p.type}</span>
-        <span class="badge b-blue">${p.country}</span>
+        <span class="badge b-blue">${flagFor(p.country)} ${p.country}</span>
       </div>
     </div>
     <div class="pcard-body">
       <div class="pcard-name">${p.name}</div>
-      <div class="pcard-loc">${p.country} · ${p.region}</div>
+      <div class="pcard-loc">${flagFor(p.country)} ${p.country} · ${p.region}</div>
       <div class="pcard-row">
         <span class="pcard-price">$${p.price.toFixed(2)}</span>
         <span class="pcard-chg ${bull?'pos':'neg'}">${bull?'▲':'▼'} ${Math.abs(p.change)}%</span>
@@ -2742,7 +2749,7 @@ function showSelectedAsset(id){
   if(!ap)return;
   ap.outerHTML=`<div class="ap-content" id="assetPreviewContent">
     <div class="ap-name">${p.name}</div>
-    <div class="ap-loc">${p.country} · ${p.type}</div>
+    <div class="ap-loc">${flagFor(p.country)} ${p.country} · ${p.type}</div>
     <div class="ap-price">$${p.price.toFixed(2)}</div>
     <div class="ap-stats">
       <div class="ap-stat-row"><span class="ap-stat-key">24h Change</span><span class="ap-stat-val" style="color:${bull?'var(--green)':'var(--red)'}">${bull?'+':''}${p.change}%</span></div>
@@ -2877,7 +2884,7 @@ function openProfile(id){
     <button class="pp-close" onclick="closeProfile()">✕</button>
     <img class="pp-img" src="${p.img}" alt="${p.name}" onerror="this.style.background='var(--bg3)'">
     <div class="pp-name">${p.name}</div>
-    <div class="pp-loc">${p.country} · ${p.region} · ${p.standard}</div>
+    <div class="pp-loc">${flagFor(p.country)} ${p.country} · ${p.region} · ${p.standard}</div>
     <div style="display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap">
       <span class="badge b-green">${p.type}</span>
       <span class="badge b-gold">Vintage ${p.vintage}</span>
