@@ -1625,6 +1625,164 @@ input,select{outline:none;font-family:inherit}
   }
 }
 
+
+/* Premium homepage lower section refinement */
+#section-home .home-section-links{
+  grid-template-columns:repeat(7,minmax(112px,1fr));
+  max-width:1180px;
+}
+
+#section-home .home-bottom-strip{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:14px;
+  max-width:1180px;
+}
+
+#section-home .home-info-panel{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(15,18,23,0.92),rgba(10,14,20,0.72)),
+    radial-gradient(circle at top right,rgba(0,217,126,0.08),transparent 40%);
+  border:1px solid rgba(42,51,71,0.95);
+  border-radius:16px;
+  padding:20px;
+  min-height:142px;
+  backdrop-filter:blur(12px);
+}
+
+#section-home .home-info-panel::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,var(--green),transparent);
+  opacity:.75;
+}
+
+#section-home .home-info-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  color:var(--green);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+#section-home .home-info-kicker::before{
+  content:'';
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px rgba(0,217,126,.7);
+}
+
+#section-home .home-info-title{
+  font-size:18px;
+  font-weight:900;
+  color:var(--text);
+  line-height:1.2;
+  margin-bottom:9px;
+  letter-spacing:-.2px;
+}
+
+#section-home .home-info-title span{
+  color:var(--green);
+}
+
+#section-home .home-info-text{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text2);
+}
+
+#section-home .home-socials{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+#section-home .home-social{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(42,51,71,0.95);
+  color:var(--text);
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+  transition:all .18s ease;
+}
+
+#section-home .home-social:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,217,126,0.45);
+  color:var(--green);
+  background:rgba(0,217,126,0.08);
+}
+
+#section-home .home-mini-metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+
+#section-home .home-mini-metric{
+  padding:11px 12px;
+  border:1px solid rgba(42,51,71,0.75);
+  border-radius:12px;
+  background:rgba(0,0,0,0.18);
+}
+
+#section-home .home-mini-metric strong{
+  display:block;
+  font-size:14px;
+  color:var(--green);
+  font-family:var(--mono);
+  margin-bottom:3px;
+}
+
+#section-home .home-mini-metric span{
+  font-size:10px;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+@media(max-width:1180px){
+  #section-home .home-section-links{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+@media(max-width:900px){
+  #section-home .home-bottom-strip{
+    grid-template-columns:1fr;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:560px){
+  #section-home .home-section-links{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1730,41 +1888,44 @@ input,select{outline:none;font-family:inherit}
 
 <div class="home-bottom-strip">
   <div class="home-info-panel">
-    <div class="home-info-title">About EAX</div>
+    <div class="home-info-kicker">Built for trust</div>
+    <div class="home-info-title">Environmental markets need <span>credible infrastructure.</span></div>
     <div class="home-info-text">
-      EAX is building infrastructure for trusted environmental markets across carbon, biodiversity, water, restoration, and natural capital ecosystems.
+      EAX connects project discovery, verification, intelligence, certificates, and market access into one institutional-grade environmental asset platform.
+    </div>
+    <div class="home-mini-metrics">
+      <div class="home-mini-metric"><strong>Multi-asset</strong><span>Carbon · biodiversity · water</span></div>
+      <div class="home-mini-metric"><strong>Africa-first</strong><span>Designed for global scale</span></div>
     </div>
   </div>
 
   <div class="home-info-panel">
-    <div class="home-info-title">Official Channels</div>
+    <div class="home-info-kicker">Official channels</div>
+    <div class="home-info-title">Follow the build.</div>
+    <div class="home-info-text">
+      Stay close to EAX as the platform develops across environmental assets, verification, and market infrastructure.
+    </div>
     <div class="home-socials">
-      <div class="home-social">X: @EAXGlobal</div>
-      <div class="home-social">www.eaxglobal.io</div>
+      <a class="home-social" href="https://x.com/EAXGlobal" target="_blank" rel="noopener noreferrer">𝕏 @EAXGlobal</a>
+      <a class="home-social" href="https://www.eaxglobal.io" target="_blank" rel="noopener noreferrer">www.eaxglobal.io</a>
     </div>
   </div>
 
   <div class="home-info-panel">
-    <div class="home-info-title">Infrastructure</div>
+    <div class="home-info-kicker">Access</div>
+    <div class="home-info-title">Register. Verify. Participate.</div>
     <div class="home-info-text">
-      Verification, intelligence, settlement, certificates, and institutional-grade environmental market tooling.
+      Verified users will be able to list projects, review opportunities, connect with counterparties, and manage environmental asset records.
     </div>
-  </div>
-
-  <div class="home-info-panel">
-    <div class="home-info-title">Focus</div>
-    <div class="home-info-text">
-      Africa-first environmental infrastructure designed for global market connectivity and measurable impact.
+    <div class="home-socials">
+      <button class="home-social" onclick="openRegisterModal()">Register</button>
+      <button class="home-social" onclick="openVerifyModal()">Get Verified</button>
     </div>
   </div>
 </div>
 
 </div>
 </div>
-</div>
-
-    </div>
-  </div>
 </div>
 
 <div id="section-trade" class="section">
