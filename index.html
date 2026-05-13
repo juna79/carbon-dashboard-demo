@@ -48,7 +48,33 @@ input,select{outline:none;font-family:inherit}
 
 /* ══ NAV ══ */
 #nav{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(9,11,14,0.98);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;gap:0;z-index:1000;backdrop-filter:blur(12px)}
-.nav-logo{font-size:17px;font-weight:900;color:var(--green);letter-spacing:2px;margin-right:12px;font-family:var(--mono)}
+.nav-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  min-width:58px;
+  height:40px;
+  margin-right:14px;
+  font-family:var(--mono);
+  cursor:pointer;
+  line-height:1;
+}
+.nav-logo-main{
+  font-size:20px;
+  font-weight:900;
+  color:var(--green);
+  letter-spacing:2.2px;
+}
+.nav-logo-sub{
+  margin-top:3px;
+  font-size:8px;
+  font-weight:800;
+  color:var(--text3);
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
 .nav-links{display:flex;gap:1px;flex:1;flex-wrap:nowrap}
 .nav-btn{padding:6px 11px;border-radius:var(--radius);background:transparent;color:var(--text2);font-size:12px;font-weight:500;transition:all 0.15s;white-space:nowrap;border:1px solid transparent}
 .nav-btn:hover{background:var(--bg4);color:var(--text)}
@@ -186,6 +212,35 @@ input,select{outline:none;font-family:inherit}
 .buy-btn{flex:1;padding:7px;background:var(--green);color:#000;border-radius:var(--radius);font-weight:700;font-size:11px;transition:background 0.2s}
 .buy-btn:hover{background:var(--green2)}
 .watch-btn{padding:7px 10px;background:var(--bg3);color:var(--text2);border-radius:var(--radius);font-size:11px;border:1px solid var(--border)}
+
+/* Projects directory showcase cards */
+.project-showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.project-showcase-card{background:linear-gradient(180deg,rgba(20,24,32,0.96),rgba(15,18,23,0.98));border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative}
+.project-showcase-card:hover{border-color:rgba(0,217,126,0.28);transform:translateY(-1px);box-shadow:var(--shadow)}
+.ps-img{height:150px;background:var(--bg3);position:relative;overflow:hidden}
+.ps-img img{width:100%;height:100%;object-fit:cover;opacity:.82;display:block}
+.ps-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.58));pointer-events:none}
+.ps-badges{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:5px;flex-wrap:wrap;z-index:1}
+.ps-body{padding:13px 14px 14px}
+.ps-kicker{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
+.ps-name{font-size:15px;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:4px}
+.ps-loc{font-size:11px;color:var(--text3);margin-bottom:9px}
+.ps-desc{font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:11px;min-height:56px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ps-info{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.ps-info-cell{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.055);border-radius:var(--radius);padding:7px 8px;min-width:0}
+.ps-info-k{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.45px;margin-bottom:2px}
+.ps-info-v{font-size:11px;color:var(--text);font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-info-v.pending{color:var(--text3);font-weight:500}
+.ps-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.ps-metric{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:7px;text-align:left}
+.ps-metric-k{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.35px;margin-bottom:2px}
+.ps-metric-v{font-size:12px;color:var(--green);font-family:var(--mono);font-weight:800}
+.ps-footer{display:flex;gap:7px;align-items:center}
+.ps-view-btn{flex:1;padding:8px 10px;background:var(--bg4);border:1px solid var(--border2);color:var(--text);border-radius:var(--radius);font-size:11px;font-weight:800;transition:all .2s}
+.ps-view-btn:hover{border-color:rgba(0,217,126,.35);color:var(--green);background:rgba(0,217,126,.08)}
+.ps-video-btn{flex:1;padding:8px 10px;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.32);color:var(--gold);border-radius:var(--radius);font-size:11px;font-weight:800;transition:all .2s}
+.ps-video-btn:hover{background:rgba(245,158,11,.16)}
+@media(max-width:768px){.project-showcase-grid{grid-template-columns:1fr}.ps-img{height:170px}.ps-info,.ps-metrics{grid-template-columns:1fr 1fr}.ps-desc{min-height:auto}.ps-footer{flex-direction:column}.ps-view-btn,.ps-video-btn{width:100%}}
 
 /* ── RIGHT COLUMN ── */
 .trade-right{display:flex;flex-direction:column;gap:10px;position:sticky;top:62px;max-height:calc(100vh - 72px);overflow-y:auto}
@@ -563,6 +618,7 @@ input,select{outline:none;font-family:inherit}
 
 /* ══ HERO ROW — Bloomberg × BlackRock × Earth Infrastructure ══ */
 .home-hero-row{
+  min-height:520px;
   display:grid;
   grid-template-columns:1fr 400px;
   gap:0;
@@ -978,7 +1034,8 @@ input,select{outline:none;font-family:inherit}
 
 /* ── Responsive ── */
 @media(max-width:1024px){
-  .home-hero-row{grid-template-columns:1fr;min-height:auto}
+  .home-hero-row{
+  min-height:520px;grid-template-columns:1fr;min-height:auto}
   .home-hero-right{border-left:none;border-top:1px solid rgba(31,39,55,0.7);max-height:320px}
   .mp-stats-row{grid-template-columns:repeat(4,1fr)}
   .mp-stat{border-right:1px solid rgba(31,39,55,0.7)}
@@ -1212,20 +1269,315 @@ input,select{outline:none;font-family:inherit}
 /* Feed badges — SELL muted institutional red */
 .fs-sell{font-weight:700}
 .fs-buy{font-weight:700}
+
+/* Homepage simplification */
+.market-stats-bar,
+.home-market-overview,
+.hero-market-grid,
+.hero-stats-grid,
+.market-overview-section{
+  display:none !important;
+}
+
+.home-hero-content{
+  max-width:760px;
+  padding:80px 40px !important;
+}
+
+.home-hero-title{
+  font-size:64px !important;
+  line-height:1.05 !important;
+  font-weight:900 !important;
+  margin-bottom:22px !important;
+}
+
+.home-hero-subtitle{
+  font-size:20px !important;
+  line-height:1.7 !important;
+  color:var(--text2) !important;
+  max-width:700px !important;
+  margin-bottom:34px !important;
+}
+
+.home-cta-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:10px;
+  margin-bottom:38px;
+}
+
+.home-primary-btn{
+  padding:14px 24px;
+  background:var(--green);
+  color:#000;
+  border-radius:var(--radius2);
+  font-size:15px;
+  font-weight:800;
+}
+
+.home-secondary-btn{
+  padding:14px 24px;
+  background:var(--bg3);
+  color:var(--text);
+  border:1px solid var(--border2);
+  border-radius:var(--radius2);
+  font-size:15px;
+  font-weight:700;
+}
+
+.home-links-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin-top:10px;
+}
+
+.home-link-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius:var(--radius2);
+  padding:16px;
+  transition:all .2s ease;
+}
+
+.home-link-card:hover{
+  border-color:var(--border2);
+  transform:translateY(-2px);
+}
+
+.home-link-title{
+  font-size:13px;
+  font-weight:800;
+  color:var(--text);
+  margin-bottom:5px;
+}
+
+.home-link-sub{
+  font-size:11px;
+  line-height:1.5;
+  color:var(--text3);
+}
+
+@media(max-width:900px){
+  .home-links-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .home-hero-title{
+    font-size:42px !important;
+  }
+  .home-hero-subtitle{
+    font-size:16px !important;
+  }
+}
+
+@media(max-width:640px){
+  .home-links-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* Force remove homepage market overview sections */
+#marketOverview,
+.market-overview,
+.market-overview-wrap,
+.market-overview-section,
+.home-market-overview,
+.market-stats-bar,
+.hero-market-grid,
+.hero-stats-grid,
+.home-stats,
+.home-kpis,
+.home-overview,
+.home-terminal-grid,
+.hero-terminal,
+.dashboard-preview,
+.live-market-panel{
+  display:none !important;
+}
+
+
+/* FINAL HOMEPAGE SIMPLIFICATION — no market overview */
+#section-home .home-wrap{
+  min-height:calc(100vh - 48px);
+  background:var(--bg);
+}
+
+#section-home .home-hero-row{
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding:72px 46px 54px;
+}
+
+#section-home .home-hero-row::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(5,8,12,0.90) 0%,rgba(5,8,12,0.68) 42%,rgba(5,8,12,0.30) 100%),
+    radial-gradient(circle at 18% 35%,rgba(0,217,126,0.14),transparent 34%),
+    radial-gradient(circle at 78% 52%,rgba(59,130,246,0.13),transparent 36%);
+  pointer-events:none;
+  z-index:0;
+}
+
+#section-home .home-simple-content{
+  position:relative;
+  z-index:2;
+  max-width:860px;
+}
+
+#section-home .home-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border:1px solid rgba(0,217,126,0.28);
+  border-radius:999px;
+  background:rgba(0,217,126,0.07);
+  color:var(--green);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+#section-home .home-h1{
+  font-size:70px;
+  line-height:0.98;
+  font-weight:900;
+  letter-spacing:-2.4px;
+  color:var(--text);
+  margin-bottom:24px;
+}
+
+#section-home .home-h1 em{
+  color:var(--green);
+  font-style:normal;
+}
+
+#section-home .home-sub{
+  max-width:720px;
+  font-size:21px;
+  line-height:1.55;
+  color:var(--text2);
+  margin-bottom:34px;
+}
+
+#section-home .home-ctas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:13px;
+  margin-bottom:38px;
+}
+
+#section-home .cta-primary,
+#section-home .cta-secondary{
+  padding:14px 22px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:800;
+}
+
+#section-home .cta-primary{
+  background:var(--green);
+  color:#000;
+}
+
+#section-home .cta-primary:hover{
+  background:var(--green2);
+}
+
+#section-home .cta-secondary{
+  background:rgba(255,255,255,0.045);
+  color:var(--text);
+  border:1px solid var(--border2);
+}
+
+#section-home .home-section-links{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(120px,1fr));
+  gap:12px;
+  max-width:900px;
+}
+
+#section-home .home-section-card{
+  padding:16px 15px;
+  background:rgba(15,18,23,0.78);
+  border:1px solid rgba(42,51,71,0.82);
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .18s ease;
+  backdrop-filter:blur(8px);
+}
+
+#section-home .home-section-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(0,217,126,0.35);
+  background:rgba(20,24,32,0.88);
+}
+
+#section-home .home-section-title{
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:6px;
+}
+
+#section-home .home-section-desc{
+  font-size:11px;
+  line-height:1.45;
+  color:var(--text3);
+}
+
+@media(max-width:900px){
+  #section-home .home-hero-row{
+    padding:56px 22px 38px;
+    min-height:580px;
+  }
+  #section-home .home-h1{
+    font-size:48px;
+    letter-spacing:-1.4px;
+  }
+  #section-home .home-sub{
+    font-size:17px;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:560px){
+  #section-home .home-h1{
+    font-size:38px;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:1fr;
+  }
+  #section-home .home-ctas{
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <div class="nav-logo" onclick="showSection('home',null)" style="cursor:pointer" title="Home">EAX</div>
+  <div class="nav-logo" onclick="showSection('home',null)" title="EAX Home"><span class="nav-logo-main">EAX</span><span class="nav-logo-sub">HOME</span></div>
   <div class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></div>
   <div class="nav-links" id="navLinks">
+    <button class="nav-btn" onclick="showSection('projects',this)">Projects</button>
     <button class="nav-btn" onclick="showSection('trade',this)">Exchange</button>
     <button class="nav-btn" onclick="showSection('portfolio',this)">Portfolio</button>
     <button class="nav-btn" onclick="showSection('marketplace',this)">Marketplace</button>
     <button class="nav-btn nav-p2p" onclick="showSection('p2p',this)">P2P</button>
-    <button class="nav-btn" onclick="showSection('projects',this)">Projects</button>
     <button class="nav-btn" onclick="showSection('certificates',this)">Certificates</button>
     <button class="nav-btn" onclick="showSection('intelligence',this)">Intelligence</button>
   </div>
@@ -1256,147 +1608,58 @@ input,select{outline:none;font-family:inherit}
 ══════════════════════════════════════════════ -->
 <div id="section-home" class="section active">
   <div class="home-wrap">
-
-
-    <!-- Hero Row -->
     <div class="home-hero-row">
-
-
-      <!-- Atmospheric glow orbs (CSS animated) -->
       <div class="home-hero-glow"></div>
       <div class="home-hero-glow2"></div>
       <div class="home-hero-glow3"></div>
-      <!-- Subtle terminal grid overlay -->
       <div class="home-hero-grid"></div>
-      <!-- Cinematic vignette -->
       <div class="home-hero-vignette"></div>
 
-      <!-- Left: Headline + CTAs -->
-      <div class="home-hero-left">
-        <div class="home-eyebrow"><span class="home-eyebrow-dot"></span>Live Market · Verified Infrastructure</div>
+      <div class="home-simple-content">
+        <div class="home-eyebrow"><span class="home-eyebrow-dot"></span>Environmental Market Infrastructure</div>
+
         <h1 class="home-h1">Environmental<br><em>Asset Exchange</em></h1>
-        <p class="home-sub">Verified market infrastructure for environmental credits, retirements, secondary trading and institutional intelligence. Built for serious market participants.</p>
+
+        <p class="home-sub">
+          Infrastructure for trusted environmental markets — connecting projects, buyers, verification, intelligence, and measurable impact.
+        </p>
+
         <div class="home-ctas">
-          <button class="cta-primary" onclick="showSection('trade',null)">Enter Exchange →</button>
-          <button class="cta-secondary" onclick="openRegisterModal()">Register</button>
-          <button class="cta-ghost" onclick="openVerifyModal()">Get Verified</button>
+          <button class="cta-primary" onclick="openRegisterModal()">Register / Get Verified</button>
+          <button class="cta-secondary" onclick="showSection('trade',null)">Enter Platform →</button>
         </div>
-        <!-- Trust micro-bar -->
-        <div class="home-trust-micro">
-          <div class="trust-micro-item"><span class="trust-micro-dot"></span><span>32 Verified Projects</span></div>
-          <div class="trust-micro-item"><span class="trust-micro-dot"></span><span>9 Verified Sellers</span></div>
-          <div class="trust-micro-item"><span class="trust-micro-dot"></span><span>Verra · Gold Standard · CCB</span></div>
-        </div>
-      </div>
 
-      <!-- Right: Market Preview Panel -->
-      <div class="home-hero-right">
-        <div class="mp-header">
-          <div class="mp-header-title"><span class="live-dot"></span>Market Overview</div>
-          <div class="mp-header-tag">LIVE</div>
-        </div>
-        <div class="mp-stats-row">
-          <div class="mp-stat"><div class="mp-stat-label">Credits Listed</div><div class="mp-stat-val">842K</div><div class="mp-stat-sub">across 32 projects</div></div>
-          <div class="mp-stat"><div class="mp-stat-label">24h Volume</div><div class="mp-stat-val">$4.2M</div><div class="mp-stat-sub">↑ +18.4%</div></div>
-          <div class="mp-stat"><div class="mp-stat-label">Verified Sellers</div><div class="mp-stat-val">9</div><div class="mp-stat-sub">KYB verified</div></div>
-          <div class="mp-stat"><div class="mp-stat-label">Avg Price</div><div class="mp-stat-val">$16.80</div><div class="mp-stat-sub">↑ +2.1%</div></div>
-        </div>
-        <div class="mp-feed">
-          <div class="mp-feed-hdr"><span class="live-dot"></span>Order Flow</div>
-          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">1,200</span><span style="color:var(--text3)">REDD+</span><span style="color:rgba(148,163,184,0.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Maasai Mara</span></div>
-          <div class="mp-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text);font-weight:700">800</span><span style="color:var(--text3)">BLUE</span><span style="color:rgba(148,163,184,0.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Zanzibar</span></div>
-          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">2,500</span><span style="color:var(--text3)">VCU</span><span style="color:rgba(148,163,184,0.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Kilimanjaro</span></div>
-          <div class="mp-feed-row"><span class="feed-side fs-buy">BUY</span><span style="color:var(--text);font-weight:700">450</span><span style="color:var(--text3)">GS</span><span style="color:rgba(148,163,184,0.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Rwanda</span></div>
-          <div class="mp-feed-row"><span class="feed-side fs-sell">SELL</span><span style="color:var(--text);font-weight:700">3,000</span><span style="color:var(--text3)">SOLAR</span><span style="color:rgba(148,163,184,0.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sahel Niger</span></div>
-        </div>
-        <div class="mp-movers">
-          <div class="mp-movers-label">Top Movers</div>
-          <div class="mp-mover-row"><span class="mp-mover-name">Norway Arctic Kelp</span><span class="mp-mover-chg" style="color:var(--green)">▲ +12.4%</span></div>
-          <div class="mp-mover-row"><span class="mp-mover-name">Philippines Coral</span><span class="mp-mover-chg" style="color:var(--green)">▲ +9.1%</span></div>
-          <div class="mp-mover-row"><span class="mp-mover-name">Zanzibar Blue Carbon</span><span class="mp-mover-chg" style="color:var(--green)">▲ +8.3%</span></div>
-          <div class="mp-mover-row"><span class="mp-mover-name">Rwanda Cookstove</span><span class="mp-mover-chg" style="color:var(--red)">▼ −1.4%</span></div>
-        </div>
-        <button class="mp-enter-btn" onclick="showSection('trade',null)">Enter Exchange →</button>
-      </div>
-
-    </div><!-- end hero row -->
-
-    <!-- Lower: Pillars + Participants/Trust + Modules -->
-    <div class="home-lower">
-
-      <div class="home-pillars-row">
-        <div class="home-pillar hp-green">
-          <div class="hp-icon">◈</div>
-          <div class="hp-title">Verified Markets</div>
-          <div class="hp-text">Trade verified carbon, blue carbon, biochar, EV credits and more. Every project verified before listing.</div>
-        </div>
-        <div class="home-pillar hp-gold">
-          <div class="hp-icon">⬡</div>
-          <div class="hp-title">Exchange Infrastructure</div>
-          <div class="hp-text">Primary markets, P2P OTC, portfolio tracking, certificate retirements and verified seller profiles.</div>
-        </div>
-        <div class="home-pillar hp-blue">
-          <div class="hp-icon">◎</div>
-          <div class="hp-title">Market Intelligence</div>
-          <div class="hp-text">Live pricing, regional demand, buyer flows, project analytics and environmental asset intelligence.</div>
-        </div>
-      </div>
-
-      <div class="home-pt-row">
-        <div class="home-pt-panel">
-          <div class="home-pt-hdr">Who EAX Is For</div>
-          <div class="home-who-list">
-            <div class="home-who-row"><span class="who-row-icon">🏗️</span><span class="who-row-label">Project Developers</span><span class="who-row-tag">Sell</span></div>
-            <div class="home-who-row"><span class="who-row-icon">📊</span><span class="who-row-label">Brokers &amp; OTC Desks</span><span class="who-row-tag">P2P</span></div>
-            <div class="home-who-row"><span class="who-row-icon">💼</span><span class="who-row-label">Funds &amp; Asset Managers</span><span class="who-row-tag">Portfolio</span></div>
-            <div class="home-who-row"><span class="who-row-icon">🏢</span><span class="who-row-label">Corporates &amp; ESG Teams</span><span class="who-row-tag">Retire</span></div>
-            <div class="home-who-row"><span class="who-row-icon">🏛️</span><span class="who-row-label">Governments &amp; Institutions</span><span class="who-row-tag">Sovereign</span></div>
-            <div class="home-who-row"><span class="who-row-icon">🌍</span><span class="who-row-label">Carbon Buyers</span><span class="who-row-tag">Buy</span></div>
-            <div class="home-who-row"><span class="who-row-icon">✓</span><span class="who-row-label">Verified Sellers</span><span class="who-row-tag">KYB</span></div>
+        <div class="home-section-links">
+          <div class="home-section-card" onclick="showSection('projects',null)">
+            <div class="home-section-title">Projects</div>
+            <div class="home-section-desc">Discover verified environmental projects.</div>
           </div>
-        </div>
-        <div class="home-pt-panel">
-          <div class="home-pt-hdr">Verification &amp; Trust</div>
-          <div class="home-trust-list">
-            <div class="home-trust-row"><span class="trust-row-icon">🔐</span><div><div class="trust-row-label">Verified Sellers &amp; Buyers</div><div class="trust-row-desc">KYB/KYC with trust metrics on every seller profile</div></div></div>
-            <div class="home-trust-row"><span class="trust-row-icon">📋</span><div><div class="trust-row-label">Verified Project Registry</div><div class="trust-row-desc">Verra VCS, Gold Standard, CCB &amp; ART TREES</div></div></div>
-            <div class="home-trust-row"><span class="trust-row-icon">🏆</span><div><div class="trust-row-label">Certificate Viewer</div><div class="trust-row-desc">Premium certs with registry metadata &amp; hashes</div></div></div>
-            <div class="home-trust-row"><span class="trust-row-icon">🔗</span><div><div class="trust-row-label">Retirement Proof</div><div class="trust-row-desc">Permanent records with cryptographic verification</div></div></div>
+
+          <div class="home-section-card" onclick="showSection('marketplace',null)">
+            <div class="home-section-title">Marketplace</div>
+            <div class="home-section-desc">Explore environmental assets.</div>
           </div>
-          <div class="home-pt-footer">
-            <button class="cta-secondary" style="padding:6px 14px;font-size:11px" onclick="openVerifyModal()">Get Verified →</button>
+
+          <div class="home-section-card" onclick="showSection('p2p',null)">
+            <div class="home-section-title">P2P</div>
+            <div class="home-section-desc">Connect with verified counterparties.</div>
+          </div>
+
+          <div class="home-section-card" onclick="showSection('intelligence',null)">
+            <div class="home-section-title">Intelligence</div>
+            <div class="home-section-desc">Track market signals and impact data.</div>
+          </div>
+
+          <div class="home-section-card" onclick="showSection('certificates',null)">
+            <div class="home-section-title">Certificates</div>
+            <div class="home-section-desc">View verified retirement records.</div>
           </div>
         </div>
       </div>
-
-      <div class="home-modules-strip">
-        <div class="home-mod-chip" onclick="showSection('marketplace',null)"><span class="hmc-dot" style="background:var(--green)"></span><span class="hmc-label">Marketplace</span><span class="hmc-arrow">→</span></div>
-        <div class="home-mod-chip" onclick="showSection('p2p',null)"><span class="hmc-dot" style="background:var(--gold)"></span><span class="hmc-label">P2P Exchange</span><span class="hmc-arrow">→</span></div>
-        <div class="home-mod-chip" onclick="showSection('portfolio',null)"><span class="hmc-dot" style="background:var(--blue)"></span><span class="hmc-label">Portfolio</span><span class="hmc-arrow">→</span></div>
-        <div class="home-mod-chip" onclick="showSection('certificates',null)"><span class="hmc-dot" style="background:var(--cyan)"></span><span class="hmc-label">Certificates</span><span class="hmc-arrow">→</span></div>
-        <div class="home-mod-chip" onclick="showSection('intelligence',null)"><span class="hmc-dot" style="background:var(--purple)"></span><span class="hmc-label">Intelligence</span><span class="hmc-arrow">→</span></div>
-        <div class="home-mod-chip" onclick="showSection('projects',null)"><span class="hmc-dot" style="background:var(--gold)"></span><span class="hmc-label">Projects</span><span class="hmc-arrow">→</span></div>
-      </div>
-
-    </div><!-- end home-lower -->
-
-    <div class="home-footer">
-      <div class="footer-logo">EAX</div>
-      <div class="footer-links">
-        <span class="footer-link">About</span>
-        <span class="footer-link" onclick="openVerifyModal()">Verification</span>
-        <span class="footer-link">Contact</span>
-        <span class="footer-link">LinkedIn</span>
-        <span class="footer-link">X / Twitter</span>
-      </div>
-      <div class="footer-right">© 2025 Environmental Asset Exchange</div>
     </div>
-
   </div>
 </div>
-<!-- ══════════════════════════════════════════════
-     TRADE SECTION
-══════════════════════════════════════════════ -->
+
 <div id="section-trade" class="section">
   <!-- Mobile filter toggle — only visible on mobile -->
 <button class="mob-filter-btn" onclick="toggleMobileFilters()" id="mobFilterBtn">
@@ -1790,26 +2053,28 @@ input,select{outline:none;font-family:inherit}
      PROJECTS SECTION
 ══════════════════════════════════════════════ -->
 <div id="section-projects" class="section">
-  <div style="margin-bottom:14px">
-    <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:3px">Global Project Directory</div>
-    <div style="font-size:11px;color:var(--text3)">Browse verified environmental asset projects worldwide</div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+    <div>
+      <div style="font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px">Verified Project Showcase</div>
+      <div style="font-size:12px;color:var(--text3);max-width:620px;line-height:1.5">Discover the projects behind the assets — their mission, impact, verification profile and market activity.</div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <select class="fsel" id="projGeo" onchange="filterProjs()" style="width:auto">
+        <option value="">All Geographies</option>
+        <option value="Africa">Africa</option><option value="Europe">Europe</option>
+        <option value="Asia">Asia</option><option value="North America">North America</option>
+        <option value="South America">South America</option>
+      </select>
+      <select class="fsel" id="projAsset" onchange="filterProjs()" style="width:auto">
+        <option value="">All Asset Types</option>
+        <option value="VCU">VCU</option><option value="GS">Gold Standard</option>
+        <option value="REDD+">REDD+</option><option value="BIO">Biodiversity</option>
+        <option value="BLUE">Blue Carbon</option>
+      </select>
+      <input class="finp" id="projSearch" placeholder="Search projects..." oninput="filterProjs()" style="width:190px">
+    </div>
   </div>
-  <div style="display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap">
-    <select class="fsel" id="projGeo" onchange="filterProjs()" style="width:auto">
-      <option value="">All Geographies</option>
-      <option value="Africa">Africa</option><option value="Europe">Europe</option>
-      <option value="Asia">Asia</option><option value="North America">North America</option>
-      <option value="South America">South America</option>
-    </select>
-    <select class="fsel" id="projAsset" onchange="filterProjs()" style="width:auto">
-      <option value="">All Asset Types</option>
-      <option value="VCU">VCU</option><option value="GS">Gold Standard</option>
-      <option value="REDD+">REDD+</option><option value="BIO">Biodiversity</option>
-      <option value="BLUE">Blue Carbon</option>
-    </select>
-    <input class="finp" id="projSearch" placeholder="Search projects..." oninput="filterProjs()" style="width:180px">
-  </div>
-  <div class="projects-grid" id="projGrid"></div>
+  <div class="project-showcase-grid" id="projGrid"></div>
 </div>
 
 <!-- ══════════════════════════════════════════════
@@ -2830,6 +3095,67 @@ function makeCard(p){
   return el;
 }
 
+function projectWebsite(p){return p.website||'Website pending';}
+function projectX(p){return p.xHandle||p.twitter||'X pending';}
+function projectImpact(p){
+  const impactByType={
+    'REDD+':'Forest protection, avoided emissions and biodiversity conservation',
+    'BIO':'Habitat protection, biodiversity outcomes and community-linked conservation',
+    'BLUE':'Mangrove, coastal and marine ecosystem protection',
+    'GS':'Community impact, cleaner energy access and verified emissions reductions',
+    'VCU':'Verified emissions reductions with measurable environmental outcomes',
+    'SOLAR':'Clean energy generation and avoided fossil-fuel emissions',
+    'WIND':'Renewable power generation and avoided grid emissions'
+  };
+  return p.impact||impactByType[p.type]||'Measured environmental impact and verified project outcomes';
+}
+function makeProjectShowcaseCard(p){
+  const bull=p.change>=0;
+  const el=document.createElement('div');
+  el.className='project-showcase-card';
+  el.onclick=()=>openProfile(p.id,'directory');
+  const website=projectWebsite(p);
+  const x=projectX(p);
+  const websitePending=website==='Website pending';
+  const xPending=x==='X pending';
+  el.innerHTML=`
+    <div class="ps-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="fallbackProjectImage(this,'${p.type}','${p.emoji}')">
+      <div class="ps-overlay"></div>
+      <div class="ps-badges">
+        <span class="badge b-green">${p.type}</span>
+        <span class="badge b-blue">${flagFor(p.country)} ${p.country}</span>
+        <span class="badge b-gold">${p.standard}</span>
+      </div>
+    </div>
+    <div class="ps-body">
+      <div class="ps-kicker">Project profile</div>
+      <div class="ps-name">${p.name}</div>
+      <div class="ps-loc">${flagFor(p.country)} ${p.country} · ${p.region} · Vintage ${p.vintage}</div>
+      <div class="ps-desc">${p.desc}</div>
+      <div class="ps-info">
+        <div class="ps-info-cell"><div class="ps-info-k">Website</div><div class="ps-info-v ${websitePending?'pending':''}">${website}</div></div>
+        <div class="ps-info-cell"><div class="ps-info-k">X / Twitter</div><div class="ps-info-v ${xPending?'pending':''}">${x}</div></div>
+        <div class="ps-info-cell"><div class="ps-info-k">Impact created</div><div class="ps-info-v">${projectImpact(p)}</div></div>
+        <div class="ps-info-cell"><div class="ps-info-k">Verification</div><div class="ps-info-v">${p.standard} · ${p.certCount||0} certs</div></div>
+      </div>
+      <div class="ps-metrics">
+        <div class="ps-metric"><div class="ps-metric-k">Volume</div><div class="ps-metric-v">${fmt(p.volume)}</div></div>
+        <div class="ps-metric"><div class="ps-metric-k">Traded</div><div class="ps-metric-v">${fmt(p.traded)}</div></div>
+        <div class="ps-metric"><div class="ps-metric-k">Change</div><div class="ps-metric-v" style="color:${bull?'var(--green)':'var(--sell2)'}">${bull?'+':''}${p.change}%</div></div>
+      </div>
+      <div class="ps-footer">
+        <button class="ps-view-btn" onclick="openProfile('${p.id}','directory');event.stopPropagation()">View Project</button>
+        <button class="ps-video-btn" onclick="openVideoPlaceholder('${p.id}');event.stopPropagation()">Watch Video</button>
+      </div>
+    </div>`;
+  return el;
+}
+function openVideoPlaceholder(id){
+  const p=PROJECTS.find(x=>x.id===id);
+  alert((p?p.name+' — ':'')+'Project video coming soon');
+}
+
 function showSelectedAsset(id){
   selectedProjectId=id;
   const p=PROJECTS.find(x=>x.id===id);if(!p)return;
@@ -2958,17 +3284,29 @@ function filterProjs(){
   let list=[...PROJECTS];
   if(geo)list=list.filter(p=>p.region===geo||p.country===geo);
   if(asset)list=list.filter(p=>p.type===asset);
-  if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search));
+  if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
   const grid=document.getElementById('projGrid');if(!grid)return;
-  grid.innerHTML='';list.forEach(p=>grid.appendChild(makeCard(p)));
+  grid.innerHTML='';
+  if(list.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text3)">
+      <div style="font-size:28px;margin-bottom:10px;opacity:0.35">🔎</div>
+      <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:5px">No projects match your filters</div>
+      <div style="font-size:12px">Try another geography, asset type or search term.</div>
+    </div>`;
+    return;
+  }
+  list.forEach(p=>grid.appendChild(makeProjectShowcaseCard(p)));
 }
 
 // ════════════════════════════════════════════════════════
 // PROJECT PROFILE
 // ════════════════════════════════════════════════════════
-function openProfile(id){
+function openProfile(id,context='market'){
   const p=PROJECTS.find(x=>x.id===id);if(!p)return;
   const bull=p.change>=0;
+  const directoryMode=context==='directory';
+  const website=projectWebsite(p);
+  const x=projectX(p);
   document.getElementById('projProfileContent').innerHTML=`
     <button class="pp-close" onclick="closeProfile()">✕</button>
     <img class="pp-img" src="${p.img}" alt="${p.name}" referrerpolicy="no-referrer" onerror="fallbackProjectImage(this,'${p.type}','${p.emoji}')">
@@ -2980,6 +3318,11 @@ function openProfile(id){
       <span class="badge b-blue">${p.sdgs.join(' · ')}</span>
     </div>
     <div class="pp-desc">${p.desc}</div>
+    ${directoryMode?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+      <div class="pp-stat"><div class="pp-stat-lbl">Website</div><div class="pp-stat-val" style="font-size:12px;color:${website==='Website pending'?'var(--text3)':'var(--cyan)'}">${website}</div></div>
+      <div class="pp-stat"><div class="pp-stat-lbl">X / Twitter</div><div class="pp-stat-val" style="font-size:12px;color:${x==='X pending'?'var(--text3)':'var(--cyan)'}">${x}</div></div>
+      <div class="pp-stat"><div class="pp-stat-lbl">Impact Created</div><div class="pp-stat-val" style="font-size:12px;color:var(--text);font-family:inherit;line-height:1.35">${projectImpact(p)}</div></div>
+    </div>`:''}
     <div class="pp-stats">
       <div class="pp-stat"><div class="pp-stat-lbl">Price</div><div class="pp-stat-val">$${p.price.toFixed(2)}</div></div>
       <div class="pp-stat"><div class="pp-stat-lbl">24h Change</div><div class="pp-stat-val" style="color:${bull?'var(--green)':'var(--red)'}">${bull?'+':''}${p.change}%</div></div>
@@ -2988,7 +3331,10 @@ function openProfile(id){
       <div class="pp-stat"><div class="pp-stat-lbl">Social Score</div><div class="pp-stat-val">${p.socialScore}/10</div></div>
       <div class="pp-stat"><div class="pp-stat-lbl">Burn Rate</div><div class="pp-stat-val">${fmt(p.burnRate)}/mo</div></div>
     </div>
-    <button class="pp-buy" onclick="openBuy('${p.id}')">Buy Credits · $${p.price.toFixed(2)}/credit</button>`;
+    ${directoryMode?`<div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="pp-buy" style="flex:1;background:var(--bg4);border:1px solid var(--border2);color:var(--text)" onclick="openVideoPlaceholder('${p.id}')">Watch Video</button>
+      <button class="pp-buy" style="flex:1;background:rgba(0,217,126,0.12);border:1px solid rgba(0,217,126,0.3);color:var(--green)" onclick="closeProfile();showSection('marketplace',null)">View Marketplace</button>
+    </div>`:`<button class="pp-buy" onclick="openBuy('${p.id}')">Buy Credits · $${p.price.toFixed(2)}/credit</button>`}`;
   document.getElementById('project-overlay').classList.add('open');
 }
 function closeProfile(){document.getElementById('project-overlay').classList.remove('open');}
