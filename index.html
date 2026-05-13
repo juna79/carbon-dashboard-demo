@@ -1932,7 +1932,7 @@ input,select{outline:none;font-family:inherit}
       <div class="sc-sub">lifetime retirements</div>
     </div>
     <div class="stat-card c-gold">
-      <div class="sc-label">Unrealized P&amp;L</div>
+      <div class="sc-label">Unrealized P&L</div>
       <div class="sc-value" id="portPnL" style="font-size:16px">+$0.00</div>
       <div class="sc-sub" id="portPnLPct">+0.00%</div>
     </div>
@@ -1944,7 +1944,7 @@ input,select{outline:none;font-family:inherit}
     <div class="stat-card c-blue">
       <div class="sc-label">Certificates</div>
       <div class="sc-value" id="ptCerts">0</div>
-      <div class="sc-sub">active &amp; retired</div>
+      <div class="sc-sub">active & retired</div>
     </div>
   </div>
 
@@ -1972,7 +1972,7 @@ input,select{outline:none;font-family:inherit}
               <th style="text-align:right">Avg Buy</th>
               <th style="text-align:right">Current</th>
               <th style="text-align:right">Value</th>
-              <th style="text-align:right">P&amp;L</th>
+              <th style="text-align:right">P&L</th>
               <th style="text-align:right">Retired</th>
               <th>Certificates</th>
               <th>Action</th>
@@ -2513,7 +2513,7 @@ input,select{outline:none;font-family:inherit}
         <div class="cert-footer">
           <div class="cert-footer-status" id="cmFooterStatus">
             <div class="cert-status-dot" id="cmStatusDot" style="background:var(--green)"></div>
-            <span id="cmFooterStatusText">Verified &amp; Active</span>
+            <span id="cmFooterStatusText">Verified & Active</span>
           </div>
           <div class="cert-footer-registry">
             <span id="cmFooterRegistry">Verra VCS</span>
@@ -3028,7 +3028,7 @@ function flagFor(country){
   const code=COUNTRY_FLAG_CODES[key];
   const emoji=COUNTRY_FLAGS[key]||'🌍';
   if(!code)return `<span class="flag-emoji">${emoji}</span>`;
-  return `<span class="flag-wrap"><img class="flag-img" src="https://flagcdn.com/24x18/${code}.png" alt="${key}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="flag-emoji-fallback">${emoji}</span></span>`;
+  return ``;
 }
 function countryLabel(country){return `${flagFor(country)} ${country||'—'}`;}
 
