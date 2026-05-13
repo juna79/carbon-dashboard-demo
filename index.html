@@ -2108,6 +2108,134 @@ input,select{outline:none;font-family:inherit}
   }
 }
 
+
+/* Homepage 10/10 refinement — right panel, no right-side register buttons */
+#section-home .home-hero-row{
+  gap:54px !important;
+  padding:56px 52px 42px !important;
+}
+
+#section-home .home-simple-content{
+  max-width:640px !important;
+}
+
+#section-home .home-h1{
+  font-size:58px !important;
+  line-height:1.02 !important;
+  max-width:600px;
+}
+
+#section-home .home-sub{
+  max-width:600px;
+  font-size:18px !important;
+  line-height:1.55 !important;
+}
+
+#section-home .home-right-panel{
+  max-width:520px !important;
+  padding:30px !important;
+  border-radius:22px !important;
+  border-left:2px solid rgba(0,217,126,0.85) !important;
+  background:
+    linear-gradient(145deg,rgba(10,14,20,0.92),rgba(15,18,23,0.78)),
+    radial-gradient(circle at top right,rgba(0,217,126,0.16),transparent 42%) !important;
+  box-shadow:0 26px 90px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.035) !important;
+}
+
+#section-home .home-right-kicker{
+  margin-bottom:14px !important;
+}
+
+#section-home .home-right-title{
+  font-size:30px !important;
+  line-height:1.08 !important;
+  max-width:430px;
+  margin-bottom:18px !important;
+}
+
+#section-home .home-right-text{
+  font-size:14px !important;
+  line-height:1.65 !important;
+  max-width:410px;
+  margin-bottom:22px !important;
+}
+
+#section-home .home-channel-row{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:10px !important;
+  margin-bottom:20px !important;
+}
+
+#section-home .home-channel-link{
+  width:100% !important;
+  border-radius:10px !important;
+  justify-content:flex-start !important;
+  padding:12px 14px !important;
+  background:rgba(255,255,255,0.045) !important;
+}
+
+#section-home .home-channel-link::after{
+  content:'↗';
+  margin-left:auto;
+  color:var(--text3);
+  font-size:12px;
+}
+
+#section-home .home-trust-tags{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:10px !important;
+  margin-top:18px !important;
+}
+
+#section-home .home-trust-tag{
+  border-radius:10px !important;
+  padding:10px 11px !important;
+  background:rgba(255,255,255,0.035) !important;
+  border:1px solid rgba(42,51,71,0.8) !important;
+  color:var(--text2) !important;
+  font-size:10px !important;
+}
+
+#section-home .home-access-row{
+  display:none !important;
+}
+
+#section-home .home-section-card{
+  min-height:94px !important;
+}
+
+#section-home .home-section-title{
+  font-size:13px !important;
+}
+
+#section-home .home-section-desc{
+  font-size:11px !important;
+}
+
+@media(max-width:1180px){
+  #section-home .home-right-panel{
+    max-width:760px !important;
+  }
+}
+
+@media(max-width:700px){
+  #section-home .home-hero-row{
+    padding:44px 20px 34px !important;
+    gap:28px !important;
+  }
+  #section-home .home-h1{
+    font-size:42px !important;
+  }
+  #section-home .home-right-title{
+    font-size:24px !important;
+  }
+  #section-home .home-trust-tags{
+    grid-template-columns:1fr !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2162,10 +2290,10 @@ input,select{outline:none;font-family:inherit}
       <div class="home-simple-content">
         <div class="home-eyebrow">Environmental Market Infrastructure</div>
 
-        <h1 class="home-h1">Environmental<br><em>Asset Exchange</em></h1>
+        <h1 class="home-h1">Infrastructure for<br><em>trusted environmental</em><br>markets.</h1>
 
         <p class="home-sub">
-          Infrastructure for trusted environmental markets — connecting projects, buyers, verification, intelligence, and measurable impact.
+          Connecting projects, buyers, verification, intelligence, and measurable impact.
         </p>
 
         <div class="home-ctas">
@@ -2222,7 +2350,8 @@ input,select{outline:none;font-family:inherit}
           <a class="home-channel-link" href="https://x.com/EAXGlobal" target="_blank" rel="noopener noreferrer">𝕏 @EAXGlobal</a>
           <a class="home-channel-link" href="https://www.eaxglobal.io" target="_blank" rel="noopener noreferrer">www.eaxglobal.io</a>
         </div>
-<div class="home-trust-tags">
+
+        <div class="home-trust-tags">
           <div class="home-trust-tag">Multi-asset</div>
           <div class="home-trust-tag">Africa-first</div>
           <div class="home-trust-tag">Verified infrastructure</div>
