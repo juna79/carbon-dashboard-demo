@@ -1564,225 +1564,6 @@ input,select{outline:none;font-family:inherit}
   }
 }
 
-
-.home-bottom-strip{
-  margin-top:42px;
-  display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr;
-  gap:14px;
-  max-width:1180px;
-}
-
-.home-info-panel{
-  background:rgba(10,14,20,0.82);
-  border:1px solid rgba(42,51,71,0.82);
-  border-radius:14px;
-  padding:18px;
-  backdrop-filter:blur(10px);
-}
-
-.home-info-title{
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--green);
-  margin-bottom:10px;
-}
-
-.home-info-text{
-  font-size:13px;
-  line-height:1.65;
-  color:var(--text2);
-}
-
-.home-socials{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-
-.home-social{
-  padding:9px 12px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);
-  font-size:12px;
-  font-weight:700;
-  color:var(--text2);
-}
-
-@media(max-width:1000px){
-  .home-bottom-strip{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:640px){
-  .home-bottom-strip{
-    grid-template-columns:1fr;
-  }
-}
-
-
-/* Premium homepage lower section refinement */
-#section-home .home-section-links{
-  grid-template-columns:repeat(7,minmax(112px,1fr));
-  max-width:1180px;
-}
-
-#section-home .home-bottom-strip{
-  margin-top:34px;
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  gap:14px;
-  max-width:1180px;
-}
-
-#section-home .home-info-panel{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(135deg,rgba(15,18,23,0.92),rgba(10,14,20,0.72)),
-    radial-gradient(circle at top right,rgba(0,217,126,0.08),transparent 40%);
-  border:1px solid rgba(42,51,71,0.95);
-  border-radius:16px;
-  padding:20px;
-  min-height:142px;
-  backdrop-filter:blur(12px);
-}
-
-#section-home .home-info-panel::before{
-  content:'';
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:linear-gradient(180deg,var(--green),transparent);
-  opacity:.75;
-}
-
-#section-home .home-info-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1.2px;
-  color:var(--green);
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-
-#section-home .home-info-kicker::before{
-  content:'';
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 14px rgba(0,217,126,.7);
-}
-
-#section-home .home-info-title{
-  font-size:18px;
-  font-weight:900;
-  color:var(--text);
-  line-height:1.2;
-  margin-bottom:9px;
-  letter-spacing:-.2px;
-}
-
-#section-home .home-info-title span{
-  color:var(--green);
-}
-
-#section-home .home-info-text{
-  font-size:13px;
-  line-height:1.65;
-  color:var(--text2);
-}
-
-#section-home .home-socials{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
-
-#section-home .home-social{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.045);
-  border:1px solid rgba(42,51,71,0.95);
-  color:var(--text);
-  text-decoration:none;
-  font-size:12px;
-  font-weight:800;
-  transition:all .18s ease;
-}
-
-#section-home .home-social:hover{
-  transform:translateY(-1px);
-  border-color:rgba(0,217,126,0.45);
-  color:var(--green);
-  background:rgba(0,217,126,0.08);
-}
-
-#section-home .home-mini-metrics{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px;
-}
-
-#section-home .home-mini-metric{
-  padding:11px 12px;
-  border:1px solid rgba(42,51,71,0.75);
-  border-radius:12px;
-  background:rgba(0,0,0,0.18);
-}
-
-#section-home .home-mini-metric strong{
-  display:block;
-  font-size:14px;
-  color:var(--green);
-  font-family:var(--mono);
-  margin-bottom:3px;
-}
-
-#section-home .home-mini-metric span{
-  font-size:10px;
-  color:var(--text3);
-  text-transform:uppercase;
-  letter-spacing:.7px;
-}
-
-@media(max-width:1180px){
-  #section-home .home-section-links{
-    grid-template-columns:repeat(4,1fr);
-  }
-}
-
-@media(max-width:900px){
-  #section-home .home-bottom-strip{
-    grid-template-columns:1fr;
-  }
-  #section-home .home-section-links{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:560px){
-  #section-home .home-section-links{
-    grid-template-columns:1fr;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -1848,84 +1629,35 @@ input,select{outline:none;font-family:inherit}
           <button class="cta-secondary" onclick="showSection('trade',null)">Enter Platform →</button>
         </div>
 
-        
-<div class="home-section-links">
-  <div class="home-section-card" onclick="showSection('projects',null)">
-    <div class="home-section-title">Projects</div>
-    <div class="home-section-desc">Verified environmental projects.</div>
-  </div>
+        <div class="home-section-links">
+          <div class="home-section-card" onclick="showSection('projects',null)">
+            <div class="home-section-title">Projects</div>
+            <div class="home-section-desc">Discover verified environmental projects.</div>
+          </div>
 
-  <div class="home-section-card" onclick="showSection('trade',null)">
-    <div class="home-section-title">Exchange</div>
-    <div class="home-section-desc">Trade environmental assets.</div>
-  </div>
+          <div class="home-section-card" onclick="showSection('marketplace',null)">
+            <div class="home-section-title">Marketplace</div>
+            <div class="home-section-desc">Explore environmental assets.</div>
+          </div>
 
-  <div class="home-section-card" onclick="showSection('portfolio',null)">
-    <div class="home-section-title">Portfolio</div>
-    <div class="home-section-desc">Track holdings and impact.</div>
-  </div>
+          <div class="home-section-card" onclick="showSection('p2p',null)">
+            <div class="home-section-title">P2P</div>
+            <div class="home-section-desc">Connect with verified counterparties.</div>
+          </div>
 
-  <div class="home-section-card" onclick="showSection('marketplace',null)">
-    <div class="home-section-title">Marketplace</div>
-    <div class="home-section-desc">Explore listed opportunities.</div>
-  </div>
+          <div class="home-section-card" onclick="showSection('intelligence',null)">
+            <div class="home-section-title">Intelligence</div>
+            <div class="home-section-desc">Track market signals and impact data.</div>
+          </div>
 
-  <div class="home-section-card" onclick="showSection('p2p',null)">
-    <div class="home-section-title">P2P</div>
-    <div class="home-section-desc">Connect with counterparties.</div>
-  </div>
-
-  <div class="home-section-card" onclick="showSection('certificates',null)">
-    <div class="home-section-title">Certificates</div>
-    <div class="home-section-desc">Verified retirement records.</div>
-  </div>
-
-  <div class="home-section-card" onclick="showSection('intelligence',null)">
-    <div class="home-section-title">Intelligence</div>
-    <div class="home-section-desc">Market signals and insights.</div>
-  </div>
-</div>
-
-<div class="home-bottom-strip">
-  <div class="home-info-panel">
-    <div class="home-info-kicker">Built for trust</div>
-    <div class="home-info-title">Environmental markets need <span>credible infrastructure.</span></div>
-    <div class="home-info-text">
-      EAX connects project discovery, verification, intelligence, certificates, and market access into one institutional-grade environmental asset platform.
-    </div>
-    <div class="home-mini-metrics">
-      <div class="home-mini-metric"><strong>Multi-asset</strong><span>Carbon · biodiversity · water</span></div>
-      <div class="home-mini-metric"><strong>Africa-first</strong><span>Designed for global scale</span></div>
+          <div class="home-section-card" onclick="showSection('certificates',null)">
+            <div class="home-section-title">Certificates</div>
+            <div class="home-section-desc">View verified retirement records.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="home-info-panel">
-    <div class="home-info-kicker">Official channels</div>
-    <div class="home-info-title">Follow the build.</div>
-    <div class="home-info-text">
-      Stay close to EAX as the platform develops across environmental assets, verification, and market infrastructure.
-    </div>
-    <div class="home-socials">
-      <a class="home-social" href="https://x.com/EAXGlobal" target="_blank" rel="noopener noreferrer">𝕏 @EAXGlobal</a>
-      <a class="home-social" href="https://www.eaxglobal.io" target="_blank" rel="noopener noreferrer">www.eaxglobal.io</a>
-    </div>
-  </div>
-
-  <div class="home-info-panel">
-    <div class="home-info-kicker">Access</div>
-    <div class="home-info-title">Register. Verify. Participate.</div>
-    <div class="home-info-text">
-      Verified users will be able to list projects, review opportunities, connect with counterparties, and manage environmental asset records.
-    </div>
-    <div class="home-socials">
-      <button class="home-social" onclick="openRegisterModal()">Register</button>
-      <button class="home-social" onclick="openVerifyModal()">Get Verified</button>
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
 </div>
 
 <div id="section-trade" class="section">
@@ -2200,7 +1932,7 @@ input,select{outline:none;font-family:inherit}
       <div class="sc-sub">lifetime retirements</div>
     </div>
     <div class="stat-card c-gold">
-      <div class="sc-label">Unrealized P&L</div>
+      <div class="sc-label">Unrealized P&amp;L</div>
       <div class="sc-value" id="portPnL" style="font-size:16px">+$0.00</div>
       <div class="sc-sub" id="portPnLPct">+0.00%</div>
     </div>
@@ -2212,7 +1944,7 @@ input,select{outline:none;font-family:inherit}
     <div class="stat-card c-blue">
       <div class="sc-label">Certificates</div>
       <div class="sc-value" id="ptCerts">0</div>
-      <div class="sc-sub">active & retired</div>
+      <div class="sc-sub">active &amp; retired</div>
     </div>
   </div>
 
@@ -2240,7 +1972,7 @@ input,select{outline:none;font-family:inherit}
               <th style="text-align:right">Avg Buy</th>
               <th style="text-align:right">Current</th>
               <th style="text-align:right">Value</th>
-              <th style="text-align:right">P&L</th>
+              <th style="text-align:right">P&amp;L</th>
               <th style="text-align:right">Retired</th>
               <th>Certificates</th>
               <th>Action</th>
@@ -2781,7 +2513,7 @@ input,select{outline:none;font-family:inherit}
         <div class="cert-footer">
           <div class="cert-footer-status" id="cmFooterStatus">
             <div class="cert-status-dot" id="cmStatusDot" style="background:var(--green)"></div>
-            <span id="cmFooterStatusText">Verified & Active</span>
+            <span id="cmFooterStatusText">Verified &amp; Active</span>
           </div>
           <div class="cert-footer-registry">
             <span id="cmFooterRegistry">Verra VCS</span>
@@ -3296,7 +3028,7 @@ function flagFor(country){
   const code=COUNTRY_FLAG_CODES[key];
   const emoji=COUNTRY_FLAGS[key]||'🌍';
   if(!code)return `<span class="flag-emoji">${emoji}</span>`;
-  return ``;
+  return `<span class="flag-wrap"><img class="flag-img" src="https://flagcdn.com/24x18/${code}.png" alt="${key}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="flag-emoji-fallback">${emoji}</span></span>`;
 }
 function countryLabel(country){return `${flagFor(country)} ${country||'—'}`;}
 
