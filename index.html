@@ -1564,6 +1564,550 @@ input,select{outline:none;font-family:inherit}
   }
 }
 
+
+.home-bottom-strip{
+  margin-top:42px;
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr 1fr;
+  gap:14px;
+  max-width:1180px;
+}
+
+.home-info-panel{
+  background:rgba(10,14,20,0.82);
+  border:1px solid rgba(42,51,71,0.82);
+  border-radius:14px;
+  padding:18px;
+  backdrop-filter:blur(10px);
+}
+
+.home-info-title{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--green);
+  margin-bottom:10px;
+}
+
+.home-info-text{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text2);
+}
+
+.home-socials{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.home-social{
+  padding:9px 12px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  font-size:12px;
+  font-weight:700;
+  color:var(--text2);
+}
+
+@media(max-width:1000px){
+  .home-bottom-strip{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:640px){
+  .home-bottom-strip{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* Premium homepage lower section refinement */
+#section-home .home-section-links{
+  grid-template-columns:repeat(7,minmax(112px,1fr));
+  max-width:1180px;
+}
+
+#section-home .home-bottom-strip{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:14px;
+  max-width:1180px;
+}
+
+#section-home .home-info-panel{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(15,18,23,0.92),rgba(10,14,20,0.72)),
+    radial-gradient(circle at top right,rgba(0,217,126,0.08),transparent 40%);
+  border:1px solid rgba(42,51,71,0.95);
+  border-radius:16px;
+  padding:20px;
+  min-height:142px;
+  backdrop-filter:blur(12px);
+}
+
+#section-home .home-info-panel::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,var(--green),transparent);
+  opacity:.75;
+}
+
+#section-home .home-info-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  color:var(--green);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+#section-home .home-info-kicker::before{
+  content:'';
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px rgba(0,217,126,.7);
+}
+
+#section-home .home-info-title{
+  font-size:18px;
+  font-weight:900;
+  color:var(--text);
+  line-height:1.2;
+  margin-bottom:9px;
+  letter-spacing:-.2px;
+}
+
+#section-home .home-info-title span{
+  color:var(--green);
+}
+
+#section-home .home-info-text{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text2);
+}
+
+#section-home .home-socials{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+#section-home .home-social{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(42,51,71,0.95);
+  color:var(--text);
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+  transition:all .18s ease;
+}
+
+#section-home .home-social:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,217,126,0.45);
+  color:var(--green);
+  background:rgba(0,217,126,0.08);
+}
+
+#section-home .home-mini-metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
+}
+
+#section-home .home-mini-metric{
+  padding:11px 12px;
+  border:1px solid rgba(42,51,71,0.75);
+  border-radius:12px;
+  background:rgba(0,0,0,0.18);
+}
+
+#section-home .home-mini-metric strong{
+  display:block;
+  font-size:14px;
+  color:var(--green);
+  font-family:var(--mono);
+  margin-bottom:3px;
+}
+
+#section-home .home-mini-metric span{
+  font-size:10px;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+@media(max-width:1180px){
+  #section-home .home-section-links{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+@media(max-width:900px){
+  #section-home .home-bottom-strip{
+    grid-template-columns:1fr;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:560px){
+  #section-home .home-section-links{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* FINAL SAFE HOMEPAGE LAYOUT — single-screen hero, no lower strip */
+#section-home{
+  padding:0 !important;
+}
+
+#section-home .home-wrap{
+  min-height:calc(100vh - 76px);
+  background:var(--bg);
+}
+
+#section-home .home-hero-row{
+  min-height:calc(100vh - 76px);
+  display:grid !important;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,0.85fr) !important;
+  align-items:center;
+  gap:36px !important;
+  padding:58px 46px 44px !important;
+  position:relative;
+  overflow:hidden;
+}
+
+#section-home .home-hero-row::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    linear-gradient(90deg,rgba(5,8,12,.94) 0%,rgba(5,8,12,.76) 45%,rgba(5,8,12,.38) 100%),
+    radial-gradient(circle at 18% 38%,rgba(0,217,126,.14),transparent 34%),
+    radial-gradient(circle at 78% 45%,rgba(59,130,246,.14),transparent 38%);
+}
+
+#section-home .home-simple-content,
+#section-home .home-right-panel{
+  position:relative;
+  z-index:2;
+}
+
+#section-home .home-simple-content{
+  max-width:780px !important;
+  padding:0 !important;
+}
+
+#section-home .home-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border:1px solid rgba(0,217,126,.28);
+  border-radius:999px;
+  background:rgba(0,217,126,.07);
+  color:var(--green);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+#section-home .home-h1{
+  font-size:68px !important;
+  line-height:.98 !important;
+  letter-spacing:-2.4px;
+  font-weight:950 !important;
+  color:var(--text);
+  margin:0 0 22px !important;
+}
+
+#section-home .home-h1 em{
+  font-style:normal;
+  color:var(--green);
+}
+
+#section-home .home-sub{
+  max-width:700px;
+  font-size:20px !important;
+  line-height:1.55 !important;
+  color:var(--text2);
+  margin-bottom:30px !important;
+}
+
+#section-home .home-ctas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:13px;
+  margin-bottom:28px;
+}
+
+#section-home .cta-primary,
+#section-home .cta-secondary{
+  padding:14px 22px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:900;
+}
+
+#section-home .cta-primary{
+  background:var(--green);
+  color:#000;
+}
+
+#section-home .cta-secondary{
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--border2);
+  color:var(--text);
+}
+
+#section-home .home-section-links{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(86px,1fr)) !important;
+  gap:9px !important;
+  max-width:820px !important;
+  margin:0 !important;
+}
+
+#section-home .home-section-card{
+  min-height:78px;
+  padding:12px 11px !important;
+  border-radius:12px;
+  background:rgba(10,14,20,.66);
+  border:1px solid rgba(42,51,71,.76);
+  cursor:pointer;
+  transition:all .18s ease;
+  backdrop-filter:blur(8px);
+}
+
+#section-home .home-section-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(0,217,126,.38);
+  background:rgba(20,24,32,.82);
+}
+
+#section-home .home-section-title{
+  font-size:12px !important;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:5px;
+}
+
+#section-home .home-section-desc{
+  font-size:10px !important;
+  line-height:1.35 !important;
+  color:var(--text3);
+}
+
+#section-home .home-right-panel{
+  justify-self:end;
+  width:100%;
+  max-width:430px;
+  padding:24px;
+  border-radius:20px;
+  border:1px solid rgba(42,51,71,.88);
+  background:
+    linear-gradient(145deg,rgba(10,14,20,.88),rgba(15,18,23,.68)),
+    radial-gradient(circle at top right,rgba(0,217,126,.12),transparent 44%);
+  box-shadow:0 20px 70px rgba(0,0,0,.34);
+  backdrop-filter:blur(14px);
+}
+
+#section-home .home-right-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--green);
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.1px;
+  margin-bottom:12px;
+}
+
+#section-home .home-right-kicker::before{
+  content:'';
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px rgba(0,217,126,.75);
+}
+
+#section-home .home-right-title{
+  font-size:25px;
+  line-height:1.15;
+  font-weight:950;
+  color:var(--text);
+  letter-spacing:-.7px;
+  margin-bottom:12px;
+}
+
+#section-home .home-right-title span{
+  color:var(--green);
+}
+
+#section-home .home-right-text{
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text2);
+  margin-bottom:18px;
+}
+
+#section-home .home-channel-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:18px;
+}
+
+#section-home .home-channel-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(42,51,71,.88);
+  background:rgba(255,255,255,.045);
+  color:var(--text);
+  text-decoration:none;
+  font-size:12px;
+  font-weight:850;
+  white-space:nowrap;
+  transition:all .18s ease;
+}
+
+#section-home .home-channel-link:hover{
+  transform:translateY(-1px);
+  color:var(--green);
+  border-color:rgba(0,217,126,.45);
+  background:rgba(0,217,126,.075);
+}
+
+#section-home .home-trust-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:16px;
+}
+
+#section-home .home-trust-tag{
+  padding:7px 9px;
+  border-radius:999px;
+  border:1px solid rgba(42,51,71,.74);
+  background:rgba(0,0,0,.16);
+  color:var(--text3);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.75px;
+  text-transform:uppercase;
+}
+
+#section-home .home-access-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:16px;
+}
+
+#section-home .home-access-btn{
+  padding:10px 13px;
+  border-radius:999px;
+  border:1px solid rgba(42,51,71,.88);
+  background:rgba(255,255,255,.045);
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+}
+
+#section-home .home-access-btn.primary{
+  background:var(--green);
+  color:#000;
+  border-color:transparent;
+}
+
+#section-home .home-bottom-strip,
+#section-home .home-info-panel,
+#section-home .home-market-overview,
+#section-home .market-overview,
+#section-home .market-overview-section,
+#section-home .market-stats-bar,
+#section-home .home-overview,
+#section-home .home-terminal-grid{
+  display:none !important;
+}
+
+@media(max-width:1180px){
+  #section-home .home-hero-row{
+    grid-template-columns:1fr !important;
+    min-height:auto;
+  }
+  #section-home .home-right-panel{
+    justify-self:start;
+    max-width:820px;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:repeat(4,1fr) !important;
+  }
+}
+
+@media(max-width:700px){
+  #section-home .home-hero-row{
+    padding:44px 20px 34px !important;
+  }
+  #section-home .home-h1{
+    font-size:42px !important;
+    letter-spacing:-1.2px;
+  }
+  #section-home .home-sub{
+    font-size:16px !important;
+  }
+  #section-home .home-section-links{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
+
+@media(max-width:460px){
+  #section-home .home-section-links{
+    grid-template-columns:1fr !important;
+  }
+  #section-home .home-ctas,
+  #section-home .home-access-row{
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1616,7 +2160,7 @@ input,select{outline:none;font-family:inherit}
       <div class="home-hero-vignette"></div>
 
       <div class="home-simple-content">
-        <div class="home-eyebrow"><span class="home-eyebrow-dot"></span>Environmental Market Infrastructure</div>
+        <div class="home-eyebrow">Environmental Market Infrastructure</div>
 
         <h1 class="home-h1">Environmental<br><em>Asset Exchange</em></h1>
 
@@ -1632,30 +2176,66 @@ input,select{outline:none;font-family:inherit}
         <div class="home-section-links">
           <div class="home-section-card" onclick="showSection('projects',null)">
             <div class="home-section-title">Projects</div>
-            <div class="home-section-desc">Discover verified environmental projects.</div>
+            <div class="home-section-desc">Verified project discovery.</div>
+          </div>
+
+          <div class="home-section-card" onclick="showSection('trade',null)">
+            <div class="home-section-title">Exchange</div>
+            <div class="home-section-desc">Live environmental markets.</div>
+          </div>
+
+          <div class="home-section-card" onclick="showSection('portfolio',null)">
+            <div class="home-section-title">Portfolio</div>
+            <div class="home-section-desc">Track holdings and impact.</div>
           </div>
 
           <div class="home-section-card" onclick="showSection('marketplace',null)">
             <div class="home-section-title">Marketplace</div>
-            <div class="home-section-desc">Explore environmental assets.</div>
+            <div class="home-section-desc">Explore listed assets.</div>
           </div>
 
           <div class="home-section-card" onclick="showSection('p2p',null)">
             <div class="home-section-title">P2P</div>
-            <div class="home-section-desc">Connect with verified counterparties.</div>
-          </div>
-
-          <div class="home-section-card" onclick="showSection('intelligence',null)">
-            <div class="home-section-title">Intelligence</div>
-            <div class="home-section-desc">Track market signals and impact data.</div>
+            <div class="home-section-desc">Verified counterparties.</div>
           </div>
 
           <div class="home-section-card" onclick="showSection('certificates',null)">
             <div class="home-section-title">Certificates</div>
-            <div class="home-section-desc">View verified retirement records.</div>
+            <div class="home-section-desc">Retirement records.</div>
+          </div>
+
+          <div class="home-section-card" onclick="showSection('intelligence',null)">
+            <div class="home-section-title">Intelligence</div>
+            <div class="home-section-desc">Signals and market data.</div>
           </div>
         </div>
       </div>
+
+      <aside class="home-right-panel">
+        <div class="home-right-kicker">Official EAX Access</div>
+        <div class="home-right-title">Trusted infrastructure for <span>environmental assets.</span></div>
+        <div class="home-right-text">
+          One connected system for project discovery, verification, market access, certificates, and measurable impact.
+        </div>
+
+        <div class="home-channel-row">
+          <a class="home-channel-link" href="https://x.com/EAXGlobal" target="_blank" rel="noopener noreferrer">𝕏 @EAXGlobal</a>
+          <a class="home-channel-link" href="https://www.eaxglobal.io" target="_blank" rel="noopener noreferrer">www.eaxglobal.io</a>
+        </div>
+
+        <div class="home-access-row">
+          <button class="home-access-btn primary" onclick="openRegisterModal()">Register</button>
+          <button class="home-access-btn" onclick="openVerifyModal()">Get Verified</button>
+        </div>
+
+        <div class="home-trust-tags">
+          <div class="home-trust-tag">Multi-asset</div>
+          <div class="home-trust-tag">Africa-first</div>
+          <div class="home-trust-tag">Verified infrastructure</div>
+          <div class="home-trust-tag">Institutional access</div>
+          <div class="home-trust-tag">Measurable impact</div>
+        </div>
+      </aside>
     </div>
   </div>
 </div>
@@ -1932,7 +2512,7 @@ input,select{outline:none;font-family:inherit}
       <div class="sc-sub">lifetime retirements</div>
     </div>
     <div class="stat-card c-gold">
-      <div class="sc-label">Unrealized P&amp;L</div>
+      <div class="sc-label">Unrealized P&L</div>
       <div class="sc-value" id="portPnL" style="font-size:16px">+$0.00</div>
       <div class="sc-sub" id="portPnLPct">+0.00%</div>
     </div>
@@ -1944,7 +2524,7 @@ input,select{outline:none;font-family:inherit}
     <div class="stat-card c-blue">
       <div class="sc-label">Certificates</div>
       <div class="sc-value" id="ptCerts">0</div>
-      <div class="sc-sub">active &amp; retired</div>
+      <div class="sc-sub">active & retired</div>
     </div>
   </div>
 
@@ -1972,7 +2552,7 @@ input,select{outline:none;font-family:inherit}
               <th style="text-align:right">Avg Buy</th>
               <th style="text-align:right">Current</th>
               <th style="text-align:right">Value</th>
-              <th style="text-align:right">P&amp;L</th>
+              <th style="text-align:right">P&L</th>
               <th style="text-align:right">Retired</th>
               <th>Certificates</th>
               <th>Action</th>
@@ -2513,7 +3093,7 @@ input,select{outline:none;font-family:inherit}
         <div class="cert-footer">
           <div class="cert-footer-status" id="cmFooterStatus">
             <div class="cert-status-dot" id="cmStatusDot" style="background:var(--green)"></div>
-            <span id="cmFooterStatusText">Verified &amp; Active</span>
+            <span id="cmFooterStatusText">Verified & Active</span>
           </div>
           <div class="cert-footer-registry">
             <span id="cmFooterRegistry">Verra VCS</span>
@@ -3028,7 +3608,7 @@ function flagFor(country){
   const code=COUNTRY_FLAG_CODES[key];
   const emoji=COUNTRY_FLAGS[key]||'🌍';
   if(!code)return `<span class="flag-emoji">${emoji}</span>`;
-  return `<span class="flag-wrap"><img class="flag-img" src="https://flagcdn.com/24x18/${code}.png" alt="${key}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="flag-emoji-fallback">${emoji}</span></span>`;
+  return ``;
 }
 function countryLabel(country){return `${flagFor(country)} ${country||'—'}`;}
 
