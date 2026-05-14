@@ -2360,6 +2360,12 @@ input,select{outline:none;font-family:inherit}
 .eax-filter-pill.risk{color:var(--gold);border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.08)}
 .eax-filter-pill.alert{color:var(--red);border-color:rgba(255,71,87,.28);background:rgba(255,71,87,.08)}
 
+
+/* SELLER INTELLIGENCE */
+.seller-intel-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:900;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:var(--text2)}
+.seller-intel-pill.good{color:var(--green);border-color:rgba(0,217,126,.25);background:rgba(0,217,126,.08)}
+.seller-intel-pill.warn{color:var(--gold);border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.08)}
+
 </style>
 </head>
 <body>
@@ -3278,6 +3284,49 @@ input,select{outline:none;font-family:inherit}
         <select class="p2p-fsel" id="p2pFVintage" onchange="filterP2P()">
           <option value="">All Vintages</option>
         </select>
+        <select class="p2p-fsel" id="p2pFSellerRole" onchange="filterP2P()">
+          <option value="">Seller Type</option>
+          <option value="Institutional">Institutional</option>
+          <option value="Broker">Broker</option>
+          <option value="Project Developer">Project Developer</option>
+          <option value="Marketplace Maker">Marketplace Maker</option>
+        </select>
+
+        <select class="p2p-fsel" id="p2pFSellerVerification" onchange="filterP2P()">
+          <option value="">Verification</option>
+          <option value="Verified">Verified</option>
+          <option value="Unverified">Unverified</option>
+        </select>
+
+        <select class="p2p-fsel" id="p2pFSettlementSpeed" onchange="filterP2P()">
+          <option value="">Settlement Speed</option>
+          <option value="Instant">Instant</option>
+          <option value="Fast">Fast</option>
+          <option value="Standard">Standard</option>
+        </select>
+
+        <select class="p2p-fsel" id="p2pFSuccess" onchange="filterP2P()">
+          <option value="">Success Rate</option>
+          <option value="Elite">Elite</option>
+          <option value="Strong">Strong</option>
+          <option value="Watch">Watch</option>
+        </select>
+
+        <select class="p2p-fsel" id="p2pFDisputes" onchange="filterP2P()">
+          <option value="">Dispute Rate</option>
+          <option value="Low">Low</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Elevated">Elevated</option>
+        </select>
+
+        <select class="p2p-fsel" id="p2pFInventory" onchange="filterP2P()">
+          <option value="">Inventory Size</option>
+          <option value="Institutional">Institutional</option>
+          <option value="Large">Large</option>
+          <option value="Medium">Medium</option>
+          <option value="Small">Small</option>
+        </select>
+
         <input class="p2p-fsearch" id="p2pSearch" placeholder="Search credits, sellers, vintage..." oninput="filterP2P()">
 </div>
       <div class="p2p-sort-row">
@@ -5005,6 +5054,66 @@ function renderIntelTables(){
 // ════════════════════════════════════════════════════════
 // P2P
 // ════════════════════════════════════════════════════════
+
+function sellerProfileType(l){
+  const trades=Number(l.trades||0);
+  const score=Number(l.successRate||96);
+  if(trades>120 && score>=99)return 'Institutional';
+  if(trades>40)return 'Broker';
+  if((l.assetType||'').includes('REDD')||(l.assetType||'').includes('BIO'))return 'Project Developer';
+  return 'Marketplace Maker';
+}
+function sellerVerificationBand(l){ return l.verified?'Verified':'Unverified'; }
+function sellerSettlementBand(l){
+  const h=Number(l.avgSettlementHours||24);
+  if(h<=2)return 'Instant';
+  if(h<=12)return 'Fast';
+  return 'Standard';
+}
+function sellerSuccessBand(l){
+  const s=Number(l.successRate||96);
+  if(s>=99)return 'Elite';
+  if(s>=96)return 'Strong';
+  return 'Watch';
+}
+function sellerDisputeBand(l){
+  const d=Number(l.disputeRate||0.5);
+  if(d<0.3)return 'Low';
+  if(d<1)return 'Moderate';
+  return 'Elevated';
+}
+function sellerInventoryBand(l){
+  const q=Number(l.qty||0);
+  if(q>100000)return 'Institutional';
+  if(q>25000)return 'Large';
+  if(q>5000)return 'Medium';
+  return 'Small';
+}
+function passesSellerFilters(l){
+  const role=v('p2pFSellerRole');
+  const verification=v('p2pFSellerVerification');
+  const settlement=v('p2pFSettlementSpeed');
+  const success=v('p2pFSuccess');
+  const disputes=v('p2pFDisputes');
+  const inventory=v('p2pFInventory');
+
+  if(role && sellerProfileType(l)!==role)return false;
+  if(verification && sellerVerificationBand(l)!==verification)return false;
+  if(settlement && sellerSettlementBand(l)!==settlement)return false;
+  if(success && sellerSuccessBand(l)!==success)return false;
+  if(disputes && sellerDisputeBand(l)!==disputes)return false;
+  if(inventory && sellerInventoryBand(l)!==inventory)return false;
+
+  return true;
+}
+function sellerIntelPills(l){
+  return `
+    <span class="seller-intel-pill good">${sellerSuccessBand(l)}</span>
+    <span class="seller-intel-pill">${sellerSettlementBand(l)} settlement</span>
+    <span class="seller-intel-pill ${sellerDisputeBand(l)==='Elevated'?'warn':'good'}">${sellerDisputeBand(l)} disputes</span>
+  `;
+}
+
 function getFilteredP2P(){
   let list=[...P2P_DATA];
   const asset=v('p2pFAsset'),type=v('p2pFType'),geo=v('p2pFGeo'),ver=v('p2pFVer'),settle=v('p2pFSettle'),vintage=v('p2pFVintage');
@@ -5015,7 +5124,10 @@ function getFilteredP2P(){
   if(ver==='verified')list=list.filter(l=>l.verified);
   if(settle)list=list.filter(l=>l.settlement.includes(settle));
   if(vintage)list=list.filter(l=>String(PROJECTS.find(p=>p.id===l.projectId)?.vintage||'')===String(vintage));
-  if(search)list=list.filter(l=>l.sellerName.toLowerCase().includes(search)||(PROJECTS.find(p=>p.id===l.projectId)?.name.toLowerCase().includes(search))||String(PROJECTS.find(p=>p.id===l.projectId)?.vintage||'').includes(search));
+  list=list.filter(l=>passesSellerFilters(l));
+  if(search)list=list.filter(l=>l.sellerName.toLowerCase().includes(search)||(PROJECTS.find(p=>p.id===l.projectId)?.name.toLowerCase().includes(search))||String(PROJECTS.find(p=>p.id===l.projectId)?.vintage||'').includes(search)||
+    sellerProfileType(l).toLowerCase().includes(search)||
+    sellerSuccessBand(l).toLowerCase().includes(search));
   return sortP2PList(list,p2pSort);
 }
 
