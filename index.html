@@ -383,6 +383,65 @@ input,select{outline:none;font-family:inherit}
 .pp-stat-val{font-size:16px;font-weight:800;font-family:var(--mono);color:var(--green);margin-top:2px}
 .pp-buy{width:100%;padding:11px;background:var(--green);color:#000;border-radius:var(--radius);font-size:13px;font-weight:800}
 
+
+.vintage-filter-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(245,158,11,.10);color:var(--gold);border:1px solid rgba(245,158,11,.28);border-radius:3px;padding:2px 6px;font-size:9px;font-weight:900;font-family:var(--mono)}
+
+/* ══ PROJECT ASSET INTELLIGENCE EXTENSION — ADDED SAFELY ══ */
+.proj-profile{max-width:1040px}
+.pp-intel-wrap{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+.pp-intel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.pp-intel-title{font-size:12px;font-weight:900;color:var(--text);text-transform:uppercase;letter-spacing:.8px}
+.pp-intel-sub{font-size:11px;color:var(--text3);line-height:1.45;max-width:640px}
+.pp-intel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.pp-intel-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px;min-height:88px}
+.pp-intel-k{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.55px;margin-bottom:5px}
+.pp-intel-v{font-size:13px;font-weight:900;color:var(--text);font-family:var(--mono);line-height:1.25}
+.pp-intel-v.green{color:var(--green)}
+.pp-intel-v.gold{color:var(--gold)}
+.pp-intel-v.cyan{color:var(--cyan)}
+.pp-intel-v.red{color:var(--red)}
+.pp-intel-note{font-size:10px;color:var(--text3);line-height:1.45;margin-top:5px}
+.pp-intel-2col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.pp-intel-panel{background:rgba(255,255,255,.018);border:1px solid var(--border);border-radius:var(--radius);padding:11px}
+.pp-intel-panel-title{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.65px;font-weight:800;margin-bottom:9px;display:flex;justify-content:space-between;gap:10px}
+.pp-risk-row{display:grid;grid-template-columns:112px 1fr 44px;gap:8px;align-items:center;margin-bottom:8px}
+.pp-risk-row:last-child{margin-bottom:0}
+.pp-risk-label{font-size:11px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-risk-track{height:5px;background:var(--bg);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+.pp-risk-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:999px}
+.pp-risk-val{font-size:10px;color:var(--text);font-family:var(--mono);text-align:right}
+.pp-timeline{display:grid;gap:7px}
+.pp-event{display:grid;grid-template-columns:78px 1fr auto;gap:9px;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:9px}
+.pp-event-date{font-size:10px;color:var(--gold);font-family:var(--mono);font-weight:800}
+.pp-event-title{font-size:11px;color:var(--text);font-weight:800;margin-bottom:2px}
+.pp-event-desc{font-size:10px;color:var(--text3);line-height:1.35}
+.pp-mini-badge{font-size:9px;font-weight:900;border-radius:3px;padding:2px 6px;background:var(--green3);color:var(--green);border:1px solid rgba(0,217,126,.22);white-space:nowrap}
+.pp-monitor-map{height:170px;border-radius:var(--radius);border:1px solid var(--border);background:
+  radial-gradient(circle at 28% 42%,rgba(0,217,126,.32),transparent 7%),
+  radial-gradient(circle at 58% 52%,rgba(245,158,11,.26),transparent 8%),
+  radial-gradient(circle at 76% 34%,rgba(59,130,246,.22),transparent 6%),
+  linear-gradient(135deg,#07130f,#15261c 55%,#07090d);
+  position:relative;overflow:hidden;margin-bottom:9px}
+.pp-monitor-map:before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:28px 28px;opacity:.45}
+.pp-monitor-label{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.48);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;font-size:10px;color:var(--text2);backdrop-filter:blur(8px)}
+.pp-chart{height:120px;border-radius:var(--radius);border:1px solid var(--border);background:
+  repeating-linear-gradient(90deg,transparent,transparent 42px,rgba(255,255,255,.035) 43px),
+  repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(255,255,255,.035) 31px),
+  var(--bg);
+  position:relative;overflow:hidden}
+.pp-chart svg{position:absolute;inset:0;width:100%;height:100%}
+@media(max-width:900px){
+  .proj-profile{max-width:760px}
+  .pp-intel-grid{grid-template-columns:repeat(2,1fr)}
+  .pp-intel-2col{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .pp-intel-grid{grid-template-columns:1fr}
+  .pp-event{grid-template-columns:1fr}
+  .pp-risk-row{grid-template-columns:90px 1fr 38px}
+}
+
+
 /* ══ BUY MODAL ══ */
 #buy-modal{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
 #buy-modal.open{display:flex}
@@ -514,10 +573,10 @@ input,select{outline:none;font-family:inherit}
 /* P2P Table */
 .p2p-table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden}
 .p2p-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.p2p-thead{display:grid;grid-template-columns:170px 130px 70px 90px 80px 80px 70px 78px 80px 70px 130px;gap:0;padding:9px 12px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;min-width:1100px}
+.p2p-thead{display:grid;grid-template-columns:170px 130px 64px 70px 90px 80px 80px 70px 78px 80px 70px 130px;gap:0;padding:9px 12px;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;font-weight:700;min-width:1180px}
 .p2p-thead>span{padding:0 4px}
 .p2p-tbody{}
-.p2p-trow{display:grid;grid-template-columns:170px 130px 70px 90px 80px 80px 70px 78px 80px 70px 130px;gap:0;padding:11px 12px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.15s;min-width:1100px}
+.p2p-trow{display:grid;grid-template-columns:170px 130px 64px 70px 90px 80px 80px 70px 78px 80px 70px 130px;gap:0;padding:11px 12px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.15s;min-width:1180px}
 .p2p-trow:hover{background:var(--bg3)}
 .p2p-trow:last-child{border-bottom:none}
 .p2p-trow>div{padding:0 4px;font-size:12px}
@@ -2236,6 +2295,71 @@ input,select{outline:none;font-family:inherit}
   }
 }
 
+
+.market-vintage-wrap{display:flex;flex-direction:column;gap:4px;margin-right:10px}
+.market-vintage-label{font-size:10px;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.7px}
+.market-vintage-select{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  color:var(--text);
+  border-radius:var(--radius);
+  padding:8px 12px;
+  font-size:12px;
+  min-width:120px;
+}
+.exchange-vintage-chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:3px 7px;
+  border-radius:4px;
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  color:var(--gold);
+  font-size:10px;
+  font-weight:900;
+  font-family:var(--mono);
+}
+
+/* ══ EAX ADVANCED FILTERS — MARKETPLACE + PROJECTS ══ */
+.eax-adv-filter-toggle{
+  padding:7px 11px;
+  border-radius:var(--radius);
+  background:var(--bg4);
+  color:var(--text2);
+  border:1px solid var(--border2);
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.eax-adv-filter-toggle:hover{color:var(--green);border-color:rgba(0,217,126,.35)}
+.eax-adv-filter-panel{
+  display:none;
+  width:100%;
+  margin-top:9px;
+  padding:10px;
+  background:rgba(255,255,255,.018);
+  border:1px solid var(--border);
+  border-radius:var(--radius2);
+}
+.eax-adv-filter-panel.open{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.eax-filter-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:2px 6px;
+  border-radius:3px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.25px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.035);
+  color:var(--text2);
+}
+.eax-filter-pill.health{color:var(--green);border-color:rgba(0,217,126,.28);background:rgba(0,217,126,.08)}
+.eax-filter-pill.risk{color:var(--gold);border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.08)}
+.eax-filter-pill.alert{color:var(--red);border-color:rgba(255,71,87,.28);background:rgba(255,71,87,.08)}
+
 </style>
 </head>
 <body>
@@ -2425,6 +2549,84 @@ input,select{outline:none;font-family:inherit}
           </select>
         </div>
         <div class="fgroup">
+          <label class="flabel">Vintage</label>
+          <select class="fsel" id="fVintage" onchange="applyFilters()">
+            <option value="">All Vintages</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Registry / Standard</label>
+          <select class="fsel" id="fStandard" onchange="applyFilters()">
+            <option value="">All Standards</option>
+            <option value="Verra / VCU">Verra / VCU</option>
+            <option value="Gold Standard">Gold Standard</option>
+            <option value="Plan Vivo">Plan Vivo</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Availability</label>
+          <select class="fsel" id="fAvailability" onchange="applyFilters()">
+            <option value="">All Availability</option>
+            <option value="High availability">High availability</option>
+            <option value="Available">Available</option>
+            <option value="Limited">Limited</option>
+            <option value="Sold out">Sold out</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Advanced Quality</label>
+          <select class="fsel" id="fHealth" onchange="applyFilters()">
+            <option value="">Any Health Score</option>
+            <option value="Excellent">Excellent</option>
+            <option value="Strong">Strong</option>
+            <option value="Watch">Watch</option>
+            <option value="Weak">Weak</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Methodology Risk</label>
+          <select class="fsel" id="fMethodRisk" onchange="applyFilters()">
+            <option value="">Any Methodology Risk</option>
+            <option value="Low">Low</option>
+            <option value="Medium-low">Medium-low</option>
+            <option value="Medium">Medium</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Permanence Risk</label>
+          <select class="fsel" id="fPermRisk" onchange="applyFilters()">
+            <option value="">Any Permanence Risk</option>
+            <option value="Low">Low</option>
+            <option value="Medium-low">Medium-low</option>
+            <option value="Moderate">Moderate</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Liquidity</label>
+          <select class="fsel" id="fLiquidity" onchange="applyFilters()">
+            <option value="">Any Liquidity</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Emerging">Emerging</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Controversy Alerts</label>
+          <select class="fsel" id="fControversy" onchange="applyFilters()">
+            <option value="">Any Alert Status</option>
+            <option value="0 Active">0 Active</option>
+            <option value="1 Watch">1 Watch</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Retirement Status</label>
+          <select class="fsel" id="fRetirement" onchange="applyFilters()">
+            <option value="">Any Retirement Status</option>
+            <option value="Active / tradable">Active / tradable</option>
+            <option value="Partially retired">Partially retired</option>
+          </select>
+        </div>
+        <div class="fgroup">
           <label class="flabel">Sort By</label>
           <select class="fsel" id="fSort" onchange="applyFilters()">
             <option value="">Default</option>
@@ -2438,7 +2640,7 @@ input,select{outline:none;font-family:inherit}
         </div>
         <div class="fgroup">
           <label class="flabel">Search</label>
-          <input class="finp" id="fSearch" placeholder="Search projects..." oninput="applyFilters()">
+          <input class="finp" id="fSearch" placeholder="Search projects, country, type, vintage..." oninput="applyFilters()">
         </div>
       </div>
 
@@ -2501,7 +2703,7 @@ input,select{outline:none;font-family:inherit}
         </div>
         <div class="fgroup">
           <label class="flabel">Search</label>
-          <input class="finp" id="sSearch" placeholder="Search projects..." oninput="applyFilters()">
+          <input class="finp" id="sSearch" placeholder="Search projects, country, type, vintage..." oninput="applyFilters()">
         </div>
         <div class="seller-hint">Seller mode ranks projects by buyer type, need and geography alignment.</div>
       </div>
@@ -2741,6 +2943,31 @@ input,select{outline:none;font-family:inherit}
         <option value="Asia">Asia</option><option value="North America">North America</option>
         <option value="South America">South America</option>
       </select>
+      <select class="fsel" id="mktVintage" onchange="filterMkt()" style="width:auto">
+        <option value="">All Vintages</option>
+      </select>
+      <select class="fsel" id="mktStandard" onchange="filterMkt()" style="width:auto">
+        <option value="">All Standards</option>
+        <option value="Verra / VCU">Verra / VCU</option>
+        <option value="Gold Standard">Gold Standard</option>
+        <option value="Plan Vivo">Plan Vivo</option>
+      </select>
+      <select class="fsel" id="mktAvailability" onchange="filterMkt()" style="width:auto">
+        <option value="">All Availability</option>
+        <option value="High availability">High availability</option>
+        <option value="Available">Available</option>
+        <option value="Limited">Limited</option>
+        <option value="Sold out">Sold out</option>
+      </select>
+      <button class="eax-adv-filter-toggle" onclick="toggleAdvFilters('mktAdvancedFilters')">Advanced Filters ▾</button>
+      <div class="eax-adv-filter-panel" id="mktAdvancedFilters">
+        <select class="fsel" id="mktHealth" onchange="filterMkt()"><option value="">Project Health</option><option value="Excellent">Excellent</option><option value="Strong">Strong</option><option value="Watch">Watch</option><option value="Weak">Weak</option></select>
+        <select class="fsel" id="mktMethodRisk" onchange="filterMkt()"><option value="">Methodology Risk</option><option value="Low">Low</option><option value="Medium-low">Medium-low</option><option value="Medium">Medium</option></select>
+        <select class="fsel" id="mktPermRisk" onchange="filterMkt()"><option value="">Permanence Risk</option><option value="Low">Low</option><option value="Medium-low">Medium-low</option><option value="Moderate">Moderate</option></select>
+        <select class="fsel" id="mktLiquidity" onchange="filterMkt()"><option value="">Liquidity</option><option value="High">High</option><option value="Medium">Medium</option><option value="Emerging">Emerging</option></select>
+        <select class="fsel" id="mktControversy" onchange="filterMkt()"><option value="">Controversy Alerts</option><option value="0 Active">0 Active</option><option value="1 Watch">1 Watch</option></select>
+        <select class="fsel" id="mktRetirement" onchange="filterMkt()"><option value="">Retirement Status</option><option value="Active / tradable">Active / tradable</option><option value="Partially retired">Partially retired</option></select>
+      </div>
       <select class="fsel" id="mktSort" onchange="filterMkt()" style="width:auto">
         <option value="">Sort: Default</option>
         <option value="cheapest">Cheapest</option><option value="rated">Highest Rated</option>
@@ -2774,7 +3001,32 @@ input,select{outline:none;font-family:inherit}
         <option value="REDD+">REDD+</option><option value="BIO">Biodiversity</option>
         <option value="BLUE">Blue Carbon</option>
       </select>
-      <input class="finp" id="projSearch" placeholder="Search projects..." oninput="filterProjs()" style="width:190px">
+      <select class="fsel" id="projVintage" onchange="filterProjs()" style="width:auto">
+        <option value="">All Vintages</option>
+      </select>
+      <select class="fsel" id="projStandard" onchange="filterProjs()" style="width:auto">
+        <option value="">All Standards</option>
+        <option value="Verra / VCU">Verra / VCU</option>
+        <option value="Gold Standard">Gold Standard</option>
+        <option value="Plan Vivo">Plan Vivo</option>
+      </select>
+      <select class="fsel" id="projAvailability" onchange="filterProjs()" style="width:auto">
+        <option value="">All Availability</option>
+        <option value="High availability">High availability</option>
+        <option value="Available">Available</option>
+        <option value="Limited">Limited</option>
+        <option value="Sold out">Sold out</option>
+      </select>
+      <button class="eax-adv-filter-toggle" onclick="toggleAdvFilters('projAdvancedFilters')">Advanced Filters ▾</button>
+      <div class="eax-adv-filter-panel" id="projAdvancedFilters">
+        <select class="fsel" id="projHealth" onchange="filterProjs()"><option value="">Project Health</option><option value="Excellent">Excellent</option><option value="Strong">Strong</option><option value="Watch">Watch</option><option value="Weak">Weak</option></select>
+        <select class="fsel" id="projMethodRisk" onchange="filterProjs()"><option value="">Methodology Risk</option><option value="Low">Low</option><option value="Medium-low">Medium-low</option><option value="Medium">Medium</option></select>
+        <select class="fsel" id="projPermRisk" onchange="filterProjs()"><option value="">Permanence Risk</option><option value="Low">Low</option><option value="Medium-low">Medium-low</option><option value="Moderate">Moderate</option></select>
+        <select class="fsel" id="projLiquidity" onchange="filterProjs()"><option value="">Liquidity</option><option value="High">High</option><option value="Medium">Medium</option><option value="Emerging">Emerging</option></select>
+        <select class="fsel" id="projControversy" onchange="filterProjs()"><option value="">Controversy Alerts</option><option value="0 Active">0 Active</option><option value="1 Watch">1 Watch</option></select>
+        <select class="fsel" id="projRetirement" onchange="filterProjs()"><option value="">Retirement Status</option><option value="Active / tradable">Active / tradable</option><option value="Partially retired">Partially retired</option></select>
+      </div>
+      <input class="finp" id="projSearch" placeholder="Search projects, country, type, vintage..." oninput="filterProjs()" style="width:190px">
     </div>
   </div>
   <div class="project-showcase-grid" id="projGrid"></div>
@@ -3023,8 +3275,11 @@ input,select{outline:none;font-family:inherit}
           <option value="Wire">Wire</option>
           <option value="M-Pesa">M-Pesa</option>
         </select>
-        <input class="p2p-fsearch" id="p2pSearch" placeholder="Search credits, sellers..." oninput="filterP2P()">
-      </div>
+        <select class="p2p-fsel" id="p2pFVintage" onchange="filterP2P()">
+          <option value="">All Vintages</option>
+        </select>
+        <input class="p2p-fsearch" id="p2pSearch" placeholder="Search credits, sellers, vintage..." oninput="filterP2P()">
+</div>
       <div class="p2p-sort-row">
         <span class="p2p-filter-label">Sort</span>
         <button class="p2p-sort-btn active" onclick="sortP2P('cheapest',this)">Cheapest</button>
@@ -3041,6 +3296,7 @@ input,select{outline:none;font-family:inherit}
         <div class="p2p-thead">
           <span>Seller</span>
           <span>Credit / Project</span>
+          <span>Vintage</span>
           <span>Asset</span>
           <span>Qty Available</span>
           <span>Ask Price</span>
@@ -3774,6 +4030,7 @@ function makeCard(p){
       <div class="pcard-img-ph" style="display:none">${p.emoji}</div>
       <div class="pcard-badges">
         <span class="badge b-green">${p.type}</span>
+        <span class="badge b-gold">V${p.vintage}</span>
         <span class="badge b-blue">${flagFor(p.country)} ${p.country}</span>
       </div>
     </div>
@@ -3842,6 +4099,7 @@ function makeProjectShowcaseCard(p){
         <div class="ps-info-cell"><div class="ps-info-k">Impact created</div><div class="ps-info-v">${projectImpact(p)}</div></div>
         <div class="ps-info-cell"><div class="ps-info-k">Verification</div><div class="ps-info-v">${p.standard} · ${p.certCount||0} certs</div></div>
       </div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px">${filterPillHtml(p)}</div>
       <div class="ps-metrics">
         <div class="ps-metric"><div class="ps-metric-k">Volume</div><div class="ps-metric-v">${fmt(p.volume)}</div></div>
         <div class="ps-metric"><div class="ps-metric-k">Traded</div><div class="ps-metric-v">${fmt(p.traded)}</div></div>
@@ -3881,6 +4139,98 @@ function showSelectedAsset(id){
   </div>`;
 }
 
+
+
+
+function resetAdvancedFilterGroup(prefix, rerender){
+  [prefix+'Standard',prefix+'Availability',prefix+'Health',prefix+'MethodRisk',prefix+'PermRisk',prefix+'Liquidity',prefix+'Controversy',prefix+'Retirement'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+  if(typeof rerender==='function')rerender();
+}
+
+function toggleAdvFilters(id){
+  const el=document.getElementById(id);
+  if(el)el.classList.toggle('open');
+}
+function projectHealthBand(p){
+  const score=typeof assetHealthScore==='function'?assetHealthScore(p):Math.round(70+(Number(p.socialScore||7)*3));
+  if(score>=90)return 'Excellent';
+  if(score>=82)return 'Strong';
+  if(score>=74)return 'Watch';
+  return 'Weak';
+}
+function projectMethodRiskBand(p){
+  return typeof assetMethodologyRisk==='function'?assetMethodologyRisk(p):'Medium-low';
+}
+function projectPermRiskBand(p){
+  const type=(p.type||'').toLowerCase();
+  if(type.includes('forest')||type.includes('redd')||type.includes('blue'))return 'Moderate';
+  if(type.includes('bio')||type.includes('water'))return 'Medium-low';
+  return 'Low';
+}
+function projectLiquidityBand(p){
+  return typeof assetLiquidity==='function'?assetLiquidity(p):(Number(p.volume||0)>80000?'High':Number(p.volume||0)>35000?'Medium':'Emerging');
+}
+function projectControversyBand(p){
+  return typeof assetControversy==='function'?assetControversy(p):'0 Active';
+}
+function projectRetirementBand(p){
+  return typeof assetRetirementStatus==='function'?assetRetirementStatus(p):'Active / tradable';
+}
+function projectAvailabilityBand(p){
+  const available=Number(p.volume||0)-Number(p.traded||0);
+  if(available<=0)return 'Sold out';
+  if(available<10000)return 'Limited';
+  if(available<50000)return 'Available';
+  return 'High availability';
+}
+function projectStandardBand(p){
+  const s=(p.standard||p.type||'').toString();
+  if(s.includes('Gold')||s==='GS')return 'Gold Standard';
+  if(s.includes('Verra')||s==='VCU'||s.includes('REDD'))return 'Verra / VCU';
+  if(s.includes('Plan'))return 'Plan Vivo';
+  return s;
+}
+function passesAdvancedProjectFilters(p,prefix){
+  const standard=v(prefix+'Standard');
+  const availability=v(prefix+'Availability');
+  const health=v(prefix+'Health');
+  const methodRisk=v(prefix+'MethodRisk');
+  const permRisk=v(prefix+'PermRisk');
+  const liquidity=v(prefix+'Liquidity');
+  const controversy=v(prefix+'Controversy');
+  const retirement=v(prefix+'Retirement');
+
+  if(standard && projectStandardBand(p)!==standard)return false;
+  if(availability && projectAvailabilityBand(p)!==availability)return false;
+  if(health && projectHealthBand(p)!==health)return false;
+  if(methodRisk && projectMethodRiskBand(p)!==methodRisk)return false;
+  if(permRisk && projectPermRiskBand(p)!==permRisk)return false;
+  if(liquidity && projectLiquidityBand(p)!==liquidity)return false;
+  if(controversy && projectControversyBand(p)!==controversy)return false;
+  if(retirement && projectRetirementBand(p)!==retirement)return false;
+  return true;
+}
+function filterPillHtml(p){
+  const health=projectHealthBand(p);
+  const risk=projectMethodRiskBand(p);
+  const liq=projectLiquidityBand(p);
+  return `<span class="eax-filter-pill health">${health}</span><span class="eax-filter-pill risk">${risk} risk</span><span class="eax-filter-pill">${liq} liquidity</span>`;
+}
+
+function populateVintageDropdowns(){
+  const vintages=[...new Set(PROJECTS.map(p=>String(p.vintage)).filter(Boolean))].sort((a,b)=>Number(b)-Number(a));
+  ['fVintage','mktVintage','projVintage','p2pFVintage'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const current=el.value;
+    el.innerHTML='<option value="">All Vintages</option>'+vintages.map(v=>`<option value="${v}">${v}</option>`).join('');
+    if(vintages.includes(current))el.value=current;
+  });
+}
+
 // ════════════════════════════════════════════════════════
 // FILTERS
 // ════════════════════════════════════════════════════════
@@ -3904,9 +4254,12 @@ function getFiltered(){
     const sort=v('sSort');
     const search=v('sSearch').toLowerCase();
     const buyerType=v('sBuyerType');
+    const vintage=v('sVintage') || v('fVintage');
     if(geo)list=list.filter(p=>p.region===geo||p.country===geo);
     if(asset)list=list.filter(p=>p.type===asset);
-    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
+    if(vintage)list=list.filter(p=>String(p.vintage)===String(vintage));
+    list=list.filter(p=>passesAdvancedProjectFilters(p,'f'));
+    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search)||String(p.vintage).includes(search));
     // Buyer type alignment: prioritise matching projects
     if(buyerType){
       const corpTypes=['REDD+','VCU','BIO'];
@@ -3925,10 +4278,12 @@ function getFiltered(){
     return sortList(list,sort);
   } else {
     // Buyer mode
-    const asset=v('fAsset'),country=v('fCountry'),sort=v('fSort'),search=v('fSearch').toLowerCase();
+    const asset=v('fAsset'),country=v('fCountry'),sort=v('fSort'),search=v('fSearch').toLowerCase(),vintage=v('fVintage');
     if(asset)list=list.filter(p=>p.type===asset);
     if(country)list=list.filter(p=>p.country.includes(country)||p.region.includes(country));
-    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
+    if(vintage)list=list.filter(p=>String(p.vintage)===String(vintage));
+    list=list.filter(p=>passesAdvancedProjectFilters(p,'f'));
+    if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search)||String(p.vintage).includes(search)||projectStandardBand(p).toLowerCase().includes(search)||projectHealthBand(p).toLowerCase().includes(search)||projectLiquidityBand(p).toLowerCase().includes(search));
     return sortList(list,sort);
   }
 }
@@ -3962,7 +4317,7 @@ function applyFilters(){
 
 function resetFilters(){
   if(currentMode==='buyer'){
-    ['fAsset','fCountry','fImpact','fSort'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    ['fAsset','fCountry','fImpact','fVintage','fStandard','fAvailability','fHealth','fMethodRisk','fPermRisk','fLiquidity','fControversy','fRetirement','fSort'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
     const s=document.getElementById('fSearch');if(s)s.value='';
   } else {
     ['sAssetType','sGeo','sSort','sBuyerType','sBuyerNeed'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
@@ -3972,10 +4327,12 @@ function resetFilters(){
 }
 
 function filterMkt(){
-  const asset=v('mktAsset'),geo=v('mktGeo'),sort=v('mktSort');
+  const asset=v('mktAsset'),geo=v('mktGeo'),sort=v('mktSort'),vintage=v('mktVintage');
   let list=[...PROJECTS];
   if(asset)list=list.filter(p=>p.type===asset);
   if(geo)list=list.filter(p=>p.region===geo||p.country===geo);
+  if(vintage)list=list.filter(p=>String(p.vintage)===String(vintage));
+  list=list.filter(p=>passesAdvancedProjectFilters(p,'mkt'));
   list=sortList(list,sort);
   const grid=document.getElementById('mktGrid');if(!grid)return;
   grid.innerHTML='';list.forEach(p=>grid.appendChild(makeCard(p)));
@@ -3983,11 +4340,13 @@ function filterMkt(){
 }
 
 function filterProjs(){
-  const geo=v('projGeo'),asset=v('projAsset'),search=v('projSearch').toLowerCase();
+  const geo=v('projGeo'),asset=v('projAsset'),search=v('projSearch').toLowerCase(),vintage=v('projVintage');
   let list=[...PROJECTS];
   if(geo)list=list.filter(p=>p.region===geo||p.country===geo);
   if(asset)list=list.filter(p=>p.type===asset);
-  if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search));
+  if(vintage)list=list.filter(p=>String(p.vintage)===String(vintage));
+  list=list.filter(p=>passesAdvancedProjectFilters(p,'proj'));
+  if(search)list=list.filter(p=>p.name.toLowerCase().includes(search)||p.country.toLowerCase().includes(search)||p.type.toLowerCase().includes(search)||String(p.vintage).includes(search));
   const grid=document.getElementById('projGrid');if(!grid)return;
   grid.innerHTML='';
   if(list.length===0){
@@ -4000,6 +4359,145 @@ function filterProjs(){
   }
   list.forEach(p=>grid.appendChild(makeProjectShowcaseCard(p)));
 }
+
+
+function assetHashSeed(p){
+  return Array.from(String(p.id||p.name)).reduce((a,c)=>a+c.charCodeAt(0),0);
+}
+function assetIssueDate(p){
+  const seed=assetHashSeed(p);
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const day=(seed%24)+3;
+  const month=months[seed%12];
+  return day+' '+month+' '+(p.vintage||2025);
+}
+function assetMethodology(p){
+  const type=(p.type||'').toLowerCase();
+  if(type.includes('blue'))return 'Blue Carbon v2.0';
+  if(type.includes('cook')||type.includes('clean'))return 'Clean Cooking v1.3';
+  if(type.includes('plastic'))return 'Plastic Recovery v2.1';
+  if(type.includes('water'))return 'Water Benefit v1.1';
+  if(type.includes('bio'))return 'Biodiversity v1.0';
+  if(type.includes('removal'))return 'Carbon Removal v2.4';
+  if(type.includes('energy'))return 'Renewable Energy v3.2';
+  if(type.includes('forest')||type.includes('redd'))return 'REDD+ v4.2';
+  return (p.standard||'Verified')+' methodology';
+}
+function assetRetirementStatus(p){
+  const traded=Number(p.traded||0), volume=Number(p.volume||0);
+  if(traded>volume*.65)return 'Partially retired';
+  return 'Active / tradable';
+}
+function assetHealthScore(p){
+  const seed=assetHashSeed(p);
+  const social=Number(p.socialScore||7)*4;
+  return Math.min(96,Math.max(72,Math.round(62+social+(seed%8))));
+}
+function assetMethodologyRisk(p){
+  const type=(p.type||'').toLowerCase();
+  if(type.includes('forest')||type.includes('redd')||type.includes('blue'))return 'Medium';
+  if(type.includes('bio')||type.includes('water'))return 'Medium-low';
+  if(type.includes('cook')||type.includes('energy'))return 'Low';
+  return 'Medium-low';
+}
+function assetControversy(p){
+  const seed=assetHashSeed(p);
+  return seed%11===0?'1 Watch':'0 Active';
+}
+function assetRegistryActions(p){
+  const seed=assetHashSeed(p);
+  return seed%13===0?'Under review':'None Active';
+}
+function assetLiquidity(p){
+  const vol=Number(p.volume||0);
+  if(vol>80000)return 'High';
+  if(vol>35000)return 'Medium';
+  return 'Emerging';
+}
+function assetRetirementTrend(p){
+  const seed=assetHashSeed(p);
+  return '+'+(8+(seed%18))+'% QoQ';
+}
+function assetTransferHistory(p){
+  const seed=assetHashSeed(p);
+  return (4+(seed%18))+' events';
+}
+function assetVerificationFreshness(p){
+  const seed=assetHashSeed(p);
+  return (seed%3===0)?'30 days':'Current';
+}
+function assetRiskRows(p){
+  const seed=assetHashSeed(p);
+  const permanence=55+(seed%30);
+  const methodology=60+((seed*2)%28);
+  const monitoring=68+((seed*3)%24);
+  const liquidity=assetLiquidity(p)==='High'?86:assetLiquidity(p)==='Medium'?68:54;
+  const rows=[
+    ['Permanence',permanence],
+    ['Methodology',methodology],
+    ['Monitoring',monitoring],
+    ['Liquidity',liquidity]
+  ];
+  return rows.map(r=>`
+    <div class="pp-risk-row">
+      <div class="pp-risk-label">${r[0]}</div>
+      <div class="pp-risk-track"><div class="pp-risk-fill" style="width:${r[1]}%"></div></div>
+      <div class="pp-risk-val">${r[1]}</div>
+    </div>`).join('');
+}
+function assetEventRows(p){
+  const issue=assetIssueDate(p);
+  return `
+    <div class="pp-event">
+      <div class="pp-event-date">${issue}</div>
+      <div><div class="pp-event-title">Issuance event recorded</div><div class="pp-event-desc">Credits attached to project profile with registry, vintage and methodology metadata.</div></div>
+      <span class="pp-mini-badge">Issued</span>
+    </div>
+    <div class="pp-event">
+      <div class="pp-event-date">Latest</div>
+      <div><div class="pp-event-title">Monitoring update</div><div class="pp-event-desc">Project health indicators refreshed with monitoring and due-diligence signals.</div></div>
+      <span class="pp-mini-badge">Tracked</span>
+    </div>
+    <div class="pp-event">
+      <div class="pp-event-date">Review</div>
+      <div><div class="pp-event-title">Methodology / risk review</div><div class="pp-event-desc">Methodology risk, permanence indicators and controversy alerts updated.</div></div>
+      <span class="pp-mini-badge">Updated</span>
+    </div>
+    <div class="pp-event">
+      <div class="pp-event-date">Market</div>
+      <div><div class="pp-event-title">Transfer and retirement history</div><div class="pp-event-desc">Marketplace transfers, buyer activity and retirement trend data displayed at project level.</div></div>
+      <span class="pp-mini-badge">Logged</span>
+    </div>`;
+}
+
+
+
+/* ══ VINTAGE SEARCH / FILTER EXTENSION — ADDED SAFELY ══ */
+function populateVintageFilter(){
+  const sel=document.getElementById('filterVintage');
+  if(!sel || !Array.isArray(projects)) return;
+  const current=sel.value;
+  const vintages=[...new Set(projects.map(p=>String(p.vintage||'')).filter(Boolean))].sort((a,b)=>Number(b)-Number(a));
+  sel.innerHTML='<option value="">All Vintages</option>'+vintages.map(v=>`<option value="${v}">${v}</option>`).join('');
+  if(vintages.includes(current)) sel.value=current;
+}
+function getVintageFilterValue(){
+  const el=document.getElementById('filterVintage');
+  return el ? String(el.value||'') : '';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    populateVintageFilter();
+    const vf=document.getElementById('filterVintage');
+    if(vf){
+      vf.addEventListener('change',()=>{
+        if(typeof renderProjects==='function') renderProjects();
+        if(typeof renderMarket==='function') renderMarket();
+        if(typeof applyFilters==='function') applyFilters();
+      });
+    }
+  },250);
+});
 
 // ════════════════════════════════════════════════════════
 // PROJECT PROFILE
@@ -4034,7 +4532,102 @@ function openProfile(id,context='market'){
       <div class="pp-stat"><div class="pp-stat-lbl">Social Score</div><div class="pp-stat-val">${p.socialScore}/10</div></div>
       <div class="pp-stat"><div class="pp-stat-lbl">Burn Rate</div><div class="pp-stat-val">${fmt(p.burnRate)}/mo</div></div>
     </div>
-    ${directoryMode?`<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+    <div class="pp-intel-wrap">
+      <div class="pp-intel-head">
+        <div>
+          <div class="pp-intel-title">Asset Intelligence Layer</div>
+          <div class="pp-intel-sub">Project-level due diligence: registry metadata, methodology risk, project health, monitoring signals, transfer history and retirement activity.</div>
+        </div>
+        <span class="badge b-green">Living asset profile</span>
+      </div>
+
+      <div class="pp-intel-grid">
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Issuance Date</div>
+          <div class="pp-intel-v cyan">${assetIssueDate(p)}</div>
+          <div class="pp-intel-note">Timestamped issuance record.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Vintage</div>
+          <div class="pp-intel-v gold">${p.vintage}</div>
+          <div class="pp-intel-note">Environmental outcome period.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Methodology Version</div>
+          <div class="pp-intel-v">${assetMethodology(p)}</div>
+          <div class="pp-intel-note">Standard and methodology reference.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Retirement Status</div>
+          <div class="pp-intel-v green">${assetRetirementStatus(p)}</div>
+          <div class="pp-intel-note">Tradable, retired or partially retired.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Project Health</div>
+          <div class="pp-intel-v green">${assetHealthScore(p)}/100</div>
+          <div class="pp-intel-note">Monitoring, registry activity and project updates.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Methodology Risk</div>
+          <div class="pp-intel-v gold">${assetMethodologyRisk(p)}</div>
+          <div class="pp-intel-note">Additionality, leakage, permanence and MRV quality.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Controversy Alerts</div>
+          <div class="pp-intel-v ${assetControversy(p)==='0 Active'?'green':'red'}">${assetControversy(p)}</div>
+          <div class="pp-intel-note">Media, NGO, scientific or registry concerns.</div>
+        </div>
+        <div class="pp-intel-card">
+          <div class="pp-intel-k">Registry Actions</div>
+          <div class="pp-intel-v ${assetRegistryActions(p)==='None Active'?'green':'gold'}">${assetRegistryActions(p)}</div>
+          <div class="pp-intel-note">Suspensions, reviews or corrective actions.</div>
+        </div>
+      </div>
+
+      <div class="pp-intel-2col">
+        <div class="pp-intel-panel">
+          <div class="pp-intel-panel-title">Risk Indicators <span>${p.type}</span></div>
+          ${assetRiskRows(p)}
+        </div>
+        <div class="pp-intel-panel">
+          <div class="pp-intel-panel-title">Market Intelligence <span>Live profile</span></div>
+          <div class="pp-intel-grid" style="grid-template-columns:1fr 1fr;margin-bottom:0">
+            <div class="pp-intel-card"><div class="pp-intel-k">Liquidity</div><div class="pp-intel-v green">${assetLiquidity(p)}</div><div class="pp-intel-note">Depth, volume and active buyer interest.</div></div>
+            <div class="pp-intel-card"><div class="pp-intel-k">Retirement Trends</div><div class="pp-intel-v green">${assetRetirementTrend(p)}</div><div class="pp-intel-note">Retirement demand over recent periods.</div></div>
+            <div class="pp-intel-card"><div class="pp-intel-k">Transfer History</div><div class="pp-intel-v cyan">${assetTransferHistory(p)}</div><div class="pp-intel-note">Recorded marketplace and ownership movements.</div></div>
+            <div class="pp-intel-card"><div class="pp-intel-k">Verification Updates</div><div class="pp-intel-v green">${assetVerificationFreshness(p)}</div><div class="pp-intel-note">Latest verification and monitoring recency.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pp-intel-2col">
+        <div class="pp-intel-panel">
+          <div class="pp-intel-panel-title">Satellite / Monitoring Layer <span>Project health</span></div>
+          <div class="pp-monitor-map"><div class="pp-monitor-label">Forest cover · biomass · land-use change · reversal exposure</div></div>
+          <div class="pp-intel-note">Initial demo layer. Future versions can connect satellite, MRV and project-reported monitoring feeds.</div>
+        </div>
+        <div class="pp-intel-panel">
+          <div class="pp-intel-panel-title">Liquidity & Retirement Trend <span>12 months</span></div>
+          <div class="pp-chart">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="none">
+              <polyline points="0,92 70,84 130,88 200,68 270,74 340,52 410,58 480,34 600,24" fill="none" stroke="rgba(0,217,126,.95)" stroke-width="3"/>
+              <polyline points="0,104 70,98 130,93 200,84 270,76 340,70 410,60 480,54 600,42" fill="none" stroke="rgba(245,158,11,.7)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="pp-intel-note">Green = market activity. Gold = retirement demand trend.</div>
+        </div>
+      </div>
+
+      <div class="pp-intel-panel">
+        <div class="pp-intel-panel-title">Verification Events <span>Registry + marketplace history</span></div>
+        <div class="pp-timeline">
+          ${assetEventRows(p)}
+        </div>
+      </div>
+    </div>
+
+    ${directoryMode?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
       <button class="pp-buy" style="flex:1;background:var(--bg4);border:1px solid var(--border2);color:var(--text)" onclick="openVideoPlaceholder('${p.id}')">Watch Video</button>
       <button class="pp-buy" style="flex:1;background:rgba(0,217,126,0.12);border:1px solid rgba(0,217,126,0.3);color:var(--green)" onclick="closeProfile();showSection('marketplace',null)">View Marketplace</button>
     </div>`:`<button class="pp-buy" onclick="openBuy('${p.id}')">Buy Credits · $${p.price.toFixed(2)}/credit</button>`}`;
@@ -4414,14 +5007,15 @@ function renderIntelTables(){
 // ════════════════════════════════════════════════════════
 function getFilteredP2P(){
   let list=[...P2P_DATA];
-  const asset=v('p2pFAsset'),type=v('p2pFType'),geo=v('p2pFGeo'),ver=v('p2pFVer'),settle=v('p2pFSettle');
+  const asset=v('p2pFAsset'),type=v('p2pFType'),geo=v('p2pFGeo'),ver=v('p2pFVer'),settle=v('p2pFSettle'),vintage=v('p2pFVintage');
   const search=v('p2pSearch').toLowerCase();
   if(asset)list=list.filter(l=>l.assetType===asset);
   if(type)list=list.filter(l=>l.sellerType===type);
   if(geo)list=list.filter(l=>l.region===geo||l.country===geo);
   if(ver==='verified')list=list.filter(l=>l.verified);
   if(settle)list=list.filter(l=>l.settlement.includes(settle));
-  if(search)list=list.filter(l=>l.sellerName.toLowerCase().includes(search)||(PROJECTS.find(p=>p.id===l.projectId)?.name.toLowerCase().includes(search)));
+  if(vintage)list=list.filter(l=>String(PROJECTS.find(p=>p.id===l.projectId)?.vintage||'')===String(vintage));
+  if(search)list=list.filter(l=>l.sellerName.toLowerCase().includes(search)||(PROJECTS.find(p=>p.id===l.projectId)?.name.toLowerCase().includes(search))||String(PROJECTS.find(p=>p.id===l.projectId)?.vintage||'').includes(search));
   return sortP2PList(list,p2pSort);
 }
 
@@ -4480,6 +5074,7 @@ function renderP2P(){
         <span class="p2p-proj-link" onclick="openProfile('${l.projectId}')">${pName.length>18?pName.substring(0,16)+'…':pName}</span>
         <div class="p2p-proj-country">${countryLabel(l.country)}</div>
       </div>
+      <div><span class="badge b-gold">V${proj?proj.vintage:'—'}</span></div>
       <div><span class="badge ${getAssetBadgeClass(l.assetType)}">${l.assetType}</span></div>
       <div><div style="font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text)">${fmt(l.qty)}</div><div style="font-size:10px;color:var(--text3)">credits</div></div>
       <div><div class="p2p-ask">$${l.askPrice.toFixed(2)}</div></div>
@@ -4726,6 +5321,7 @@ function pad(n){return n.toString().padStart(2,'0');}
 // INIT
 // ════════════════════════════════════════════════════════
 function init(){
+  populateVintageDropdowns();
   currentPrice=12+Math.random()*5;
   candles=genCandles(currentPrice,TF[currentTF].bars,TF[currentTF].vol);
   currentPrice=candles[candles.length-1].c;
